@@ -1,3 +1,4 @@
 config/client.js
 config/database.js
 node_modules/
+.vscode/
