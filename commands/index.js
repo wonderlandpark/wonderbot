@@ -4,6 +4,7 @@ commands.general = require('./general')
 commands.dev = require('./dev')
 commands.account = require('./account')
 commands.money = require('./money')
+commands.fun = require('./fun')
 module.exports.categorys = commands
 Object.keys(commands).forEach(c => {
     const category = commands[c]

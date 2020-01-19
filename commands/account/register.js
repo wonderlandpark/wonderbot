@@ -1,5 +1,5 @@
 module.exports.execute = async (client, message, locale, embed, tools, knex, props, data) => {
- if(await knex.select('*').from('users').where({id : message.author.id}).length > 0) {
+ if((await knex.select('*').from('users').where({id : message.author.id})).length > 0) {
      return message.reply(locale.commands.register.message.bind({contact : locale.commands.register.contact}))
  }
  else {
@@ -9,7 +9,7 @@ module.exports.execute = async (client, message, locale, embed, tools, knex, pro
      embed.addField(locale.commands.register.tos, '[{to}]({tos})'.bind({tos : locale.link.tos, to : locale.commands.register.to}), true)
      embed.addField(locale.commands.register.privacy, '[{to}]({privacy})'.bind({privacy : locale.link.privacy, to : locale.commands.register.to}), true)
      
-     const filter = m => m.content == locale.commands.register.code
+     const filter = m => m.content == locale.commands.register.code && m.author.id == message.author.id
      data.register.push(message.author.id)
     message.channel.send(embed)
     message.channel.awaitMessages(filter, { max: 1, time: 10000, errors: ['time'] })

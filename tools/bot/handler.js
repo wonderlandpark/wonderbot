@@ -2,7 +2,7 @@ const locale = require('../../locale')
 const commands = require('../../commands')
 const tools = require('../')
 const knex = tools.database
-const data = {register : [], cooldown : {}}
+const data = {register : [], cooldown : {}, action : [], slot : {}}
 
 module.exports = async (client, message, config, devMode) => {
     const embed = new require('./embed')(client, message)
@@ -24,6 +24,7 @@ module.exports = async (client, message, config, devMode) => {
             time : new Date(Math.round(blacked[0].time*1000)).format(message.data.locale),
             reason : blacked[0].why
         }))
+    if(data.action.includes(message.author.id)) return message.reply(locale[message.data.locale].error.already);
     if(data.cooldown[message.author.id] && Number(data.cooldown[message.author.id]) > Number(new Date()) && !JSON.parse(user[0].badges).includes('premium')){
         return message.reply(locale[message.data.locale].error.cooldown.bind({time : Number((Number(data.cooldown[message.author.id]) - Number(new Date()))/1000).toFixed(2) }))
     } 

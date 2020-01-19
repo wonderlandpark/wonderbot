@@ -3,12 +3,10 @@ module.exports.execute = async (client, message, locale, embed, tools, knex, pro
 }
 
 module.exports.props = {
-    name : '',
-    perms : '',
-    alias : [],
+    name : 'racing',
+    perms : 'general',
+    alias : ['경마', '경주'],
     args : [{
-        name : '',
-        type : '',
-        required : false
+
     }]
 }
