@@ -1,21 +1,23 @@
 module.exports.execute = async (client, message) => {
-    if (!message.data.arg[0]){
-       message.reply(locale.error.usage(props.name)) }
-    var Inko = require('inko');
-    var inko = new Inko();
-    content = message.data.args
-    message.delete()
-    message.channel.send(message.author + ' : ' + inko.en2ko(content));
-    
+  if (!message.data.arg[0]) {
+    message.reply(locale.error.usage(props.name));
+  }
+  var Inko = require("inko");
+  var inko = new Inko();
+  content = message.data.args;
+  message.delete();
+  message.channel.send(message.author + " : " + inko.en2ko(content));
+};
+
+module.exports.props = {
+  name: "ko",
+  perms: "general",
+  alias: ["한글로"],
+  args: [
+    {
+      name: "text",
+      type: "text",
+      required: true
     }
-    
-    module.exports.props = {
-        name : 'ko',
-        perms : 'general',
-        alias : ['한글로'],
-        args : [{
-            name : 'text',
-            type : 'text',
-            required : true
-        }]
-    }
+  ]
+};
