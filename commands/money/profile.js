@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const lib = require("../../tools/lib");
 
 module.exports.execute = async (
@@ -6,9 +7,7 @@ module.exports.execute = async (
   locale,
   embed,
   tools,
-  knex,
-  props,
-  data
+  knex
 ) => {
   const user = message.mentions.members.first() || message.member;
   const obj = await knex
@@ -23,7 +22,6 @@ module.exports.execute = async (
         user.id
       )
     )[0][0];
-    console.log(u);
     embed.addField(
       locale.commands.profile.profile.bind({ user: user.user.tag }),
       locale.commands.profile.wallet.bind({ money: u["money"] })
@@ -34,7 +32,7 @@ module.exports.execute = async (
       new Date(u["join"] * 1000).format(message.data.locale)
     );
     embed.addField(
-      "티어",
+      locale.commands.profile.rank,
       lib.emojis[getRank(u["per_rank"])] + `(${u["per_rank"]}%)`
     );
     message.channel.send(embed);

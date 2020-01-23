@@ -81,7 +81,20 @@ module.exports = {
       profile: "{user}님의 프로필",
       wallet: "잔고 : {money} <:coin:636879213239992330>",
       allin: "올인 연속 성공 횟수",
-      join: "원더봇 가입일"
+      join: "원더봇 가입일",
+      rank: '랭크'
+    },
+    stock: {
+      nores:
+        "검색결과가 없습니다. 올바른 주식이름 또는 이름 일부를 입력해주세요.",
+      many:
+        "`{count}`건이 검색되었습니다. 이름을 더 정확하게 입력해주세요. 검색된 주식 : \n```{stocks}```",
+      notvaild:
+        "유효하지 않은 값입니다. 매도/매수 할 올바른 주식의 수를 입력해주세요.",
+      nomoney: "지불하실 금액을 소지하고 있지 않습니다."
+    },
+    wallet: {
+      profile: "{user}님의 지갑"
     }
   },
   error: {
@@ -169,6 +182,8 @@ const usageNames = {
   money: "돈",
   text: "텍스트",
   user: "유저",
+  stock: "주식",
+  count: "수량",
   "user/text": "유저 또는 텍스트",
   "morse/text": "변환할 모스부호 또는 텍스트"
 };

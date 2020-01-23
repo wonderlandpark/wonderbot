@@ -22,17 +22,17 @@ module.exports.execute = async (
       .from("users")
       .where({ id: message.author.id })
   )[0].money;
-  if (
-    data.slot[message.author.id] &&
-    data.slot[message.author.id] + 60000 > Number(new Date())
-  )
-    return message.reply(
-      locale.commands.slot.cooldown.bind({
-        time: new Date(
-          Number(new Date(data.slot[message.author.id])) + 600000
-        ).fromNow(message.data.locale)
-      })
-    );
+  // if (
+  //   data.slot[message.author.id] &&
+  //   data.slot[message.author.id] + 60000 > Number(new Date())
+  // )
+  //   return message.reply(
+  //     locale.commands.slot.cooldown.bind({
+  //       time: new Date(
+  //         Number(new Date(data.slot[message.author.id])) + 600000
+  //       ).fromNow(message.data.locale)
+  //     })
+  //   );
   if (Number(message.data.arg[0]) < 500)
     return message.reply(locale.commands.slot.morethan);
   if (m < Number(message.data.arg[0]))
@@ -50,6 +50,7 @@ module.exports.execute = async (
       ms.react("🎰");
       ms.awaitReactions(filter, { max: 1, time: 10000, error: ["time"] }).then(
         async collected => {
+          console.log(collected);
           if (collected.size == 0) {
             data.action.splice(data.action.indexOf(message.data.id), 1);
             return message.reply(locale.commands.allin.not);
@@ -103,7 +104,7 @@ module.exports.execute = async (
         }
       );
     })
-    .catch(message.reply(locale.commands.allin.not));
+    .catch(e=>console.log(e));
 
   function slot() {
     var a = tools.weighted(percent);
