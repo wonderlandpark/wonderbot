@@ -74,9 +74,8 @@ module.exports.execute = async (
           });
         })
 
-        .catch(r => {
-          message.reply(locale.commands.allin.not);
-        });
+        .catch(message.reply(locale.commands.allin.not)
+        );
     });
   }
 };

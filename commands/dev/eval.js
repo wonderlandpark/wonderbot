@@ -5,9 +5,10 @@ module.exports.execute = async (
   embed,
   tools,
   knex,
-  props,
-  data
+  props
 ) => {
+  if (!message.data.args) return message.reply(locale.error.usage(props.name));
+
   if (
     message.data.args.includes("client.token") &&
     message.data.args.includes("message")
@@ -59,7 +60,7 @@ module.exports.props = {
   args: [
     {
       name: "script",
-      type: "string"
+      type: "text"
     }
   ]
 };

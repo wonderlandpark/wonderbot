@@ -104,7 +104,7 @@ module.exports.execute = async (
         }
       );
     })
-    .catch(e=>console.log(e));
+    .catch(e => console.log(e));
 
   function slot() {
     var a = tools.weighted(percent);

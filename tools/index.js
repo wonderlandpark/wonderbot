@@ -2,7 +2,7 @@
 module.exports.logger = require("./logger");
 
 module.exports.database = require("./database/knex");
-module.exports.sql = require("./database/sql");
+
 // Bot
 module.exports.bot = {
   init: require("./bot/init"),

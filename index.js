@@ -1,3 +1,4 @@
+
 /*
 Better Discord. Wonder_Bot
 
@@ -6,11 +7,11 @@ Author(s) : wonderlandpark
 (C) Team. Wonder. All rights reserved.
 */
 
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+
+
 const tools = require("./tools");
-tools.database
-  .select("*")
-  .from("users")
-  .then(r => console.log(r));
 const logger = tools.logger;
 const config = require("./config");
 const Bot = tools.bot.init;
@@ -53,23 +54,3 @@ String.prototype.bind = function(parameters) {
   return text;
 };
 
-global.usage = function(cmd) {
-  var text = "";
-  var desc = "";
-  var args = require("./commands/index.js")[cmd].props.args;
-  args.forEach(a => {
-    if (a.required) {
-      text += `[${a.name}] `;
-      desc += `[${a.name} - ${a.type}]`;
-    } else {
-      text += `(${a.name})`;
-      desc += `(${a.name} - ${a.type})`;
-    }
-  });
-
-  let arg = "";
-
-  text = text.replace(key, String(parameters[keyname]) || "");
-
-  return text;
-};

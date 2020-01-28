@@ -30,10 +30,10 @@ module.exports = async (client, message, config, devMode) => {
   )
     return;
   if (!commands[message.data.cmd]) return;
-  user = await knex
+  const user = (await knex
     .select("*")
     .from("users")
-    .where({ id: message.author.id });
+    .where({ id: message.author.id }));
   if (user.length == 0)
     return commands["register"].execute(
       client,
@@ -45,7 +45,7 @@ module.exports = async (client, message, config, devMode) => {
       commands[message.data.cmd].props,
       data
     );
-  blacked = await knex
+  var blacked = await knex
     .select("*")
     .from("blacklist")
     .where({ id: message.author.id });
