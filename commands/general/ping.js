@@ -11,7 +11,8 @@ module.exports.execute = async (
     knex
       .select("*")
       .from("users")
-      .then(gg => {
+      .then(a => {
+        console.log(a);
         embed.addField(
           locale.commands.ping.this,
           locale.commands.ping.pong.bind({

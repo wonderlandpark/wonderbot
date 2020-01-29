@@ -15,10 +15,12 @@ module.exports.execute = async (
     .where({ id: user.id });
   if (obj.length == 0) return message.reply(locale.error.nouser);
   else {
-    const u = (await knex('users')
-    .select('*')
-    .where({ id: message.data.arg[0] }))[0];
-    const stock = (await knex('stock').select('*'));
+    const u = (
+      await knex("users")
+        .select("*")
+        .where({ id: message.data.arg[0] })
+    )[0];
+    const stock = await knex("stock").select("*");
     embed.addField(
       locale.commands.wallet.profile.bind({ user: user.user.tag }),
       locale.commands.wallet.bind({ money: u["money"] })
@@ -35,8 +37,8 @@ module.exports.props = {
   args: []
 };
 
-function getMoney (user, stock) {
-    user.stocks.forEach(i=> {
-        stock[i]
-    })
+function getMoney(user, stock) {
+  user.stocks.forEach(i => {
+    stock[i];
+  });
 }

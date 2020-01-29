@@ -16,9 +16,7 @@ module.exports.execute = async (
     return message.channel.send("Sending Token??");
   }
   message.reply("Evaling...").then(async m => {
-    const result = new Promise((resolve, reject) =>
-      resolve(eval(message.data.args))
-    );
+    const result = new Promise(resolve => resolve(eval(message.data.args)));
 
     return result
       .then(output => {

@@ -9,10 +9,12 @@ module.exports = {
   // 여기부터 수정
   commands: {
     help: {
-      help: '원더봇 도움말',
-      desc: '항상 원더봇을 사랑해주셔서 감사합니다.\n이 봇은 ❤️와 함께 개발된 [오픈소스 프로젝트](https://github.com/wonderlandpark/wonderbot)입니다.\n모든 문의 사항 및 제보는[지원 서버](https://invite.gg/wonderbot)을 이용해주세요.',
-      support: '지원',
-      links: '[원더봇 홈페이지](https://wonderbot.xyz)\n[팀 원더 디스코드 (지원서버)](https://invite.gg/wonderbot)\n[초대하기](https://wonderbot.xyz/invite)\n 지원메일 : wonderbotsupport@naver.com'
+      help: "원더봇 도움말",
+      desc:
+        "항상 원더봇을 사랑해주셔서 감사합니다.\n이 봇은 ❤️와 함께 개발된 [오픈소스 프로젝트](https://github.com/wonderlandpark/wonderbot)입니다.\n모든 문의 사항 및 제보는[지원 서버](https://invite.gg/wonderbot)을 이용해주세요.",
+      support: "지원",
+      links:
+        "[원더봇 홈페이지](https://wonderbot.xyz)\n[팀 원더 디스코드 (지원서버)](https://invite.gg/wonderbot)\n[초대하기](https://wonderbot.xyz/invite)\n 지원메일 : wonderbotsupport@naver.com"
     },
     ping: {
       ping: "핑! 봇의 지연시간을 측정중입니다.",
@@ -88,7 +90,7 @@ module.exports = {
       wallet: "잔고 : {money} <:coin:636879213239992330>",
       allin: "올인 연속 성공 횟수",
       join: "원더봇 가입일",
-      rank: '랭크'
+      rank: "랭크"
     },
     stock: {
       nores:
@@ -189,7 +191,7 @@ const usageNames = {
   user: "유저",
   stock: "주식",
   count: "수량",
-  script: '스크립트',
+  script: "스크립트",
   "user/text": "유저 또는 텍스트",
   "morse/text": "변환할 모스부호 또는 텍스트"
 };

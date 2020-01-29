@@ -25,10 +25,8 @@ module.exports.props = {
   args: [{}]
 };
 
-
 function cmdFormat(cmds) {
   var array = [];
   Object.values(cmds).forEach(c => array.push(c.props.name));
-  return '`' + array.join('`, `') + '`';
-
+  return "`" + array.join("`, `") + "`";
 }

@@ -11,6 +11,7 @@ module.exports.execute = async (
     return message.reply("\n" + locale.error.usage(message.data.cmd));
   if (props.args[0].options.includes(message.data.arg[0])) {
     await message.reply("✅ 프로세스를 종료합니다.");
+    // eslint-disable-next-line no-undef
     process.exit();
   }
   try {
@@ -67,17 +68,3 @@ module.exports.props = {
     }
   ]
 };
-
-function nocache(module) {
-  delete require.cache[require.resolve(module)];
-}
-function noCache(module) {
-  delete require.cache[require.resolve(module)];
-}
-
-async function reload(path, Noindex) {
-  await Object.keys(require(path)).forEach(t => {
-    if (!Noindex) nocache(path);
-    nocache(path);
-  });
-}

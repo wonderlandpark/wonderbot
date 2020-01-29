@@ -1,4 +1,3 @@
-
 /*
 Better Discord. Wonder_Bot
 
@@ -9,7 +8,6 @@ Author(s) : wonderlandpark
 
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-
 
 const tools = require("./tools");
 const logger = tools.logger;
@@ -53,4 +51,3 @@ String.prototype.bind = function(parameters) {
 
   return text;
 };
-

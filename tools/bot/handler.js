@@ -4,7 +4,7 @@ const tools = require("../");
 const knex = tools.database;
 const data = { register: [], cooldown: {}, action: [], slot: {} };
 
-module.exports = async (client, message, config, devMode) => {
+module.exports = async (client, message, config) => {
   const embed = new require("./embed")(client, message);
   message.data = {
     raw: message.content,
@@ -30,10 +30,10 @@ module.exports = async (client, message, config, devMode) => {
   )
     return;
   if (!commands[message.data.cmd]) return;
-  const user = (await knex
+  const user = await knex
     .select("*")
     .from("users")
-    .where({ id: message.author.id }));
+    .where({ id: message.author.id });
   if (user.length == 0)
     return commands["register"].execute(
       client,

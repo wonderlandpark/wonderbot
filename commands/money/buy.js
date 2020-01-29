@@ -20,9 +20,11 @@ module.exports.execute = async (
         stocks: res.map(r => r.name + "\n").join("")
       })
     );
-  const money = (await knex("users")
-    .select("*")
-    .where({ id: message.author.id }))[0].money;
+  const money = (
+    await knex("users")
+      .select("*")
+      .where({ id: message.author.id })
+  )[0].money;
   const stock = (
     await knex("stocks")
       .select("*")
@@ -32,12 +34,12 @@ module.exports.execute = async (
   var num = 0;
   var dived = 0;
   var total = 0;
-  if (["전부", "올인", "모두", 'all'].includes(message.data.arg[1])) {
+  if (["전부", "올인", "모두", "all"].includes(message.data.arg[1])) {
     num = parseInt(money / Number(stock.now), 10);
     total = num * stock.now;
     dived = money - total;
-  } else if (["반인", "반", 'half'].includes(message.data.arg[1])) {
-    num = parseInt((money / 2) / Number(stock.now), 10);
+  } else if (["반인", "반", "half"].includes(message.data.arg[1])) {
+    num = parseInt(money / 2 / Number(stock.now), 10);
     total = num * stock.now;
     dived = money - total;
   } else if (
