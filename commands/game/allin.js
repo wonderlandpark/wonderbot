@@ -74,7 +74,7 @@ module.exports.execute = async (
           });
         })
 
-        .catch(message.reply(locale.commands.allin.not));
+        .catch();
     });
   }
 };
