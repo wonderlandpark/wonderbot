@@ -22,23 +22,22 @@ module.exports.execute = async (
       .from("users")
       .where({ id: message.author.id })
   )[0].money;
-  // if (
-  //   data.slot[message.author.id] &&
-  //   data.slot[message.author.id] + 60000 > Number(new Date())
-  // )
-  //   return message.reply(
-  //     locale.commands.slot.cooldown.bind({
-  //       time: new Date(
-  //         Number(new Date(data.slot[message.author.id])) + 600000
-  //       ).fromNow(message.data.locale)
-  //     })
-  //   );
-  if (Number(message.data.arg[0]) < 500)
+  if (
+    data.slot[message.author.id] &&
+    data.slot[message.author.id] + 60000 > Number(new Date())
+  )
+    return message.reply(
+      locale.commands.slot.cooldown.bind({
+        time: new Date(
+          Number(new Date(data.slot[message.author.id])) + 60000
+        ).fromNow(message.data.locale)
+      })
+    );
+  if (Number(message.data.arg[0]) < 300)
     return message.reply(locale.commands.slot.morethan);
   if (m < Number(message.data.arg[0]))
     return message.reply(locale.commands.slot.nomoney);
   const s = slot();
-  console.log(s);
   var msg = message.reply(
     locale.commands.slot.ready.bind({ money: message.data.arg[0] })
   );
@@ -57,8 +56,6 @@ module.exports.execute = async (
           }
           data.slot[message.author.id] = Number(new Date());
 
-          console.log(Number(message.data.arg[0]));
-          data.action.splice(data.action.indexOf(message.data.id), 1);
           await message.reply(
             locale.commands.slot.payed.bind({ money: message.data.arg[0] })
           );
@@ -87,7 +84,9 @@ module.exports.execute = async (
                 m + Number(reward) + tools.lib.emojis.coin
               );
 
-              message.reply(embed);
+              message.reply(embed)
+              .then(data.action.splice(data.action.indexOf(message.data.id), 1));
+
               gg.edit(
                 gg.content
                   .replace(emoji[s.slot[0]], static[s.slot[0]])
@@ -110,10 +109,10 @@ module.exports.execute = async (
     var a = tools.weighted(percent);
     var b = tools.weighted(percent);
     var c = tools.weighted(percent);
-    if (a == b && b == c) multi = 1 / (num * (percent[a] / 1000) ** 3);
-    else if (a == b) multi = 1 / (num * (percent[a] / 1000) ** 2);
-    else if (b == c) multi = 1 / (num * (percent[b] / 1000) ** 2);
-    else if (c == a) multi = 1 / (num * (percent[c] / 1000) ** 2);
+    if (a == b && b == c) multi = 1 / (num * (percent[a]) ** 3);
+    else if (a == b) multi = 1 / (num * (percent[a]) ** 2);
+    else if (b == c) multi = 1 / (num * (percent[b]) ** 2);
+    else if (c == a) multi = 1 / (num * (percent[c]) ** 2);
     else {
       var multi = 0;
     }
@@ -134,15 +133,14 @@ module.exports.props = {
 };
 
 const percent = {
-  wonder: 13,
-  seven: 30,
-  gem: 77,
-  star: 135,
-  money: 175,
-  melon: 261,
-  pear: 309
+  wonder: 0.013,
+  seven: 0.03,
+  gem: 0.097,
+  star: 0.135,
+  money: 0.175,
+  melon: 0.261,
+  pear: 0.289
 };
-
 const emoji = {
   wonderbot: "<a:slot:666617809849155608>",
   seven: "<a:slot:666617811061178388>",

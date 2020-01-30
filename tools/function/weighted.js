@@ -1,13 +1,9 @@
-module.exports = function(input) {
-  var array = []; // Just Checking...
-  for (var item in input) {
-    // eslint-disable-next-line no-prototype-builtins
-    if (input.hasOwnProperty(item)) {
-      // Safety
-      for (var i = 0; i < input[item]; i++) {
-        array.push(item);
-      }
-    }
+module.exports = function(spec) {
+  var sum = 0;
+  var r = Math.random();
+  // eslint-disable-next-line guard-for-in
+  for (var i in spec) {
+    sum += spec[i];
+    if (r <= sum) return i;
   }
-  return array[Math.floor(Math.random() * array.length)];
 };
