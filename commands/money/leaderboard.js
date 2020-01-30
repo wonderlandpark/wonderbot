@@ -1,4 +1,3 @@
-var HanTools = require("hangul-tools");
 module.exports.execute = async (
   client,
   message,
@@ -6,8 +5,7 @@ module.exports.execute = async (
   embed,
   tools,
   knex,
-  props,
-  data
+  props
 ) => {
   if (!props.args[0].options.includes(message.data.arg[0])) {
     message.reply(locale.error.usage(props.name));
@@ -29,7 +27,7 @@ module.exports.execute = async (
             )
             .orderBy("money", "DESC");
     var txt = "";
-    for (i = 1; i < 11; i++) {
+    for (var i = 1; i < 11; i++) {
       if (leaderboard[i - 1])
         txt +=
           `\n${i}. [${client.users.get(leaderboard[i - 1].id).tag}](` +
@@ -86,9 +84,9 @@ function num2han(number) {
     }
   }
 
-  for (var i = 0; i < resultArray.length; i++) {
-    if (!resultArray[i]) continue;
-    resultString = " " + String(resultArray[i]) + unitWords[i] + resultString;
+  for (var a = 0; a < resultArray.length; a++) {
+    if (!resultArray[a]) continue;
+    resultString = " " + String(resultArray[a]) + unitWords[a] + resultString;
   }
 
   return resultString.replace(" ", "");

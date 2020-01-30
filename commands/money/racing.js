@@ -1,3 +1,4 @@
+/*
 module.exports.execute = async (
   client,
   message,
@@ -15,3 +16,4 @@ module.exports.props = {
   alias: ["경마", "경주"],
   args: [{}]
 };
+*/

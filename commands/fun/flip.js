@@ -1,10 +1,6 @@
 module.exports.execute = (
-  client,
   message,
-  command,
-  embed,
-  commands,
-  Discord
+  locale
 ) => {
   // const config = require("./settings/config.json");
   // const prefix = (config.prefix)
@@ -14,12 +10,12 @@ module.exports.execute = (
   if (!message.data.args) {
     return message.reply(locale.error.usage(this.props.name));
   }
-
+  var txt = '';
   if (message.mentions.members.first()) {
-    var txt = message.guild.member(message.mentions.members.first().user)
+    txt = message.guild.member(message.mentions.members.first().user)
       .displayName;
   } else {
-    var txt = message.data.args;
+    txt = message.data.args;
   }
 
   var txtfliped = flip(txt);

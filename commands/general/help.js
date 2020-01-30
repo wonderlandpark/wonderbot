@@ -3,10 +3,7 @@ module.exports.execute = async (
   client,
   message,
   locale,
-  embed,
-  tools,
-  knex,
-  props
+  embed
 ) => {
   if (!message.data.args) {
     embed.addField(locale.commands.help.help, locale.commands.help.desc);

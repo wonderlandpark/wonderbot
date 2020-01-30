@@ -4,18 +4,16 @@ module.exports.execute = async (
   locale,
   embed,
   tools,
-  knex,
-  props,
-  data
+  knex
 ) => {
-  u = (
+  var u = (
     await knex
       .select("*")
       .from("users")
       .where({ id: message.author.id })
   )[0];
-  premium = JSON.parse(u.badges).includes("premium");
-  m = Number(u["money_cooldown"]);
+  var premium = JSON.parse(u.badges).includes("premium");
+  var m = Number(u["money_cooldown"]);
   if (m + 3600 > new Date() / 1000)
     return message.reply(
       locale.commands.payday.cooldown.bind({

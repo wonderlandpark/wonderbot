@@ -1,5 +1,3 @@
-const lib = require("../../tools/lib");
-
 module.exports.execute = async (
   client,
   message,
@@ -20,7 +18,7 @@ module.exports.execute = async (
         .select("*")
         .where({ id: message.data.arg[0] })
     )[0];
-    const stock = await knex("stock").select("*");
+    // const stock = await knex("stock").select("*");
     embed.addField(
       locale.commands.wallet.profile.bind({ user: user.user.tag }),
       locale.commands.wallet.bind({ money: u["money"] })
@@ -37,8 +35,3 @@ module.exports.props = {
   args: []
 };
 
-function getMoney(user, stock) {
-  user.stocks.forEach(i => {
-    stock[i];
-  });
-}

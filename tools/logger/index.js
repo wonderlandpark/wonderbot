@@ -22,7 +22,7 @@ module.exports.WBsuccess = msg =>
   );
 module.exports.mark = msg => log(msg, "Blue");
 
-function log(msg, color, time) {
+function log(msg, color) {
   console.log(
     `[${new Date().format()}]`,
     !color || !colorSource[color] ? colorSource.Reset : colorSource[color],
