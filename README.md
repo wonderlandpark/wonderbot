@@ -52,6 +52,6 @@ This code works finally on these Requirements
 
 [원더랜드](https://discord.gg/y6Yqeav)
 
-#### Developer's 
+#### Developer's
 
 [바로가기](https://dev.wonderbot.xyz)                   

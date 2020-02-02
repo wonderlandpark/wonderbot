@@ -109,6 +109,6 @@ module.exports = async (client, message, config) => {
     data
   );
 } catch (e) {
-    message.reply(locale.error.onerror.bind({ error: e, cmd: message.data.cmd, msg: message.content, perm: message.guild.me.permissions.bitfield }))
+    message.reply(locale.error.onerror.bind({ error: e, cmd: message.data.cmd, msg: message.content, perm: message.guild.me.permissions.bitfield }));
   }
 };
