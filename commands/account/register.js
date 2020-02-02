@@ -54,6 +54,10 @@ module.exports.execute = async (
     message.channel
       .awaitMessages(filter, { max: 1, time: 10000, errors: ["time"] })
       .then(async collected => {
+        if (!collected) {
+          await data.register.splice(data.register.indexOf(message.author.id), 1);
+        message.reply(locale.commands.register.timeout);
+        }
         await data.register.splice(data.register.indexOf(message.author.id), 1);
         await knex
           .insert({
@@ -64,6 +68,7 @@ module.exports.execute = async (
         return message.reply(locale.commands.register.thanks);
       })
       .catch(async collected => {
+        console.log(collected);
         await data.register.splice(data.register.indexOf(message.author.id), 1);
         message.reply(locale.commands.register.timeout);
       });

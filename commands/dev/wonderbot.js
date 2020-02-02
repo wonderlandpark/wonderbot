@@ -15,7 +15,6 @@ module.exports.execute = async (
   };
 
   const con = execute(message.data.args, this.bash);
-  console.log(this.bash);
   return message.reply(con, { code: "cmd" });
 };
 
@@ -128,7 +127,6 @@ function run(script, obj) {
       }
       break;
     default:
-      console.log(obj[obj.dir]);
       if (typeof obj[obj.dir][obj.cmd] !== "string")
         obj.return = {
           level: "error",

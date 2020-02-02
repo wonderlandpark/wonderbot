@@ -49,7 +49,6 @@ module.exports.execute = async (
       ms.react("🎰");
       ms.awaitReactions(filter, { max: 1, time: 10000, error: ["time"] }).then(
         async collected => {
-          console.log(collected);
           if (collected.size == 0) {
             data.action.splice(data.action.indexOf(message.data.id), 1);
             return message.reply(locale.commands.allin.not);
@@ -102,8 +101,8 @@ module.exports.execute = async (
           });
         }
       );
-    })
-    .catch(e => console.log(e));
+    });
+
 
   function slot() {
     var a = tools.weighted(percent);

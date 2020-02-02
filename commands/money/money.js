@@ -4,9 +4,7 @@ module.exports.execute = async (
   locale,
   embed,
   tools,
-  knex,
-  props,
-  data
+  knex
 ) => {
   const user = message.mentions.members.first() || message.member;
   const money = await knex

@@ -1,7 +1,5 @@
 const Discord = require("discord.js");
 
-const config = require("../../config");
-
 module.exports = (client, message) => {
   const embed = new Discord.RichEmbed();
   embed.setAuthor(client.user.username, client.user.avatarURL);

@@ -97,7 +97,8 @@ module.exports = async (client, message, config) => {
       })
     );
   data.cooldown[message.author.id] = new Date(Number(new Date()) + 3000);
-  commands[message.data.cmd].execute(
+  try {
+    commands[message.data.cmd].execute(
     client,
     message,
     locale[message.data.locale],
@@ -107,4 +108,7 @@ module.exports = async (client, message, config) => {
     commands[message.data.cmd].props,
     data
   );
+} catch (e) {
+    message.reply(locale.error.onerror.bind({ error: e, cmd: message.data.cmd, msg: message.content, perm: message.guild.me.permissions.bitfield }))
+  }
 };
