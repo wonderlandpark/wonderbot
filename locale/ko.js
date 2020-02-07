@@ -5,16 +5,21 @@ module.exports = {
     native: "한국어",
     code: "ko"
   },
+  global: {
+    won: '원',
+    wonderbot: '원더봇',
+    github: 'https://github.com/wonderbot/wonderbot'
+  },
 
   // 여기부터 수정
   commands: {
     help: {
-      help: "원더봇 도움말",
+      help: "%wonderbot% 도움말",
       desc:
-        "항상 원더봇을 사랑해주셔서 감사합니다.\n이 봇은 ❤️와 함께 개발된 [오픈소스 프로젝트](https://github.com/wonderlandpark/wonderbot)입니다.\n모든 문의 사항 및 제보는 [지원 서버](https://invite.gg/wonderbot)를 이용해주세요.",
+        "항상 %wonderbot%을 사랑해주셔서 감사합니다.\n이 봇은 ❤️와 함께 개발된 [오픈소스 프로젝트](https://github.com/wonderlandpark/wonderbot)입니다.\n모든 문의 사항 및 제보는 [지원 서버](https://invite.gg/wonderbot)를 이용해주세요.",
       support: "지원",
       links:
-        "[원더봇 홈페이지](https://wonderbot.xyz)\n[팀 원더 디스코드 (지원서버)](https://invite.gg/wonderbot)\n[초대하기](https://wonderbot.xyz/invite)\n 지원메일 : wonderbotsupport@naver.com"
+        "[%wonderbot% 홈페이지](https://wonderbot.xyz)\n[팀 원더 디스코드 (지원서버)](https://invite.gg/wonderbot)\n[초대하기](https://wonderbot.xyz/invite)\n 지원메일 : wonderbotsupport@naver.com"
     },
     ping: {
       ping: "핑! 봇의 지연시간을 측정중입니다.",
@@ -33,11 +38,11 @@ module.exports = {
       to: "바로가기",
       yet:
         "아직 약관에 동의하지 않으셨습니다.\n해당 채널에 `동의`를 입력하시면 모든 약관을 수락하신걸로 간주됩니다.",
-      start: "원더봇을 이용하시려면 반드시 다음 약관에 동의하셔야합니다.",
+      start: "%wonderbot%을 이용하시려면 반드시 다음 약관에 동의하셔야합니다.",
       code: "동의",
       timeout: "시간이 초과되어 취소되었습니다.",
       thanks:
-        "원더봇의 약관을 동의해주셔서 감사합니다! 이제 모든 기능을 이용하실 수 있습니다."
+        "%wonderbot%의 약관을 동의해주셔서 감사합니다! 이제 모든 기능을 이용하실 수 있습니다."
     },
     money: {
       money: "돈",
@@ -50,7 +55,7 @@ module.exports = {
       success:
         "당신의 잔고에 `100` <:coin:636879213239992330>을 추가했습니다!\n잔고 : `{money}` <:coin:636879213239992330>",
       premium:
-        "당신의 잔고에 `100` <:coin:636879213239992330>을 추가했습니다!\n__원더봇 프리미엄__을 가입하셨군요! `100` <:coin:636879213239992330>을 추가지급합니다!\n잔고 : `{money}` <:coin:636879213239992330>"
+        "당신의 잔고에 `100` <:coin:636879213239992330>을 추가했습니다!\n__%wonderbot% 프리미엄__을 가입하셨군요! `100` <:coin:636879213239992330>을 추가지급합니다!\n잔고 : `{money}` <:coin:636879213239992330>"
     },
     allin: {
       ask:
@@ -89,7 +94,7 @@ module.exports = {
       profile: "{user}님의 프로필",
       wallet: "잔고 : {money} <:coin:636879213239992330>",
       allin: "올인 연속 성공 횟수",
-      join: "원더봇 가입일",
+      join: "%wonderbot% 가입일",
       rank: "랭크"
     },
     stock: {
@@ -103,6 +108,9 @@ module.exports = {
     },
     wallet: {
       profile: "{user}님의 지갑"
+    },
+    price: {
+      price: '금(XAU) : {xau}원(WBW)\n은(XAG) : {xag}원(WBW)\n\n원더코인(WBC) : {wbc}원(WBW)'
     }
   },
   error: {
@@ -110,12 +118,12 @@ module.exports = {
     noperm: "당신은 이 명령어를 실행할 권한이 없습니다.\n요구 권한 : {perms}",
     process: "이미 해당 작업을 진행중입니다. 작업을 마치고 실행해 주세요.",
     blacklist:
-      "당신은 원더봇 사용이 금지되었습니다.\n정지 기간 : {time} 까지\n사유 : {reason}",
+      "당신은 %wonderbot% 사용이 금지되었습니다.\n정지 기간 : {time} 까지\n사유 : {reason}",
     cooldown:
-      "명령어 사용이 쿨타임중입니다.\n`{time}`초 후에 사용 가능합니다\n쿨타임을 없애고 싶으시다면 __원더봇 프리미엄__을 구매하세요",
+      "명령어 사용이 쿨타임중입니다.\n`{time}`초 후에 사용 가능합니다\n쿨타임을 없애고 싶으시다면 __%wonderbot% 프리미엄__을 구매하세요",
     botperm: "이 명령어를 실행하기 위해서는 봇에게 {perms} 권한이 요구됩니다.",
     timeout: "시간이 초과되어 취소되었습니다.",
-    nouser: "해당 유저는 원더봇에 가입되지 않았습니다.",
+    nouser: "해당 유저는 %wonderbot%에 가입되지 않았습니다.",
     already: "다른 작업이 진행중입니다. 작업을 완료한 후 명령어를 시도하세요.",
     usage: function(cmd) {
       var text = "";

@@ -3,3 +3,4 @@ module.exports.money = require("./money");
 module.exports.leaderboard = require("./leaderboard");
 module.exports.profile = require("./profile");
 module.exports.buy = require("./buy");
+module.exports.price = require("./price");

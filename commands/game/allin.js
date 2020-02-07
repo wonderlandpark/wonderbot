@@ -43,7 +43,7 @@ module.exports.execute = async (
 
               if (res) {
                 await knex
-                  .update({ money: money * 2 + multi, multiples: multi + 1 })
+                  .update({ money: money * (2 + multi), multiples: multi + 1 })
                   .from("users")
                   .where({ id: message.author.id });
                 message.reply(

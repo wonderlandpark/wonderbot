@@ -77,13 +77,9 @@ module.exports.props = {
 
 function find(str) {
   var s = [
-    { id: "wonderland", name: "원더랜드" },
-    { id: "marymary ", name: "매리웨딩" },
-    { id: "sangoon", name: "산군홈쇼핑" },
-    { id: "kimbab", name: "김밥천마" },
-    { id: "mc", name: "웅범널드" },
-    { id: "coin", name: "코인은행" },
-    { id: "chamoong", name: "채뭉크루아상항공" }
+    { id: "coin", name: "원더코인" },
+    { id: "xau", name: "금" },
+    { id: "xag", name: "은" }
   ];
   return s.filter(r => r.id.includes(str) || r.name.includes(str));
 }
