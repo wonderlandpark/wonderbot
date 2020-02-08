@@ -112,7 +112,15 @@ module.exports = {
       result: '아이템 : {item}\n수량  : {count}\n지불한 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>'
     },
     delivery: {
-    info: '보낸이: {from} 받는이: {to} ({state})'
+    info: '보낸이: {from} 받는이: {to} ({state})',
+    status: {
+      'information_received': '🏪 방문예정',
+      'at_pickup': '📦 상품인수',
+      'in_transit': '🚚 이동중',
+      'out_for_delivery': '🚚 배송중',
+      'delivered': '✅ 배송완료',
+      'unknown': '❔ 알수없음'
+    }
     }
   },
   error: {
