@@ -28,9 +28,9 @@ module.exports.execute = async (
   )
     return message.reply(
       locale.commands.slot.cooldown.bind({
-        time: new Date(
-          Number(new Date(data.slot[message.author.id])) + 60000
-        ).fromNow(message.data.locale)
+        time: Number(new Date(
+          Number(new Date(data.slot[message.author.id])) + 60000 - Number(new Date())
+        ) / 1000).toFixed(1)
       })
     );
   if (Number(message.data.arg[0]) < 300)

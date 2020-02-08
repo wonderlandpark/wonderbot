@@ -6,6 +6,7 @@ commands.account = require("./account");
 commands.money = require("./money");
 commands.fun = require("./fun");
 commands.game = require("./game");
+commands.utills = require("./utills");
 
 module.exports.categorys = commands;
 console.log(commands);

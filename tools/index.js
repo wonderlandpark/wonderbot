@@ -6,7 +6,8 @@ module.exports.database = require("./database/knex");
 // Bot
 module.exports.bot = {
   init: require("./bot/init"),
-  handler: require("./bot/handler")
+  handler: require("./bot/handler"),
+  embed: require("./bot/embed")
 };
 
 module.exports.lib = require("./lib");

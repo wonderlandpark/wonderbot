@@ -1,0 +1,51 @@
+const carriers = require('./carriers.json');
+const request = require('request');
+const moment = require('moment');
+module.exports.execute = async (
+    client,
+    message,
+    locale,
+    embed,
+    tools,
+    knex,
+    props
+  ) => {
+    if (!message.data.arg[1]) return message.reply(locale.error.usage(props.name));
+    const carrier = carriers.filter(i => i.name.includes(message.data.arg[0]) || i.code.includes(message.data.arg[0]));
+    if (carrier.length == 0) return message.reply(locale.error.search.nores);
+    if (carrier.length > 1) return message.reply(locale.error.search.many.bind({ count: carrier.length, items: carrier.map(a => a.name) }));
+    request(`https://apis.tracker.delivery/carriers/${carrier[0].code}/tracks/${message.data.arg[1]}`, function(err, res, Result) {
+    if (err) throw err;
+    Result = JSON.parse(Result);
+    if (Result.message) return message.channel.send(`> ❗ ${Result.message}`);
+    const MappedResult = Result.progresses.map(l => ({ desc: l.description, day: new Date(l.time).textFormat('YYYYMMDD'), time: new Date(l.time), location: l.location }));
+    console.log(JSON.stringify(MappedResult));
+    var json = {};
+    for (let obj of MappedResult) {
+      if (!json[obj.day]) json[obj.day] = [];
+      json[obj.day].push(obj);
+    }
+    embed.setTitle(locale.commands.delivery.info.bind({ from: Result.from.name, to: Result.to.name, state: Result.state.text }));
+    for (let key of Object.keys(json)) {
+      embed.addField(moment(key, 'YYYYMMDD').format('YYYY - MM - DD'), json[key].map(l => `**[${l.location.name}]** **${l.time.textFormat('HH:mm')}** - ${l.desc}`));
+    }
+    message.channel.send(embed);
+});
+  };
+  module.exports.props = {
+    name: "delivery",
+    perms: "general",
+    alias: ['택배'],
+    args: [
+      {
+        name: "delivery",
+        type: "text",
+        required: true
+      },
+      {
+        name: "bill",
+        type: "number",
+        required: true
+      }
+    ]
+  };
