@@ -14,7 +14,7 @@ module.exports.execute = async (
     const carrier = carriers.filter(i => i.name.includes(message.data.arg[0].replace(/ /gi, '')) || i.id.includes(message.data.arg[0]));
     if (carrier.length == 0) return message.reply(locale.error.search.nores);
     if (carrier.length > 1) return message.reply(locale.error.search.many.bind({ count: carrier.length, items: carrier.map(a => a.name) }));
-    request(`https://apis.tracker.delivery/carriers/${carrier[0].id}/tracks/${message.data.arg[1]}`, function(err, res, Result) {
+    request(encodeURI(`https://apis.tracker.delivery/carriers/${carrier[0].id}/tracks/${message.data.arg[1]}`), function(err, res, Result) {
     if (err) throw err;
     Result = JSON.parse(Result);
     if (Result.message) return message.channel.send(`> ❗ ${Result.message}`);
