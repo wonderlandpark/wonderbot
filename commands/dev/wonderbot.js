@@ -47,6 +47,7 @@ function execute(full, obj, data) {
 }
 
 function run(script, obj, data) {
+  const child = require('child_process');
   var args = [];
   const opt = script.match(/(--[^ ]*( [^ ]*|))/gi);
   if (opt && opt.length !== 0) {
@@ -61,8 +62,27 @@ function run(script, obj, data) {
   obj.args = args;
   obj.cmd = script.split(" ")[0];
   switch (obj.cmd) {
+    case "update":
+    case "pull":
+      // eslint-disable-next-line no-sync
+      var val = child.execSync('git pull').toString();
+      obj.return = {
+        level: "success",
+        type: "GIT_PULL",
+        str: "깃 변경사항을 업데이트합니다.\n" + val + '\n변경사항을 적용하려면 재시작이 필요합니다.'
+      };
+      break;
+      case "push":
+        var desc = obj.args.find(r => r.name == 'm') && obj.args.find(r => r.name == 'm').value ? obj.args.find(r => r.name == 'm').value : 'Updated Changes';
+         // eslint-disable-next-line no-sync
+        var va = child.execSync('git add .\ngit commit ').toString();
+        obj.return = {
+          level: "success",
+          type: "GIT_PUSH",
+          str: "깃 변경사항을 업데이트합니다.\n" + va + '\n변경사항이 저장되었습니다.'
+        };
+        break;
     case "maintain":
-      console.log(obj.args)
       if (obj.args.find(r => r.name == "--s" || r.name == "--sudo")) {
        if (data.onlineMode) {
          data.onlineMode = false;

@@ -131,7 +131,7 @@ module.exports = {
       many:
         "`{count}`건이 검색되었습니다. 이름을 더 정확하게 입력해주세요. 검색결과 : \n```{items}```"
     },
-    onerror: "펑.. 이런! 봇이 이상하네요. 해당 명령어를 실행하던 도중 에러가 발생하였습니다.\n아래 내용을 전부 복사해서 개발자에게 전송해주세요!!! ERROR : \n```js\n{error}\n```\n DESC : \n```fix\nCMD : {cmd}\nMSG CONTENT : {msg}\nBOT PERM : {perm}",
+    onerror: "펑.. 이런! 봇이 이상하네요. 해당 명령어를 실행하던 도중 에러가 발생하였습니다.\n아래 내용을 전부 복사해서 개발자에게 전송해주세요!!! ERROR : \n```js\n{error}\n```\n DESC : \n```fix\nCMD : {cmd}\nMSG CONTENT : {msg}\nBOT PERM : {perm}```",
     noperm: "당신은 이 명령어를 실행할 권한이 없습니다.\n요구 권한 : {perms}",
     process: "이미 해당 작업을 진행중입니다. 작업을 마치고 실행해 주세요.",
     blacklist:

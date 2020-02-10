@@ -1,4 +1,3 @@
-const locale = require("../../locale");
 const commands = require("../../commands");
 const tools = require("../");
 const knex = tools.database;
@@ -22,6 +21,8 @@ module.exports = async (client, message, config) => {
       .toLowerCase(),
     locale: "ko"
   };
+  const locale = require("../../locale")[message.data.locale];
+
   if (
     message.author.bot ||
     !message.content.startsWith(config.client.prefix) ||
@@ -31,7 +32,7 @@ module.exports = async (client, message, config) => {
   )
     return;
   if (!commands[message.data.cmd]) return;
-  if (!config.client.owners.includes(message.author.id) && !data.onlineMode) return message.reply(locale[message.data.locale].error.offline);
+  if (!config.client.owners.includes(message.author.id) && !data.onlineMode) return message.reply(locale.error.offline);
   var log = `${new Date().textFormat('YYYY/MM/DD HH:MM:SS')} ${message.author.tag} : ${message.content}`;
   fs.appendFile('./logs/cmd.log', log + '\n', function (err) {
     if (err) throw err;
@@ -45,7 +46,7 @@ module.exports = async (client, message, config) => {
     return commands["register"].execute(
       client,
       message,
-      locale[message.data.locale],
+     locale,
       embed,
       tools,
       knex,
@@ -58,7 +59,7 @@ module.exports = async (client, message, config) => {
     .where({ id: message.author.id });
   if (blacked.length == 1 && blacked[0].time > new Date() / 1000)
     return message.reply(
-      locale[message.data.locale].error.blacklist.bind({
+     locale.error.blacklist.bind({
         time: new Date(Math.round(blacked[0].time * 1000)).format(
           message.data.locale
         ),
@@ -66,14 +67,14 @@ module.exports = async (client, message, config) => {
       })
     );
   if (data.action.includes(message.author.id))
-    return message.reply(locale[message.data.locale].error.already);
+    return message.reply(locale.error.already);
   if (
     data.cooldown[message.author.id] &&
     Number(data.cooldown[message.author.id]) > Number(new Date()) &&
     !JSON.parse(user[0].badges).includes("premium")
   ) {
     return message.reply(
-      locale[message.data.locale].error.cooldown.bind({
+     locale.error.cooldown.bind({
         time: Number(
           (Number(data.cooldown[message.author.id]) - Number(new Date())) / 1000
         ).toFixed(2)
@@ -87,7 +88,7 @@ module.exports = async (client, message, config) => {
     )
   )
     return message.reply(
-      locale[message.data.locale].error.noperm.bind({
+     locale.error.noperm.bind({
         perms: commands[message.data.cmd].props.perms.name
       })
     );
@@ -99,23 +100,23 @@ module.exports = async (client, message, config) => {
       : false
   )
     return message.reply(
-      locale[message.data.locale].error.noperm.bind({
+     locale.error.noperm.bind({
         perms: commands[message.data.cmd].props.perms.name
       })
     );
+  // eslint-disable-next-line require-atomic-updates
   data.cooldown[message.author.id] = new Date(Number(new Date()) + 3000);
-  try {
-    commands[message.data.cmd].execute(
-    client,
-    message,
-    locale[message.data.locale],
-    embed,
-    tools,
-    knex,
-    commands[message.data.cmd].props,
-    data
-  );
-} catch (e) {
-    message.reply(locale.error.onerror.bind({ error: e, cmd: message.data.cmd, msg: message.content, perm: message.guild.me.permissions.bitfield }));
-  }
+      commands[message.data.cmd].execute(
+      client,
+      message,
+      locale,
+      embed,
+      tools,
+      knex,
+      commands[message.data.cmd].props,
+      data
+    ).catch(e => {
+      console.log(e);
+      message.reply(locale.error.onerror.bind({ error: e, cmd: message.data.cmd, msg: message.content, perm: message.guild.me.permissions.bitfield }));
+  });
 };
