@@ -54,7 +54,7 @@ module.exports.execute = async (
 module.exports.props = {
   name: "eval",
   perms: "dev",
-  alias: ["script", "이블"],
+  alias: ["실행", "cmd", "script", "이블"],
   args: [
     {
       name: "script",

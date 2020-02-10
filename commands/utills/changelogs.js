@@ -18,6 +18,6 @@ module.exports.execute = async (
   module.exports.props = {
     name: "changelogs",
     perms: "general",
-    alias: ['changelog', '변경사항', '패치내역'],
+    alias: ['변경사항', '패치내역', 'changelog'],
     args: []
   };

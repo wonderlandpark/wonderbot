@@ -72,16 +72,6 @@ function run(script, obj, data) {
         str: "깃 변경사항을 업데이트합니다.\n" + val + '\n변경사항을 적용하려면 재시작이 필요합니다.'
       };
       break;
-      case "push":
-        var desc = obj.args.find(r => r.name == 'm') && obj.args.find(r => r.name == 'm').value ? obj.args.find(r => r.name == 'm').value : 'Updated Changes';
-         // eslint-disable-next-line no-sync
-        var va = child.execSync('git add .\ngit commit ').toString();
-        obj.return = {
-          level: "success",
-          type: "GIT_PUSH",
-          str: "깃 변경사항을 업데이트합니다.\n" + va + '\n변경사항이 저장되었습니다.'
-        };
-        break;
     case "maintain":
       if (obj.args.find(r => r.name == "--s" || r.name == "--sudo")) {
        if (data.onlineMode) {

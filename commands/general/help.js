@@ -18,7 +18,7 @@ module.exports.execute = async (
 module.exports.props = {
   name: "help",
   perms: "general",
-  alias: ["도움", "도움말", "명령어", "commands"],
+  alias: ["commands"],
   args: [{}]
 };
 

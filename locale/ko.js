@@ -169,7 +169,15 @@ module.exports = {
     tos: "https://wonderbot.xyz/tos",
     privacy: "https://wonderbot.xyz/privacy"
   },
-  category: {},
+  category: {
+    general: '일반',
+    dev: '개발자용',
+    account: '계정',
+    money: '돈',
+    fun: '재미',
+    game: '도박',
+    utills: '기능'
+  },
   perm: {
     CREATE_INSTANT_INVITE: "초대 코드 만들기",
     KICK_MEMBERS: "멤버 추방하기",

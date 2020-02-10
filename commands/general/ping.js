@@ -28,6 +28,6 @@ module.exports.execute = async (
 module.exports.props = {
   name: "ping",
   perms: "general",
-  alias: ["pong", "핑"],
+  alias: ["핑", "pong"],
   args: []
 };
