@@ -60,3 +60,4 @@ String.prototype.bind = function(parameters, lang) {
 
   return text;
 };
+

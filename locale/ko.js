@@ -124,6 +124,7 @@ module.exports = {
     }
   },
   error: {
+    offline: '봇이 점검중입니다. 지금은 이용하실 수 없습니다. 불편을 드려 죄송합니다.\n예상된 점검 및 공지는 지원 서버에서 확인해주세요.\nhttps://invite.gg/wonderbot',
     search: {
       nores:
         "검색결과가 없습니다. 올바른 이름 또는 이름의 일부를 입력해주세요.",

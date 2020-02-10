@@ -5,16 +5,18 @@ module.exports.execute = async (
   embed,
   tools,
   knex,
-  props
+  props,
+  data
 ) => {
   if (!message.data.args) return message.reply(locale.error.usage(props.name));
   this.bash = {
     rdir: "/wonderbot/guilds/" + message.guild.id,
-    dir: "guilds",
-    "/": client
+    dir: ["guilds", message.guild.id],
+    "/": client,
+    message: message
   };
 
-  const con = execute(message.data.args, this.bash);
+  const con = execute(message.data.args, this.bash, data);
   return message.reply(con, { code: "cmd" });
 };
 
@@ -30,10 +32,10 @@ module.exports.props = {
   ]
 };
 
-function execute(full, obj) {
+function execute(full, obj, data) {
   var returned = "";
   full.split("\n").forEach(l => {
-    var r = run(l, obj);
+    var r = run(l, obj, data);
     var a = r.return
       ? `${obj.message.author.username}@wonderbot: ${r.rdir}# ${l}\n` +
         r.return.str +
@@ -44,7 +46,7 @@ function execute(full, obj) {
   return returned;
 }
 
-function run(script, obj) {
+function run(script, obj, data) {
   var args = [];
   const opt = script.match(/(--[^ ]*( [^ ]*|))/gi);
   if (opt && opt.length !== 0) {
@@ -59,88 +61,45 @@ function run(script, obj) {
   obj.args = args;
   obj.cmd = script.split(" ")[0];
   switch (obj.cmd) {
-    case "ls":
-    case "dir":
-      if (obj.dir == "guild")
-        obj.return = {
+    case "maintain":
+      console.log(obj.args)
+      if (obj.args.find(r => r.name == "--s" || r.name == "--sudo")) {
+       if (data.onlineMode) {
+         data.onlineMode = false;
+         obj.return = {
           level: "success",
-          type: "DIR",
-          str: "channels/   members/    emojis/"
+          type: "MAINTAIN_ON",
+          str:
+            "서비스 비허용 모드로 전환되었습니다. 점검 모드에 진입합니다."
         };
-      else if (obj.dir == "members")
-        obj.return = {
+      } else {
+        data.onlineMode = true;
+         obj.return = {
           level: "success",
-          type: "DIR",
-          str: obj.guild.members
-            .map(r => r.id + "/    ")
-            .splice(30, obj.guild.members.size - 30)
+          type: "MAINTAIN_OFF",
+          str:
+            "서비스 허용 모드로 전환되었습니다."
         };
-      else if (obj.dir == "channels")
-        obj.return = {
-          level: "success",
-          type: "DIR",
-          str: obj.guild.channels
-            .map(r => r.id + "/    ")
-            .splice(30, obj.guild.members.size - 30)
-        };
-      else if (obj.dir == "emojis")
-        obj.return = {
-          level: "success",
-          type: "DIR",
-          str: obj.guild.emojis
-            .map(r => r.id + "/    ")
-            .splice(30, obj.guild.members.size - 30)
-        };
-      break;
-    case "cd":
-      var to = obj.message.data.arg2.split("/");
-      if (to.startsWith("/")) {
-        //gg
       }
-      if (obj.dir == "guild") {
-        if (to.startsWith("..")) {
-          obj.dir = "bot";
-        }
-      }
-      break;
-    case "leave":
-      if (obj.dir !== "guild")
-        obj.return = {
-          level: "error",
-          type: "UNKNOWN_COMMAND",
-          str: "올바르지 않은 명령어입니다."
-        };
-      else if (obj.args.name == "--s" || obj.args.name == "--sudo") {
-        obj.guild.leave();
-        obj.return = {
-          level: "success",
-          type: "GUILD_LEAVE",
-          str: `${obj.guild.name} 을 나갔습니다.`
-        };
+
       } else {
         obj.return = {
           level: "warn",
-          type: "GUILD_OPTION",
+          type: "SUDO_REQUIRED",
           str:
             "해당 명령어는 관리자 권한으로 실행되어야합니다. `--sudo` 옵션을 붙여주세요."
         };
       }
       break;
-    default:
-      if (typeof obj[obj.dir][obj.cmd] !== "string")
-        obj.return = {
-          level: "error",
-          type: "UNKNOWN_COMMAND",
-          str: "올바르지 않은 명령어입니다."
-        };
-      else
-        obj.return = {
-          level: "success",
-          type: "CUSTOM",
-          str: obj[obj.dir][obj.cmd]
-        };
-
+      default:
+      obj.return = {
+        level: "error",
+        type: "UNKNOWN_COMMAND",
+        str:
+          "올바르지 않은 명령어입니다."
+      };
       break;
-  }
+
+    }
   return obj;
-}
+  }

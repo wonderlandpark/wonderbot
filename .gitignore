@@ -3,3 +3,4 @@ config/database.js
 node_modules/
 .vscode/
 backup.sql
+logs/

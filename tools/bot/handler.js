@@ -2,7 +2,8 @@ const locale = require("../../locale");
 const commands = require("../../commands");
 const tools = require("../");
 const knex = tools.database;
-const data = { register: [], cooldown: {}, action: [], slot: {} };
+const data = { register: [], cooldown: {}, action: [], slot: {}, onlineMode: true };
+const fs = require('fs');
 
 module.exports = async (client, message, config) => {
   const embed = new require("./embed")(client, message);
@@ -30,6 +31,12 @@ module.exports = async (client, message, config) => {
   )
     return;
   if (!commands[message.data.cmd]) return;
+  if (!config.client.owners.includes(message.author.id) && !data.onlineMode) return message.reply(locale[message.data.locale].error.offline);
+  var log = `${new Date().textFormat('YYYY/MM/DD HH:MM:SS')} ${message.author.tag} : ${message.content}`;
+  fs.appendFile('./logs/cmd.log', log + '\n', function (err) {
+    if (err) throw err;
+    console.log(log);
+  });
   const user = await knex
     .select("*")
     .from("users")
