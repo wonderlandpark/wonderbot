@@ -55,7 +55,6 @@ This code works finally on these Requirements
 
 ![wonderlandpark](https://cdn.discordapp.com/avatars/285185716240252929/f50a084aaa45c57699c3dba1b7846122.png?size=256) 
 
-
 ### Discord Servers
 
 #### Team. Wonder Discord

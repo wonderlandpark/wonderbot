@@ -87,7 +87,7 @@ module.exports.execute = async (
 module.exports.props = {
   name: "buy",
   perms: "dev",
-  alias: ["매수", "구매"],
+  alias: ["구매"],
   args: [
     {
       name: "item",

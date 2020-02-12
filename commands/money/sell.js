@@ -13,12 +13,12 @@ module.exports.execute = async (
   }
   const res = find(message.data.arg[0]);
   if (!res || res.length == 0)
-    return message.reply(locale.commands.stock.nores);
+    return message.reply(locale.error.search.nores);
   else if (res.length > 1)
     return message.reply(
-      locale.commands.stock.many.bind({
+      locale.error.search.many.bind({
         count: res.length,
-        stocks: res.map(r => r.name + "\n").join("")
+        items: res.map(r => r.name + "\n").join("")
       })
     );
   if (!message.guild.me.hasPermission("ADD_REACTIONS")) {
@@ -52,13 +52,13 @@ module.exports.execute = async (
   } else if (
     isNaN(Number(message.data.arg[1])) || !Number.isInteger(Number(message.data.arg[1])) || Number(message.data.arg[1]) < 1
   ) {
-    return message.reply(locale.commands.stock.notvaild);
+    return message.reply(locale.commands.buy.notvaild);
   } else {
     num = Number(message.data.arg[1]);
     total = num * stock.now;
     dived = user.money - total;
   }
-  if (dived < 0) return message.reply(locale.commands.stock.nomoney);
+  if (dived < 0) return message.reply(locale.commands.buy.nomoney);
   if (!items[res[0].id]) items[res[0].id] = num;
   else items[res[0].id] += num;
   embed.addField(locale.commands.buy.bill, locale.commands.buy.ask.bind({ item: res[0].name, count: num, total: total }));
@@ -85,12 +85,12 @@ module.exports.execute = async (
 };
 
 module.exports.props = {
-  name: "buy",
+  name: "sell",
   perms: "dev",
-  alias: ["매수", "구매"],
+  alias: ["판매"],
   args: [
     {
-      name: "stock",
+      name: "item",
       type: "text",
       required: true
     },
