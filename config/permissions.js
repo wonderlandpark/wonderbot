@@ -1,17 +1,17 @@
-const config = require("./index.js");
-const perm = [
+const config = require('./index.js')
+
+module.exports = [
   {
-    name: "general",
+    name: 'general',
     required: {
       perms: []
     }
   },
   {
-    name: "dev",
+    name: 'dev',
     required: {
       perms: [],
       id: config.client.owners
     }
   }
-];
-module.exports = perm;
+]

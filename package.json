@@ -7,8 +7,8 @@
     "start": "node index",
     "shard": "node sharding"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Wonderlandpark",
+  "license": "GPL-3.0-only",
   "dependencies": {
     "discord.js": "^11.5.1",
     "hangul-tools": "^0.1.4",
@@ -17,11 +17,18 @@
     "moment": "^2.24.0",
     "moment-with-locales-es6": "^1.0.1",
     "morse": "^0.1.0",
-    "mysql": "^2.17.1",
     "mysql2": "^2.0.0",
     "node-fetch": "^2.6.0",
     "overwatch-stat": "^0.1.2",
     "request": "^2.88.0",
     "wonderlangpark": "^0.1.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
   }
 }

@@ -4,3 +4,6 @@ node_modules/
 .vscode/
 backup.sql
 logs/cmd.log
+
+# Use npm as main package manager
+yarn.lock

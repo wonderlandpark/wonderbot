@@ -1,1 +1,1 @@
-module.exports.ko = require("./ko");
+module.exports.ko = require('./ko')
