@@ -43,6 +43,11 @@ This code works finally on these Requirements
 | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
 | [Seia-Soto/Serium](https://github.com/Seia-Soto/Serium) | [bind Method](https://github.com/wonderlandpark/wonderbot/blob/3f734bcac06ee6a8b2e92ea5baf8a4a13d7833e3/index.js#L44-L55), [Command Handler](https://github.com/wonderlandpark/wonderbot/blob/3f734bcac06ee6a8b2e92ea5baf8a4a13d7833e3/commands/index.js#L1-L25) | Artistic 2.0 |
 
+## Thanks To
+
+| NAME                  | TO                      |
+| chaemoong#0001 (채뭉) | `delivery` command IDEA
+
 ## Contact
 
 > Discord : `wonderlandpark#9999`
