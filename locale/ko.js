@@ -229,5 +229,9 @@ const usageNames = {
   "user/text": "유저 또는 텍스트",
   "morse/text": "변환할 모스부호 또는 텍스트",
   delivery: '택배사',
-  bill: '운송장'
+  bill: '운송장',
+  item: '아이템',
+  botid: '봇 아이디',
+  perm: '권한',
+  "user/id": '유저 또는 아이디'
 };
