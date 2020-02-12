@@ -46,7 +46,8 @@ This code works finally on these Requirements
 ## Thanks To
 
 | NAME                  | TO                      |
-| chaemoong#0001 (채뭉) | `delivery` command IDEA
+|-----------------------|-------------------------|
+| chaemoong#0001 (채뭉) | `delivery` command IDEA |
 
 ## Contact
 
