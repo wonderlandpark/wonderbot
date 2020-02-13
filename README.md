@@ -4,6 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/def63318bbb54e33b453e9b45d75eb29)](https://app.codacy.com/manual/wonderlandpark/wonderbot?utm_source=github.com&utm_medium=referral&utm_content=wonderlandpark/wonderbot&utm_campaign=Badge_Grade_Dashboard)
 [![Discord](https://discordapp.com/api/guilds/512553485766492171/embed.png)](https://invite.gg/wonderbot)
 ![Language](https://img.shields.io/badge/language-Javascript,%20Node.js-brightgreen) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Build Status](https://travis-ci.org/wonderlandpark/wonderbot.svg?branch=master)](https://travis-ci.org/wonderlandpark/wonderbot)
 
 ## Introducing
 
