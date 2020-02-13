@@ -161,7 +161,7 @@ module.exports = {
           desc += `[${usageNames[a.name]} - ${
             usageNames[a.type.toString()]
           }](필수)\n${
-            a.options ? "옵션 : `" + a.options.join("`, `") + "`" : ""
+            a.options ? "옵션 :" + a.options.join("`, `") : ""
           }`;
         } else {
           text += `(${usageNames[a.name]})`;
