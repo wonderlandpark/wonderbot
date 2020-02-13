@@ -13,7 +13,7 @@ Date.prototype.fromNow = function(locale) {
     timeZone: config.client.bot.timezone
   });
   moment.locale(locale);
-  return moment(date, "YYYY-MM-DDTHH:mm:ssZ").fromNow();
+  return moment(new Date(date), "YYYY-MM-DDTHH:mm:ssZ").fromNow();
 };
 
 Date.prototype.textFormat = function(format, locale) {
@@ -21,5 +21,5 @@ Date.prototype.textFormat = function(format, locale) {
     timeZone: config.client.bot.timezone
   });
   moment.locale(locale);
-  return moment(date, "YYYY-MM-DDTHH:mm:ssZ").format(format);
+  return moment(new Date(date), "YYYY-MM-DDTHH:mm:ssZ").format(format);
 };

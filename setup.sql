@@ -3,4 +3,5 @@ CREATE TABLE `items` ( `name` TEXT NOT NULL, `last_change` INT, `money` INT NOT 
 CREATE TABLE `blacklist` (`id` TEXT NOT NULL, `time` INT NOT NULL, `why` TEXT NOT NULL DEFAULT 'none');
 CREATE TABLE `stocks` ( `name` TEXT NOT NULL, `prices` TEXT NOT NULL DEFAULT '[100]', `lastchage` INT NOT NULL DEFAULT 0, `now` INT NOT NULL DEFAULT 100);
 INSERT INTO `stocks`(`name`) VALUES ('wondercoin'); 
-CREATE TABLE `info` (`stock` INT NOT NULL DEFAULT 0)
+CREATE TABLE `info` (`stock` INT NOT NULL DEFAULT 0);
+CREATE TABLE `error` (`id` TINYTEXT NOT NULL, `date` INT NOT NULL DEFAULT 0,  `user` TEXT NOT NULL, `cmd` TEXT NOT NULL, `content` TEXT NOT NULL, `msg` TEXT NOT NULL, `error` TEXT NOT NULL, `guild` TEXT NOT NULL, `info` TEXT NOT NULL);

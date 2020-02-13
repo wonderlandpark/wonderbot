@@ -3,9 +3,11 @@ const tools = require("../");
 const knex = tools.database;
 const data = { register: [], cooldown: {}, action: [], slot: {}, onlineMode: true };
 const fs = require('fs');
-
+const uuid = require('uuid/v1');
+const Discord = require('discord.js');
 module.exports = async (client, message, config) => {
   const embed = new require("./embed")(client, message);
+  const webhook = new Discord.WebhookClient(config.client.webhook.error.id, config.client.webhook.error.token);
   message.data = {
     raw: message.content,
     arg: message.content.split(" ").slice(1),
@@ -32,12 +34,12 @@ module.exports = async (client, message, config) => {
   )
     return;
   if (!commands[message.data.cmd]) return;
-  if (!config.client.owners.includes(message.author.id) && !data.onlineMode) return message.reply(locale.error.offline);
   var log = `${new Date().textFormat('YYYY/MM/DD HH:MM:SS')} ${message.author.tag} : ${message.content}`;
   fs.appendFile('./logs/cmd.log', log + '\n', function (err) {
     if (err) throw err;
     console.log(log);
   });
+  if (!config.client.owners.includes(message.author.id) && !data.onlineMode) return message.reply(locale.error.offline);
   const user = await knex
     .select("*")
     .from("users")
@@ -115,8 +117,15 @@ module.exports = async (client, message, config) => {
       knex,
       commands[message.data.cmd].props,
       data
-    ).catch(e => {
-      console.log(e);
-      message.reply(locale.error.onerror.bind({ error: e, cmd: message.data.cmd, msg: message.content, perm: message.guild.me.permissions.bitfield }));
+    ).catch(error => {
+      let code = uuid();
+      let time = Math.round(new Date() / 1000);
+      embed.addField('ERROR - WB/Rewrite', locale.error.debug.bind({ code, user: message.author.tag, userid: message.author.id, channel: message.channel.name, channelid: message.channel.id, url: message.url, error, cmd: message.data.cmd, msg: message.content.length > 1000 ? message.content.replace(0, 1000) + '\n...' : message.content, time: new Date(time * 1000).format('ko'), perm: message.guild.me.permissions.bitfield, guild: message.guild.name, guildid: message.guild.id }))
+      webhook.send(embed)
+      .then(async m => {
+        await knex('error').insert({ id: code, date: time, user: message.member.id, cmd: message.data.cmd, content: message.content, msg: message.url, error: error.toString(), guild: message.guild.id, info: `https://discordapp.com/channels/${client.channels.get(m.channel_id).guild.id}/${m.channel_id}/${m.id}` });
+        message.reply(locale.error.onerror.bind({ code }));
+
+      });
   });
 };
