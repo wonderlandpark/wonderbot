@@ -1,20 +1,25 @@
 const moment = require("moment");
 require("moment-with-locales-es6");
-require('moment-timezone');
+const config = require('../../config');
 Date.prototype.format = function(locale) {
-  moment().tz('Asia/Seoul');
+  const date = this.toLocaleString('en-US', {
+    timeZone: config.client.bot.timezone
+  });
   moment.locale(locale);
-  return moment(this, "YYYY-MM-DDTHH:mm:ssZ").tz('Asia/Seoul')
-  .format("llll");
+  return moment(new Date(date), "YYYY-MM-DDTHH:mm:ssZ").format("llll");
 };
 Date.prototype.fromNow = function(locale) {
+  const date = this.toLocaleString('en-US', {
+    timeZone: config.client.bot.timezone
+  });
   moment.locale(locale);
-  return moment(this, "YYYY-MM-DDTHH:mm:ssZ").tz('Asia/Seoul')
-  .fromNow();
+  return moment(date, "YYYY-MM-DDTHH:mm:ssZ").fromNow();
 };
 
 Date.prototype.textFormat = function(format, locale) {
+  const date = this.toLocaleString('en-US', {
+    timeZone: config.client.bot.timezone
+  });
   moment.locale(locale);
-  return moment(this, "YYYY-MM-DDTHH:mm:ssZ").tz('Asia/Seoul')
-  .format(format);
+  return moment(date, "YYYY-MM-DDTHH:mm:ssZ").format(format);
 };

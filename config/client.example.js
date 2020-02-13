@@ -1,6 +1,7 @@
 module.exports = {
   bot: {
-    season: "WONDER"
+    season: "WONDER",
+    timezone: 'Asia/Seoul'
   },
   github: 'https://api.github.com/repos/wonderlandpark/wonderbot/commits',
   app: {},
