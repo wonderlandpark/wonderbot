@@ -111,6 +111,14 @@ module.exports = {
       finish: '✅ 결제 완료',
       result: '아이템 : {item}\n수량  : {count}\n지불한 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>'
     },
+    sell: {
+      notvaild: "유효하지 않은 값입니다. 올바른 정수를 입력해주세요.",
+      noitem: "판매하실 아이템을 소지하고 있지 않습니다.",
+      bill: '🧾 계산서',
+      ask: '판매하려는 아이템 : {item}\n수량 : {count}\n지급될 금액 : {total} <:coin:636879213239992330>\n계속하시려면 💳 이모지로 반응하세요.',
+      finish: '✅ 결제 완료',
+      result: '아이템 : {item}\n수량  : {count}\n지급 받은 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>'
+    },
     delivery: {
     info: '보낸이: {from} 받는이: {to} ({state})',
     status: {

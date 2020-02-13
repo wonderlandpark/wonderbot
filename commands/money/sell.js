@@ -37,46 +37,47 @@ module.exports.execute = async (
       .where({ name: res[0].id })
   )[0];
   var items = JSON.parse(user.items);
-
+  var all = items[res[0].id];
   var num = 0;
-  var dived = 0;
+  var mon = 0;
   var total = 0;
   if (["전부", "올인", "모두", "all"].includes(message.data.arg[1])) {
-    num = parseInt(user.money / Number(stock.now), 10);
+    num = all;
     total = num * stock.now;
-    dived = user.money - total;
-  } else if (["반인", "반", "half"].includes(message.data.arg[1])) {
-    num = parseInt(user.money / 2 / Number(stock.now), 10);
+    mon = user.money + total;
+  } else if (["반인", "반", "절반", "half"].includes(message.data.arg[1])) {
+    num = Math.floor(all / 2);
     total = num * stock.now;
-    dived = user.money - total;
+    mon = user.money + total;
   } else if (
     isNaN(Number(message.data.arg[1])) || !Number.isInteger(Number(message.data.arg[1])) || Number(message.data.arg[1]) < 1
   ) {
-    return message.reply(locale.commands.buy.notvaild);
+    return message.reply(locale.commands.sell.notvaild);
   } else {
     num = Number(message.data.arg[1]);
     total = num * stock.now;
-    dived = user.money - total;
+    mon = user.money + total;
   }
-  if (dived < 0) return message.reply(locale.commands.buy.nomoney);
+  if (num > all) return message.reply(locale.commands.sell.noitem);
   if (!items[res[0].id]) items[res[0].id] = num;
-  else items[res[0].id] += num;
-  embed.addField(locale.commands.buy.bill, locale.commands.buy.ask.bind({ item: res[0].name, count: num, total: total }));
-  var msg = message.channel.send(embed);
-    data.action.push(message.author.id);
-    const filter = (reaction, u) =>
+  else items[res[0].id] -= num;
+  message.reply(`아이템 : ${res[0].name}\n수량 : ${num}\n합계 : ${total}\n잔고 : ${mon}`);
+  embed.addField(locale.commands.sell.bill, locale.commands.sell.ask.bind({ item: res[0].name, count: num, total: total }));
+   var msg = message.channel.send(embed);
+   data.action.push(message.author.id);
+     const filter = (reaction, u) =>
       reaction.emoji.name == "💳" && u.id == message.author.id;
-    msg.then(async m => {
-      m.react("💳");
-      m.awaitReactions(filter, { max: 1, time: 10000, error: ["time"] })
+      msg.then(async m => {
+        m.react("💳");
+        m.awaitReactions(filter, { max: 1, time: 10000, error: ["time"] })
         .then(async collected => {
           if (collected.size == 0) {
             data.action.splice(data.action.indexOf(message.data.id), 1);
             return message.reply(locale.commands.allin.not);
           }
-          await knex('users').update({ money: dived, items: JSON.stringify(items) });
+          await knex('users').update({ money: mon, items: JSON.stringify(items) });
           embed = tools.bot.embed(client, message);
-          embed.addField(locale.commands.buy.finish, locale.commands.buy.result.bind({ item: res[0].name, count: num, total: total, money: dived }));
+          embed.addField(locale.commands.sell.finish, locale.commands.sell.result.bind({ item: res[0].name, count: num, total: total, money: mon }));
           message.channel.send(embed);
           data.action.splice(data.action.indexOf(message.data.id), 1);
         });
