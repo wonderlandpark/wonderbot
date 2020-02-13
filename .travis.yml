@@ -1,5 +1,4 @@
-install:
-  script: bash setup.sh
+install: bash setup.sh
 language: node_js
 os: linux 
 node_js:
