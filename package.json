@@ -4,8 +4,9 @@
   "description": "Discord Wonder_Bot Rewrite",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "shard": "node sharding"
+    "start": "node ./index",
+    "shard": "node sharding",
+    "test": "node ./index"
   },
   "author": "",
   "license": "ISC",
