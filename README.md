@@ -23,9 +23,9 @@ If you want to use my code, Please follow [License](LICENSE)
 ### Setup
 
 ```bash
-npm i
-touch logs/cmd.log
+./setup.sh
 # Rename client.example.js, database.exmaple.js and fill your information
+npm start
 ```
 
 ### Requirements

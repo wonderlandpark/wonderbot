@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./index",
     "shard": "node sharding",
-    "test": "node ./index"
+    "test": "./setup.sh"
   },
   "author": "",
   "license": "ISC",
