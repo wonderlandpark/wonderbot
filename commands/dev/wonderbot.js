@@ -113,3 +113,34 @@ function run(script, obj, data) {
     }
   return obj;
   }
+
+/*
+case "blacklist":
+    if (arg[0] == 'list') {
+    var list = await knex('blacklist').select('*');
+    obj.return = {
+      level: "success",
+      type: "BLACKLIST_GET",
+      str: list.map(r => r.id + ',\n')
+    };
+    } else if (arg[0] == 'add') {
+      var u = await knex('blacklist').select('*')
+      .where({ id: arg[1] });
+      if (u.length > 0) obj.return = {
+        level: "warn",
+        type: "BLACKLIST_EXSITS",
+        str: "해당 아이디는 이미 블랙리스트에 포함되어있습니다."
+      };
+      else {
+      var why = args.find(b => b.name == '--reason').value;
+      var time = args.find(t => t.name == '--time').value;
+      await knex('blacklist').insert({ id: arg[1], why, time });
+      obj.return = {
+        level: "success",
+        type: "BLACKLIST_ADDED",
+        str: "해당 아이디를 블랙리스트에 추가했습니다."
+      };
+    }
+    }
+    break;
+    */
