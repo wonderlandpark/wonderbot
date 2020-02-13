@@ -1,4 +1,4 @@
-deploy:
+install:
   provider: script
   script: bash setup.sh
 language: node_js
