@@ -3,6 +3,12 @@ module.exports = {
     season: "WONDER",
     timezone: 'Asia/Seoul'
   },
+  webhook: {
+    error: { // Webhook
+      id: '',
+      token: ''
+    }
+  },
   github: 'https://api.github.com/repos/wonderlandpark/wonderbot/commits',
   app: {},
   shard: {
