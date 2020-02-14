@@ -16,6 +16,7 @@
     "inko": "^1.1.1",
     "knex": "^0.20.2",
     "moment": "^2.24.0",
+    "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.27",
     "moment-with-locales-es6": "^1.0.1",
     "morse": "^0.1.0",

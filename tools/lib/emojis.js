@@ -1,6 +1,7 @@
 module.exports = {
   check: "<a:check:663594505651486742>",
   loading: "<a:wonderisloading:677818976797065254>",
+  gookbap: "<:gookbap:677905040706371598>",
 
 // Overwatch Emojis
 

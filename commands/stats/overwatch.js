@@ -2,6 +2,7 @@
 const os = require('overwatch-stat');
 const moment = require('moment');
 require('moment-with-locales-es6');
+require('moment-duration-format');
 module.exports.execute = async (
   client,
   message,
@@ -40,12 +41,14 @@ function get() {
               return sec(b.data.game.timePlayed) - sec(a.data.game.timePlayed);
             });
             embed.addField(locale.commands.overwatch.perheros, locale.commands.overwatch.herosdesc);
-            if (heros[0]) embed.addField(tools.lib.emojis[heros[0].name] + ' ' + locale.commands.overwatch.heros[heros[0].name], locale.commands.overwatch.stat.bind({ win: heros[0].data.game.gamesWon, lost: heros[0].data.game.gamesLost, percent: heros[0].data.game.winPercentage, kd: heros[0].data.average.eliminationsPerLife, objectTime: heros[0].data.average.objectiveTimeAvgPer10Min, fire: heros[0].data.average.objectiveTimeAvgPer10Min, eliminations: heros[0].data.combat.eliminations, deaths: heros[0].data.combat.deaths }));
-            if (heros[1]) embed.addField(tools.lib.emojis[heros[1].name] + ' ' + locale.commands.overwatch.heros[heros[1].name], heros[1].data.timePlayed);
-            if (heros[2]) embed.addField(tools.lib.emojis[heros[2].name] + ' ' + locale.commands.overwatch.heros[heros[2].name], heros[2].data.timePlayed);
+            if (heros[0]) embed.addField(tools.lib.emojis[heros[0].name] + ' ' + locale.commands.overwatch.heros[heros[0].name], locale.commands.overwatch.stat[gamemode].bind({ win: heros[0].data.game.gamesWon, lost: heros[0].data.game.gamesLost, percent: heros[0].data.game.winPercentage, kd: heros[0].data.average.eliminationsPerLife, objectTime: heros[0].data.average.objectiveTimeAvgPer10Min, fire: heros[0].data.average.objectiveTimeAvgPer10Min, eliminations: heros[0].data.combat.eliminations, deaths: heros[0].data.combat.deaths, playtime: heros[0].data.game.timePlayed }));
+            if (heros[1]) embed.addField(tools.lib.emojis[heros[1].name] + ' ' + locale.commands.overwatch.heros[heros[1].name], locale.commands.overwatch.stat[gamemode].bind({ win: heros[1].data.game.gamesWon, lost: heros[1].data.game.gamesLost, percent: heros[1].data.game.winPercentage, kd: heros[1].data.average.eliminationsPerLife, objectTime: heros[1].data.average.objectiveTimeAvgPer10Min, fire: heros[1].data.average.objectiveTimeAvgPer10Min, eliminations: heros[1].data.combat.eliminations, deaths: heros[1].data.combat.deaths, playtime: heros[1].data.game.timePlayed }));
+            if (heros[2]) embed.addField(tools.lib.emojis[heros[2].name] + ' ' + locale.commands.overwatch.heros[heros[2].name], locale.commands.overwatch.stat[gamemode].bind({ win: heros[2].data.game.gamesWon, lost: heros[2].data.game.gamesLost, percent: heros[2].data.game.winPercentage, kd: heros[2].data.average.eliminationsPerLife, objectTime: heros[2].data.average.objectiveTimeAvgPer10Min, fire: heros[2].data.average.objectiveTimeAvgPer10Min, eliminations: heros[2].data.combat.eliminations, deaths: heros[2].data.combat.deaths, playtime: heros[2].data.game.timePlayed }));
+          } else {
+            const time = { competitive: !profile.competitiveStats.careerStats.allHeroes ? '00:00:00' : profile.competitiveStats.careerStats.allHeroes.game.timePlayed + ':00', quickPlay: profile.quickPlayStats.careerStats.allHeroes.game.timePlayed };
+            const secs = (sec(time.competitive) + sec(time.quickPlay));
+            embed.addField(locale.commands.overwatch.time, moment.duration(secs * 1000).format(`D[${locale.commands.overwatch.day}] HH:MM:SS`) + '\n' + locale.commands.overwatch.timestat.bind({ money: Math.round(secs / 60 / 60 * 8350), mercy: Math.floor(secs / 30), gookbapEmoji: tools.lib.emojis.gookbap, gookbap: Math.floor(Math.round(secs / 60 / 60 * 8350) / 7000) }));
           }
-          const time = { competitive: !profile.competitiveStats.careerStats.allHeroes ? '00:00:00' : profile.competitiveStats.careerStats.allHeroes.game.timePlayed + ':00', quickPlay: profile.quickPlayStats.careerStats.allHeroes.game.timePlayed };
-              const secs = (sec(time.competitive) + sec(time.quickPlay));
               // embed.addField('플레이시간(빠대+경쟁)', moment.duration(secs * 1000).format("D[일] HH:MM:SS") + `\n**옵치를 하지 않았다면??**\n2019년 최저임금으로 **${Math.round(secs / 60 / 60 * 8350)}**원 벌기\n메르시 부활 **${Math.floor(secs/30)}**번`)
               message.channel.stopTyping();
               msg.edit(embed);
@@ -63,7 +66,7 @@ moment.locale(message.data.locale);
 if (!message.data.arg[1]) return message.reply(locale.error.usage(props.name));
 if (['경쟁전', '경쟁', '경', 'compete', 'ㄱㅈ', 'ㄱ'].includes(message.data.arg[0])) gamemode = 'competitiveStats';
 else if (['빠른대전', '빠대', '빠', 'ㅃ', 'ㅃㄷ', 'quick'].includes(message.data.arg[0])) gamemode = 'quickPlayStats';
-else if (['전체', '모든모드', '모두', '모든', '다', '전부', 'all', 'overall', 'ㅁ', 'ㅁㄷ'].includes(message.data.arg[0])) gamemode = 'allStats';
+else if (['시간', 'time'].includes(message.data.arg[0])) gamemode = 'allStats';
 else return message.reply(locale.error.usage(props.name));
 
 await os.getInfo(message.data.arg[1])
