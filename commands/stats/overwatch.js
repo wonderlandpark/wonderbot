@@ -29,19 +29,20 @@ function get() {
           embed.addBlankField();
           embed.addField(locale.commands.overwatch.overall, locale.commands.overwatch.gamemode[gamemode]);
           if (gamemode !== 'allStats') {
+            if (gamemode == 'competitiveStats') embed.addField(locale.commands.overwatch.rate, (tools.lib.emojis.tank + rank.tank ? ` ${owRank(rank.tank.rankIcon)} ${rank.tank.level}` : locale.commands.overwatch.nocompete) + tools.lib.emojis.offense + rank.offense ? ` ${owRank(rank.damage.rankIcon)} ${rank.damage.level}` : locale.commands.overwatch.nocompete) + (tools.lib.emojis.support + rank.support ? ` ${owRank(rank.support.rankIcon)} ${rank.support.level}` : locale.commands.overwatch.nocompete);
             embed.addField(locale.commands.overwatch.win, profile[gamemode].games.won, true);
             embed.addField(locale.commands.overwatch.playtime, profile[gamemode].careerStats.allHeroes.game.timePlayed, true);
             const heros = [];
             Object.keys(profile[gamemode].topHeroes).forEach(l => {
-              heros.push({ name: l, data: profile[gamemode].topHeroes[l] });
+              heros.push({ name: l, data: profile[gamemode].careerStats[l] });
             });
             heros.sort(function(a, b) {
-              return sec(b.data.timePlayed) - sec(a.data.timePlayed);
+              return sec(b.data.game.timePlayed) - sec(a.data.game.timePlayed);
             });
             embed.addField(locale.commands.overwatch.perheros, locale.commands.overwatch.herosdesc);
-            embed.addField(tools.lib.emojis[heros[0].name] + ' ' + locale.commands.overwatch.heros[heros[0].name], heros[0].data.timePlayed);
-            embed.addField(tools.lib.emojis[heros[1].name] + ' ' + locale.commands.overwatch.heros[heros[1].name], heros[1].data.timePlayed);
-            embed.addField(tools.lib.emojis[heros[2].name] + ' ' + locale.commands.overwatch.heros[heros[2].name], heros[2].data.timePlayed);
+            if (heros[0]) embed.addField(tools.lib.emojis[heros[0].name] + ' ' + locale.commands.overwatch.heros[heros[0].name], locale.commands.overwatch.stat.bind({ win: heros[0].data.game.gamesWon, lost: heros[0].data.game.gamesLost, percent: heros[0].data.game.winPercentage, kd: heros[0].data.average.eliminationsPerLife, objectTime: heros[0].data.average.objectiveTimeAvgPer10Min, fire: heros[0].data.average.objectiveTimeAvgPer10Min, eliminations: heros[0].data.combat.eliminations, deaths: heros[0].data.combat.deaths }));
+            if (heros[1]) embed.addField(tools.lib.emojis[heros[1].name] + ' ' + locale.commands.overwatch.heros[heros[1].name], heros[1].data.timePlayed);
+            if (heros[2]) embed.addField(tools.lib.emojis[heros[2].name] + ' ' + locale.commands.overwatch.heros[heros[2].name], heros[2].data.timePlayed);
           }
           const time = { competitive: !profile.competitiveStats.careerStats.allHeroes ? '00:00:00' : profile.competitiveStats.careerStats.allHeroes.game.timePlayed + ':00', quickPlay: profile.quickPlayStats.careerStats.allHeroes.game.timePlayed };
               const secs = (sec(time.competitive) + sec(time.quickPlay));

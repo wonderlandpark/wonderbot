@@ -13,6 +13,7 @@ module.exports = {
     ecmaVersion: 2018
   },
   rules: {
+    "max-lines": "off",
     "accessor-pairs": "error",
     "array-bracket-newline": "error",
     "array-bracket-spacing": ["error", "never"],

@@ -131,6 +131,7 @@ module.exports = {
     }
     },
     overwatch: {
+      rate: '경쟁전 점수',
       lvl: '레벨',
       nores: '검색결과가 없습니다.',
       more: '개 더 있음...\n더 자세하게 검색해보세요',
@@ -142,7 +143,7 @@ module.exports = {
       overall: '통계',
       playtime: '플레이 시간',
       perheros: '영웅 비교',
-      herosdesc: '영웅별 전적',
+      herosdesc: '영웅별 전적 (상위 3 영웅)',
       heros: {
         winston: '윈스턴',
         reinhardt: '라인하르트',
@@ -175,6 +176,7 @@ module.exports = {
         ash: '에쉬',
         baptiste: '바티스트'
       },
+      stat: '**승리** : {win}\n**패배** : {lost}\n**승률** : {percent}\n**K/D** : {kd} : 1 ({eliminations}/{deaths})\n**평균 임무 기여 시간 (10분당 평균)** : {objectTime}\n**평균 폭주 시간 (10분당 평균)** : {fire}',
       gamemode: {
         competitiveStats: '현재 경쟁전 시즌',
         quickPlayStats: '빠른 대전',
