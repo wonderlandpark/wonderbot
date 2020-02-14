@@ -137,7 +137,16 @@ module.exports = {
       nopublic: '이 계정은 프로필 비공개입니다.',
       private: '상세한 정보를 볼 수 없습니다.',
       battletag: '배틀태그',
-      win: '승리한 게임'
+      win: '승리한 게임',
+      nocompete: '경쟁전 정보가 없습니다.',
+      overall: '통계',
+      playtime: '플레이 시간',
+      perheros: '영웅 비교',
+      gamemode: {
+        competitiveStats: '현재 경쟁전 시즌',
+        quickPlayStats: '빠른 대전',
+        allStats: '현재 경쟁전 시즌 + 빠른 대전'
+      }
     }
   },
   error: {
@@ -166,17 +175,15 @@ module.exports = {
       var args = require("../commands/index.js")[cmd].props.args;
       args.forEach(a => {
         if (a.required) {
-          text += `[${usageNames[a.name]}] `;
+          text += `[${a.options ? a.options.join('|') : usageNames[a.name]}] `;
           desc += `[${usageNames[a.name]} - ${
             usageNames[a.type.toString()]
-          }](필수)\n${
-            a.options ? "옵션 :" + a.options.join("`, `") : ""
-          }`;
+          }](필수)\n`;
         } else {
-          text += `(${usageNames[a.name]})`;
+          text += `(${a.options ? a.options.join('|') : usageNames[a.name]})`;
           desc += `[${usageNames[a.name]} - ${
             usageNames[a.type.toString()]
-          }]\n${a.options ? "옵션 : `" + a.options.join("`, `") + "`" : ""}`;
+          }]\n`;
         }
       });
       return `사용법 : \n\`\`\`fix\n${config.client.prefix}${cmd} ${text}\`\`\` \`\`\`ini\n${desc}\`\`\`
@@ -251,5 +258,7 @@ const usageNames = {
   item: '아이템',
   botid: '봇 아이디',
   perm: '권한',
-  "user/id": '유저 또는 아이디'
+  "user/id": '유저 또는 아이디',
+  gamemode: '게임모드',
+  battletag: '배틀태그'
 };

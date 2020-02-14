@@ -118,6 +118,7 @@ module.exports = async (client, message, config) => {
       commands[message.data.cmd].props,
       data
     ).catch(error => {
+      console.error(error);
       let code = uuid();
       let time = Math.round(new Date() / 1000);
       embed.addField('ERROR - WB/Rewrite', locale.error.debug.bind({ code, user: message.author.tag, userid: message.author.id, channel: message.channel.name, channelid: message.channel.id, url: message.url, error, cmd: message.data.cmd, msg: message.content.length > 1000 ? message.content.replace(0, 1000) + '\n...' : message.content, time: new Date(time * 1000).format('ko'), perm: message.guild.me.permissions.bitfield, guild: message.guild.name, guildid: message.guild.id }))

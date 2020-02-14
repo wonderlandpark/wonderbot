@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 module.exports.execute = async (
   client,
   message,
@@ -5,7 +6,8 @@ module.exports.execute = async (
   embed,
   tools,
   knex,
-  props
+  props,
+  data
 ) => {
   if (!message.data.args) return message.reply(locale.error.usage(props.name));
 
