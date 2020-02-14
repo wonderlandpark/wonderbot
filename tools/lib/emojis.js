@@ -1,5 +1,6 @@
 module.exports = {
   check: "<a:check:663594505651486742>",
+  loading: "<a:wonderisloading:677818976797065254>",
 
 // Overwatch Emojis
 
@@ -26,7 +27,7 @@ module.exports = {
   mccree: '<:mccree:677747113391554571>',
   reaper: '<:reaper:677747113391685644>',
   junkrat: '<:junkrat:677747113408593920>',
-  wreckingball: '<:wreckingball:677747113429434378>',
+  wreckingBall: '<:wreckingball:677747113429434378>',
   sombra: '<:sombra:677747113454600194>',
   lucio: '<:lucio:677747113475702804>',
   zarya: '<:zarya:677747113488154656>',

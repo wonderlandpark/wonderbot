@@ -1,3 +1,4 @@
+/* eslint-disable init-declarations */
 const os = require('overwatch-stat');
 const moment = require('moment');
 require('moment-with-locales-es6');
@@ -14,6 +15,7 @@ module.exports.execute = async (
 var gamemode = '';
 let user;
 function get() {
+  message.reply(tools.lib.emojis.loading + locale.commands.overwatch.loading).then(msg => {
     embed.addField(locale.commands.overwatch.battletag, user.name);
     embed.addField(locale.commands.overwatch.lvl, user.level, true);
     embed.addField('ID', user.id, true);
@@ -31,27 +33,30 @@ function get() {
             embed.addField(locale.commands.overwatch.playtime, profile[gamemode].careerStats.allHeroes.game.timePlayed, true);
             const heros = [];
             Object.keys(profile[gamemode].topHeroes).forEach(l => {
-              heros.push({ name: l, data: profile[gamemode].topHeroes });
+              heros.push({ name: l, data: profile[gamemode].topHeroes[l] });
             });
-            heros = heros.sort(function(a, b) {
-              return Number(b.level) - Number(a.level);
+            heros.sort(function(a, b) {
+              return sec(b.data.timePlayed) - sec(a.data.timePlayed);
             });
-            // embed.addField(locale.commands.overwatch.perheros, );
+            embed.addField(locale.commands.overwatch.perheros, locale.commands.overwatch.herosdesc);
+            embed.addField(tools.lib.emojis[heros[0].name] + ' ' + locale.commands.overwatch.heros[heros[0].name], heros[0].data.timePlayed);
+            embed.addField(tools.lib.emojis[heros[1].name] + ' ' + locale.commands.overwatch.heros[heros[1].name], heros[1].data.timePlayed);
+            embed.addField(tools.lib.emojis[heros[2].name] + ' ' + locale.commands.overwatch.heros[heros[2].name], heros[2].data.timePlayed);
           }
-          const time = { competitive: !profile.competitiveStats.careerStats.allHeroes ? '00:00:00' : profile.competitiveStats.careerStats.allHeroes.game.timePlayed+':00', quickPlay : profile.quickPlayStats.careerStats.allHeroes.game.timePlayed};
+          const time = { competitive: !profile.competitiveStats.careerStats.allHeroes ? '00:00:00' : profile.competitiveStats.careerStats.allHeroes.game.timePlayed + ':00', quickPlay: profile.quickPlayStats.careerStats.allHeroes.game.timePlayed };
               const secs = (sec(time.competitive) + sec(time.quickPlay));
               // embed.addField('플레이시간(빠대+경쟁)', moment.duration(secs * 1000).format("D[일] HH:MM:SS") + `\n**옵치를 하지 않았다면??**\n2019년 최저임금으로 **${Math.round(secs / 60 / 60 * 8350)}**원 벌기\n메르시 부활 **${Math.floor(secs/30)}**번`)
               message.channel.stopTyping();
-              message.channel.send(embed);
+              msg.edit(embed);
           });
       } else {
       embed.addField(locale.commands.overwatch.nopublic, locale.commands.overwatch.private);
       message.channel.stopTyping();
-      message.channel.send(embed);
+      msg.edit(embed);
       data.action.splice(data.action.indexOf(message.author.id), 1);
       }
-
-    }
+  });
+  }
 
 moment.locale(message.data.locale);
 if (!message.data.arg[1]) return message.reply(locale.error.usage(props.name));
@@ -64,7 +69,6 @@ await os.getInfo(message.data.arg[1])
 .then(async result => {
 var txt = '';
 let count = 0;
-console.log(result);
 result = result.filter(r => r.platform == 'pc');
 if (result.length == 0) return message.reply(locale.commands.overwatch.nores);
 result = result.sort(function(a, b) {
@@ -80,7 +84,6 @@ else {
 }
 txt += `\n${result.length < 10 ? '' : (result.length - 10) + locale.commands.overwatch.more} `;
 message.reply('```' + txt + '```');
-message.channel.startTyping();
 const filter = m => m.author.id === message.author.id && Number.isInteger(Number(m.content)) && Number(m.content) > 0 && Number(m.content) < count + 1;
 data.action.push(message.author.id);
 
@@ -124,9 +127,15 @@ module.exports.props = {
 
 function sec(hms) {
   const a = hms.split(':');
-  const h = Number(a[0]);
+  a.reverse();
+  if (a.length == 2) a.push(0);
+  else if (a.length == 1) {
+    a.push(0);
+    a.push(0);
+   }
+  const h = Number(a[2]);
   const m = Number(a[1]);
-  const s = Number(a[2]);
+  const s = Number(a[0]);
   var seco = 0;
   seco += h * 60 * 60;
   seco += m * 60;
@@ -148,13 +157,19 @@ function owRank(str) {
 
 String.prototype.secondToHHMMSS = function () {
   var sec_num = parseInt(this, 10);
-  var hours   = Math.floor(sec_num / 3600);
+  var hours = Math.floor(sec_num / 3600);
   var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
   var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
-  if (hours < 10) {hours   = "0"+hours;}
-  if (minutes < 10) {minutes = "0"+minutes;}
-  if (seconds < 10) {seconds = "0"+seconds;}
-  var time = hours+':'+minutes+':'+seconds;
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  var time = hours + ':' + minutes + ':' + seconds;
   return time;
 };

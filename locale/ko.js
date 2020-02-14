@@ -142,11 +142,45 @@ module.exports = {
       overall: '통계',
       playtime: '플레이 시간',
       perheros: '영웅 비교',
+      herosdesc: '영웅별 전적',
+      heros: {
+        winston: '윈스턴',
+        reinhardt: '라인하르트',
+        torbjorn: '토르비욘',
+        pharah: '파라',
+        mercy: '메르시',
+        mei: '메이',
+        ana: '아나',
+        genji: '겐지',
+        dVa: 'D.VA',
+        bastion: '바스티온',
+        mccree: '맥크리',
+        reaper: '리퍼',
+        junkrat: '정크렛',
+        wreckingBall: '레킹볼',
+        sombra: '솜브라',
+        lucio: '루시우',
+        zarya: '자리야',
+        tracer: '트레이서',
+        roadhog: '로드호그',
+        soldier76: '솔저: 76',
+        zenyatta: '젠야타',
+        doomfist: '둠피스트',
+        symmetra: '시메트라',
+        hanzo: '한조',
+        orisa: '오리사',
+        widowmaker: '위도우',
+        moira: '모이라',
+        sigma: '시그마',
+        ash: '에쉬',
+        baptiste: '바티스트'
+      },
       gamemode: {
         competitiveStats: '현재 경쟁전 시즌',
         quickPlayStats: '빠른 대전',
         allStats: '현재 경쟁전 시즌 + 빠른 대전'
-      }
+      },
+      loading: '전적을 불러오는 중입니다...'
     }
   },
   error: {
