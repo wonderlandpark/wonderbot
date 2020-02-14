@@ -8,12 +8,15 @@ module.exports.execute = async (
   knex,
   props,
   data
-) => {};
+) => {
+  client.guilds.forEach(el => {
+  });
+};
 
 module.exports.props = {
   name: "notice",
   perms: "dev",
-  alias: ['봇초대'],
+  alias: ['공지'],
   args: [
     {
       name: "text",

@@ -7,9 +7,10 @@ commands.money = require("./money");
 commands.fun = require("./fun");
 commands.game = require("./game");
 commands.utills = require("./utills");
+commands.stats = require("./stats");
 
 module.exports.categorys = commands;
-console.log(commands);
+console.log('Ready for commands');
 Object.keys(commands).forEach(c => {
   const category = commands[c];
   Object.values(category).forEach(command => {

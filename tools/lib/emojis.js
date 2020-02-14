@@ -7,6 +7,9 @@ module.exports = {
   diamond: "<:diamond:622236211192266758>",
   master: "<:master:622236370877808651>",
   grandmaster: "<:grandmaster:622236499227836435>",
+  tank: "<:tank:622239822026768416>",
+  offense: "<:offense:622239990574874655>",
+  support: "<:support:622240101493243915>",
 
   coin: "<:coin:636879213239992330>"
 };

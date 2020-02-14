@@ -22,7 +22,7 @@
     "mysql": "^2.17.1",
     "mysql2": "^2.0.0",
     "node-fetch": "^2.6.0",
-    "overwatch-stat": "^0.1.2",
+    "overwatch-stat": "^0.1.8",
     "request": "^2.88.0",
     "uuid": "^3.4.0",
     "wonderlangpark": "^0.1.3"

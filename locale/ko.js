@@ -129,6 +129,15 @@ module.exports = {
       'delivered': '✅ 배송완료',
       'unknown': '❔ 알수없음'
     }
+    },
+    overwatch: {
+      lvl: '레벨',
+      nores: '검색결과가 없습니다.',
+      more: '개 더 있음...\n더 자세하게 검색해보세요',
+      nopublic: '이 계정은 프로필 비공개입니다.',
+      private: '상세한 정보를 볼 수 없습니다.',
+      battletag: '배틀태그',
+      win: '승리한 게임'
     }
   },
   error: {
