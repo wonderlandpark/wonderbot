@@ -24,13 +24,14 @@ function get() {
       os.getStat(user.urlName, 'asia', 'pc')
       .then(async profile => {
         var rank = {};
+        if (!profile.ratings) profile.ratings = [];
         // eslint-disable-next-line no-return-assign
         profile.ratings.forEach(el => rank[el.role] = el);
           embed.setThumbnail(profile.icon);
           embed.addBlankField();
           embed.addField(locale.commands.overwatch.overall, locale.commands.overwatch.gamemode[gamemode]);
           if (gamemode !== 'allStats') {
-            if (gamemode == 'competitiveStats') embed.addField(locale.commands.overwatch.rate, (tools.lib.emojis.tank + rank.tank ? ` ${owRank(rank.tank.rankIcon)} ${rank.tank.level}` : locale.commands.overwatch.nocompete) + (tools.lib.emojis.offense + rank.offense ? ` ${owRank(rank.damage.rankIcon)} ${rank.damage.level}` : locale.commands.overwatch.nocompete) + (tools.lib.emojis.support + rank.support ? ` ${owRank(rank.support.rankIcon)} ${rank.support.level}` : locale.commands.overwatch.nocompete));
+            if (gamemode == 'competitiveStats') embed.addField(locale.commands.overwatch.rate, tools.lib.emojis.tank + (rank.tank ? ` ${owRank(rank.tank.rankIcon)} ${rank.tank.level}` : locale.commands.overwatch.nocompete) + tools.lib.emojis.offense + (rank.offense ? ` ${owRank(rank.damage.rankIcon)} ${rank.damage.level}` : locale.commands.overwatch.nocompete) + tools.lib.emojis.support + (rank.support ? ` ${owRank(rank.support.rankIcon)} ${rank.support.level}` : locale.commands.overwatch.nocompete));
             embed.addField(locale.commands.overwatch.win, profile[gamemode].games.won, true);
             embed.addField(locale.commands.overwatch.playtime, profile[gamemode].careerStats.allHeroes.game.timePlayed, true);
             const heros = [];
