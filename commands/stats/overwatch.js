@@ -119,7 +119,7 @@ module.exports.props = {
       name: "gamemode",
       type: "option",
       required: true,
-      options: ["경쟁전", "빠른대전", "전체"]
+      options: ["경쟁전", "빠른대전", "시간"]
     },
     {
       name: "battletag",
