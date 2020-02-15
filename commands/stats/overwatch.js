@@ -31,7 +31,8 @@ function get() {
           embed.addBlankField();
           embed.addField(locale.commands.overwatch.overall, locale.commands.overwatch.gamemode[gamemode]);
           if (gamemode !== 'allStats') {
-            if (gamemode == 'competitiveStats') embed.addField(locale.commands.overwatch.rate, tools.lib.emojis.tank + (rank.tank ? ` ${owRank(rank.tank.rankIcon)} ${rank.tank.level}` : locale.commands.overwatch.nocompete) + tools.lib.emojis.offense + (rank.offense ? ` ${owRank(rank.damage.rankIcon)} ${rank.damage.level}` : locale.commands.overwatch.nocompete) + tools.lib.emojis.support + (rank.support ? ` ${owRank(rank.support.rankIcon)} ${rank.support.level}` : locale.commands.overwatch.nocompete));
+            console.log(profile.ratings)
+            if (gamemode == 'competitiveStats') embed.addField(locale.commands.overwatch.rate, tools.lib.emojis.tank + (rank.tank ? ` ${owRank(rank.tank.rankIcon)} ${rank.tank.level}` : locale.commands.overwatch.nocompete) + tools.lib.emojis.offense + (rank.damage ? ` ${owRank(rank.damage.rankIcon)} ${rank.damage.level}` : locale.commands.overwatch.nocompete) + tools.lib.emojis.support + (rank.support ? ` ${owRank(rank.support.rankIcon)} ${rank.support.level}` : locale.commands.overwatch.nocompete));
             embed.addField(locale.commands.overwatch.win, profile[gamemode].games.won, true);
             embed.addField(locale.commands.overwatch.playtime, profile[gamemode].careerStats.allHeroes.game.timePlayed, true);
             const heros = [];
@@ -42,9 +43,9 @@ function get() {
               return sec(b.data.game.timePlayed) - sec(a.data.game.timePlayed);
             });
             embed.addField(locale.commands.overwatch.perheros, locale.commands.overwatch.herosdesc);
-            if (heros[0]) embed.addField(tools.lib.emojis[heros[0].name] + ' ' + locale.commands.overwatch.heros[heros[0].name], locale.commands.overwatch.stat[gamemode].bind({ win: heros[0].data.game.gamesWon, lost: heros[0].data.game.gamesLost, percent: heros[0].data.game.winPercentage, kd: heros[0].data.average.eliminationsPerLife, objectTime: heros[0].data.average.objectiveTimeAvgPer10Min, fire: heros[0].data.average.objectiveTimeAvgPer10Min, eliminations: heros[0].data.combat.eliminations, deaths: heros[0].data.combat.deaths, playtime: heros[0].data.game.timePlayed }));
-            if (heros[1]) embed.addField(tools.lib.emojis[heros[1].name] + ' ' + locale.commands.overwatch.heros[heros[1].name], locale.commands.overwatch.stat[gamemode].bind({ win: heros[1].data.game.gamesWon, lost: heros[1].data.game.gamesLost, percent: heros[1].data.game.winPercentage, kd: heros[1].data.average.eliminationsPerLife, objectTime: heros[1].data.average.objectiveTimeAvgPer10Min, fire: heros[1].data.average.objectiveTimeAvgPer10Min, eliminations: heros[1].data.combat.eliminations, deaths: heros[1].data.combat.deaths, playtime: heros[1].data.game.timePlayed }));
-            if (heros[2]) embed.addField(tools.lib.emojis[heros[2].name] + ' ' + locale.commands.overwatch.heros[heros[2].name], locale.commands.overwatch.stat[gamemode].bind({ win: heros[2].data.game.gamesWon, lost: heros[2].data.game.gamesLost, percent: heros[2].data.game.winPercentage, kd: heros[2].data.average.eliminationsPerLife, objectTime: heros[2].data.average.objectiveTimeAvgPer10Min, fire: heros[2].data.average.objectiveTimeAvgPer10Min, eliminations: heros[2].data.combat.eliminations, deaths: heros[2].data.combat.deaths, playtime: heros[2].data.game.timePlayed }));
+            if (heros[0]) embed.addField(tools.lib.emojis[heros[0].name] + ' ' + locale.commands.overwatch.heros[heros[0].name], locale.commands.overwatch.stat[gamemode].bind({ win: heros[0].data.game.gamesWon || heros[0].data.game.gameWon, lost: heros[0].data.game.gamesLost || heros[0].data.game.gameLost, percent: heros[0].data.game.winPercentage, kd: heros[0].data.average.eliminationsPerLife, objectTime: heros[0].data.average.objectiveTimeAvgPer10Min, fire: heros[0].data.average.objectiveTimeAvgPer10Min, eliminations: heros[0].data.combat.eliminations, deaths: heros[0].data.combat.deaths || heros[2].data.combat.death, playtime: heros[0].data.game.timePlayed }));
+            if (heros[1]) embed.addField(tools.lib.emojis[heros[1].name] + ' ' + locale.commands.overwatch.heros[heros[1].name], locale.commands.overwatch.stat[gamemode].bind({ win: heros[1].data.game.gamesWon || heros[1].data.game.gameWon, lost: heros[1].data.game.gamesLost || heros[0].data.game.gameLost, percent: heros[1].data.game.winPercentage, kd: heros[1].data.average.eliminationsPerLife, objectTime: heros[1].data.average.objectiveTimeAvgPer10Min, fire: heros[1].data.average.objectiveTimeAvgPer10Min, eliminations: heros[1].data.combat.eliminations, deaths: heros[1].data.combat.deaths || heros[1].data.combat.death, playtime: heros[1].data.game.timePlayed }));
+            if (heros[2]) embed.addField(tools.lib.emojis[heros[2].name] + ' ' + locale.commands.overwatch.heros[heros[2].name], locale.commands.overwatch.stat[gamemode].bind({ win: heros[2].data.game.gamesWon || heros[2].data.game.gameWon, lost: heros[2].data.game.gamesLost || heros[2].data.game.gameLost, percent: heros[2].data.game.winPercentage, kd: heros[2].data.average.eliminationsPerLife, objectTime: heros[2].data.average.objectiveTimeAvgPer10Min, fire: heros[2].data.average.objectiveTimeAvgPer10Min, eliminations: heros[2].data.combat.eliminations, deaths: heros[2].data.combat.deaths || heros[2].data.combat.death, playtime: heros[2].data.game.timePlayed }));
           } else {
             const time = { competitive: !profile.competitiveStats.careerStats.allHeroes ? '00:00:00' : profile.competitiveStats.careerStats.allHeroes.game.timePlayed + ':00', quickPlay: profile.quickPlayStats.careerStats.allHeroes.game.timePlayed };
             const secs = (sec(time.competitive) + sec(time.quickPlay));
@@ -76,7 +77,7 @@ var txt = '';
 let count = 0;
 result = result.filter(r => r.platform == 'pc');
 if (result.length == 0) return message.reply(locale.commands.overwatch.nores);
-result = result.sort(function(a, b) {
+result.sort(function(a, b) {
   return Number(b.level) - Number(a.level);
 });
 if (result.length == 1) user = result[0];
@@ -95,18 +96,18 @@ data.action.push(message.author.id);
 await message.channel.awaitMessages(filter, { max: 1, time: 10000, errors: ['time'] })
 .then(async coll => {
     user = result[Number(coll.first().content) - 1];
-    })
-  .catch(() => {
-    data.action.splice(data.action.indexOf(message.author.id), 1);
-    message.channel.stopTyping();
-    message.reply(locale.error.timeout);
-  });
+    });
 }
 
 })
 .then(async () => {
   await get();
   data.action.splice(data.action.indexOf(message.author.id), 1);
+})
+.catch(() => {
+  data.action.splice(data.action.indexOf(message.author.id), 1);
+  message.channel.stopTyping();
+  message.reply(locale.error.timeout);
 });
 };
 
