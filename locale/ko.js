@@ -137,13 +137,15 @@ module.exports = {
       more: '개 더 있음...\n더 자세하게 검색해보세요',
       nopublic: '이 계정은 프로필 비공개입니다.',
       private: '상세한 정보를 볼 수 없습니다.',
+      noinfo: '불러올 수 있는 정보가 없습니다.',
+      nogamemode: '해당 게임모드를 아직 플레이 하지 않았습니다.',
       battletag: '배틀태그',
       win: '승리한 게임',
-      nocompete: '경쟁전 정보가 없습니다.',
+      nocompete: '미배치 ',
       overall: '통계',
       playtime: '플레이 시간',
       perheros: '영웅 비교',
-      herosdesc: '영웅별 전적 (상위 3 영웅)',
+      herosdesc: '영웅별 전적 (상위 5 영웅)',
       heros: {
         winston: '윈스턴',
         reinhardt: '라인하르트',
@@ -174,7 +176,8 @@ module.exports = {
         moira: '모이라',
         sigma: '시그마',
         ash: '에쉬',
-        baptiste: '바티스트'
+        baptiste: '바티스트',
+        brigitte: '브리기테'
       },
       stat: {
         competitiveStats: '**승리** : {win}\n**패배** : {lost}\n**승률** : {percent}\n**K/D** : {kd} : 1 ({eliminations}/{deaths})\n**평균 임무 기여 시간 (10분당 평균)** : {objectTime}\n**평균 폭주 시간 (10분당 평균)** : {fire}\n**총 플레이 시간** : {playtime}',
