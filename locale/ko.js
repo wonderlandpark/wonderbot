@@ -246,7 +246,8 @@ module.exports = {
     money: '돈',
     fun: '재미',
     game: '도박',
-    utills: '기능'
+    utills: '기능',
+    stats: '스텟'
   },
   perm: {
     CREATE_INSTANT_INVITE: "초대 코드 만들기",
