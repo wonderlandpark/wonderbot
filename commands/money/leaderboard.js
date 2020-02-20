@@ -30,7 +30,7 @@ module.exports.execute = async (
     for (var i = 1; i < 11; i++) {
       if (leaderboard[i - 1])
         txt +=
-          `\n${i}. [${client.users.get(leaderboard[i - 1].id).tag}](` +
+          `\n${i}. [${client.users.get(leaderboard[i - 1].id) ? client.users.get(leaderboard[i - 1].id).tag : 'None'}](` +
           num2han(leaderboard[i - 1].money) +
           locale.commands.money.won +
           ")";

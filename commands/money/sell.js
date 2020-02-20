@@ -87,7 +87,7 @@ module.exports.execute = async (
 
 module.exports.props = {
   name: "sell",
-  perms: "dev",
+  perms: "general",
   alias: ["판매"],
   args: [
     {
@@ -104,6 +104,6 @@ module.exports.props = {
 };
 
 function find(str) {
-  var s = [{ id: "wondercoin", name: "원더코인" }];
+  var s = [{ id: "wondercoin", name: "원더코인" }, { id: "gukbap", name: "국밥" }];
   return s.filter(r => r.id.includes(str) || r.name.includes(str));
 }
