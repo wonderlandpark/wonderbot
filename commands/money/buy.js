@@ -74,7 +74,8 @@ module.exports.execute = async (
             data.action.splice(data.action.indexOf(message.data.id), 1);
             return message.reply(locale.commands.allin.not);
           }
-          await knex('users').update({ money: dived, items: JSON.stringify(items) });
+          await knex('users').update({ money: dived, items: JSON.stringify(items) })
+          .where({ id: message.author.id });
           embed = tools.bot.embed(client, message);
           embed.addField(locale.commands.buy.finish, locale.commands.buy.result.bind({ item: res[0].name, count: num, total: total, money: dived }));
           message.channel.send(embed);
