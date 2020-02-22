@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "discord.js": "^11.5.1",
     "hangul-tools": "^0.1.4",
     "inko": "^1.1.1",

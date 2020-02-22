@@ -11,8 +11,8 @@ module.exports.execute = async (
   if (
     (
       await knex
-        .select("*")
-        .from("users")
+        .select('*')
+        .from('users')
         .where({ id: message.author.id })
     ).length > 0
   ) {
@@ -31,7 +31,7 @@ module.exports.execute = async (
     );
     embed.addField(
       locale.commands.register.tos,
-      "[{to}]({tos})".bind({
+      '[{to}]({tos})'.bind({
         tos: locale.link.tos,
         to: locale.commands.register.to
       }),
@@ -39,7 +39,7 @@ module.exports.execute = async (
     );
     embed.addField(
       locale.commands.register.privacy,
-      "[{to}]({privacy})".bind({
+      '[{to}]({privacy})'.bind({
         privacy: locale.link.privacy,
         to: locale.commands.register.to
       }),
@@ -52,11 +52,14 @@ module.exports.execute = async (
     data.register.push(message.author.id);
     message.channel.send(embed);
     message.channel
-      .awaitMessages(filter, { max: 1, time: 10000, errors: ["time"] })
+      .awaitMessages(filter, { max: 1, time: 10000, errors: ['time'] })
       .then(async collected => {
         if (!collected) {
-          await data.register.splice(data.register.indexOf(message.author.id), 1);
-        message.reply(locale.commands.register.timeout);
+          await data.register.splice(
+            data.register.indexOf(message.author.id),
+            1
+          );
+          message.reply(locale.commands.register.timeout);
         }
         await data.register.splice(data.register.indexOf(message.author.id), 1);
         await knex
@@ -64,7 +67,7 @@ module.exports.execute = async (
             id: message.author.id,
             join: Math.round(new Date() / 1000)
           })
-          .from("users");
+          .from('users');
         return message.reply(locale.commands.register.thanks);
       })
       .catch(async collected => {
@@ -76,8 +79,8 @@ module.exports.execute = async (
 };
 
 module.exports.props = {
-  name: "register",
-  perms: "general",
-  alias: ["가입", "등록"],
+  name: 'register',
+  perms: 'general',
+  alias: ['가입', '등록'],
   args: []
 };

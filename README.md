@@ -8,7 +8,7 @@
 
 ## Introducing
 
-Team Wonder.  Project Wonder_Bot's Rewrite.
+Team Wonder. Project Wonder_Bot's Rewrite.
 
 [Website](https://wonderbot.xyz)
 
@@ -47,14 +47,14 @@ This code works finally on these Requirements
 ## Thanks To
 
 | NAME                  | TO                      |
-|-----------------------|-------------------------|
+| --------------------- | ----------------------- |
 | chaemoong#0001 (채뭉) | `delivery` command IDEA |
 
 ## Contact
 
 > Discord : `wonderlandpark#9999`
 
-![wonderlandpark](https://cdn.discordapp.com/avatars/285185716240252929/f50a084aaa45c57699c3dba1b7846122.png?size=256) 
+![wonderlandpark](https://cdn.discordapp.com/avatars/285185716240252929/f50a084aaa45c57699c3dba1b7846122.png?size=256)
 
 ### Discord Servers
 
@@ -68,4 +68,4 @@ This code works finally on these Requirements
 
 #### Developer's
 
-[바로가기](https://dev.wonderbot.xyz)                   
+[바로가기](https://dev.wonderbot.xyz)

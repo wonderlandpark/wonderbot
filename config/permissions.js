@@ -1,13 +1,13 @@
-const config = require("./index.js");
+const config = require('./index.js');
 const perm = [
   {
-    name: "general",
+    name: 'general',
     required: {
       perms: []
     }
   },
   {
-    name: "dev",
+    name: 'dev',
     required: {
       perms: [],
       id: config.client.owners

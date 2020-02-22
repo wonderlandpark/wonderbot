@@ -11,13 +11,13 @@ module.exports.execute = async (
 ) => {};
 
 module.exports.props = {
-  name: "",
-  perms: "",
+  name: '',
+  perms: '',
   alias: [],
   args: [
     {
-      name: "",
-      type: "",
+      name: '',
+      type: '',
       required: false
     }
   ]

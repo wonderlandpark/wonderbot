@@ -1,10 +1,5 @@
-const commands = require("../index");
-module.exports.execute = async (
-  client,
-  message,
-  locale,
-  embed
-) => {
+const commands = require('../index');
+module.exports.execute = async (client, message, locale, embed) => {
   if (!message.data.args) {
     embed.addField(locale.commands.help.help, locale.commands.help.desc);
     Object.keys(commands.categorys).forEach(cat => {
@@ -16,14 +11,14 @@ module.exports.execute = async (
 };
 
 module.exports.props = {
-  name: "도움",
-  perms: "general",
-  alias: ["도움", "도움말", "명령어"],
+  name: '도움',
+  perms: 'general',
+  alias: ['도움', '도움말', '명령어'],
   args: [{}]
 };
 
 function cmdFormat(cmds) {
   var array = [];
   Object.values(cmds).forEach(c => array.push(c.props.alias[0]));
-  return "`" + array.join("`, `") + "`";
+  return '`' + array.join('`, `') + '`';
 }

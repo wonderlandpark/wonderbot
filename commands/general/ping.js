@@ -9,8 +9,8 @@ module.exports.execute = async (
   const time = new Date();
   message.channel.send(locale.commands.ping.ping).then(m => {
     knex
-      .select("*")
-      .from("users")
+      .select('*')
+      .from('users')
       .then(() => {
         embed.addField(
           locale.commands.ping.this,
@@ -26,8 +26,8 @@ module.exports.execute = async (
   });
 };
 module.exports.props = {
-  name: "ping",
-  perms: "general",
-  alias: ["핑", "pong"],
+  name: 'ping',
+  perms: 'general',
+  alias: ['핑', 'pong'],
   args: []
 };

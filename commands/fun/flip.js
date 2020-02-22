@@ -1,11 +1,8 @@
-module.exports.execute = (
-  message,
-  locale
-) => {
+module.exports.execute = (message, locale) => {
   // const config = require("./settings/config.json");
   // const prefix = (config.prefix)
 
-  var flip = require("flip-text");
+  var flip = require('flip-text');
 
   if (!message.data.args) {
     return message.reply(locale.error.usage(this.props.name));
@@ -23,13 +20,13 @@ module.exports.execute = (
 };
 
 module.exports.props = {
-  name: "flip",
-  perms: "general",
-  alias: ["뒤집기"],
+  name: 'flip',
+  perms: 'general',
+  alias: ['뒤집기'],
   args: [
     {
-      name: "user / text",
-      type: "usertext",
+      name: 'user / text',
+      type: 'usertext',
       required: true
     }
   ]

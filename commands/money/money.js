@@ -8,8 +8,8 @@ module.exports.execute = async (
 ) => {
   const user = message.mentions.members.first() || message.member;
   const money = await knex
-    .select("*")
-    .from("users")
+    .select('*')
+    .from('users')
     .where({ id: user.id });
   if (money.length == 0) return message.reply(locale.commands.money.not);
   embed.addField(
@@ -23,8 +23,8 @@ module.exports.execute = async (
 };
 
 module.exports.props = {
-  name: "money",
-  perms: "general",
-  alias: ["돈", "돈보기"],
+  name: 'money',
+  perms: 'general',
+  alias: ['돈', '돈보기'],
   args: [{}]
 };

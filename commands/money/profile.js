@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const lib = require("../../tools/lib");
+const lib = require('../../tools/lib');
 
 module.exports.execute = async (
   client,
@@ -11,8 +11,8 @@ module.exports.execute = async (
 ) => {
   const user = message.mentions.members.first() || message.member;
   const obj = await knex
-    .select("*")
-    .from("users")
+    .select('*')
+    .from('users')
     .where({ id: user.id });
   if (obj.length == 0) return message.reply(locale.error.nouser);
   else {
@@ -24,29 +24,29 @@ module.exports.execute = async (
     )[0][0];
     embed.addField(
       locale.commands.profile.profile.bind({ user: user.user.tag }),
-      locale.commands.profile.wallet.bind({ money: u["money"] })
+      locale.commands.profile.wallet.bind({ money: u['money'] })
     );
-    embed.addField(locale.commands.profile.allin, u["multiples"]);
+    embed.addField(locale.commands.profile.allin, u['multiples']);
     embed.addField(
       locale.commands.profile.join,
-      new Date(u["join"] * 1000).format(message.data.locale)
+      new Date(u['join'] * 1000).format(message.data.locale)
     );
     embed.addField(
       locale.commands.profile.rank,
-      lib.emojis[getRank(u["per_rank"])] + `(${u["per_rank"]}%)`
+      lib.emojis[getRank(u['per_rank'])] + `(${u['per_rank']}%)`
     );
     message.channel.send(embed);
   }
 };
 
 module.exports.props = {
-  name: "profile",
-  perms: "general",
-  alias: ["프로필"],
+  name: 'profile',
+  perms: 'general',
+  alias: ['프로필'],
   args: [
     {
-      name: "user",
-      type: "mention",
+      name: 'user',
+      type: 'mention',
       required: false
     }
   ]
@@ -54,12 +54,12 @@ module.exports.props = {
 
 function getRank(per) {
   if (per == 0) per = 0.00001;
-  if (per >= 0.9) rank = "bronze";
-  else if (per >= 0.75) rank = "silver";
-  else if (per >= 0.55) rank = "gold";
-  else if (per >= 0.4) rank = "platinum";
-  else if (per >= 0.3) rank = "diamond";
-  else if (per >= 0.2) rank = "master";
-  else rank = "grandmaster";
+  if (per >= 0.9) rank = 'bronze';
+  else if (per >= 0.75) rank = 'silver';
+  else if (per >= 0.55) rank = 'gold';
+  else if (per >= 0.4) rank = 'platinum';
+  else if (per >= 0.3) rank = 'diamond';
+  else if (per >= 0.2) rank = 'master';
+  else rank = 'grandmaster';
   return rank;
 }

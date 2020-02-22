@@ -1,10 +1,11 @@
 module.exports = {
   bot: {
-    season: "WONDER",
+    season: 'WONDER',
     timezone: 'Asia/Seoul'
   },
   webhook: {
-    error: { // Webhook
+    error: {
+      // Webhook
       id: '',
       token: ''
     }
@@ -14,9 +15,9 @@ module.exports = {
   shard: {
     totalShards: 2,
     respawn: true,
-    token: ""
+    token: ''
   },
-  token: "",
-  prefix: ".",
-  owners: ["285185716240252929"]
+  token: '',
+  prefix: '.',
+  owners: ['285185716240252929']
 };

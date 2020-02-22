@@ -3,8 +3,8 @@ module.exports.execute = async () => {
 };
 
 module.exports.props = {
-  name: "errortest",
-  perms: "dev",
-  alias: ["에러"],
+  name: 'errortest',
+  perms: 'dev',
+  alias: ['에러'],
   args: []
 };

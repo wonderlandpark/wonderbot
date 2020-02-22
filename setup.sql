@@ -2,7 +2,8 @@ CREATE TABLE `users` ( `id` TEXT NOT NULL  , `join` INT NOT NULL , `money` INT N
 CREATE TABLE `guilds` (`id` TEXT NOT NULL);
 CREATE TABLE `items` ( `name` TEXT NOT NULL, `last_change` INT, `money` INT NOT NULL DEFAULT '0' , `change` INT NOT NULL DEFAULT '0');
 CREATE TABLE `blacklist` (`id` TEXT NOT NULL, `time` INT NOT NULL, `why` TEXT NOT NULL DEFAULT 'none');
-CREATE TABLE `stocks` ( `name` TEXT NOT NULL, `prices` TEXT NOT NULL DEFAULT '[100]', `lastchage` INT NOT NULL DEFAULT 0, `now` INT NOT NULL DEFAULT 100);
+CREATE TABLE `stocks` ( `name` TEXT NOT NULL, `prices` TEXT NOT NULL DEFAULT '[100]', `lastchange` INT NOT NULL DEFAULT 0, `now` INT NOT NULL DEFAULT 100);
 INSERT INTO `stocks`(`name`) VALUES ('wondercoin'); 
+INSERT INTO `stocks`(`name`) VALUES ('gukbap'); 
 CREATE TABLE `info` (`stock` INT NOT NULL DEFAULT 0);
 CREATE TABLE `error` (`id` TINYTEXT NOT NULL, `date` INT NOT NULL DEFAULT 0,  `user` TEXT NOT NULL, `cmd` TEXT NOT NULL, `content` TEXT NOT NULL, `msg` TEXT NOT NULL, `error` TEXT NOT NULL, `guild` TEXT NOT NULL, `info` TEXT NOT NULL);

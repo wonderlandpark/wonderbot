@@ -12,29 +12,29 @@ module.exports.execute = async (
   if (!message.data.args) return message.reply(locale.error.usage(props.name));
 
   if (
-    message.data.args.includes("client.token") &&
-    message.data.args.includes("message")
+    message.data.args.includes('client.token') &&
+    message.data.args.includes('message')
   ) {
-    return message.channel.send("Sending Token??");
+    return message.channel.send('Sending Token??');
   }
-  message.reply("Evaling...").then(async m => {
+  message.reply('Evaling...').then(async m => {
     const result = new Promise(resolve => resolve(eval(message.data.args)));
 
     return result
       .then(output => {
-        if (typeof output !== "string")
-          output = require("util").inspect(output, {
+        if (typeof output !== 'string')
+          output = require('util').inspect(output, {
             depth: 0
           });
         if (output.includes(client.token))
-          output = output.replace(client.token, "(accesstoken was hidden)");
+          output = output.replace(client.token, '(accesstoken was hidden)');
         if (output.length > 1010)
-          console.log(output), (output = output.slice(0, 1010) + "\n...");
+          console.log(output), (output = output.slice(0, 1010) + '\n...');
 
-        embed.setTitle("SCRIPT");
-        embed.addField("INPUT", "`" + message.data.args + "`");
-        embed.addField("OUTPUT", "```js\n" + output + "```");
-        embed.setColor("GREEN");
+        embed.setTitle('SCRIPT');
+        embed.addField('INPUT', '`' + message.data.args + '`');
+        embed.addField('OUTPUT', '```js\n' + output + '```');
+        embed.setColor('GREEN');
         return m.edit(embed);
       })
       .catch(error => {
@@ -42,25 +42,25 @@ module.exports.execute = async (
         error = error.toString();
 
         if (error.includes(client.token))
-          error = error.replace(client.token, "(accesstoken was hidden)");
-        embed.setTitle("SCRIPT");
-        embed.addField("INPUT", "`" + message.data.args + "`");
-        embed.addField("OUTPUT", "err");
-        embed.addField("ERROR", "```js\n" + error + "```");
-        embed.setColor("RED");
+          error = error.replace(client.token, '(accesstoken was hidden)');
+        embed.setTitle('SCRIPT');
+        embed.addField('INPUT', '`' + message.data.args + '`');
+        embed.addField('OUTPUT', 'err');
+        embed.addField('ERROR', '```js\n' + error + '```');
+        embed.setColor('RED');
         return m.edit(embed);
       });
   });
 };
 
 module.exports.props = {
-  name: "eval",
-  perms: "dev",
-  alias: ["실행", "cmd", "script", "이블"],
+  name: 'eval',
+  perms: 'dev',
+  alias: ['실행', 'cmd', 'script', '이블'],
   args: [
     {
-      name: "script",
-      type: "text"
+      name: 'script',
+      type: 'text'
     }
   ]
 };

@@ -3,7 +3,7 @@ Array.prototype.random = function() {
 };
 
 String.prototype.emojiID = function() {
-  return this.replace(/<|>/gi, "").split(":")[2];
+  return this.replace(/<|>/gi, '').split(':')[2];
 };
 
-module.exports.weighted = require("./weighted");
+module.exports.weighted = require('./weighted');

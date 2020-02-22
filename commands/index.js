@@ -1,13 +1,13 @@
-const config = require("../config");
+const config = require('../config');
 const commands = {};
-commands.general = require("./general");
-commands.dev = require("./dev");
-commands.account = require("./account");
-commands.money = require("./money");
-commands.fun = require("./fun");
-commands.game = require("./game");
-commands.utills = require("./utills");
-commands.stats = require("./stats");
+commands.general = require('./general');
+commands.dev = require('./dev');
+commands.account = require('./account');
+commands.money = require('./money');
+commands.fun = require('./fun');
+commands.game = require('./game');
+commands.utills = require('./utills');
+commands.stats = require('./stats');
 
 module.exports.categorys = commands;
 console.log('Ready for commands');

@@ -6,15 +6,15 @@ module.exports = class WB {
       // eslint-disable-next-line no-sync
       if (err) fs.writeFileSync('./logs/cmd.log', '');
     });
-    const Discord = require("discord.js");
+    const Discord = require('discord.js');
     const client = new Discord.Client(config.client.app);
-    const tools = require("../");
+    const tools = require('../');
     const logger = tools.logger;
 
-    client.once("ready", () => {
+    client.once('ready', () => {
       logger.WBsuccess(`Logged in as ${client.user.tag}`);
 
-      client.on("message", async message => {
+      client.on('message', async message => {
         tools.bot.handler(client, message, config, devMode);
       });
     });

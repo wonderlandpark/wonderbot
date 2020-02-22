@@ -1,20 +1,20 @@
 module.exports = {
-  check: "<a:check:663594505651486742>",
-  loading: "<a:wonderisloading:677818976797065254>",
-  gookbap: "<:gookbap:677905040706371598>",
+  check: '<a:check:663594505651486742>',
+  loading: '<a:wonderisloading:677818976797065254>',
+  gookbap: '<:gookbap:677905040706371598>',
 
-// Overwatch Emojis
+  // Overwatch Emojis
 
-  bronze: "<:bronze:622235134204182588>",
-  silver: "<:silver:622235503856582673>",
-  gold: "<:gold:622235681489551360>",
-  platinum: "<:platinum:622236111179350027>",
-  diamond: "<:diamond:622236211192266758>",
-  master: "<:master:622236370877808651>",
-  grandmaster: "<:grandmaster:622236499227836435>",
-  tank: "<:tank:622239822026768416>",
-  offense: "<:offense:622239990574874655>",
-  support: "<:support:622240101493243915>",
+  bronze: '<:bronze:622235134204182588>',
+  silver: '<:silver:622235503856582673>',
+  gold: '<:gold:622235681489551360>',
+  platinum: '<:platinum:622236111179350027>',
+  diamond: '<:diamond:622236211192266758>',
+  master: '<:master:622236370877808651>',
+  grandmaster: '<:grandmaster:622236499227836435>',
+  tank: '<:tank:622239822026768416>',
+  offense: '<:offense:622239990574874655>',
+  support: '<:support:622240101493243915>',
   winston: '<:winston:677747113093890060>',
   reinhardt: '<:reinhardt:677747113098215456>',
   torbjorn: '<:torbjorn:677747113110667265>',
@@ -46,5 +46,5 @@ module.exports = {
   ash: '<:ash:677778257835458571>',
   baptiste: '<:baptiste:677780087008919573>',
 
-  coin: "<:coin:636879213239992330>"
+  coin: '<:coin:636879213239992330>'
 };
