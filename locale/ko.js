@@ -98,10 +98,20 @@ module.exports = {
       rank: '랭크'
     },
     wallet: {
-      profile: '{user}님의 지갑'
+      wallet: '💰 {user}님의 지갑',
+      what: '지갑속에 뭐가 있을까요?',
+      will: '추정 자산',
+      top: '순위',
+      topdesc: '전체 {all}위 (서버 {guild}위)',
+      money: '{money} <:coin:636879213239992330>',
+      item: '소지한 아이템',
+      items: { wondercoin: '<:coin:636879213239992330> 원더코인', gukbap: '<:gookbap:677905040706371598> 국밥', diamond: '💎 다이아몬드', coffee: '☕ 커피콩' }
     },
     price: {
-      price: '원더코인(WBC) : {wbc}원(WBW)'
+      item: '아이템 시세',
+      changed: '--- {change}초 전 업데이트됨.',
+      price: '{status} {name} : {price}원 [{update}]',
+      lastchange: '다음 변동: `{lastchange}`초 남음'
     },
     buy: {
       notvaild: '유효하지 않은 값입니다. 올바른 정수를 입력해주세요.',

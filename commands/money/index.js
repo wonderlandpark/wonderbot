@@ -5,3 +5,4 @@ module.exports.profile = require('./profile');
 module.exports.buy = require('./buy');
 module.exports.sell = require('./sell');
 module.exports.price = require('./price');
+module.exports.wallet = require('./wallet');

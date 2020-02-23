@@ -126,7 +126,9 @@ module.exports.props = {
 function find(str) {
   var s = [
     { id: 'wondercoin', name: '원더코인' },
-    { id: 'gukbap', name: '국밥' }
+    { id: 'gukbap', name: '국밥' },
+    { id: 'diamond', name: '다이아몬드' },
+    { id: 'coffee', name: '커피콩'}
   ];
   return s.filter(r => r.id.includes(str) || r.name.includes(str));
 }

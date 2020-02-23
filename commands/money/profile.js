@@ -18,7 +18,7 @@ module.exports.execute = async (
   else {
     const u = (
       await knex.raw(
-        `SELECT * FROM(SELECT *, ROW_NUMBER() OVER (ORDER BY money DESC) as ranking, PERCENT_RANK() OVER (ORDER BY money DESC) as per_rank FROM users)a WHERE a.id = ?`,
+        `SELECT * FROM (SELECT *, PERCENT_RANK() OVER (ORDER BY money DESC) as per_rank FROM users) a WHERE id=?`,
         user.id
       )
     )[0][0];

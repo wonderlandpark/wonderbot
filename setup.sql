@@ -5,5 +5,7 @@ CREATE TABLE `blacklist` (`id` TEXT NOT NULL, `time` INT NOT NULL, `why` TEXT NO
 CREATE TABLE `stocks` ( `name` TEXT NOT NULL, `prices` TEXT NOT NULL DEFAULT '[100]', `lastchange` INT NOT NULL DEFAULT 0, `now` INT NOT NULL DEFAULT 100);
 INSERT INTO `stocks`(`name`) VALUES ('wondercoin'); 
 INSERT INTO `stocks`(`name`) VALUES ('gukbap'); 
+INSERT INTO `stocks`(`name`) VALUES ('coffee');
+INSERT INTO `stocks`(`name`) VALUES ('diamond');  
 CREATE TABLE `info` (`stock` INT NOT NULL DEFAULT 0);
 CREATE TABLE `error` (`id` TINYTEXT NOT NULL, `date` INT NOT NULL DEFAULT 0,  `user` TEXT NOT NULL, `cmd` TEXT NOT NULL, `content` TEXT NOT NULL, `msg` TEXT NOT NULL, `error` TEXT NOT NULL, `guild` TEXT NOT NULL, `info` TEXT NOT NULL);
