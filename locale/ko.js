@@ -215,6 +215,9 @@ module.exports = {
       desc: '✅ 완치자: {cured} \n🏥 감염자: {iscorona}\n❎ 사망자: {dead}',
       from: '감염경로',
       fromDesc: ''
+    },
+    disasterMsg: {
+
     }
   },
   error: {
@@ -273,7 +276,8 @@ module.exports = {
     fun: '재미',
     game: '도박',
     utills: '기능',
-    stats: '스텟'
+    stats: '스텟',
+    season: '시즌한정'
   },
   perm: {
     CREATE_INSTANT_INVITE: '초대 코드 만들기',
@@ -332,5 +336,6 @@ const usageNames = {
   perm: '권한',
   'user/id': '유저 또는 아이디',
   gamemode: '게임모드',
-  battletag: '배틀태그'
+  battletag: '배틀태그',
+  city: '도시명'
 };

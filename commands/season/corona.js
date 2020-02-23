@@ -53,7 +53,7 @@ module.exports.execute = async (client, message, locale, embed) => {
 };
 module.exports.props = {
   name: 'corona',
-  perms: 'general',
+  perms: 'dev',
   alias: ['코로나'],
   args: []
 };

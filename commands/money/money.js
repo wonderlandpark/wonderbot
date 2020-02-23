@@ -26,5 +26,9 @@ module.exports.props = {
   name: 'money',
   perms: 'general',
   alias: ['돈', '돈보기'],
-  args: [{}]
+  args: [{
+    name: 'user',
+    type: 'user',
+    required: false
+  },]
 };

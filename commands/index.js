@@ -8,6 +8,7 @@ commands.fun = require('./fun');
 commands.game = require('./game');
 commands.utills = require('./utills');
 commands.stats = require('./stats');
+commands.season = require('./season')
 
 module.exports.categorys = commands;
 console.log('Ready for commands');
