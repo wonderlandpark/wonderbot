@@ -15,7 +15,7 @@ module.exports.execute = async (
   Object.keys(JSON.parse(b.items)).forEach(el=> {
   bm += (stocks.find(i=> i.name == el).now * JSON.parse(b.items)[el])
     })
-   Object.keys(JSON.parse(b.items)).forEach(el=> {
+   Object.keys(JSON.parse(a.items)).forEach(el=> {
        am += (stocks.find(i=> i.name == el).now * JSON.parse(a.items)[el])
      })
     if(Number.isNaN(am)) am = 0;
@@ -37,7 +37,7 @@ module.exports.execute = async (
   Object.keys(JSON.parse(b.items)).forEach(el=> {
   bm += (stocks.find(i=> i.name == el).now * JSON.parse(b.items)[el])
     })
-   Object.keys(JSON.parse(b.items)).forEach(el=> {
+   Object.keys(JSON.parse(a.items)).forEach(el=> {
        am += (stocks.find(i=> i.name == el).now * JSON.parse(a.items)[el])
      })
     if(Number.isNaN(am)) am = 0;
