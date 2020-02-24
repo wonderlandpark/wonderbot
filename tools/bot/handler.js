@@ -43,7 +43,7 @@ module.exports = async (client, message, config) => {
   )
     return;
   if (!commands[message.data.cmd]) return;
-  var log = `${new Date().textFormat('YYYY/MM/DD HH:MM:SS')} ${
+  var log = `${new Date().textFormat('YYYY/MM/DD hh:mm:ss')} ${
     message.author.tag
   } : ${message.content}`;
   fs.appendFile('./logs/cmd.log', log + '\n', function(err) {
