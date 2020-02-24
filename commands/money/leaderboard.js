@@ -43,19 +43,21 @@ module.exports.execute = async (
 
     for (var i = 1; i < 11; i++) {
       var m = 0
-      Object.keys(JSON.parse(leaderboard[i-1].items)).forEach(el=> {
-        m += (stocks.find(i=> i.name == el).now * JSON.parse(leaderboard[i-1].items)[el])
-      })
-      if (leaderboard[i - 1])
-        txt +=
-          `\n${i}. [${
-            client.users.get(leaderboard[i - 1].id)
-              ? client.users.get(leaderboard[i - 1].id).tag
-              : 'None'
-          }](${locale.commands.leaderboard.all} ` +
-          num2han(m + leaderboard[i-1].money) +
-          locale.commands.money.won +
-          ')';
+      if(leaderboard[i-1]) {
+        Object.keys(JSON.parse(leaderboard[i-1].items)).forEach(el=> {
+          m += (stocks.find(i=> i.name == el).now * JSON.parse(leaderboard[i-1].items)[el])
+        })
+          txt +=
+            `\n${i}. [${
+              client.users.get(leaderboard[i - 1].id)
+                ? client.users.get(leaderboard[i - 1].id).tag
+                : 'None'
+            }](${locale.commands.leaderboard.all} ` +
+            num2han(m + leaderboard[i-1].money) +
+            locale.commands.money.won +
+            ')';
+      }
+      
     }
     message.channel.send(
       '```md\n' +
