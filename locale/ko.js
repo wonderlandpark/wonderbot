@@ -73,7 +73,8 @@ module.exports = {
     leaderboard: {
       global: '🌏 글로벌(전체 서버)',
       guild: '🏘️ {server} 서버',
-      leaderboard: '리더보드 - {season}'
+      leaderboard: '리더보드 - {season}',
+      all: '총 자산'
     },
     slot: {
       nomoney: '배팅하신 금액을 소지하고 있지 않습니다.',
@@ -105,6 +106,7 @@ module.exports = {
       topdesc: '전체 {all}위 (서버 {guild}위)',
       money: '{money} <:coin:636879213239992330>',
       item: '소지한 아이템',
+      noitem: '소지한 아이템이 없습니다.',
       items: { wondercoin: '<:coin:636879213239992330> 원더코인', gukbap: '<:gookbap:677905040706371598> 국밥', diamond: '💎 다이아몬드', coffee: '☕ 커피콩' }
     },
     price: {
@@ -121,8 +123,9 @@ module.exports = {
         '구매하려는 아이템 : {item}\n수량 : {count}\n지불할 금액 : {total} <:coin:636879213239992330>\n계속하시려면 💳 이모지로 반응하세요.',
       finish: '✅ 결제 완료',
       result:
-        '아이템 : {item}\n수량  : {count}\n지불한 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>'
-    },
+        '아이템 : {item}\n수량  : {count}\n지불한 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>',
+      not: '구매가 취소되었습니다.'
+      },
     sell: {
       notvaild: '유효하지 않은 값입니다. 올바른 정수를 입력해주세요.',
       noitem: '판매하실 아이템을 소지하고 있지 않습니다.',
@@ -131,8 +134,10 @@ module.exports = {
         '판매하려는 아이템 : {item}\n수량 : {count}\n지급될 금액 : {total} <:coin:636879213239992330>\n계속하시려면 💳 이모지로 반응하세요.',
       finish: '✅ 결제 완료',
       result:
-        '아이템 : {item}\n수량  : {count}\n지급 받은 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>'
-    },
+        '아이템 : {item}\n수량  : {count}\n지급 받은 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>',
+        not: '판매가 취소되었습니다.'
+    
+      },
     delivery: {
       info: '보낸이: {from} 받는이: {to} ({state})',
       status: {

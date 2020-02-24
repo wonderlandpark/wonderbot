@@ -80,7 +80,7 @@ module.exports.execute = async (
       async collected => {
         if (collected.size == 0) {
           data.action.splice(data.action.indexOf(message.data.id), 1);
-          return message.reply(locale.commands.allin.not);
+          return message.reply(locale.commands.buy.not);
         }
         await knex('users')
           .update({ money: dived, items: JSON.stringify(items) })

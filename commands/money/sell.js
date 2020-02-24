@@ -62,9 +62,7 @@ module.exports.execute = async (
   if (num > all) return message.reply(locale.commands.sell.noitem);
   if (!items[res[0].id]) items[res[0].id] = num;
   else items[res[0].id] -= num;
-  message.reply(
-    `아이템 : ${res[0].name}\n수량 : ${num}\n합계 : ${total}\n잔고 : ${mon}`
-  );
+
   embed.addField(
     locale.commands.sell.bill,
     locale.commands.sell.ask.bind({
@@ -83,7 +81,7 @@ module.exports.execute = async (
       async collected => {
         if (collected.size == 0) {
           data.action.splice(data.action.indexOf(message.data.id), 1);
-          return message.reply(locale.commands.allin.not);
+          return message.reply(locale.commands.sell.not);
         }
         await knex('users')
           .update({ money: mon, items: JSON.stringify(items) })
