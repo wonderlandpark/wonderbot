@@ -36,7 +36,7 @@ module.exports.execute = async (
       .where({ name: res[0].id })
   )[0];
   var items = JSON.parse(user.items);
-  var all = items[res[0].id];
+  var all = items[res[0].id] || 0;
   var num = 0;
   var mon = 0;
   var total = 0;
