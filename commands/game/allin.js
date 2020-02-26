@@ -44,13 +44,13 @@ module.exports.execute = async (
 
               if (res) {
                 await knex
-                  .update({ money: money * (2 + multi), multiples: multi + 1 })
+                  .update({ money: money * (2 + multi > 4 ? 4 : multi), multiples: multi + 1 })
                   .from('users')
                   .where({ id: message.author.id });
                 message.reply(
                   locale.commands.allin.success.bind({
                     money: money * (2 + multi),
-                    mul: 2 + multi,
+                    mul: 2 + multi > 4 ? 4 : multi,
                     n: multi
                   })
                 );
