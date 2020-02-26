@@ -86,7 +86,7 @@ module.exports.props = {
       name: 'option',
       type: 'text',
       required: false,
-      options: ['전체', '서버', '길드', 'global', 'guild']
+      options: ['전체', '서버', '길드', 'global', 'guild', 'server']
     }
   ]
 };

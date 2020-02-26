@@ -125,6 +125,7 @@ function find(str) {
   { id: 'wondercoin', name: '원더코인' },
   { id: 'gukbap', name: '국밥' },
   { id: 'diamond', name: '다이아몬드' },
-  { id: 'coffee', name: '커피콩'}];
+  { id: 'coffee', name: '커피콩'},
+  { id: 'figure', name: '피규어'}];
   return s.filter(r => r.id.includes(str) || r.name.includes(str));
 }

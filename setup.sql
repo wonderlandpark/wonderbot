@@ -7,5 +7,7 @@ INSERT INTO `stocks`(`name`) VALUES ('wondercoin');
 INSERT INTO `stocks`(`name`) VALUES ('gukbap'); 
 INSERT INTO `stocks`(`name`) VALUES ('coffee');
 INSERT INTO `stocks`(`name`) VALUES ('diamond');  
+INSERT INTO `stocks`(`name`) VALUES ('figure');  
+
 CREATE TABLE `info` (`stock` INT NOT NULL DEFAULT 0);
 CREATE TABLE `error` (`id` TINYTEXT NOT NULL, `date` INT NOT NULL DEFAULT 0,  `user` TEXT NOT NULL, `cmd` TEXT NOT NULL, `content` TEXT NOT NULL, `msg` TEXT NOT NULL, `error` TEXT NOT NULL, `guild` TEXT NOT NULL, `info` TEXT NOT NULL);
