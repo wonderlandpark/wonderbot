@@ -13,10 +13,16 @@ module.exports = class WB {
 
     client.once('ready', () => {
       logger.WBsuccess(`Logged in as ${client.user.tag}`);
-
-      client.on('message', async message => {
-        tools.bot.handler(client, message, config, devMode);
-      });
+      // Fetch Guild Info
+      client.guilds.forEach(guild=> {
+        guild.fetchMembers()
+        guild.fetchEmbed()
+        guild.fetchBans()
+      })
+      
+    });
+    client.on('message', async message => {
+      tools.bot.handler(client, message, config, devMode);
     });
 
     client.login(config.client.token);
