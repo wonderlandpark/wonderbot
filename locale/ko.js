@@ -223,6 +223,10 @@ module.exports = {
     },
     disasterMsg: {
 
+    },
+    graph: {
+      graph: '그래프',
+      desc: '[이곳](https://wonderbot.xyz/stocks)에서 그래프를 확인하실 수 있습니다.\n\n[도움말](https://support.callisto.team/docs/wonderbot/graph)'
     }
   },
   error: {
