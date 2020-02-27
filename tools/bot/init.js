@@ -14,11 +14,11 @@ module.exports = class WB {
     client.once('ready', () => {
       logger.WBsuccess(`Logged in as ${client.user.tag}`);
       // Fetch Guild Info
-      client.guilds.forEach(guild=> {
-        guild.fetchMembers()
-        guild.fetchEmbed()
-        guild.fetchBans()
-      })
+      // client.guilds.forEach(guild=> {
+      //   guild.fetchMembers()
+      //   guild.fetchEmbed()
+      //   guild.fetchBans()
+      // })
       
     });
     client.on('message', async message => {
