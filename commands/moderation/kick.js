@@ -26,7 +26,8 @@ module.exports.execute = async (
         
     })
     .catch(()=> {
-        message.reply(locale.commands.ban.error)})
+        message.reply(locale.commands.ban.error)
+      })
   }
 
 module.exports.props = {
@@ -38,6 +39,11 @@ module.exports.props = {
         name: 'user/id',
         type: 'text',
         required: true
+      },
+      {
+        name: 'reason',
+        type: 'text',
+        required: false
       }
     ]
 }

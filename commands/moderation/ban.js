@@ -38,6 +38,11 @@ module.exports.props = {
         name: 'user/id',
         type: 'text',
         required: true
+      },
+      {
+        name: 'reason',
+        type: 'text',
+        required: false
       }
     ]
 }

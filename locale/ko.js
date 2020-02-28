@@ -332,7 +332,8 @@ module.exports = {
     utills: '기능',
     stats: '스텟',
     season: '시즌한정',
-    moderation: '관리'
+    moderation: '관리',
+    reason: '사유'
   },
   perm: {
     CREATE_INSTANT_INVITE: '초대 코드 만들기',
