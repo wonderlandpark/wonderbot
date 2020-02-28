@@ -7,6 +7,18 @@ const perm = [
     }
   },
   {
+    name: 'admin',
+    required: ['ADMINISTRATOR']
+  },
+  {
+    name: 'ban',
+    required: ['BAN_MEMBERS']
+  },
+  {
+    name: 'kick',
+    required: ['KICK_MEMBERS']
+  },
+  {
     name: 'dev',
     required: {
       perms: [],
