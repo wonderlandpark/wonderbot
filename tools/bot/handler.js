@@ -96,7 +96,6 @@ module.exports = async (client, message, config) => {
     );
   }
 
-  console.log(commands[message.data.cmd].props.perms)
   if (!message.member.hasPermission(commands[message.data.cmd].props.perms.required.perms)
   )
     return message.reply(
