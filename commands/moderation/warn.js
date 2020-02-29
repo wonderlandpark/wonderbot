@@ -8,6 +8,12 @@ module.exports.execute = async (
     props,
     data
   ) => {
+    if(!message.data.args) return message.reply(locale.error.usage(props.name))
+    const user = message.mentions.members.first() || message.guild.members.get(message.data.arg[0])
+    if(!user) return message.reply(locale.error.usage(props.name))
+    if(user.hasPermission(['ADMINISTRATOR'])) return message.reply(locale.commands.warn.alsoPerm)
+    embed.addField(locale.commands.warn.alsoPerm, )
+
   }
 
 module.exports.props = {

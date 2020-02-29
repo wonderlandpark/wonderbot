@@ -14,7 +14,7 @@ module.exports.execute = async (
         user = message.mentions.members.first() || message.guild.members.get(message.data.arg[0])
     }
     if(!user) return message.reply(locale.error.usage(props.name))
-    if(user.hasPermission(['ADMINISTRATOR', 'KICK_MEMBERS'])) return message.reply(locale.commands.ban.alsoPerm)
+    if(user.hasPermission(['KICK_MEMBERS'])) return message.reply(locale.commands.ban.alsoPerm)
     await message.reply(locale.commands.ban.wait)
     await user.send(locale.commands.ban.notice.bind({guild: message.guild.name, reason: message.data.arg2 ? message.data.arg2 : '없음.', mod: message.author.tag}))
     .catch()
@@ -31,7 +31,7 @@ module.exports.execute = async (
   }
 
 module.exports.props = {
-    name: 'ban',
+    name: 'kick',
     perms: 'kick',
     alias: ['킥', '추방'],
     args: [
