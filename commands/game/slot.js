@@ -26,9 +26,8 @@ module.exports.execute = async (
       .where({ id: message.author.id })
   )[0].money;
 
-  if(['전부', '올인', '모두', 'all'].includes(message.data.arg[0])) {
-    mon = m
-  }
+  if(['전부', '올인', '모두', 'all'].includes(message.data.arg[0])) mon = m
+  
   else if(['반인', '반', 'half'].includes(message.data.arg[0])) mon = Math.round(m/2)
   else mon = Number(message.data.arg[0])
   if(isNaN(Number(mon)) ||

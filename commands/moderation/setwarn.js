@@ -1,4 +1,6 @@
 const fs = require('fs')
+const Discord = require('discord.js')
+const config = require('../../config')
 module.exports.execute = async (
     client,
     message,
@@ -9,13 +11,26 @@ module.exports.execute = async (
     props,
     data
   ) => {
+    const webhook = new Discord.WebhookClient(
+      config.client.webhook.error.id,
+      config.client.webhook.error.token
+    );
+
     if(!message.data.args) return message.reply(locale.error.usage(props.name))
     const g = ((await knex('guilds').where({ id: message.guild.id }))[0])
     if (['초기화', 'reset'].includes(message.data.arg[0])) {
       await fs.writeFileSync(`./backup/${message.guild.id}_${code = makeid(5)}.json`, g.warn)
       await knex('guilds').update({ warn: "{}" }).where({ id: message.guild.id })
+      webhook.send(`BACKUPED WARN DATA : ${message.guild.name} (${message.guild.id}) - ${code}`)
       message.reply(locale.commands.setwarn.backup.bind({ code }))
     }  else if(['한도', 'limit', '개수'].includes(message.data.arg[0])) {
+      console.log(!Number.isInteger(message.data.arg[1]))
+        if(isNaN(message.data.arg[1]) || Number(message.data.arg[1]) > 30 || Number(message.data.arg[1]) < 1 || !Number.isInteger(Number(message.data.arg[1]))) return message.reply(locale.commands.setwarn.limit)
+
+        const conf = JSON.parse(g.config)
+        conf.warncount = Number(message.data.arg[1])
+        await knex('guilds').update({ config: JSON.stringify(conf) }).where({ id: message.guild.id })
+        message.reply(locale.commands.setwarn.limited.bind({limit: message.data.arg[1],}))
 
     }
     else {
