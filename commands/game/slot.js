@@ -9,19 +9,31 @@ module.exports.execute = async (
   props,
   data
 ) => {
-  if (!message.data.args || isNaN(message.data.arg[0]))
+  if (!message.data.args)
     return message.reply(locale.error.usage(props.name));
   if (!message.guild.me.hasPermission('ADD_REACTIONS')) {
     message.reply(
       locale.error.botperm.bind({ perms: locale.perm['ADD_REACTIONS'] })
     );
   }
+  
+
+
   const m = (
     await knex
       .select('*')
       .from('users')
       .where({ id: message.author.id })
   )[0].money;
+
+  if(['전부', '올인', '모두', 'all'].includes(message.data.arg[0])) {
+    mon = m
+  }
+  else if(['반인', '반', 'half'].includes(message.data.arg[0])) mon = Math.round(m/2)
+  else mon = Number(message.data.arg[0])
+  if(isNaN(Number(mon)) ||
+  !Number.isInteger(Number(mon)) ||
+  Number(mon) < 1) return message.reply(locale.error.usage(props.name));
   if (
     data.slot[message.author.id] &&
     data.slot[message.author.id] + 60000 > Number(new Date())
@@ -37,13 +49,13 @@ module.exports.execute = async (
         ).toFixed(1)
       })
     );
-  if (Number(message.data.arg[0]) < 300)
+  if (Number(mon) < 300)
     return message.reply(locale.commands.slot.morethan);
-  if (m < Number(message.data.arg[0]))
+  if (m < Number(mon))
     return message.reply(locale.commands.slot.nomoney);
   const s = slot();
   var msg = message.reply(
-    locale.commands.slot.ready.bind({ money: message.data.arg[0] })
+    locale.commands.slot.ready.bind({ money: mon.num2han() })
   );
   const filter = (reaction, user) =>
     reaction.emoji.name == '🎰' && user.id == message.author.id;
@@ -59,29 +71,29 @@ module.exports.execute = async (
         data.slot[message.author.id] = Number(new Date());
 
         await message.reply(
-          locale.commands.slot.payed.bind({ money: message.data.arg[0] })
+          locale.commands.slot.payed.bind({ money: mon })
         );
         var mm = message.channel.send(
           emoji[s.slot[0]] + emoji[s.slot[1]] + emoji[s.slot[2]]
         );
         mm.then(async gg => {
           const reward = (
-            s.multi * Number(message.data.arg[0]) -
-            Number(message.data.arg[0])
+            s.multi * Number(mon) -
+            Number(mon)
           ).toFixed(0);
           await setTimeout(function() {
             embed.addField(
               '손익',
               locale.commands.slot.res.bind({
-                plus: (s.multi * Number(message.data.arg[0])).toFixed(0),
-                bet: message.data.arg[0],
+                plus: (s.multi * Number(mon)).toFixed(0) == 0 ? (s.multi * Number(mon)).toFixed(0) : Number((s.multi * Number(mon)).toFixed(0)).num2han(),
+                bet: mon.num2han(),
                 money:
                   reward < 0
-                    ? reward * -1 + tools.lib.emojis.coin + ' 손해'
-                    : reward + ' ' + tools.lib.emojis.coin + ' 이득'
+                    ? (reward * -1 ).num2han()+  ' ' + tools.lib.emojis.coin + ' 손해'
+                    : Number(reward).num2han() + ' ' + tools.lib.emojis.coin + ' 이득'
               })
             );
-            embed.addField('잔고', m + Number(reward) + tools.lib.emojis.coin);
+            embed.addField('잔고', Number(m + Number(reward)).num2han() + ' ' + tools.lib.emojis.coin);
 
             message
               .reply(embed)

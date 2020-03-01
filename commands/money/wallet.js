@@ -56,10 +56,10 @@ module.exports.execute = async (
   })
   var items = ''
     Object.keys(JSON.parse(user.items)).forEach(el=> {
-      if(JSON.parse(user.items)[el] !== 0) items += '\n' + locale.commands.wallet.items[el] + ': ' + JSON.parse(user.items)[el]
+      if(JSON.parse(user.items)[el] !== 0) items += '\n' + locale.commands.wallet.items[el] + ': ' + (JSON.parse(user.items)[el]).num2han() + ' 개'
     })
     
-  embed.addField(locale.commands.wallet.will, locale.commands.wallet.money.bind({ money: money + user.money }))
+  embed.addField(locale.commands.wallet.will, locale.commands.wallet.money.bind({ money: (money + user.money).num2han() }))
   embed.addField(locale.commands.wallet.top, locale.commands.wallet.topdesc.bind({ all: users.findIndex(el=> el.id == message.author.id) + 1, guild: server.findIndex(el=> el.id == message.author.id) + 1 }), true)
   embed.addField(locale.commands.wallet.item, items.length == 0 ? locale.commands.wallet.noitem : items.replace('\n', ''))
   message.channel.send(embed);
