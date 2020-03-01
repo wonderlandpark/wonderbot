@@ -229,51 +229,62 @@ module.exports = {
       desc: '[이곳](https://wonderbot.xyz/stocks)에서 그래프를 확인하실 수 있습니다.\n\n[도움말](https://support.callisto.team/docs/wonderbot/graph)'
     },
     ban: {
-      success: [
-        "처.리.완.료",
-        "해당 유저를 시공의 폭풍속으로 사라지게 했습니다.",
-        "와아아아안료!",
-        "성공적인 성공입니다!",
-        "깔끔하게 처리했습니다",
-        "원더봇을 이용해주셔서 감사합니다.",
-        "RIP ㅠㅠ",
-        "ㅂㅇㅂㅇ...",
-        "시원한 사이다 처럼 처리했습니다.",
-        ":)"  
-      ],
-      alsoPerm: '원더봇의 권한을 이용해 같거나 높은 역할을 차단하는걸 방지하기 위해, 관리자 또는 차단 권한이 있는 유저는 차단할 수 없습니다.\n직접 차단해주세요.',
-      wait: '해당 유저 차단에 시도중입니다.',
-      isSuccess: '차단 성공',
-      successDesc: '`{user}`님을 차단했습니다.',
-      nice: '사유 : {reason}',
+      alsoPerm: '원더봇의 권한을 이용해 같거나 높은 역할을 차단하는걸 방지하기 위해, 관리자 또는 차단 권한이 있는 유저는 차단할 수 없습니다.\n직접 차단해주세요',
+      wait: '해당 유저 추방에 시도중입니다.',
+      user: '🙍 유저',
+      mod: '👮 처리자',
+      modDesc: '관리자: {mod} ({tag})',
+      userDesc: '유저: {user} ({tag})',
+      reason: '📃 정보',
+      reasonDesc: '처벌 사유: {reason}',
+      Success: '🔨 차단',
       notice: '당신은 **{guild}**에서 차단되셨습니다.\n사유 : {reason}\n처리자 : {mod}',
-      error: '차단에 실패하였습니다. 원더봇의 권한을 확인해주세요.'
+      error: '차단에 실패하였습니다. 원더봇의 권한을 확인해주세요.\n직접 차단해주시는걸 권장드립니다.',
+      none: '없음.',
+      why: '사유: {reason} | 처리자: {by}'
     },
   kick: {
-      success: [
-        "처.리.완.료",
-        "해당 유저를 시공의 폭풍속으로 사라지게 했습니다.",
-        "와아아아안료!",
-        "성공적인 성공입니다!",
-        "깔끔하게 처리했습니다",
-        "원더봇을 이용해주셔서 감사합니다.",
-        "RIP ㅠㅠ",
-        "ㅂㅇㅂㅇ...",
-        "시원한 사이다 처럼 처리했습니다.",
-        ":)"  
-      ],
       alsoPerm: '원더봇의 권한을 이용해 같거나 높은 역할을 추방하는걸 방지하기 위해, 관리자 또는 추방 권한이 있는 유저는 추방할 수 없습니다.\n직접 추방해주세요',
       wait: '해당 유저 추방에 시도중입니다.',
-      isSuccess: '추방 성공',
-      successDesc: '`{user}`님을 추방했습니다.',
-      nice: '사유 : {reason}',
+      user: '🙍 유저',
+      mod: '👮 처리자',
+      modDesc: '관리자: {mod} ({tag})',
+      userDesc: '유저: {user} ({tag})',
+      reason: '📃 정보',
+      reasonDesc: '처벌 사유: {reason}',
+      Success: '🔨 추방',
       notice: '당신은 **{guild}**에서 추방되셨습니다.\n사유 : {reason}\n처리자 : {mod}',
-      error: '추방에 실패하였습니다. 원더봇의 권한을 확인해주세요.'
+      error: '추방에 실패하였습니다. 원더봇의 권한을 확인해주세요.\n직접 추방해주시는걸 권장드립니다.',
+      none: '없음.',
+      why: '사유: {reason} | 처리자: {by}'
+
+
     },
     warn: {
-      asloPerm: '관리자에게 경고를 부여할 수 없습니다.',
-      warn: '경고',
-      desc: '`{user}`'
+      alsoPerm: '관리자에게 경고를 부여할 수 없습니다.',
+      bot: '봇에게는 경고를 부여하실 수 없습니다.',
+      warn: '📌 경고 부여',
+      user: '🙍 유저',
+      mod: '👮 처리자',
+      modDesc: '관리자: {mod} ({tag})',
+      userDesc: '유저: {user} ({tag})',
+      reason: '📃 정보',
+      reasonDesc: '경고 사유: {reason}\n경고 개수: {count}/{limit}',
+      desc: '`{user}`',
+      auto: '경고 누적 자동 밴.',
+      none: '없음.',
+      limited: '경고가 누적되어 밴을 시도합니다.'
+    },
+    setlog: {
+      log: '관리 로그 설정',
+      desc: '관리 로그가 전송되는 채널을 설정할 수 있습니다.\n현재 설정: `#{channel}`\n`' + config.client.prefix + '로그설정 #채널`로 설정을 변경할 수 있습니다.',
+      undefined: '지정되지 않음',
+      success: '관리 로그가 설정되었습니다:\n `#{channel}`'
+    },
+    setwarn: {
+      set: '최대 경고 설정',
+      desc: '',
+      backup: '🗃️ 지금까지의 경고 데이터는 `{code}`로 백업되셨습니다. (매달 말 일에 초기화됨)\n✅ 모든 데이터가 초기화되었습니다.'
     }
   },
   error: {
@@ -396,5 +407,7 @@ const usageNames = {
   gamemode: '게임모드',
   battletag: '배틀태그',
   city: '도시명',
-  reason: '사유'
+  reason: '사유',
+  channel: '채널',
+  warnlimt: '경고 한도'
 };

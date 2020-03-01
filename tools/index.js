@@ -1,13 +1,14 @@
 // Tool
 module.exports.logger = require('./logger');
-
 module.exports.database = require('./database/knex');
 
 // Bot
 module.exports.bot = {
   init: require('./bot/init'),
   handler: require('./bot/handler'),
-  embed: require('./bot/embed')
+  embed: require('./bot/embed'),
+  customEmbed: require('./bot/customEmbed'),
+  modlog: require('./bot/modlog')
 };
 
 module.exports.lib = require('./lib');

@@ -93,7 +93,7 @@ module.exports.props = {
 
 function num2han(number) {
   var inputNumber = number < 0 ? false : number;
-  var unitWords = ['', '만', '억', '조', '경'];
+  var unitWords = ['', '만', '억', '조', '경', '해', '자', '양', '구', '간', '정', '재', '극', '향하사', '아승기', '나유타', '불가사의', '무량대수'];
   var splitUnit = 10000;
   var splitCount = unitWords.length;
   var resultArray = [];
