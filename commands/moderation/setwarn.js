@@ -24,8 +24,7 @@ module.exports.execute = async (
       webhook.send(`BACKUPED WARN DATA : ${message.guild.name} (${message.guild.id}) - ${code}`)
       message.reply(locale.commands.setwarn.backup.bind({ code }))
     }  else if(['한도', 'limit', '개수'].includes(message.data.arg[0])) {
-      console.log(!Number.isInteger(message.data.arg[1]))
-        if(isNaN(message.data.arg[1]) || Number(message.data.arg[1]) > 30 || Number(message.data.arg[1]) < 1 || !Number.isInteger(Number(message.data.arg[1]))) return message.reply(locale.commands.setwarn.limit)
+        if(isNaN(message.data.arg[1]) || Number(message.data.arg[1]) > 20 || Number(message.data.arg[1]) < 1 || !Number.isInteger(Number(message.data.arg[1]))) return message.reply(locale.commands.setwarn.limit)
 
         const conf = JSON.parse(g.config)
         conf.warncount = Number(message.data.arg[1])
