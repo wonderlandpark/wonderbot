@@ -37,7 +37,7 @@ module.exports.execute = async (
         ).toFixed(1)
       })
     );
-  if (Number(message.data.arg[0]) < 300)
+  if (Number(message.data.arg[0]) < 100)
     return message.reply(locale.commands.slot.morethan);
   if (m < Number(message.data.arg[0]))
     return message.reply(locale.commands.slot.nomoney);
