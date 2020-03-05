@@ -40,7 +40,7 @@ module.exports.execute = async (
 
 module.exports.props = {
     name: 'setwarn',
-    perms: 'dev',
+    perms: 'admin ',
     alias: ['경고설정'],
     args: [
       {
