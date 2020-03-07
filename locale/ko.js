@@ -299,6 +299,7 @@ module.exports = {
     }
   },
   error: {
+    toLong: '출력 결과가 너무 길어 출력할 수 없습니다.',
     offline:
       '봇이 점검중입니다. 지금은 이용하실 수 없습니다. 불편을 드려 죄송합니다.\n예상된 점검 및 공지는 지원 서버에서 확인해주세요.\nhttps://invite.gg/wonderbot',
     search: {

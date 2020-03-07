@@ -21,7 +21,7 @@ module.exports.execute = async (
     try{
       await user.send(locale.commands.ban.notice.bind({guild: message.guild.name, reason: message.data.arg2 ? message.data.arg2 : locale.commands.ban.none, mod: message.author.tag}))
       } catch{}
-  await user.ban(locale.commands.kick.ban.bind({reason: message.data.arg2 ? message.data.arg2 : locale.commands.ban.none, by: message.author.tag}))
+  await user.ban(locale.commands.ban.why.bind({reason: message.data.arg2 ? message.data.arg2 : locale.commands.ban.none, by: message.author.tag}))
     .then(async ()=> {
     embed.setTitle(locale.commands.ban.Success)
     embed.setColor('#FF5675')
