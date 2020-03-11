@@ -19,7 +19,7 @@ module.exports = class WB {
       logger.WBsuccess(`Logged in as ${client.user.tag}`);
       // Fetch for all Guild 
       const g = await (tools.database('guilds'))
-      client.guilds.forEach(async guild=> {
+      client.guilds.cache.forEach(async guild=> {
         if(!g.find(r=> r.id == guild.id)) {
           console.log(`[INSERT] NEW GUILD: ${guild.name}`)
           await tools.database('guilds').insert({id: guild.id})

@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "discord.js": "^11.5.1",
+    "discord.js": "^12.0.2",
     "hangul-tools": "^0.1.4",
     "inko": "^1.1.1",
     "knex": "^0.20.2",

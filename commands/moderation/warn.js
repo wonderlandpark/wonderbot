@@ -17,7 +17,7 @@ module.exports.execute = async (
     const limit = JSON.parse(guild.config).warncount
     const warndata = JSON.parse(guild.warn)
     if(!user) return message.reply(locale.error.usage(props.name))
-    if(user.bot) return message.reply(locale.commands.warn.bot)
+    if(user.user.bot) return message.reply(locale.commands.warn.bot)
     if(user.hasPermission(['ADMINISTRATOR'])) return message.reply(locale.commands.warn.alsoPerm)
     if(!warndata[user.id]) warndata[user.id] = { count: 1, reason: [reason]}
     else {

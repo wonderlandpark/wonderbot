@@ -1,5 +1,6 @@
 const config = require('../config');
 const commands = {};
+const locale = require('../locale').ko
 commands.general = require('./general');
 commands.dev = require('./dev');
 commands.account = require('./account');
@@ -17,6 +18,8 @@ Object.keys(commands).forEach(c => {
   const category = commands[c];
   Object.values(category).forEach(command => {
     command.props.category = c;
+    command.props.desc = locale.commands[command.props.name]? locale.commands[command.props.name].CMDDESC : locale.error.nodesc || locale.error.nodesc
+    command.props.docs = locale.commands[command.props.name]? locale.commands[command.props.name].DOCS : undefined || undefined
 
     command.props.perms = config.permissions.find(
       p => p.name === command.props.perms

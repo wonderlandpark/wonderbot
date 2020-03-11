@@ -14,20 +14,34 @@ module.exports = {
   // 여기부터 수정
   commands: {
     help: {
+      CMDDESC: '도움말 명령어를 표시합니다.',
+      noCommand: '해당 명령어는 존재하지 않습니다.',
+      commandInfo: '명령어 정보 - {cmd}',
+      description: '명령어 설명',
+      usage: '명령어 사용법',
+      other: '명령어의 다른 이름들',
+      docs: '문서',
+      nodoc: '문서가 존재하지 않습니다.',
       help: '원더봇 도움말',
       desc:
         '항상 원더봇을 사랑해주셔서 감사합니다.\n이 봇은 ❤️와 함께 개발된 [오픈소스 프로젝트](https://github.com/wonderlandpark/wonderbot)입니다.\n모든 문의 사항 및 제보는 [지원 서버](https://invite.gg/wonderbot)를 이용해주세요.',
-      support: '지원',
+        support: '지원',
       links:
         '[원더봇 홈페이지](https://wonderbot.xyz)\n[팀 원더 디스코드 (지원서버)](https://invite.gg/wonderbot)\n[초대하기](https://wonderbot.xyz/invite)\n 지원메일 : wonderbotsupport@naver.com'
     },
+    도움: {
+      CMDDESC: '도움말 명령어를 표시합니다.'
+    },
     ping: {
+      CMDDESC: '봇의 지연시간을 확인합니다.',
       ping: '핑! 봇의 지연시간을 측정중입니다.',
+      pong: '퐁!',
       this: '🏓 퐁!',
-      pong:
+      return:
         '봇 지연시간 : {bot}ms\nAPI 지연시간 : {api}ms\nDB 쿼리 지연시간 : {db}ms'
     },
     register: {
+      CMDDESC: '원더봇 서비스에 가입합니다.',
       message:
         '이미 가입되신 상태입니다. 데이터 초기화 및 계약 철회 또는 약관 문의는 {contact} 에서 하실 수 있습니다.',
       contact:
@@ -45,12 +59,15 @@ module.exports = {
         '원더봇의 약관을 동의해주셔서 감사합니다! 이제 모든 기능을 이용하실 수 있습니다.'
     },
     money: {
+      CMDDESC: '잔고를 확인합니다.',
       money: '돈',
       text: '{user}님의 잔고는 **{money}** <:coin:636879213239992330> 입니다!',
       not: '아직 가입을 하지 않은 유저입니다.',
       won: '원'
     },
     payday: {
+      CMDDESC: '1시간마다 돈을 지급받습니다.',
+      COOLDOWN: 3600,
       cooldown: '쿨타임중입니다.\n`{time}`분 후에 사용가능합니다.',
       success:
         '당신의 잔고에 `100` <:coin:636879213239992330>을 추가했습니다!\n잔고 : `{money}` <:coin:636879213239992330>',
@@ -58,6 +75,7 @@ module.exports = {
         '당신의 잔고에 `100` <:coin:636879213239992330>을 추가했습니다!\n__원더봇 프리미엄__을 가입하셨군요! `100` <:coin:636879213239992330>을 추가지급합니다!\n잔고 : `{money}` <:coin:636879213239992330>'
     },
     allin: {
+      CMDDESC: '삭제된 명령어입니다.',
       ask:
         '정말로 올인 하시겠습니까? 실패시 모든 돈을 잃습니다. 성공시 현재 금액의 2배 + `[ {multi} 회 연속 보상 ]` 지급합니다 (단, 최대 4배 연속 보상까지만 적용됩니다)\n계속하시려면 💸 반응을 눌러주세요\n실패시 연속 보상이 초기화됩니다.',
       start:
@@ -71,12 +89,15 @@ module.exports = {
       not: '도박하지 마세요! 좋은 선택입니다!'
     },
     leaderboard: {
+      CMDDESC: '자산 순위를 확인합니다.',
       global: '🌏 글로벌(전체 서버)',
       guild: '🏘️ {server} 서버',
       leaderboard: '리더보드 - {season}',
       all: '총 자산'
     },
     slot: {
+      CMDDESC: '슬롯머신 도박을 합니다. 100원부터 배팅하실 수 있습니다.',
+      COOLDOWN: 60,
       nomoney: '배팅하신 금액을 소지하고 있지 않습니다.',
       morethan: '100 <:coin:636879213239992330> 이상만 배팅하실 수 있습니다.',
       cooldown: '`{time}`초 후에 사용하실 수 있습니다.',
@@ -88,10 +109,12 @@ module.exports = {
         '{plus} <:coin:636879213239992330> 이득 - {bet} <:coin:636879213239992330> 배팅 \n= {money}'
     },
     readnum: {
+      CMDDESC: '정수를 한글로 읽습니다.',
       big: '숫자가 생각보다 크군요! 오류가 있을 수 있습니다.',
       minus: '음수는 오류가 있을 수 있습니다'
     },
     profile: {
+      CMDDESC: '기본적인 프로필을 확인합니다.',
       profile: '{user}님의 프로필',
       wallet: '잔고 : {money} <:coin:636879213239992330>',
       allin: '올인 연속 성공 횟수',
@@ -99,6 +122,7 @@ module.exports = {
       rank: '랭크'
     },
     wallet: {
+      CMDDESC: '지갑속에 뭐가 들어있는지 확인합니다.',
       wallet: '💰 {user}님의 지갑',
       what: '지갑속에 뭐가 있을까요?',
       will: '추정 자산',
@@ -110,12 +134,14 @@ module.exports = {
       items: { wondercoin: '<:coin:636879213239992330> 원더코인', gukbap: '<:gookbap:677905040706371598> 국밥', diamond: '💎 다이아몬드', coffee: '☕ 커피콩', figure: '<:figure:682073488684744775> 피규어'}
     },
     price: {
+      CMDDESC: '아이템의 시세를 확인합니다.',
       item: '아이템 시세',
       changed: '--- {change}초 전 업데이트됨.',
       price: '{status} {name} : {price}원 [{update}]',
       lastchange: '다음 변동: `{lastchange}`초 남음'
     },
     buy: {
+      CMDDESC: '아이템을 구매합니다.',
       notvaild: '유효하지 않은 값입니다. 올바른 정수를 입력해주세요.',
       nomoney: '지불하실 금액을 소지하고 있지 않습니다.',
       bill: '🧾 계산서',
@@ -127,6 +153,7 @@ module.exports = {
       not: '구매가 취소되었습니다.'
       },
     sell: {
+      CMDDESC: '아이템을 판매합니다.',
       notvaild: '유효하지 않은 값입니다. 올바른 정수를 입력해주세요.',
       noitem: '판매하실 아이템을 소지하고 있지 않습니다.',
       bill: '🧾 계산서',
@@ -139,6 +166,7 @@ module.exports = {
     
       },
     delivery: {
+      CMDDESC: '실제 택배의 운송장 번호로 택배 배송현황을 확인합니다.',
       info: '보낸이: {from} 받는이: {to} ({state})',
       status: {
         information_received: '🏪 방문예정',
@@ -150,6 +178,7 @@ module.exports = {
       }
     },
     overwatch: {
+      CMDDESC: '오버워치 전적을 조회합니다.',
       rate: '경쟁전 점수',
       lvl: '레벨',
       nores: '검색결과가 없습니다.',
@@ -216,19 +245,23 @@ module.exports = {
         '**옵치를 하지 않았다면??**\n2020년 최저임금으로 __{money}__원 벌기 \n=> 국밥 {gookbapEmoji} {gookbap} 그릇 (7,000원 기준)\n메르시 부활 **{mercy}**회\n3분 카레 : **{curry}**개 제조\n연애할 수 있는 횟수 : **0**회'
     },
     corona: {
+      CMDDESC: '점검중인 기능입니다.',
       corona: '코로나19 현황',
       desc: '✅ 완치자: {cured} \n🏥 감염자: {iscorona}\n❎ 사망자: {dead}',
       from: '감염경로',
       fromDesc: ''
     },
-    disasterMsg: {
-
+    재난문자: {
+      CMDDESC: '재난문자를 검색/조회합니다.',
     },
     graph: {
+      CMDDESC: '그래프 링크를 확인합니다.',
+      DOCS: 'graph',
       graph: '그래프',
       desc: '[이곳](https://wonderbot.xyz/stocks)에서 그래프를 확인하실 수 있습니다.\n\n[도움말](https://support.callisto.team/docs/wonderbot/graph)'
     },
     ban: {
+      CMDDESC: '유저를 서버에서 차단합니다.',
       alsoPerm: '원더봇의 권한을 이용해 같거나 높은 역할을 차단하는걸 방지하기 위해, 관리자 또는 차단 권한이 있는 유저는 차단할 수 없습니다.\n직접 차단해주세요',
       wait: '해당 유저 추방에 시도중입니다.',
       user: '🙍 유저',
@@ -244,6 +277,7 @@ module.exports = {
       why: '사유: {reason} | 처리자: {by}'
     },
   kick: {
+      CMDDESC: '유저를 서버에서 추방합니다.',
       alsoPerm: '원더봇의 권한을 이용해 같거나 높은 역할을 추방하는걸 방지하기 위해, 관리자 또는 추방 권한이 있는 유저는 추방할 수 없습니다.\n직접 추방해주세요',
       wait: '해당 유저 추방에 시도중입니다.',
       user: '🙍 유저',
@@ -261,6 +295,7 @@ module.exports = {
 
     },
     warn: {
+      CMDDESC: '유저에게 경고를 부여합니다.',
       alsoPerm: '관리자에게 경고를 부여할 수 없습니다.',
       bot: '봇에게는 경고를 부여하실 수 없습니다.',
       warn: '📌 경고 부여',
@@ -276,19 +311,21 @@ module.exports = {
       limited: '경고가 누적되어 밴을 시도합니다.'
     },
     setlog: {
+      CMDDESC: '서버의 관리 로그 채널을 설정합니다.',
       log: '관리 로그 설정',
       desc: '관리 로그가 전송되는 채널을 설정할 수 있습니다.\n현재 설정: `#{channel}`\n`' + config.client.prefix + '로그설정 #채널`로 설정을 변경할 수 있습니다.',
       undefined: '지정되지 않음',
       success: '관리 로그가 설정되었습니다:\n `#{channel}`'
     },
     setwarn: {
+      CMDDESC: '경고 관련 설정을 할 수 있습니다.',
       set: '최대 경고 설정',
-      desc: '',
       backup: '🗃️ 지금까지의 경고 데이터는 `{code}`로 백업되셨습니다. (매달 말 일에 초기화됨)\n✅ 모든 데이터가 초기화되었습니다.',
       limit: '최대 경고 개수는 20개 이하인 양수여야합니다.',
       limited: '최대 경고 한도가 `{limit}`으로 설정되었습니다.\n기존 경고 데이터를 초기화하려면 초기화 옵션을 이용하세요.\n기존 경고 데이터가 한도보다 크거나 같다면, 경고가 `1회` 더 지급될 시, 밴처리됩니다.'
     },
     check: {
+      CMDDESC: '경고 개수를 확인합니다',
       noperm: '다른 유저의 경고는 관리자만 확인할 수 있습니다.',
       desc: '{user}님의 경고 정보',
       check: '📌 경고 확인',
@@ -296,9 +333,22 @@ module.exports = {
       limit: '{count}/{limit}',
       warn: '경고 #{count}',
       reason: '사유: {reason}'
+    },
+    qr: {
+      CMDDESC: 'QR코드를 만듭니다.'
+    },
+    botinvite: {
+      CMDDESC: '봇 아이디로 봇 초대링크를 생성할 수 있습니다.'
+    },
+    en: {
+      CMDDESC: '영어 키보드 배열로 친 한글을 영어로 변환합니다.'
+    },
+    ko: {
+      CMDDESC: '한글 키보드 배열로 친 영어를 한글로 변환합니다.'
     }
   },
   error: {
+    nodesc: '설명이 없습니다.',
     toLong: '출력 결과가 너무 길어 출력할 수 없습니다.',
     offline:
       '봇이 점검중입니다. 지금은 이용하실 수 없습니다. 불편을 드려 죄송합니다.\n예상된 점검 및 공지는 지원 서버에서 확인해주세요.\nhttps://invite.gg/wonderbot',
@@ -339,6 +389,10 @@ module.exports = {
           }]\n`;
         }
       });
+      if(args.length == 0){ 
+        text += '(없음)'
+        desc += '요구된 변수가 없습니다.'
+      }
       return `사용법 : \n\`\`\`fix\n${config.client.prefix}${cmd} ${text}\`\`\` \`\`\`ini\n${desc}\`\`\`
             `;
     }
@@ -421,5 +475,6 @@ const usageNames = {
   city: '도시명',
   reason: '사유',
   channel: '채널',
-  warnlimt: '경고 한도'
+  warnlimt: '경고 한도',
+  cmd: '명령어'
 };

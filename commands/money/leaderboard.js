@@ -49,8 +49,8 @@ module.exports.execute = async (
         })
           txt +=
             `\n${i}. [${
-              client.users.get(leaderboard[i - 1].id)
-                ? client.users.get(leaderboard[i - 1].id).tag
+              client.users.cache.get(leaderboard[i - 1].id)
+                ? client.users.cache.get(leaderboard[i - 1].id).tag
                 : 'None'
             }](${locale.commands.leaderboard.all} ` +
             (m + leaderboard[i-1].money).num2han() +

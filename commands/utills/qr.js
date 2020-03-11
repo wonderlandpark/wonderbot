@@ -9,7 +9,9 @@ module.exports.execute = async (
   props
 ) => {
   if (!message.data.args) return message.reply(locale.error.usage(props.name));
-  QRCode.toString('https://github.com/', function (err, url) {
+  QRCode.toString(message.data.args, async function (err, url) {
+    console.log(url.length)
+    if (url.length > 1000) return await message.reply(locale.error.toLong)
     embed.addField('QRCODE', '```\n' + url + '\n```')
     return message.reply(embed)
 })

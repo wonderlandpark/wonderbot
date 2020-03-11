@@ -6,22 +6,22 @@ module.exports.execute = async (
   _tools,
   knex
 ) => {
-  const time = new Date();
   message.channel.send(locale.commands.ping.ping).then(m => {
+    const time = new Date();
     knex
       .select('*')
       .from('users')
       .then(() => {
         embed.addField(
           locale.commands.ping.this,
-          locale.commands.ping.pong.bind({
+          locale.commands.ping.return.bind({
             bot: m.createdTimestamp - message.createdTimestamp,
-            api: Math.round(client.ping),
+            api: Math.round(client.ws.ping),
             db: new Date() - time
           })
         );
 
-        m.edit(embed);
+        m.edit({ content: locale.commands.ping.pong, embed });
       });
   });
 };

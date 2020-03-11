@@ -164,7 +164,7 @@ module.exports = async (client, message, config) => {
           error: error.toString(),
           guild: message.guild.id,
           info: `https://discordapp.com/channels/${
-            client.channels.get(m.channel_id).guild.id
+            client.channels.cache.get(m.channel_id).guild.id
           }/${m.channel_id}/${m.id}`
         });
         message.reply(locale.error.onerror.bind({ code }));

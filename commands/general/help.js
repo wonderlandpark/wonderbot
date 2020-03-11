@@ -1,4 +1,4 @@
-const commands = require('../index');
+  const commands = require('../index');
 module.exports.execute = async (client, message, locale, embed) => {
   if (!message.data.args) {
     embed.addField(locale.commands.help.help, locale.commands.help.desc);
@@ -14,7 +14,11 @@ module.exports.props = {
   name: 'help',
   perms: 'general',
   alias: ['commands'],
-  args: [{}]
+  args: [{
+    name: 'cmd',
+    type: 'text',
+    required: false
+  }]
 };
 
 function cmdFormat(cmds) {

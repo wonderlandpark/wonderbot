@@ -12,10 +12,6 @@ Team Wonder. Project Wonder_Bot's Rewrite.
 
 [Website](https://wonderbot.xyz)
 
-### Code Style
-
-[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
-
 ## Clone
 
 If you want to use my code, Please follow [License](LICENSE)
