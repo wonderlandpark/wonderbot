@@ -38,12 +38,12 @@ module.exports = class WB {
         console.log(`[INSERT] NEW GUILD: ${guild.name}`)
         await tools.database('guilds').insert({id: guild.id})
       }
-      webhook.send(`**NEW GUILD**: TOTAL: ${client.guilds.size}\nNAME: ${guild.name}\nOWNER: ${guild.owner.user.tag}\nMEMBER: ${guild.memberCount}\n\n\n--------------------------------------`)
+      webhook.send(`**NEW GUILD**: TOTAL: ${client.guilds.cache.size}\nNAME: ${guild.name}\nOWNER: ${guild.owner.user.tag}\nMEMBER: ${guild.memberCount}\n\n\n--------------------------------------`)
     })
 
     client.on('guildDelete', async guild => {
       const g = await (tools.database('guilds'))
-        webhook.send(`**LEFTED GUILD**: TOTAL: ${client.guilds.size}\nNAME: ${guild.name}\nOWNER: ${guild.owner.user.tag}\nMEMBER: ${guild.memberCount}\n\n\n--------------------------------------`)
+        webhook.send(`**LEFTED GUILD**: TOTAL: ${client.guilds.cache.size}\nNAME: ${guild.name}\nOWNER: ${guild.owner.user.tag}\nMEMBER: ${guild.memberCount}\n\n\n--------------------------------------`)
       
     })
     client.login(config.client.token);

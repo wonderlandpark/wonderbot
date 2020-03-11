@@ -11,7 +11,7 @@ module.exports.execute = async (
     const conf = JSON.parse(((await knex('guilds').where({ id: message.guild.id }))[0]).config)
     const channel = conf.modlog
     if(!message.mentions.channels.first()) {
-      embed.addField(locale.commands.setlog.log, locale.commands.setlog.desc.bind({channel: message.guild.channels.get(channel) ? message.guild.channels.get(channel).name : locale.commands.setlog.undefined}))
+      embed.addField(locale.commands.setlog.log, locale.commands.setlog.desc.bind({channel: message.guild.channels.cache.get(channel) ? message.guild.channels.cache.get(channel).name : locale.commands.setlog.undefined}))
       return message.reply(embed)
     }
     else {

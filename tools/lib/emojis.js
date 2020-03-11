@@ -3,6 +3,17 @@ module.exports = {
   loading: '<a:wonderisloading:677818976797065254>',
   gookbap: '<:gookbap:677905040706371598>',
 
+  // Status
+  online: '<:online:687194002415812654>',
+  idle: '<:idle:687194002642042900>',
+  dnd: '<:dnd:687194002297978915>',
+  offline: '<:offline:687194002763546691>',
+
+  // Mask
+  plenty: '<:online:687194002415812654>',
+  some: '<:idle:687194002642042900>',
+  few: '<:dnd:687194002297978915>',
+  empty: '<:offline:687194002763546691>',
   // Overwatch Emojis
 
   bronze: '<:bronze:622235134204182588>',
