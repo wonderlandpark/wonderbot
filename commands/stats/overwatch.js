@@ -16,6 +16,7 @@ module.exports.execute = async (
   var gamemode = '';
   let user;
   function get() {
+    if(!user) return
     message
       .reply(tools.lib.emojis.loading + locale.commands.overwatch.loading)
       .then(msg => {
@@ -29,7 +30,6 @@ module.exports.execute = async (
             // eslint-disable-next-line no-return-assign
             profile.ratings.forEach(el => (rank[el.role] = el));
             embed.setThumbnail(profile.icon);
-            embed.addBlankField();
             embed.addField(
               locale.commands.overwatch.overall,
               locale.commands.overwatch.gamemode[gamemode]
@@ -90,20 +90,20 @@ module.exports.execute = async (
                     locale.commands.overwatch.stat[gamemode].bind({
                       win:
                         heros[0].data.game.gamesWon ||
-                        heros[0].data.game.gameWon,
+                        heros[0].data.game.gameWon||0,
                       lost:
                         heros[0].data.game.gamesLost ||
-                        heros[0].data.game.gameLost,
-                      percent: heros[0].data.game.winPercentage,
-                      kd: heros[0].data.average.eliminationsPerLife,
+                        heros[0].data.game.gameLost||0,
+                      percent: heros[0].data.game.winPercentage||0+'%',
+                      kd: heros[0].data.average.eliminationsPerLife||0,
                       objectTime:
-                        heros[0].data.average.objectiveTimeAvgPer10Min,
-                      fire: heros[0].data.average.objectiveTimeAvgPer10Min,
-                      eliminations: heros[0].data.combat.eliminations,
+                        heros[0].data.average.objectiveTimeAvgPer10Min||0,
+                      fire: heros[0].data.average.objectiveTimeAvgPer10Min||0,
+                      eliminations: heros[0].data.combat.eliminations||0,
                       deaths:
                         heros[0].data.combat.deaths ||
-                        heros[0].data.combat.death,
-                      playtime: heros[0].data.game.timePlayed
+                        heros[0].data.combat.death||0,
+                      playtime: heros[0].data.game.timePlayed||0
                     })
                   );
                 if (heros[1])
@@ -114,20 +114,20 @@ module.exports.execute = async (
                     locale.commands.overwatch.stat[gamemode].bind({
                       win:
                         heros[1].data.game.gamesWon ||
-                        heros[1].data.game.gameWon,
+                        heros[1].data.game.gameWon||0,
                       lost:
                         heros[1].data.game.gamesLost ||
-                        heros[1].data.game.gameLost,
-                      percent: heros[1].data.game.winPercentage,
-                      kd: heros[1].data.average.eliminationsPerLife,
+                        heros[1].data.game.gameLost||0,
+                      percent: heros[1].data.game.winPercentage||0+'%',
+                      kd: heros[1].data.average.eliminationsPerLife||0,
                       objectTime:
-                        heros[1].data.average.objectiveTimeAvgPer10Min,
-                      fire: heros[1].data.average.objectiveTimeAvgPer10Min,
-                      eliminations: heros[1].data.combat.eliminations,
+                        heros[1].data.average.objectiveTimeAvgPer10Min||0,
+                      fire: heros[1].data.average.objectiveTimeAvgPer10Min||0,
+                      eliminations: heros[1].data.combat.eliminations||0,
                       deaths:
                         heros[1].data.combat.deaths ||
-                        heros[1].data.combat.death,
-                      playtime: heros[1].data.game.timePlayed
+                        heros[1].data.combat.death||0,
+                      playtime: heros[1].data.game.timePlayed||0
                     })
                   );
                 if (heros[2])
@@ -138,20 +138,20 @@ module.exports.execute = async (
                     locale.commands.overwatch.stat[gamemode].bind({
                       win:
                         heros[2].data.game.gamesWon ||
-                        heros[2].data.game.gameWon,
+                        heros[2].data.game.gameWon||0,
                       lost:
                         heros[2].data.game.gamesLost ||
-                        heros[2].data.game.gameLost,
-                      percent: heros[2].data.game.winPercentage,
-                      kd: heros[2].data.average.eliminationsPerLife,
+                        heros[2].data.game.gameLost||0,
+                      percent: heros[2].data.game.winPercentage||0+'%',
+                      kd: heros[2].data.average.eliminationsPerLife||0,
                       objectTime:
-                        heros[2].data.average.objectiveTimeAvgPer10Min,
-                      fire: heros[2].data.average.objectiveTimeAvgPer10Min,
-                      eliminations: heros[2].data.combat.eliminations,
+                        heros[2].data.average.objectiveTimeAvgPer10Min||0,
+                      fire: heros[2].data.average.objectiveTimeAvgPer10Min||0,
+                      eliminations: heros[2].data.combat.eliminations||0,
                       deaths:
                         heros[2].data.combat.deaths ||
-                        heros[2].data.combat.death,
-                      playtime: heros[2].data.game.timePlayed
+                        heros[2].data.combat.death||0,
+                      playtime: heros[2].data.game.timePlayed||0
                     })
                   );
               } else {
@@ -227,8 +227,7 @@ module.exports.execute = async (
       var txt = '';
       let count = 0;
       result = result.filter(r => r.platform == 'pc');
-      if (result.length == 0)
-        return message.reply(locale.commands.overwatch.nores);
+      if (result.length == 0) return message.reply(locale.commands.overwatch.nores);
       result.sort(function(a, b) {
         return Number(b.level) - Number(a.level);
       });
@@ -276,7 +275,7 @@ module.exports.execute = async (
 module.exports.props = {
   name: 'overwatch',
   perms: 'general',
-  alias: ['오버워치', 'ow'],
+  alias: ['오버워치', 'ow', '옵치'],
   args: [
     {
       name: 'gamemode',
