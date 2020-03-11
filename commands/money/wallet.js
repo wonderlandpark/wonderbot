@@ -29,7 +29,7 @@ module.exports.execute = async (
   .from('users')
   .whereIn(
     'id',
-    message.guild.members.map(r => r.id)
+    message.guild.members.cache.map(r => r.id)
   )
   server = server.sort(function(a,b){
     var bm = 0
