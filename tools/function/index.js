@@ -55,3 +55,17 @@ getSimilar.push({rating: matches.ratings[i].rating, element: matches.ratings[i].
 getSimilar.sort((a,b)=> b.rating - a.rating)
 return getSimilar.splice(0, 1)
 }
+
+Array.prototype.chunkArray = function(size){
+  var index = 0;
+    var arrayLength = this.length;
+    var tempArray = [];
+    
+    for (index = 0; index < arrayLength; index += size) {
+        myChunk = this.slice(index, index+size);
+        // Do something if you want with the group
+        tempArray.push(myChunk);
+    }
+
+    return tempArray;
+}

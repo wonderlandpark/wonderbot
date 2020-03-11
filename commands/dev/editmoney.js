@@ -1,6 +1,7 @@
 var success = [];
 var fail = [];
 var created = [];
+
 module.exports.execute = async (
   client,
   message,
@@ -15,7 +16,7 @@ module.exports.execute = async (
   const money = Number(message.data.arg[2])
   if(['더하기', 'add', '더', 'ㄷ'].includes(message.data.arg[0])){
     await knex('users').update({ money: m + money }).where({ id: user })
-    message.reply('ADDED')
+    await message.reply('ADDED')
   }
   else if(['빼기', 'sub', '빼', 'ㅂ'].includes(message.data.arg[0])){
     await knex('users').update({ money: m - money }).where({ id: user })
