@@ -22,7 +22,7 @@ module.exports.execute = async (
             .from('users')
             .whereIn(
               'id',
-              message.guild.members.map(r => r.id)
+              message.guild.members.cache.map(r => r.id)
             )
     var txt = '';
     leaderboard.sort(function(a,b){
