@@ -27,6 +27,7 @@
     "overwatch-stat": "^0.1.8",
     "qrcode": "^1.4.4",
     "request": "^2.88.0",
+    "string-similarity": "^4.0.1",
     "uuid": "^3.4.0",
     "wonderlangpark": "^0.1.3"
   }

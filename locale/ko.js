@@ -476,5 +476,6 @@ const usageNames = {
   reason: '사유',
   channel: '채널',
   warnlimt: '경고 한도',
-  cmd: '명령어'
+  cmd: '명령어',
+  address: '주소'
 };

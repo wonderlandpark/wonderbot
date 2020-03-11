@@ -1,3 +1,5 @@
+var stringSimilarity = require('string-similarity');
+
 Array.prototype.random = function() {
   return this[Math.floor(Math.random() * this.length)];
 };
@@ -32,4 +34,24 @@ Number.prototype.num2han = function() {
   }
 
   return resultString.replace(' ', '');
+}
+
+
+Array.prototype.search = function(text){
+var matches = stringSimilarity.findBestMatch(text,this);
+ 
+var getSimilar = [];
+ 
+for(var i in matches.ratings){
+ 
+if(matches.ratings[i].rating > 0.2){
+ 
+getSimilar.push({rating: matches.ratings[i].rating, element: matches.ratings[i].target});
+ 
+}
+
+ 
+}
+getSimilar.sort((a,b)=> b.rating - a.rating)
+return getSimilar.splice(0, 1)
 }
