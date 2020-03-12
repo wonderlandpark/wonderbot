@@ -1,6 +1,6 @@
-const carriers = require('./carriers');
-const request = require('request');
-const moment = require('moment');
+const carriers = require('./carriers')
+const request = require('request')
+const moment = require('moment')
 module.exports.execute = async (
   client,
   message,
@@ -10,40 +10,39 @@ module.exports.execute = async (
   knex,
   props
 ) => {
-  if (!message.data.arg[1])
-    return message.reply(locale.error.usage(props.name));
+  if (!message.data.arg[1]) return message.reply(locale.error.usage(props.name))
   const carrier = carriers.filter(
     i =>
       i.name.includes(message.data.arg[0].replace(/ /gi, '')) ||
       i.id.includes(message.data.arg[0])
-  );
-  if (carrier.length == 0) return message.reply(locale.error.search.nores);
+  )
+  if (carrier.length == 0) return message.reply(locale.error.search.nores)
   if (carrier.length > 1)
     return message.reply(
       locale.error.search.many.bind({
         count: carrier.length,
         items: carrier.map(a => a.name)
       })
-    );
+    )
   request(
     encodeURI(
       `https://apis.tracker.delivery/carriers/${carrier[0].id}/tracks/${message.data.arg[1]}`
     ),
     function(err, res, Result) {
-      if (err) throw err;
-      Result = JSON.parse(Result);
-      if (Result.message) return message.channel.send(`> ❗ ${Result.message}`);
+      if (err) throw err
+      Result = JSON.parse(Result)
+      if (Result.message) return message.channel.send(`> ❗ ${Result.message}`)
       const MappedResult = Result.progresses.map(l => ({
         desc: l.description,
         day: new Date(l.time).textFormat('YYYYMMDD'),
         time: new Date(l.time),
         location: l.location,
         status: l.status
-      }));
-      var json = {};
+      }))
+      var json = {}
       for (let obj of MappedResult) {
-        if (!json[obj.day]) json[obj.day] = [];
-        json[obj.day].push(obj);
+        if (!json[obj.day]) json[obj.day] = []
+        json[obj.day].push(obj)
       }
       embed.setTitle(
         locale.commands.delivery.info.bind({
@@ -51,7 +50,7 @@ module.exports.execute = async (
           to: Result.to.name,
           state: Result.state.text
         })
-      );
+      )
       for (let key of Object.keys(json)) {
         embed.addField(
           moment(key, 'YYYYMMDD').format('YYYY - MM - DD'),
@@ -65,12 +64,12 @@ module.exports.execute = async (
                 'HH:mm'
               )}** - ${l.desc}`
           )
-        );
+        )
       }
-      message.channel.send(embed);
+      message.channel.send(embed)
     }
-  );
-};
+  )
+}
 module.exports.props = {
   name: 'delivery',
   perms: 'general',
@@ -87,4 +86,4 @@ module.exports.props = {
       required: true
     }
   ]
-};
+}

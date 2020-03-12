@@ -20,4 +20,4 @@ module.exports = {
   token: '',
   prefix: '.',
   owners: ['285185716240252929']
-};
+}

@@ -10,13 +10,11 @@ module.exports.execute = async (
   const stocks = await knex('stocks').select('*')
 
   if (!props.args[0].options.includes(message.data.arg[0])) {
-    message.reply(locale.error.usage(props.name));
+    message.reply(locale.error.usage(props.name))
   } else {
-    var leaderboard = 
+    var leaderboard =
       message.data.arg[0] == '전체' || message.data.arg[0] == 'global'
-        ? await knex
-            .select('*')
-            .from('users')
+        ? await knex.select('*').from('users')
         : await knex
             .select('*')
             .from('users')
@@ -24,40 +22,39 @@ module.exports.execute = async (
               'id',
               message.guild.members.cache.map(r => r.id)
             )
-    var txt = '';
-    leaderboard.sort(function(a,b){
+    var txt = ''
+    leaderboard.sort(function(a, b) {
       var bm = 0
       var am = 0
-    Object.keys(JSON.parse(b.items)).forEach(el=> {
-    bm += (stocks.find(i=> i.name == el).now * JSON.parse(b.items)[el])
+      Object.keys(JSON.parse(b.items)).forEach(el => {
+        bm += stocks.find(i => i.name == el).now * JSON.parse(b.items)[el]
       })
-     Object.keys(JSON.parse(a.items)).forEach(el=> {
-         am += (stocks.find(i=> i.name == el).now * JSON.parse(a.items)[el])
-       })
-      if(Number.isNaN(am)) am = 0;
-      if(Number.isNaN(bm)) bm = 0;
-     return (bm + b.money) - (am + a.money)
-      
+      Object.keys(JSON.parse(a.items)).forEach(el => {
+        am += stocks.find(i => i.name == el).now * JSON.parse(a.items)[el]
+      })
+      if (Number.isNaN(am)) am = 0
+      if (Number.isNaN(bm)) bm = 0
+      return bm + b.money - (am + a.money)
     })
-
 
     for (var i = 1; i < 11; i++) {
       var m = 0
-      if(leaderboard[i-1]) {
-        Object.keys(JSON.parse(leaderboard[i-1].items)).forEach(el=> {
-          m += (stocks.find(i=> i.name == el).now * JSON.parse(leaderboard[i-1].items)[el])
+      if (leaderboard[i - 1]) {
+        Object.keys(JSON.parse(leaderboard[i - 1].items)).forEach(el => {
+          m +=
+            stocks.find(i => i.name == el).now *
+            JSON.parse(leaderboard[i - 1].items)[el]
         })
-          txt +=
-            `\n${i}. [${
-              client.users.cache.get(leaderboard[i - 1].id)
-                ? client.users.cache.get(leaderboard[i - 1].id).tag
-                : 'None'
-            }](${locale.commands.leaderboard.all} ` +
-            (m + leaderboard[i-1].money).num2han() +
-            locale.commands.money.won +
-            ')';
+        txt +=
+          `\n${i}. [${
+            client.users.cache.get(leaderboard[i - 1].id)
+              ? client.users.cache.get(leaderboard[i - 1].id).tag
+              : 'None'
+          }](${locale.commands.leaderboard.all} ` +
+          (m + leaderboard[i - 1].money).num2han() +
+          locale.commands.money.won +
+          ')'
       }
-      
     }
     message.channel.send(
       '```md\n' +
@@ -73,9 +70,9 @@ module.exports.execute = async (
         }\n ` +
         txt +
         '```'
-    );
+    )
   }
-};
+}
 
 module.exports.props = {
   name: 'leaderboard',
@@ -89,6 +86,4 @@ module.exports.props = {
       options: ['전체', '서버', '길드', 'global', 'guild', 'server']
     }
   ]
-};
-
-
+}

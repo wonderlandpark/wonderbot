@@ -58,4 +58,4 @@ module.exports = {
   baptiste: '<:baptiste:677780087008919573>',
 
   coin: '<:coin:636879213239992330>'
-};
+}

@@ -1,4 +1,4 @@
-const QRCode = require('qrcode');
+const QRCode = require('qrcode')
 module.exports.execute = async (
   client,
   message,
@@ -8,15 +8,14 @@ module.exports.execute = async (
   knex,
   props
 ) => {
-  if (!message.data.args) return message.reply(locale.error.usage(props.name));
-  QRCode.toString(message.data.args, async function (err, url) {
+  if (!message.data.args) return message.reply(locale.error.usage(props.name))
+  QRCode.toString(message.data.args, async function(err, url) {
     console.log(url.length)
     if (url.length > 1000) return await message.reply(locale.error.toLong)
     embed.addField('QRCODE', '```\n' + url + '\n```')
     return message.reply(embed)
-})
-
-};
+  })
+}
 module.exports.props = {
   name: 'qr',
   perms: 'general',
@@ -28,4 +27,4 @@ module.exports.props = {
       required: true
     }
   ]
-};
+}

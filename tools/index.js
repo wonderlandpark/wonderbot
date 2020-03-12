@@ -1,6 +1,6 @@
 // Tool
-module.exports.logger = require('./logger');
-module.exports.database = require('./database/knex');
+module.exports.logger = require('./logger')
+module.exports.database = require('./database/knex')
 
 // Bot
 module.exports.bot = {
@@ -9,12 +9,12 @@ module.exports.bot = {
   embed: require('./bot/embed'),
   customEmbed: require('./bot/customEmbed'),
   modlog: require('./bot/modlog')
-};
+}
 
-module.exports.lib = require('./lib');
+module.exports.lib = require('./lib')
 
-require('./date');
+require('./date')
 
 Object.keys(require('./function')).forEach(t => {
-  module.exports[t] = require('./function')[t];
-});
+  module.exports[t] = require('./function')[t]
+})

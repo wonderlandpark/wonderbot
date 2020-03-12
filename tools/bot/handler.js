@@ -1,22 +1,22 @@
-const commands = require('../../commands');
-const tools = require('../');
-const knex = tools.database;
+const commands = require('../../commands')
+const tools = require('../')
+const knex = tools.database
 const data = {
   register: [],
   cooldown: {},
   action: [],
   slot: {},
   onlineMode: true
-};
-const fs = require('fs');
-const uuid = require('uuid/v1');
-const Discord = require('discord.js');
+}
+const fs = require('fs')
+const uuid = require('uuid/v1')
+const Discord = require('discord.js')
 module.exports = async (client, message, config) => {
-  const embed = new require('./embed')(client, message);
+  const embed = new require('./embed')(client, message)
   const webhook = new Discord.WebhookClient(
     config.client.webhook.error.id,
     config.client.webhook.error.token
-  );
+  )
   message.data = {
     raw: message.content,
     arg: message.content.split(' ').slice(1),
@@ -31,8 +31,8 @@ module.exports = async (client, message, config) => {
       .replace(config.client.prefix, '')
       .toLowerCase(),
     locale: 'ko'
-  };
-  const locale = require('../../locale')[message.data.locale];
+  }
+  const locale = require('../../locale')[message.data.locale]
 
   if (
     message.author.bot ||
@@ -41,21 +41,21 @@ module.exports = async (client, message, config) => {
     !message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS') ||
     !message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')
   )
-    return;
-  if (!commands[message.data.cmd]) return;
+    return
+  if (!commands[message.data.cmd]) return
   var log = `${new Date().textFormat('YYYY/MM/DD hh:mm:ss')} ${
     message.author.tag
-  } : ${message.content}`;
+  } : ${message.content}`
   fs.appendFile('./logs/cmd.log', log + '\n', function(err) {
-    if (err) throw err;
-    console.log(log);
-  });
+    if (err) throw err
+    console.log(log)
+  })
   if (!config.client.owners.includes(message.author.id) && !data.onlineMode)
-    return message.reply(locale.error.offline);
+    return message.reply(locale.error.offline)
   const user = await knex
     .select('*')
     .from('users')
-    .where({ id: message.author.id });
+    .where({ id: message.author.id })
   if (user.length == 0)
     return commands['register'].execute(
       client,
@@ -66,11 +66,11 @@ module.exports = async (client, message, config) => {
       knex,
       commands[message.data.cmd].props,
       data
-    );
+    )
   var blacked = await knex
     .select('*')
     .from('blacklist')
-    .where({ id: message.author.id });
+    .where({ id: message.author.id })
   if (blacked.length == 1 && blacked[0].time > new Date() / 1000)
     return message.reply(
       locale.error.blacklist.bind({
@@ -79,9 +79,9 @@ module.exports = async (client, message, config) => {
         ),
         reason: blacked[0].why
       })
-    );
+    )
   if (data.action.includes(message.author.id))
-    return message.reply(locale.error.already);
+    return message.reply(locale.error.already)
   if (
     data.cooldown[message.author.id] &&
     Number(data.cooldown[message.author.id]) > Number(new Date()) &&
@@ -93,16 +93,19 @@ module.exports = async (client, message, config) => {
           (Number(data.cooldown[message.author.id]) - Number(new Date())) / 1000
         ).toFixed(2)
       })
-    );
+    )
   }
 
-  if (!message.member.hasPermission(commands[message.data.cmd].props.perms.required.perms)
+  if (
+    !message.member.hasPermission(
+      commands[message.data.cmd].props.perms.required.perms
+    )
   )
     return message.reply(
       locale.error.noperm.bind({
         perms: commands[message.data.cmd].props.perms.name.toUpperCase()
       })
-    );
+    )
   if (
     commands[message.data.cmd].props.perms.required.id
       ? !commands[message.data.cmd].props.perms.required.id.includes(
@@ -114,9 +117,9 @@ module.exports = async (client, message, config) => {
       locale.error.noperm.bind({
         perms: commands[message.data.cmd].props.perms.name
       })
-    );
+    )
   // eslint-disable-next-line require-atomic-updates
-  data.cooldown[message.author.id] = new Date(Number(new Date()) + 3000);
+  data.cooldown[message.author.id] = new Date(Number(new Date()) + 3000)
   commands[message.data.cmd]
     .execute(
       client,
@@ -129,9 +132,9 @@ module.exports = async (client, message, config) => {
       data
     )
     .catch(error => {
-      console.error(error);
-      let code = uuid();
-      let time = Math.round(new Date() / 1000);
+      console.error(error)
+      let code = uuid()
+      let time = Math.round(new Date() / 1000)
       embed.addField(
         'ERROR - WB/Rewrite',
         locale.error.debug.bind({
@@ -152,7 +155,7 @@ module.exports = async (client, message, config) => {
           guild: message.guild.name,
           guildid: message.guild.id
         })
-      );
+      )
       webhook.send(embed).then(async m => {
         await knex('error').insert({
           id: code,
@@ -166,8 +169,8 @@ module.exports = async (client, message, config) => {
           info: `https://discordapp.com/channels/${
             client.channels.cache.get(m.channel_id).guild.id
           }/${m.channel_id}/${m.id}`
-        });
-        message.reply(locale.error.onerror.bind({ code }));
-      });
-    });
-};
+        })
+        message.reply(locale.error.onerror.bind({ code }))
+      })
+    })
+}

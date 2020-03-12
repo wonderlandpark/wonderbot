@@ -1,8 +1,8 @@
-const colorSource = require('./colors');
+const colorSource = require('./colors')
 
-module.exports.log = (msg, color) => log(msg, color);
-module.exports.warn = msg => log(msg, 'Yellow');
-module.exports.error = msg => log(msg, 'Red');
+module.exports.log = (msg, color) => log(msg, color)
+module.exports.warn = msg => log(msg, 'Yellow')
+module.exports.error = msg => log(msg, 'Red')
 module.exports.WBerror = msg =>
   console.log(
     `[${new Date().format()}]`,
@@ -10,8 +10,8 @@ module.exports.WBerror = msg =>
     '[WB]',
     colorSource.Reset,
     msg
-  );
-module.exports.success = msg => log(msg, 'Green');
+  )
+module.exports.success = msg => log(msg, 'Green')
 module.exports.WBsuccess = msg =>
   console.log(
     `[${new Date().format()}]`,
@@ -19,15 +19,15 @@ module.exports.WBsuccess = msg =>
     '[WB]',
     colorSource.Reset,
     msg
-  );
-module.exports.mark = msg => log(msg, 'Blue');
+  )
+module.exports.mark = msg => log(msg, 'Blue')
 
 function log(msg, color) {
   console.log(
     `[${new Date().format()}]`,
     !color || !colorSource[color] ? colorSource.Reset : colorSource[color],
     msg
-  );
+  )
 }
 
 Date.prototype.format = function() {
@@ -43,5 +43,5 @@ Date.prototype.format = function() {
     this.getSeconds().toString().length == 1
       ? 0 + this.getSeconds().toString()
       : this.getSeconds()
-  }`;
-};
+  }`
+}

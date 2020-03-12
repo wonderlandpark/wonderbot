@@ -1,4 +1,4 @@
-const config = require('./index.js');
+const config = require('./index.js')
 const perm = [
   {
     name: 'general',
@@ -8,15 +8,14 @@ const perm = [
   },
   {
     name: 'admin',
-    required:{ 
-    perms: ['ADMINISTRATOR']
-  }
+    required: {
+      perms: ['ADMINISTRATOR']
+    }
   },
   {
     name: 'ban',
     required: {
-      perms: 
-      ['BAN_MEMBERS']
+      perms: ['BAN_MEMBERS']
     }
   },
   {
@@ -32,5 +31,5 @@ const perm = [
       id: config.client.owners
     }
   }
-];
-module.exports = perm;
+]
+module.exports = perm

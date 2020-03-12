@@ -7,7 +7,7 @@ module.exports.execute = async (
   knex
 ) => {
   message.channel.send(locale.commands.ping.ping).then(m => {
-    const time = new Date();
+    const time = new Date()
     knex
       .select('*')
       .from('users')
@@ -19,15 +19,15 @@ module.exports.execute = async (
             api: Math.round(client.ws.ping),
             db: new Date() - time
           })
-        );
+        )
 
-        m.edit({ content: locale.commands.ping.pong, embed });
-      });
-  });
-};
+        m.edit({ content: locale.commands.ping.pong, embed })
+      })
+  })
+}
 module.exports.props = {
   name: 'ping',
   perms: 'general',
   alias: ['핑', 'pong'],
   args: []
-};
+}

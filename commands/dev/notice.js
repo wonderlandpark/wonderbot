@@ -1,6 +1,6 @@
-var success = [];
-var fail = [];
-var created = [];
+var success = []
+var fail = []
+var created = []
 module.exports.execute = async (
   client,
   message,
@@ -10,8 +10,8 @@ module.exports.execute = async (
   knex,
   props
 ) => {
-  if (!message.data.args) return message.reply(locale.error.usage(props.name));
-  message.reply('공지 전송을 시작합니다.');
+  if (!message.data.args) return message.reply(locale.error.usage(props.name))
+  message.reply('공지 전송을 시작합니다.')
   await client.guilds.forEach(el => {
     var channel = el.channels.filter(
       c =>
@@ -22,7 +22,7 @@ module.exports.execute = async (
           c.name.includes('알림') ||
           c.name.includes('announcement')) &&
         !(c.topic !== null && c.topic.includes('NONOTICE'))
-    );
+    )
     if (channel.first()) {
       channel
         .first()
@@ -39,11 +39,11 @@ module.exports.execute = async (
                 message.data.args
                   .replace(/%owner%/gi, `<@!${el.owner.id}>`)
                   .replace(/%guild%/gi, el.guild.name)
-              );
-              created.push(el.id);
+              )
+              created.push(el.id)
             })
-            .catch(() => fail.push(el.id));
-        });
+            .catch(() => fail.push(el.id))
+        })
     } else {
       el.createChannel('공지-자동생성됨')
         .then(c => {
@@ -51,14 +51,14 @@ module.exports.execute = async (
             message.data.args
               .replace(/%owner%/gi, `<@!${el.owner.id}>`)
               .replace(/%guild%/gi, el.guild.name)
-          );
-          created.push(el.id);
+          )
+          created.push(el.id)
         })
-        .catch(() => fail.push(el.id));
+        .catch(() => fail.push(el.id))
     }
-  });
-  message.reply(`공지 전송을 완료하였습니다!!`);
-};
+  })
+  message.reply(`공지 전송을 완료하였습니다!!`)
+}
 
 module.exports.props = {
   name: 'notice',
@@ -71,4 +71,4 @@ module.exports.props = {
       required: true
     }
   ]
-};
+}

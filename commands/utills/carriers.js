@@ -124,4 +124,4 @@ module.exports = [
     id: 'us.usps',
     name: 'USPS'
   }
-];
+]

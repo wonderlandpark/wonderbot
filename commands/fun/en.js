@@ -8,14 +8,14 @@ module.exports.execute = async (
   props
 ) => {
   if (!message.data.arg[0]) {
-    message.reply(locale.error.usage(props.name));
+    message.reply(locale.error.usage(props.name))
   }
-  var Inko = require('inko');
-  var inko = new Inko();
-  var content = message.data.args;
-  message.delete();
-  message.channel.send(message.author + ' : ' + inko.ko2en(content));
-};
+  var Inko = require('inko')
+  var inko = new Inko()
+  var content = message.data.args
+  message.delete()
+  message.channel.send(message.author + ' : ' + inko.ko2en(content))
+}
 
 module.exports.props = {
   name: 'en',
@@ -28,4 +28,4 @@ module.exports.props = {
       required: true
     }
   ]
-};
+}

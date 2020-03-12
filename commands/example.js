@@ -8,7 +8,7 @@ module.exports.execute = async (
   knex,
   props,
   data
-) => {};
+) => {}
 
 module.exports.props = {
   name: '',
@@ -21,4 +21,4 @@ module.exports.props = {
       required: false
     }
   ]
-};
+}

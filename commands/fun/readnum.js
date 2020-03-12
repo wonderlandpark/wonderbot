@@ -1,23 +1,23 @@
 module.exports.execute = async (client, message, locale) => {
-  var HanTools = require('hangul-tools');
+  var HanTools = require('hangul-tools')
   if (!message.data.arg[0] || isNaN(message.data.arg[0]))
-    return message.reply(locale.error.usage(message.data.cmd));
+    return message.reply(locale.error.usage(message.data.cmd))
   else {
-    var content = message.data.arg[0];
+    var content = message.data.arg[0]
     if (content >= 9999999999999999)
       message.reply(
         '`' + HanTools.readNumber(content) + '`\n' + locale.commands.readnum.big
-      );
+      )
     else if (content < 0)
       message.reply(
         '`마이너스 ' +
           HanTools.readNumber(Number(-1 * content).toString()) +
           '`\n' +
           locale.commands.readnum.minus
-      );
-    else message.reply('`' + HanTools.readNumber(content) + '`');
+      )
+    else message.reply('`' + HanTools.readNumber(content) + '`')
   }
-};
+}
 
 module.exports.props = {
   name: 'readnum',
@@ -30,4 +30,4 @@ module.exports.props = {
       required: true
     }
   ]
-};
+}
