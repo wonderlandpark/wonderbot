@@ -13,7 +13,7 @@ module.exports.execute = async (
   if (!message.data.args) return message.reply(locale.error.usage(props.name))
   const user =
     message.mentions.members.first() ||
-    message.guild.members.get(message.data.arg[0])
+    message.guild.members.cache.get(message.data.arg[0])
   const reason = message.data.arg2
     ? message.data.arg2
     : locale.commands.warn.none

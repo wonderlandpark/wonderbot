@@ -92,7 +92,8 @@ const statusCode = {
   plenty: '100개 이상',
   some: '30개 이상 100개 미만',
   few: '2개 이상 30개 미만',
-  empty: '1개 이하'
+  empty: '1개 이하',
+  break: '판매 중단',
 }
 
 const maskDay = [

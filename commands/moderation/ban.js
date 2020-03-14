@@ -15,7 +15,7 @@ module.exports.execute = async (
   else {
     user =
       message.mentions.members.first() ||
-      message.guild.members.get(message.data.arg[0])
+      message.guild.members.cache.get(message.data.arg[0])
   }
   if (!user) return message.reply(locale.error.usage(props.name))
   if (user.hasPermission(['BAN_MEMBERS']))
