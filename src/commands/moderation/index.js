@@ -1,0 +1,6 @@
+module.exports.ban = require('./ban')
+module.exports.kick = require('./kick')
+module.exports.warn = require('./warn')
+module.exports.setlog = require('./setlog')
+module.exports.setwarn = require('./setwarn')
+module.exports.check = require('./check')

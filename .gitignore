@@ -5,3 +5,7 @@ node_modules/
 backup.sql
 logs/cmd.log
 backup/*.json
+src/config/client.js
+src/config/database.js
+
+
