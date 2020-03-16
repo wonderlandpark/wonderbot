@@ -25,7 +25,7 @@ module.exports.execute = async (client, message, locale, embed, tools, knex, pro
     s.forEach(g => {
       embed.addField(
         g.clinicName,
-        `주소: ${g.address}\n전화번호: ${g.representativeContact}\n검사 가능 여부: ${g.samplingAvailable == 1 ? '가능' : '불가능'}`
+        `주소: ${g.address}\n전화번호: ${g.representativeContact}\n검체 검사 가능 여부: ${g.samplingAvailable == 1 ? '가능' : '불가능'}`
       )
     })
     pagination.addEmbed(embed)
