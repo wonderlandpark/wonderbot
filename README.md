@@ -28,12 +28,12 @@ npm start
 
 This code works finally on these Requirements
 
-| NAME       | VERSION        | TESTED             |
-| ---------- | -------------- | ------------------ |
-| Node.js    | v.13.6.0       | :heavy_check_mark: |
-| MariaDB    | 10.4.8-MariaDB | :heavy_check_mark: |
-| NPM        | 6.13.6         | :heavy_check_mark: |
-| Discord.js | 12.0.2         | :heavy_check_mark: |
+| NAME       | VERSION        | TESTED |
+| ---------- | -------------- | ------ |
+| Node.js    | v.13.6.0       | ✔️     |
+| MariaDB    | 10.4.8-MariaDB | ✔️     |
+| NPM        | 6.13.6         | ✔️     |
+| Discord.js | 12.0.2         | ✔️     |
 
 ## Open Source used in project
 
