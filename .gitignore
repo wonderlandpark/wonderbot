@@ -7,5 +7,5 @@ logs/cmd.log
 backup/*.json
 src/config/client.js
 src/config/database.js
-
+package-lock.json
 
