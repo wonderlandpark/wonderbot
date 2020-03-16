@@ -1,6 +1,11 @@
 const fetch = require('node-fetch')
+const { URLSearchParams } = require('url')
 const list = require('./gu-list')
 const Pagenation = require('pagination-is-noob')
+const params = new URLSearchParams();
+params.append('scope', 'address');
+params.append('limit', 100);
+
 
 module.exports.execute = async (client, message, locale, embed, tools) => {
   async function epage(status, m, p) {
@@ -36,14 +41,15 @@ module.exports.execute = async (client, message, locale, embed, tools) => {
   embed.setTitle('😷 마스크')
   embed.addField('오늘 마스크는?', maskDay[new Date().getDay()])
   if (!message.data.args) return message.reply(embed)
+  params.append('keyword', message.data.args);
   const m = await message.channel.send('> 🔎 검색중입니다...')
-  const status = await fetch(
-    `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=${encodeURI(
-      message.data.args
-    )}`
-  ).then(r => r.json())
+
+    const status = await fetch('https://api-v0.maskd.seia.io/masks/stores', { method: 'POST', body: params, headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    } })
+  .then(r => r.json())
   r = list.search(message.data.args)[0]
-  if (status.count == 0)
+  if (status.length == 0)
     return m.edit(
       `> ❌ 검색결과가 없습니다 \n\`${
         r ? r.element : '검색결과 없음'
@@ -52,7 +58,7 @@ module.exports.execute = async (client, message, locale, embed, tools) => {
   const pagination = new Pagenation.Pagination({
     pageText: '페이지 %CURRENT% / %ALL%'
   })
-  status.stores.chunkArray(5).forEach(s => {
+  status.chunkArray(5).forEach(s => {
     embed = tools.bot.embed(client, message)
     embed.setTitle('😷 마스크')
     embed.addField('오늘 마스크는?', maskDay[new Date().getDay()])
@@ -60,14 +66,14 @@ module.exports.execute = async (client, message, locale, embed, tools) => {
       embed.addField(
         g.name,
         `${
-          statusCode[g['remain_stat']]
-            ? tools.lib.emojis[g['remain_stat']] +
+          statusCode[g['stockStatus']]
+            ? tools.lib.emojis[g['stockStatus']] +
               ' ' +
-              statusCode[g['remain_stat']]
+              statusCode[g['stockStatus']]
             : '❔ 알 수 없음'
-        }\n  주소: \`${g.addr}\`\n좌표: \`${g.lat}, ${
-          g.lng
-        }\` - [구글 맵](https://www.google.co.kr/maps/search/${g.lat}+${g.lng})`
+        }\n  주소: \`${g.address}\`\n좌표: \`${g.latitude}, ${
+          g.longitude
+        }\` - [구글 맵](https://www.google.co.kr/maps/search/${g.latitude}+${g.longitude})`
       )
     })
     pagination.addEmbed(embed)
