@@ -2,58 +2,33 @@ const fetch = require('node-fetch')
 const { URLSearchParams } = require('url')
 const list = require('./gu-list')
 const Pagenation = require('pagination-is-noob')
-const params = new URLSearchParams();
-params.append('scope', 'address');
-params.append('limit', 100);
 
 
-module.exports.execute = async (client, message, locale, embed, tools) => {
-  async function epage(status, m, p) {
-    embed = tools.bot.embed(client, message)
-    embed.setTitle('😷 마스크')
-    embed.addField('오늘 마스크는?', maskDay[new Date().getDay()])
-    console.log(p)
-    for (i = (p - 1) * 5; i < p * 5; i++) {
-      if (status.stores[i])
-        embed.addField(
-          status.stores[i].name,
-          `${
-            statusCode[status.stores[i]['remain_stat']]
-              ? tools.lib.emojis[status.stores[i]['remain_stat']] +
-                ' ' +
-                statusCode[status.stores[i]['remain_stat']]
-              : '❔ 알 수 없음'
-          }\n  주소: \`${status.stores[i].addr}\`\n좌표: \`${
-            status.stores[i].lat
-          }, ${
-            status.stores[i].lng
-          }\` - [구글 맵](https://www.google.co.kr/maps/search/${
-            status.stores[i].lat
-          }+${status.stores[i].lng})`
-        )
-    }
-    m.edit({
-      content:
-        '> ✅ 마스크 정보를 불러왔습니다. 잘못된 정보는 팀이 책임지지 않습니다.',
-      embed
-    })
-  }
+
+module.exports.execute = async (client,
+  message,
+  locale,
+  embed,
+  tools) => {
+  if(message.data.args.length < 2) return message.reply('2글자 이상을 검색해주세요!')
   embed.setTitle('😷 마스크')
   embed.addField('오늘 마스크는?', maskDay[new Date().getDay()])
   if (!message.data.args) return message.reply(embed)
+  const params = new URLSearchParams();
+  params.append('scope', 'address');
+  params.append('limit', 100);
   params.append('keyword', message.data.args);
   const m = await message.channel.send('> 🔎 검색중입니다...')
-
-    const status = await fetch('https://api-v0.maskd.seia.io/masks/stores', { method: 'POST', body: params, headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    } })
+  
+    
+  const status = await fetch('https://api-v0.maskd.seia.io/masks/stores', { method: 'POST', body: params })
   .then(r => r.json())
   r = list.search(message.data.args)[0]
-  if (status.length == 0)
+  if (status.length === 0)
     return m.edit(
-      `> ❌ 검색결과가 없습니다 \n\`${
-        r ? r.element : '검색결과 없음'
-      }\`을/를 찾으셨나요?\n💡 TIP: **구** 이상의 정확한 주소를 입력해주세요!!`
+      `> ❌ 검색결과가 없습니다 \n${
+        r ? '`' + r.element + '`을/를 찾으셨나요?': ''
+      }\n💡 TIP: 정확한 검색을 위해 키워드 또는 정확한 주소를 검색해주세요.\n\`ex) OO시, OO동, OO구, 광주광역시 광산구\``
     )
   const pagination = new Pagenation.Pagination({
     pageText: '페이지 %CURRENT% / %ALL%'
@@ -80,6 +55,9 @@ module.exports.execute = async (client, message, locale, embed, tools) => {
   })
   pagination.addUser(message.author.id)
   pagination.edit(m)
+
+
+  
 }
 module.exports.props = {
   name: 'mask',
