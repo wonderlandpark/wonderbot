@@ -63,10 +63,10 @@ module.exports.execute = async (
       }),
       true
     )
-    embed.addField(locale.commands.profile.badge, JSON.parse(u.badges).map(e=>{
+    embed.addField(locale.commands.profile.badge, JSON.parse(u.badges).length == 0 ? '소유한 뱃지가 없습니다.' : JSON.parse(u.badges).map(e=>{
       if(e.startsWith('season')) return tools.lib.emojis[e.split('-')[2]] + ' ' + e.split('-')[1] + `시즌 ${ranks[e.split('-')[2]]}위`
       else return tools.lib.emojis[e] + ' ' + locale.commands.profile.badgeName[e]
-    })||'소유한 뱃지가 없습니다.')
+    }))
     embed.addField(
       locale.commands.profile.join,
       new Date(u['join'] * 1000).format(message.data.locale)
