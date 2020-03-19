@@ -33,6 +33,7 @@ module.exports.execute = async (client,
   const pagination = new Pagenation.Pagination({
     pageText: '페이지 %CURRENT% / %ALL%'
   })
+  console.log(status)
   status.chunkArray(5).forEach(s => {
     embed = tools.bot.embed(client, message)
     embed.setTitle('😷 마스크')

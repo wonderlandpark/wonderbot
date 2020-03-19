@@ -66,14 +66,7 @@ module.exports.execute = async (
     locale.commands.wallet.will,
     locale.commands.wallet.money.bind({ money: (money + user.money).num2han() })
   )
-  embed.addField(
-    locale.commands.wallet.top,
-    locale.commands.wallet.topdesc.bind({
-      all: users.findIndex(el => el.id == message.author.id) + 1,
-      guild: server.findIndex(el => el.id == message.author.id) + 1
-    }),
-    true
-  )
+
   embed.addField(
     locale.commands.wallet.item,
     items.length == 0 ? locale.commands.wallet.noitem : items.replace('\n', '')

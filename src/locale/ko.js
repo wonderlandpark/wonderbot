@@ -119,7 +119,15 @@ module.exports = {
       wallet: '잔고 : {money} <:coin:636879213239992330>',
       allin: '올인 연속 성공 횟수',
       join: '원더봇 가입일',
-      rank: '랭크'
+      rank: '랭크',
+      top: '순위',
+      topdesc: '전체 {all}위 (서버 {guild}위)',
+      badge: '뱃지',
+      badgeName: {
+        premium: '원더봇 프리미엄',
+        early: '얼리 서포터',
+        team: '팀 칼리스토'
+      }
     },
     wallet: {
       CMDDESC: '지갑속에 뭐가 들어있는지 확인합니다.',

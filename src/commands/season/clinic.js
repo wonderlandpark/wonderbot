@@ -3,7 +3,7 @@ const list = require('./gu-list')
 const Pagenation = require('pagination-is-noob')
 
 module.exports.execute = async (client, message, locale, embed, tools, knex, props) => {
-  const params = new URLSearchParams();
+
   params.append('scope', 'address');
   params.append('keyword', message.data.args);
   embed.setTitle('🏥 선별진료소')

@@ -11,6 +11,7 @@ module.exports.execute = async (
   knex,
   props
 ) => {
+  if(!message.mentions.members.first() || !message.data.arg[2]) return message.reply(locale.error.usage(props.name))
   const user = message.mentions.members.first()
     ? message.mentions.members.first().id
     : message.data.arg[1]
@@ -39,13 +40,23 @@ module.exports.execute = async (
 module.exports.props = {
   name: 'editmoney',
   perms: 'dev',
-  alias: ['돈수정'],
+  alias: ['돈수정', '돈설정'],
   args: [
     {
       name: 'option',
       type: 'option',
       required: true,
       options: ['더하기', '빼기', '설정']
+    },
+    {
+      name: 'user',
+      type: 'user',
+      required: true,
+    },
+    {
+      name: 'number',
+      type: 'number',
+      required: true,
     }
   ]
 }
