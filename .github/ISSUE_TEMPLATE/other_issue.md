@@ -1,6 +1,6 @@
 ---
-name: '기타 이슈 Other Issue '
-about: 카테고리가 지정되지 않은 이슈 Issue Category that is not listed
+name: '비어있는 이슈 | Blank Issue'
+about: 올바른 카테고리가 없다면 비어있는 이슈를 사용하세요. Don’t see your issue here? Use a blank Issue
 title: ''
 labels: ''
 assignees: ''
