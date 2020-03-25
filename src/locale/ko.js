@@ -419,8 +419,8 @@ module.exports = {
     }
   },
   link: {
-    tos: 'https://wonderbot.xyz/tos',
-    privacy: 'https://wonderbot.xyz/privacy'
+    tos: 'https://callisto.team/tos',
+    privacy: 'https://callisto.team/privacy'
   },
   category: {
     general: '일반',
