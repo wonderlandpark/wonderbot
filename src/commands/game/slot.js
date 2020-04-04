@@ -24,14 +24,14 @@ module.exports.execute = async (
   )[0].money
   if (
     data.slot[message.author.id] &&
-    data.slot[message.author.id] + 60000 > Number(new Date())
+    data.slot[message.author.id] + 120000 > Number(new Date())
   )
     return message.reply(
       locale.commands.slot.cooldown.bind({
         time: Number(
           new Date(
             Number(new Date(data.slot[message.author.id])) +
-              60000 -
+              120000 -
               Number(new Date())
           ) / 1000
         ).toFixed(1)

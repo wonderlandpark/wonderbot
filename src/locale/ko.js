@@ -326,7 +326,38 @@ module.exports = {
       desc: '`{user}`',
       auto: '경고 누적 자동 밴.',
       none: '없음.',
-      limited: '경고가 누적되어 밴을 시도합니다.'
+      limited: '경고가 누적되어 밴을 시도합니다.',
+      tooLong: '경고 사유는 최대 50자까지만 입력 가능합니다.'
+    },
+    unwarn: {
+      CMDDESC: '유저의 경고를 선택해 취소합니다.',
+      alsoPerm: '관리자의 경고를 취소할 수 없습니다.',
+      noWarn: '취소할 경고가 없습니다.',
+      bot: '봇의 경고는 초기화할 수 없습니다.',
+      unwarn: '📌 경고취소',
+      user: '🙍 유저',
+      mod: '👮 처리자',
+      modDesc: '관리자: {mod} ({tag})',
+      userDesc: '유저: {user} ({tag})',
+      reason: '📃 정보',
+      cleared: '`{why}` 사유의 경고를 취소했습니다.',
+      select: '삭제할 경고의 **번호**를 입력해주세요! (숫자만 입력해주세요)',
+      cancel: '응답이 없어 작업이 취소되었습니다.',
+      wrongnum: '잘못된 숫자입니다. 작업이 취소되었습니다.',
+      warn: '경고'
+    },
+    cwarn: {
+      CMDDESC: '유저의 경고수를 전부 초기화합니다.',
+      alsoPerm: '관리자의 경고를 초기화할 수 없습니다.',
+      noWarn: '초기화할 경고가 없습니다.',
+      bot: '봇의 경고는 초기화할 수 없습니다.',
+      cwarn: '📌 경고초기화',
+      user: '🙍 유저',
+      mod: '👮 처리자',
+      modDesc: '관리자: {mod} ({tag})',
+      userDesc: '유저: {user} ({tag})',
+      reason: '📃 정보',
+      cleared: '모든 경고정보를 초기화했습니다.'
     },
     setlog: {
       CMDDESC: '서버의 관리 로그 채널을 설정합니다.',
