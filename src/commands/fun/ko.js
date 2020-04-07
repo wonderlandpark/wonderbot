@@ -14,7 +14,7 @@ module.exports.execute = async (
   var inko = new Inko()
   var content = message.data.args
   message.delete()
-  message.channel.send(message.author + ' : ' + inko.en2ko(content))
+  message.channel.send(`${message.author} : ${inko.en2ko(content)}`)
 }
 
 module.exports.props = {
