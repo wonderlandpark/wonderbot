@@ -1,17 +1,20 @@
 const commands = require('../../commands')
 const tools = require('../')
 const knex = tools.database
-const data = {
-  register: [],
-  cooldown: {},
-  action: [],
-  slot: {},
-  onlineMode: true
-}
+  const data = {
+    register: [],
+    cooldown: {},
+    action: [],
+    slot: {},
+    onlineMode: true,
+    news: { time: 0, data: [] }
+  }
+
 const fs = require('fs')
 const uuid = require('uuid/v1')
 const Discord = require('discord.js')
 module.exports = async (client, message, config) => {
+  
   const embed = new require('./embed')(client, message)
   const webhook = new Discord.WebhookClient(
     config.client.webhook.error.id,
@@ -174,3 +177,21 @@ module.exports = async (client, message, config) => {
       })
     })
 }
+
+
+function newNews(arr){
+  const data = require('../../commands/money/newsData')
+  const all = Shuffle(arr).slice(0, 3)
+  const res = []
+  all.forEach(el=> {
+    if(el.lastchange >= 0) res.push(data.good[el.name].random())
+    else res.push(data.bad[el.name].random())
+  })
+  return res
+}
+
+
+function Shuffle(o) {
+	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+	return o;
+};
