@@ -435,6 +435,7 @@ module.exports = {
       var desc = ''
       var args = require('../commands/index.js')[cmd].props.args
       args.forEach(a => {
+        if(!a.type) return
         if (a.required) {
           text += `[${a.options ? a.options.join('|') : usageNames[a.name]}] `
           desc += `[${usageNames[a.name]} - ${
@@ -445,7 +446,7 @@ module.exports = {
           desc += `[${usageNames[a.name]} - ${usageNames[a.type.toString()]}]\n`
         }
       })
-      if (args.length == 0) {
+      if (text.length == 0) {
         text += '(없음)'
         desc += '요구된 변수가 없습니다.'
       }
