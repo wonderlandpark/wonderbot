@@ -36,7 +36,7 @@ module.exports.execute = async (
      third.push(`season-${season}-first`)
      await knex('users').update({ badges: JSON.stringify(third)}).where({id: leaderboard[2].id})
     m = await message.reply('BADGES ADDED')
-    await knex('users').update({money: 0, items: '{"wondercoin":1}'})
+    await knex('users').update({money: 0, items: '{"wondercoin":1}', money_cooldown: 0})
     m.edit(m.content + '\nRESETED MONEY and ITEMS') 
     await knex('stocks').update({prices: '[]', now: 0, lastchange: 0})
     m.edit(m.content + '\nRESETED MONEY and ITEMS\nSTOCK DATA RESET') 
