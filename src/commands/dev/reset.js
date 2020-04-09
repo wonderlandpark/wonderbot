@@ -38,7 +38,7 @@ module.exports.execute = async (
     m = await message.reply('BADGES ADDED')
     await knex('users').update({money: 0, items: '{"wondercoin":1}', money_cooldown: 0})
     m.edit(m.content + '\nRESETED MONEY and ITEMS') 
-    await knex('stocks').update({prices: '[]', now: 0, lastchange: 0})
+    await knex('stocks').update({prices: '100', now: 100, lastchange: 0})
     m.edit(m.content + '\nRESETED MONEY and ITEMS\nSTOCK DATA RESET') 
   
 }
