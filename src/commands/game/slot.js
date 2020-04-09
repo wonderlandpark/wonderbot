@@ -115,9 +115,6 @@ module.exports.execute = async (
     else {
       var multi = 0
     }
-    if(a == undefined) a='wonder'
-    if(b == undefined) b='wonder'
-    if(c == undefined) c='wonder'
 
     return { slot: [a, b, c], multi: multi }
   }
@@ -136,7 +133,7 @@ module.exports.props = {
 }
 
 const percent = {
-  wonder: 0.013,
+  wonderbot: 0.013,
   seven: 0.03,
   gem: 0.097,
   star: 0.135,
