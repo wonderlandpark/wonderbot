@@ -403,6 +403,16 @@ module.exports = {
     news: {
       news: '📰 뉴스정보 ',
       desc: '\n\n`이 정보는 정확하지 않습니다. 예상과 달라도 책임지지 않습니다.`',
+    },
+    periodic: {
+      appear: '외형',
+      table: '주기율표 위치',
+      temp: '온도 정보',
+      info: '끓는점: `{boil}K` 녹는점: `{melt}K`',
+      docs: '더 알아보기',
+      wiki: '위키백과',
+      number: '원소번호',
+      found: '발견'
     }
   },
   error: {
@@ -413,6 +423,8 @@ module.exports = {
     search: {
       nores:
         '검색결과가 없습니다. 올바른 이름 또는 이름의 일부를 입력해주세요.',
+      noperiodic:
+        '검색결과가 없습니다. 올바른 원소기호를 입력해주세요.',
       many:
         '`{count}`건이 검색되었습니다. 이름을 더 정확하게 입력해주세요. 검색결과 : \n```{items}```'
     },
@@ -534,5 +546,7 @@ const usageNames = {
   channel: '채널',
   warnlimt: '경고 한도',
   cmd: '명령어',
-  address: '주소'
+  address: '주소',
+  season: '시즌',
+  periodic: '원소기호'
 }
