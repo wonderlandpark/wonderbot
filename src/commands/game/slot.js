@@ -115,6 +115,10 @@ module.exports.execute = async (
     else {
       var multi = 0
     }
+    if(a == undefined) a='wonder'
+    if(b == undefined) b='wonder'
+    if(c == undefined) c='wonder'
+
     return { slot: [a, b, c], multi: multi }
   }
 }
