@@ -64,7 +64,7 @@ module.exports.execute = async (
       true
     )
     embed.addField(locale.commands.profile.badge, JSON.parse(u.badges).length == 0 ? '소유한 뱃지가 없습니다.' : JSON.parse(u.badges).map(e=>{
-      if(e.startsWith('season')) return tools.lib.emojis[e.split('-')[2]] + ' ' + e.split('-')[1] + `시즌 ${ranks[e.split('-')[2]]}위`
+      if(e.startsWith('season')) return tools.lib.emojis[e.split('-')[2]] + ' **' + e.split('-')[1].toUpperCase() + `**시즌 ${ranks[e.split('-')[2]]}위`
       else return tools.lib.emojis[e] + ' ' + locale.commands.profile.badgeName[e]
     }))
     embed.addField(
