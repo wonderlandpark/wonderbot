@@ -20,7 +20,8 @@ module.exports.execute = async (
   embed.addField(locale.commands.periodic.temp, locale.commands.periodic.info.bind({ melt: res.melt, boil: res.boil}))
   embed.addField(locale.commands.periodic.found, res.discovered_by, true)
   embed.addField(locale.commands.periodic.docs, `[${locale.commands.periodic.wiki}](${res.source})`)
-  message.channel.send({embed, content: res.spectral_img})
+  message.reply(embed)
+  message.channel.send(`> ${locale.commands.periodic.spectra}: ${res.spectral_img}`)
 }
 
 module.exports.props = {

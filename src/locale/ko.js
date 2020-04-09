@@ -412,7 +412,8 @@ module.exports = {
       docs: '더 알아보기',
       wiki: '위키백과',
       number: '원소번호',
-      found: '발견'
+      found: '발견',
+      spectra: '스펙트럼 선'
     }
   },
   error: {
