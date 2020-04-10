@@ -7,6 +7,7 @@ const knex = tools.database
     action: [],
     slot: {},
     onlineMode: true,
+    trick: {},
     news: { time: 0, data: [] }
   }
 
