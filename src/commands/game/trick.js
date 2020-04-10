@@ -73,7 +73,7 @@ module.exports.props = {
     {
       name: 'bet',
       type: 'number',
-      required: false
+      required: true
     }
   ]
 }
