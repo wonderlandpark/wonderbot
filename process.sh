@@ -1,2 +1,2 @@
 process.env.TZ = 'Asia/Seoul' 
-npm start
+node src/sharding
