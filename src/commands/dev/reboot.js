@@ -22,7 +22,7 @@ module.exports.execute = async (
           message.channel.send(`\`❗ 해당 샤드 ${el}번 샤드를 종료합니다\``)
           .then(client.shard.broadcastEval(`if (this.guilds.cache.first().shardID === ${el}) process.exit();`)          )
         }
-        client.shard.broadcastEval(`if(!this.guilds.cache.first()) throw 'Not Used Shard'; if (this.guilds.cache.first().shardID === ${el}) process.exit();`)
+        client.shard.broadcastEval(` if (this.guilds.cache.first().shardID === ${el}) {if(!this.guilds.cache.first()) throw 'Not Used Shard'; else process.exit()}`)
         .then(message.channel.send(`\`✅ ${el}번 샤드를 종료했습니다.\``))
         .catch(message.channel.send(`\`🚫 ${el}번 샤드 사용이 없어 종료하지 못했습니다.\``))
       }, 500 * i)

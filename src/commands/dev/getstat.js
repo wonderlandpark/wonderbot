@@ -7,7 +7,7 @@ module.exports.execute = async (
   knex,
   props
 ) => {
-    client.shard.broadcastEval('client.guilds.cache.map(r=>r.memberCount).reduce((accumulator, currentValue) => Number(accumulator) + currentValue)')
+    client.shard.broadcastEval('this.guilds.cache.map(r=>r.memberCount).reduce((accumulator, currentValue) => Number(accumulator) + currentValue)')
     .then(results => message.reply(`${results.reduce((prev, val) => prev + val, 0)} total `))
 }
 
