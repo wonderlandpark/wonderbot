@@ -20,7 +20,7 @@ module.exports = class WB {
         logger.WBerror('Only Shard Alowed')
         process.exit(0)
       }
-      logger.WBsuccess(`#${client.guilds.cache.first().shardID} Shard Ready`)
+      logger.WBsuccess(`#${client.guilds.cache.first() ? client.guilds.cache.first().shardID : 'UNUSED'} Shard Ready`)
       // Fetch for all Guild
       const g = await tools.database('guilds')
       client.guilds.cache.forEach(async guild => {

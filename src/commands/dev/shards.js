@@ -11,7 +11,7 @@ module.exports.execute = async (
 ) => {
   let values = await client.shard.broadcastEval(`
   [
-      this.guilds.cache.first().shardID,
+    this.guilds.cache.first() ? this.guilds.cache.first().shardID : 'UNUSED',
       this.guilds.cache.size,
       this.users.cache.size
   ]
