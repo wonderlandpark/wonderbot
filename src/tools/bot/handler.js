@@ -131,6 +131,10 @@ module.exports = async (client, message, config) => {
     )
   // eslint-disable-next-line require-atomic-updates
   data.cooldown[message.author.id] = new Date(Number(new Date()) + 3000)
+      if(!client.users.cache.get(message.author.id) || !message.guild.members.cache.get(message.author.id)) {
+        client.users.fetch(message.author.id)
+        message.guild.members.fetch(message.author.id)
+      }
   commands[message.data.cmd]
     .execute(
       client,
@@ -186,24 +190,4 @@ module.exports = async (client, message, config) => {
         message.reply(locale.error.onerror.bind({ code }))
       })
     })
-}
-
-function newNews(arr) {
-  const data = require('../../commands/money/newsData')
-  const all = Shuffle(arr).slice(0, 3)
-  const res = []
-  all.forEach(el => {
-    if (el.lastchange >= 0) res.push(data.good[el.name].random())
-    else res.push(data.bad[el.name].random())
-  })
-  return res
-}
-
-function Shuffle(o) {
-  for (
-    var j, x, i = o.length;
-    i;
-    j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x
-  );
-  return o
 }

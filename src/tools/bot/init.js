@@ -36,6 +36,7 @@ module.exports = class WB {
     })
 
     client.on('guildCreate', async guild => {
+      if(guild.shardID !== client.guilds.cache.first().shardID) return
       const g = await tools.database('guilds')
       if (!g.find(r => r.id == guild.id)) {
         console.log(`[INSERT] NEW GUILD: ${guild.name}`)
@@ -47,6 +48,7 @@ module.exports = class WB {
     })
 
     client.on('guildDelete', async guild => {
+      if(guild.shardID !== client.guilds.cache.first().shardID) return
       const g = await tools.database('guilds')
       webhook.send(
         `**LEFTED GUILD**: TOTAL: ${client.guilds.cache.size}\nNAME: ${guild.name}\nOWNER: ${guild.owner.user.tag}\nMEMBER: ${guild.memberCount}\n\n\n--------------------------------------`
