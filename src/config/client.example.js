@@ -11,7 +11,9 @@ module.exports = {
     }
   },
   github: 'https://api.github.com/repos/wonderlandpark/wonderbot/commits',
-  app: {},
+  app: {
+    messageCacheMaxSize: 50, presence: {activity: {name: 'GAME'}}
+  },
   shard: {
     totalShards: 2,
     respawn: true,

@@ -47,7 +47,7 @@ module.exports.execute = async (
 
     return bm + b.money - (am + a.money)
   })
-  u = users.find(el=> el.id == us.id)
+  u = users.find(el => el.id == us.id)
 
   if (!u) return message.reply(locale.error.nouser)
   else {
@@ -63,10 +63,24 @@ module.exports.execute = async (
       }),
       true
     )
-    embed.addField(locale.commands.profile.badge, JSON.parse(u.badges).length == 0 ? '소유한 뱃지가 없습니다.' : JSON.parse(u.badges).map(e=>{
-      if(e.startsWith('season')) return tools.lib.emojis[e.split('-')[2]] + ' **' + e.split('-')[1].toUpperCase() + `**시즌 ${ranks[e.split('-')[2]]}위`
-      else return tools.lib.emojis[e] + ' ' + locale.commands.profile.badgeName[e]
-    }))
+    embed.addField(
+      locale.commands.profile.badge,
+      JSON.parse(u.badges).length == 0
+        ? '소유한 뱃지가 없습니다.'
+        : JSON.parse(u.badges).map(e => {
+            if (e.startsWith('season'))
+              return (
+                tools.lib.emojis[e.split('-')[2]] +
+                ' **' +
+                e.split('-')[1].toUpperCase() +
+                `**시즌 ${ranks[e.split('-')[2]]}위`
+              )
+            else
+              return (
+                tools.lib.emojis[e] + ' ' + locale.commands.profile.badgeName[e]
+              )
+          })
+    )
     embed.addField(
       locale.commands.profile.join,
       new Date(u['join'] * 1000).format(message.data.locale)
@@ -90,6 +104,6 @@ module.exports.props = {
 
 const ranks = {
   first: 1,
-  second: 2, 
+  second: 2,
   third: 3
 }

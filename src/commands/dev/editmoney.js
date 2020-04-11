@@ -11,7 +11,8 @@ module.exports.execute = async (
   knex,
   props
 ) => {
-  if(!message.mentions.members.first() || !message.data.arg[2]) return message.reply(locale.error.usage(props.name))
+  if (!message.mentions.members.first() || !message.data.arg[2])
+    return message.reply(locale.error.usage(props.name))
   const user = message.mentions.members.first()
     ? message.mentions.members.first().id
     : message.data.arg[1]
@@ -51,12 +52,12 @@ module.exports.props = {
     {
       name: 'user',
       type: 'user',
-      required: true,
+      required: true
     },
     {
       name: 'number',
       type: 'number',
-      required: true,
+      required: true
     }
   ]
 }

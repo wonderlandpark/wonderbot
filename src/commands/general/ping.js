@@ -1,4 +1,4 @@
- module.exports.execute = async (
+module.exports.execute = async (
   client,
   message,
   locale,

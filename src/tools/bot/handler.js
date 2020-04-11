@@ -1,21 +1,28 @@
 const commands = require('../../commands')
 const tools = require('../')
 const knex = tools.database
-  const data = {
-    register: [],
-    cooldown: {},
-    action: [],
-    slot: {},
-    onlineMode: true,
-    trick: {},
-    news: { time: 0, data: [] }
-  }
+const data = {
+  register: [],
+  cooldown: {},
+  action: [],
+  slot: {},
+  onlineMode: true,
+  trick: {},
+  news: { time: 0, data: [] }
+}
 
 const fs = require('fs')
 const uuid = require('uuid/v1')
 const Discord = require('discord.js')
 module.exports = async (client, message, config) => {
-  
+  client.shard.fetchClient = async props => {
+    let arr = []
+    await client.shard.fetchClientValues(props).then(r => {
+      arr = r.concat(...r)
+      arr.splice(0, r.length)
+    })
+    return arr
+  }
   const embed = new require('./embed')(client, message)
   const webhook = new Discord.WebhookClient(
     config.client.webhook.error.id,
@@ -47,12 +54,12 @@ module.exports = async (client, message, config) => {
   )
     return
   if (!commands[message.data.cmd]) return
-  var log = `${new Date().textFormat('YYYY/MM/DD hh:mm:ss')} [#${message.channel.name}] ${
-    message.author.tag
-  } : ${message.content}`
+  var log = `${new Date().textFormat('YYYY/MM/DD hh:mm:ss')} [#${
+    message.channel.name
+  }] ${message.author.tag} : ${message.content}`
   fs.appendFile('./logs/cmd.log', log + '\n', function(err) {
     if (err) throw err
-    console.log(log)
+    console.log('\x1b[0m'+log)
   })
   if (!config.client.owners.includes(message.author.id) && !data.onlineMode)
     return message.reply(locale.error.offline)
@@ -171,7 +178,9 @@ module.exports = async (client, message, config) => {
           error: error.toString(),
           guild: message.guild.id,
           info: `https://discordapp.com/channels/${
-            client.channels.cache.get(m.channel_id).guild.id
+            (await client.shard.fetchClientValues('channel.cache')).get(
+              m.channel_id
+            ).guild.id
           }/${m.channel_id}/${m.id}`
         })
         message.reply(locale.error.onerror.bind({ code }))
@@ -179,20 +188,22 @@ module.exports = async (client, message, config) => {
     })
 }
 
-
-function newNews(arr){
+function newNews(arr) {
   const data = require('../../commands/money/newsData')
   const all = Shuffle(arr).slice(0, 3)
   const res = []
-  all.forEach(el=> {
-    if(el.lastchange >= 0) res.push(data.good[el.name].random())
+  all.forEach(el => {
+    if (el.lastchange >= 0) res.push(data.good[el.name].random())
     else res.push(data.bad[el.name].random())
   })
   return res
 }
 
-
 function Shuffle(o) {
-	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-	return o;
-};
+  for (
+    var j, x, i = o.length;
+    i;
+    j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x
+  );
+  return o
+}

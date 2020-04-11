@@ -20,7 +20,7 @@ module.exports.execute = async (
   const guild = (await knex('guilds').where({ id: message.guild.id }))[0]
   const limit = JSON.parse(guild.config).warncount
   const warndata = JSON.parse(guild.warn)
-  if(reason.length > 50) return message.reply(locale.commands.warn.tooLong)
+  if (reason.length > 50) return message.reply(locale.commands.warn.tooLong)
   if (!user) return message.reply(locale.error.usage(props.name))
   if (user.user.bot) return message.reply(locale.commands.warn.bot)
   if (user.hasPermission(['ADMINISTRATOR']))

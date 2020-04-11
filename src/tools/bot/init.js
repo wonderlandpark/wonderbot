@@ -16,7 +16,11 @@ module.exports = class WB {
     )
 
     client.once('ready', async () => {
-      logger.WBsuccess(`Logged in as ${client.user.tag}`)
+      if (!client.shard) {
+        logger.WBerror('Only Shard Alowed')
+        process.exit(0)
+      }
+      logger.WBsuccess(`#${client.guilds.cache.first().shardID} Shard Ready`)
       // Fetch for all Guild
       const g = await tools.database('guilds')
       client.guilds.cache.forEach(async guild => {
@@ -47,6 +51,18 @@ module.exports = class WB {
       webhook.send(
         `**LEFTED GUILD**: TOTAL: ${client.guilds.cache.size}\nNAME: ${guild.name}\nOWNER: ${guild.owner.user.tag}\nMEMBER: ${guild.memberCount}\n\n\n--------------------------------------`
       )
+    })
+
+    client.on('error', async error => {
+      logger.error(error)
+    })
+
+    client.on('warn', async error => {
+      logger.warn(error)
+    })
+
+    client.on('debug', async error => {
+      logger.debug(error)
     })
     client.login(config.client.token)
   }

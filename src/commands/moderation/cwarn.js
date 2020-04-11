@@ -20,7 +20,8 @@ module.exports.execute = async (
   if (user.user.bot) return message.reply(locale.commands.cwarn.bot)
   if (user.hasPermission(['ADMINISTRATOR']))
     return message.reply(locale.commands.cwarn.alsoPerm)
-  if (!warndata[user.id] || warndata[user.id].count === 0 ) return message.reply(locale.commands.cwarn.noWarn)
+  if (!warndata[user.id] || warndata[user.id].count === 0)
+    return message.reply(locale.commands.cwarn.noWarn)
   else {
     warndata[user.id] = { count: 0, reason: [] }
   }
@@ -41,13 +42,9 @@ module.exports.execute = async (
     locale.commands.cwarn.user,
     locale.commands.cwarn.userDesc.bind({ user: user.user, tag: user.user.tag })
   )
-  embed.addField(
-    locale.commands.cwarn.reason,
-    locale.commands.cwarn.cleared
-  )
+  embed.addField(locale.commands.cwarn.reason, locale.commands.cwarn.cleared)
   await message.reply(embed)
   tools.bot.modlog(client, message.guild.id, embed)
-  
 }
 
 module.exports.props = {

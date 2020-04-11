@@ -14,6 +14,7 @@ module.exports.Blue = '\x1b[34m'
 module.exports.Magenta = '\x1b[35m'
 module.exports.Cyan = '\x1b[36m'
 module.exports.White = '\x1b[37m'
+module.exports.Gray = '\x1b[90m'
 
 module.exports.BgBlack = '\x1b[40m'
 module.exports.BgRed = '\x1b[41m'
