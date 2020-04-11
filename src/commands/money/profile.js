@@ -26,13 +26,9 @@ module.exports.execute = async (
     return bm + b.money - (am + a.money)
   })
   var user = users.find(r => r.id == us.id)
-  var server = await knex
+  var server = (await knex
     .select('*')
-    .from('users')
-    .whereIn(
-      'id',
-      message.guild.members.cache.map(r => r.id)
-    )
+    .from('users')).filter(r=> message.guild.members.cache.get(r.id))
   server = server.sort(function(a, b) {
     var bm = 0
     var am = 0

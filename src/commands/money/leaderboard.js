@@ -12,16 +12,13 @@ module.exports.execute = async (
   if (!props.args[0].options.includes(message.data.arg[0])) {
     message.reply(locale.error.usage(props.name))
   } else {
+    message.guild.members.fetch()
     var leaderboard =
       message.data.arg[0] == '전체' || message.data.arg[0] == 'global'
         ? await knex.select('*').from('users')
-        : await knex
+        : (await knex
             .select('*')
-            .from('users')
-            .whereIn(
-              'id',
-              message.guild.members.cache.map(r => r.id)
-            )
+            .from('users')).filter(r=> message.guild.members.cache.get(r.id))
     var txt = ''
     leaderboard.sort(function(a, b) {
       var bm = 0
