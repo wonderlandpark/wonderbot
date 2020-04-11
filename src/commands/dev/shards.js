@@ -13,7 +13,7 @@ module.exports.execute = async (
   [
     this.guilds.cache.first() ? this.guilds.cache.first().shardID : 'UNUSED',
       this.guilds.cache.size,
-      this.users.cache.size
+      this.guilds.cache.map(r=>r.memberCount).reduce((accumulator, currentValue) => Number(accumulator) + currentValue)
   ]
 `);
 // Make a final string which will be sent in the channel

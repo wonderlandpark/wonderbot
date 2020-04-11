@@ -8,6 +8,10 @@ module.exports.execute = async (
   knex,
   props
 ) => {
+  if(message.data.args){
+    client.shard.broadcastEval(` if (this.guilds.cache.first().shardID === ${message.data.arg[0]}) { process.exit()}`)
+    .then(message.channel.send(`\`✅ ${message.data.arg[0]} 샤드에 종료 신호를 보냈습니다.\``))
+  }
   let shards = []
   for(i=0; i<=config.client.shard.totalShards-1; i++){
     shards.push(i)
@@ -27,8 +31,7 @@ module.exports.execute = async (
       }, 500 * i)
     
   })
-    
-    
+  
 }
 
 module.exports.props = {
