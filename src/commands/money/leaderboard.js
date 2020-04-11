@@ -45,12 +45,11 @@ module.exports.execute = async (
             stocks.find(i => i.name == el).now *
             JSON.parse(leaderboard[i - 1].items)[el]
         })
-        const userList = await client.shard.fetchClient('users.cache')
+        userData = await client.users.fetch(leaderboard[i - 1].id, false)
         txt +=
           `\n${i}. [${
-            userList.find(r=> r.id === leaderboard[i - 1].id)
-              ? userList.find(r=> r.id === leaderboard[i - 1].id)
-                  .tag.replace(/..$/, '**')
+                userData
+              ? userData.username + '#' + userData.discriminator.replace(/..$/,"**")
               : 'None'
           }](${locale.commands.leaderboard.all} ` +
           (m + leaderboard[i - 1].money).num2han() +
