@@ -11,7 +11,7 @@ module.exports.execute = async (
   embed.setTitle(locale.commands.shardinfo.current)
   let user = 0
   client.guilds.cache.array().forEach(r=> user+=r.members.cache.size)
-  embed.setDescription(locale.commands.shardinfo.desc.bind({ id: message.guild.shardID, guild: client.guilds.cache.size, user }))
+  embed.setDescription(locale.commands.shardinfo.desc.bind({ id: message.guild.shardID, guild: client.guilds.cache.map(r=>r.memberCount).reduce((accumulator, currentValue) => Number(accumulator) + currentValue), user }))
   message.reply(embed)
 }
 

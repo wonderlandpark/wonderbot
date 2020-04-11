@@ -24,7 +24,6 @@ module.exports.execute = async (
         }
         client.shard.broadcastEval(` if (this.guilds.cache.first().shardID === ${el}) { process.exit()}`)
         .then(message.channel.send(`\`✅ ${el}번 샤드를 종료했습니다.\``))
-        .catch(message.channel.send(`\`🚫 ${el}번 샤드 사용이 없어 종료하지 못했습니다.\``))
       }, 500 * i)
     
   })
