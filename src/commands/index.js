@@ -1,16 +1,17 @@
 const config = require('../config')
 const commands = {}
 const locale = require('../locale').ko
-commands.general = require('./general')
-commands.dev = require('./dev')
-commands.account = require('./account')
+commands.wonderbot = require('./wonderbot')
+commands.moderation = require('./moderation')
 commands.money = require('./money')
-commands.fun = require('./fun')
 commands.game = require('./game')
 commands.utills = require('./utills')
+commands.fun = require('./fun')
 commands.stats = require('./stats')
 commands.season = require('./season')
-commands.moderation = require('./moderation')
+commands.account = require('./account')
+commands.dev = require('./dev')
+
 
 module.exports.categorys = commands
 console.log('Ready for commands')

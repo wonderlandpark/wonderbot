@@ -9,10 +9,11 @@ module.exports.execute = async (
   props
 ) => {
   if(message.data.args){
-    client.shard.broadcastEval(` if (this.guilds.cache.first().shardID === ${message.data.arg[0]}) { process.exit()}`)
+    if(message.data.arg[0] == client.guilds.cache.first().shardID) message.channel.send(`\`❗ 해당 샤드 ${message.data.arg[0]}번 샤드를 종료합니다\``)
+    client.shard.broadcastEval(` if (this.guilds.cache.first().shardID == '${message.data.arg[0]}') { process.exit()}`)
     .then(message.channel.send(`\`✅ ${message.data.arg[0]} 샤드에 종료 신호를 보냈습니다.\``))
-  }
-  let shards = []
+  } else {
+    let shards = []
   for(i=0; i<=config.client.shard.totalShards-1; i++){
     shards.push(i)
   }
@@ -31,6 +32,8 @@ module.exports.execute = async (
       }, 500 * i)
     
   })
+  }
+  
   
 }
 

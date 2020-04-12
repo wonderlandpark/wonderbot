@@ -22,12 +22,14 @@ module.exports = {
       other: '명령어의 다른 이름들',
       docs: '문서',
       nodoc: '문서가 존재하지 않습니다.',
-      help: '원더봇 도움말',
+      help: '안녕하세요 원더봇입니다.',
       desc:
         '항상 원더봇을 사랑해주셔서 감사합니다.\n이 봇은 ❤️와 함께 개발된 [오픈소스 프로젝트](https://github.com/wonderlandpark/wonderbot)입니다.\n모든 문의 사항 및 제보는 [지원 서버](https://invite.gg/wonderbot)를 이용해주세요.',
-      support: '지원',
+        more: '자세한 도움말보기',
+        moreDesc: '\`{prefix}도움 [명령어]\`로 명령어의 사용법을 자세하게 알아볼 수 있습니다.',
+        support: '유용한 링크',
       links:
-        '[원더봇 홈페이지](https://wonderbot.xyz)\n[팀 원더 디스코드 (지원서버)](https://invite.gg/wonderbot)\n[초대하기](https://wonderbot.xyz/invite)\n 지원메일 : hi@wonderbot.xyz'
+        '[원더봇 홈페이지](https://wonderbot.xyz)\n[팀 원더 디스코드 (지원서버)](https://invite.gg/wonderbot)\n[초대하기](https://wonderbot.xyz/invite)\n[이용약관](https://callisto.team/tos)\n[개인정보취급방침](https://callisto.team/privacy)\n지원메일 : hi@wonderbot.xyz'
     },
     도움: {
       CMDDESC: '도움말 명령어를 표시합니다.'
@@ -431,7 +433,7 @@ module.exports = {
     },
     shardinfo: {
       current: '해당 길드 샤드 정보',
-      desc: '#{id}번 샤드 \n해당 샤드는 **{guild} 길드**와 **{user} 멤버**를 핸들중입니다.'
+      desc: '#{id}번 샤드(분리 프로세스) \n```prolog\n#{id} : Guilds {guild}, Users {user}, Ram {ram}, Ping {ping} \n마지막 정보 패치: {last}```\n\n다른 샤드 정보도 디스코드에 표시하기는 너무 길군요 [이곳](https://wonderbot.xyz/shards) 에서 확인할 수 있습니다.'
     }
   },
   error: {
@@ -489,7 +491,7 @@ module.exports = {
     privacy: 'https://callisto.team/privacy'
   },
   category: {
-    general: '일반',
+    wonderbot: '원더봇',
     dev: '개발자용',
     account: '계정',
     money: '돈',

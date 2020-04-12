@@ -1,10 +1,12 @@
 const commands = require('../index')
 module.exports.execute = async (client, message, locale, embed) => {
   if (!message.data.args) {
-    embed.addField(locale.commands.help.help, locale.commands.help.desc)
+    embed.setTitle(locale.commands.help.help)
+    embed.setDescription(locale.commands.help.desc)
     Object.keys(commands.categorys).forEach(cat => {
       embed.addField(cat.toUpperCase(), cmdFormat(commands.categorys[cat]))
     })
+    embed.addField(locale.commands.help.more, locale.commands.help.moreDesc.bind({prefix: message.data.prefix}))
     embed.addField(locale.commands.help.support, locale.commands.help.links)
     return message.channel.send(embed)
   } else {
