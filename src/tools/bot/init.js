@@ -30,11 +30,11 @@ module.exports = class WB {
           await tools.database('guilds').insert({ id: guild.id })
         }
       })
-      await knex('shards').update({ lastupdate: Math.round(new Date() / 1000), guilds: client.guilds.cache.size, users: client.guilds.cache.map(r=>r.memberCount).reduce((accumulator, currentValue) => Number(accumulator) + currentValue), memory: (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}).where({ id: client.guilds.cache.first().shardID })
+      await knex('shards').update({ lastupdate: Math.round(new Date() / 1000), ping: client.ws.ping, guilds: client.guilds.cache.size, users: client.guilds.cache.map(r=>r.memberCount).reduce((accumulator, currentValue) => Number(accumulator) + currentValue), memory: (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}).where({ id: client.guilds.cache.first().shardID })
 
       setInterval(async ()=> {
         console.log('UPDATED')
-        await knex('shards').update({ lastupdate: Math.round(new Date() / 1000), guilds: client.guilds.cache.size, users: client.guilds.cache.map(r=>r.memberCount).reduce((accumulator, currentValue) => Number(accumulator) + currentValue), memory: (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}).where({ id: client.guilds.cache.first().shardID })
+        await knex('shards').update({ lastupdate: Math.round(new Date() / 1000), ping: client.ws.ping, guilds: client.guilds.cache.size, users: client.guilds.cache.map(r=>r.memberCount).reduce((accumulator, currentValue) => Number(accumulator) + currentValue), memory: (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}).where({ id: client.guilds.cache.first().shardID })
       }, 60000)
     })
 
