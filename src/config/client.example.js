@@ -12,7 +12,8 @@ module.exports = {
   },
   github: 'https://api.github.com/repos/wonderlandpark/wonderbot/commits',
   app: {
-    messageCacheMaxSize: 50, presence: {activity: {name: 'GAME'}}
+    messageCacheMaxSize: 50,
+    presence: { activity: { name: 'GAME' } }
   },
   shard: {
     totalShards: 2,

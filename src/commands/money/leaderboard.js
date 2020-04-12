@@ -16,9 +16,9 @@ module.exports.execute = async (
     var leaderboard =
       message.data.arg[0] == '전체' || message.data.arg[0] == 'global'
         ? await knex.select('*').from('users')
-        : (await knex
-            .select('*')
-            .from('users')).filter(r=> message.guild.members.cache.get(r.id))
+        : (await knex.select('*').from('users')).filter(r =>
+            message.guild.members.cache.get(r.id)
+          )
     var txt = ''
     leaderboard.sort(function(a, b) {
       var bm = 0
@@ -45,8 +45,10 @@ module.exports.execute = async (
         userData = await client.users.fetch(leaderboard[i - 1].id, false)
         txt +=
           `\n${i}. [${
-                userData
-              ? userData.username + '#' + userData.discriminator.replace(/..$/,"**")
+            userData
+              ? userData.username +
+                '#' +
+                userData.discriminator.replace(/..$/, '**')
               : 'None'
           }](${locale.commands.leaderboard.all} ` +
           (m + leaderboard[i - 1].money).num2han() +

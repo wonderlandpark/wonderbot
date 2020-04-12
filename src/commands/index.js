@@ -12,7 +12,6 @@ commands.season = require('./season')
 commands.account = require('./account')
 commands.dev = require('./dev')
 
-
 module.exports.categorys = commands
 console.log('Ready for commands')
 Object.keys(commands).forEach(c => {

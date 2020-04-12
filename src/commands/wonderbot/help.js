@@ -6,7 +6,10 @@ module.exports.execute = async (client, message, locale, embed) => {
     Object.keys(commands.categorys).forEach(cat => {
       embed.addField(cat.toUpperCase(), cmdFormat(commands.categorys[cat]))
     })
-    embed.addField(locale.commands.help.more, locale.commands.help.moreDesc.bind({prefix: message.data.prefix}))
+    embed.addField(
+      locale.commands.help.more,
+      locale.commands.help.moreDesc.bind({ prefix: message.data.prefix })
+    )
     embed.addField(locale.commands.help.support, locale.commands.help.links)
     return message.channel.send(embed)
   } else {

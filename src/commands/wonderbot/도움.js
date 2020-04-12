@@ -10,7 +10,7 @@ module.exports.execute = async (
   knex,
   props
 ) => {
-  Base.execute( client, message, locale, embed)
+  Base.execute(client, message, locale, embed)
 }
 
 module.exports.props = {

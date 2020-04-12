@@ -25,9 +25,10 @@ module.exports = {
       help: '안녕하세요 원더봇입니다.',
       desc:
         '항상 원더봇을 사랑해주셔서 감사합니다.\n이 봇은 ❤️와 함께 개발된 [오픈소스 프로젝트](https://github.com/wonderlandpark/wonderbot)입니다.\n모든 문의 사항 및 제보는 [지원 서버](https://invite.gg/wonderbot)를 이용해주세요.',
-        more: '자세한 도움말보기',
-        moreDesc: '\`{prefix}도움 [명령어]\`로 명령어의 사용법을 자세하게 알아볼 수 있습니다.',
-        support: '유용한 링크',
+      more: '자세한 도움말보기',
+      moreDesc:
+        '`{prefix}도움 [명령어]`로 명령어의 사용법을 자세하게 알아볼 수 있습니다.',
+      support: '유용한 링크',
       links:
         '[원더봇 홈페이지](https://wonderbot.xyz)\n[팀 원더 디스코드 (지원서버)](https://invite.gg/wonderbot)\n[초대하기](https://wonderbot.xyz/invite)\n[이용약관](https://callisto.team/tos)\n[개인정보취급방침](https://callisto.team/privacy)\n지원메일 : hi@wonderbot.xyz'
     },
@@ -433,7 +434,8 @@ module.exports = {
     },
     shardinfo: {
       current: '해당 길드 샤드 정보',
-      desc: '#{id}번 샤드(분리 프로세스) \n```prolog\n#{id} : Guilds {guild}, Users {user}, Ram {ram}, Ping {ping} \n마지막 정보 패치: {last}```\n\n다른 샤드 정보도 디스코드에 표시하기는 너무 길군요 [이곳](https://wonderbot.xyz/shards) 에서 확인할 수 있습니다.'
+      desc:
+        '#{id}번 샤드(분리 프로세스) \n```prolog\n#{id} : Guilds {guild}, Users {user}, Ram {ram}MiB, Ping {ping}ms \n마지막 정보 패치: {last}```\n\n다른 샤드 정보도 디스코드에 표시하기는 너무 길군요 [이곳](https://wonderbot.xyz/shards) 에서 확인할 수 있습니다.'
     }
   },
   error: {

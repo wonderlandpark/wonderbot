@@ -59,7 +59,7 @@ module.exports = async (client, message, config) => {
   }] ${message.author.tag} : ${message.content}`
   fs.appendFile('./logs/cmd.log', log + '\n', function(err) {
     if (err) throw err
-    console.log('\x1b[0m'+log)
+    console.log('\x1b[0m' + log)
   })
   if (!config.client.owners.includes(message.author.id) && !data.onlineMode)
     return message.reply(locale.error.offline)
@@ -131,10 +131,13 @@ module.exports = async (client, message, config) => {
     )
   // eslint-disable-next-line require-atomic-updates
   data.cooldown[message.author.id] = new Date(Number(new Date()) + 3000)
-      if(!client.users.cache.get(message.author.id) || !message.guild.members.cache.get(message.author.id)) {
-        client.users.fetch(message.author.id)
-        message.guild.members.fetch(message.author.id)
-      }
+  if (
+    !client.users.cache.get(message.author.id) ||
+    !message.guild.members.cache.get(message.author.id)
+  ) {
+    client.users.fetch(message.author.id)
+    message.guild.members.fetch(message.author.id)
+  }
   commands[message.data.cmd]
     .execute(
       client,
