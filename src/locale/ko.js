@@ -436,6 +436,42 @@ module.exports = {
       current: '해당 길드 샤드 정보',
       desc:
         '#{id}번 샤드(분리 프로세스) \n```prolog\n#{id} : Guilds {guild}, Users {user}, Ram {ram}MiB, Ping {ping}ms \n마지막 정보 패치: {last}```\n\n다른 샤드 정보도 디스코드에 표시하기는 너무 길군요 [이곳](https://wonderbot.xyz/shards) 에서 확인할 수 있습니다.'
+    },
+    serverinfo: {
+      serverinfo: '🏘️ {guild} 서버 정보',
+      memberCount: '멤버',
+      memberDesc: '{user}명',
+      verification: '보안 수준',
+      verificationLevel: {'NONE': '**없음**\n제한 없음','LOW': '**낮음**\n자신의 Discord 계정이 이메일 인증을 받은 적이 있어야 합니다.', 'MEDIUM': '**중간**\n추가로 Discord에 가입한지 5분이 지나야 합니다.','HIGH': '**(╯°□°）╯︵ ┻━┻**\n추가로 이 서버의 멤버가 된 지 10분이 지나야 합니다.','VERY_HIGH': '**┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻**\n전화 인증이 완료된 Discord 계정이어야 합니다.'},
+      region: '지역',
+      channel: '채널',
+      channelDesc: '텍스트채널: {text}개 / 카테고리: {category}개 / 음성채널: {voice}개',
+      owner: '소유자',
+      boost: '부스팅',
+      boostDesc: '{count}개 부스트 / {level} 레벨',
+      regionList : {
+        brazil:':flag_br: 브라질', 
+        'us-west':':flag_us: 미국 서부', 
+        japan:':flag_jp: 일본', 
+        singapore : ':flag_sg: 싱가포르', 
+        'eu-central':':flag_eu: 유럽 중부', 
+        hongkong:':flag_hk:  홍콩', 
+        'us-south':':flag_us: 미국 중부', 
+        southafrica:':flag_za: 남아프리카 공화국', 
+        'us-central':':flag_us: 미국 중부', 
+        'london':':flag_gb: 런던', 
+        'us-east':':flag_us: 미국동부', 
+        sydney:':flag_au: 시드니', 
+        'eu-west':':flag_eu: 유럽 서부', 
+        amsterdam:':flag_nl: 암스테레담', 
+        india:':flag_in: 인도', 
+        frankfurt:':flag_de: 프랑크푸르트', 
+        russia: ':flag_ru: 러시아',
+        'south-korea': ':flag_kr: 한국',
+        "vip-us-east": ":flag_us: VIP 미국 동부"
+    },
+    filterName: '유해 미디어 콘텐츠 필터',
+    filter: {'DISABLED': '**미디어 콘텐츠를 스캔하지 않아요.**\n메시지 스캔 따윈 필요 없어! 나는 터프가이니깐.', 'MEMBERS_WITHOUT_ROLES': '**역할 없는 멤버의 미디어 콘텐츠를 스캔해요.**\n신뢰하는 멤버에게 역할을 부여하는 서버에 권장하는 옵션이에요', 'ALL_MEMBERS': '**모든 멤버의 미디어 콘텐츠를 스캔해요.**\n아주 깨끗한 채팅 환경을 원할시 권장하는 옵션이에요.'}
     }
   },
   error: {
