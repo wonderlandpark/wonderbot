@@ -78,7 +78,7 @@ module.exports.execute = async (
 module.exports.props = {
   name: 'ban',
   perms: 'ban',
-  alias: ['밴', '치딘'],
+  alias: ['밴', '치단', '벤'],
   args: [
     {
       name: 'user/id',

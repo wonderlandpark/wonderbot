@@ -23,7 +23,7 @@ module.exports.props = {
     {
       name: 'seconds',
       type: 'number',
-      required: false
+      required: true
     }
   ]
 }

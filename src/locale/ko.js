@@ -474,6 +474,7 @@ module.exports = {
     filter: {'DISABLED': '**미디어 콘텐츠를 스캔하지 않아요.**\n메시지 스캔 따윈 필요 없어! 나는 터프가이니깐.', 'MEMBERS_WITHOUT_ROLES': '**역할 없는 멤버의 미디어 콘텐츠를 스캔해요.**\n신뢰하는 멤버에게 역할을 부여하는 서버에 권장하는 옵션이에요', 'ALL_MEMBERS': '**모든 멤버의 미디어 콘텐츠를 스캔해요.**\n아주 깨끗한 채팅 환경을 원할시 권장하는 옵션이에요.'},
     roles: '역할들',
     emojis: '이모지들',
+    none: '없음',
     channels: '채널들',
     more: '외 {count}개 더...'
   },
@@ -481,6 +482,12 @@ module.exports = {
     error: '메시지 제한 초수는 **0(꺼짐)~21600(6시간)**을 입력하셔야 해요!',
     set: '해당 채널의 슬로우모드를 `{sec}초`로 설정했습니다.',
     catch: '슬로우모드 설정을 실패했습니다. 권한을 확인해보세요.'
+  },
+  currency: {
+    usage: '\n**환율**\n> 환율 정보를 가져올 수 있습니다.\n예시\n`.환율 KRW 1000`\n`.환율 달러 1`\n`.환율 CNY 5`',
+    notsupport: '지원하지 않는 화폐 단위입니다.',
+    notnum: '올바른 숫자를 입력해주세요.',
+    desc: '> 해당 정보는 정확하지 않을 수 있습니다. 참고용으로만 사용해주세요.'
   }
   },
   error: {
@@ -617,5 +624,9 @@ const usageNames = {
   season: '시즌',
   periodic: '원소기호',
   bet: '배팅금',
-  seconds: '시간(초)'
+  seconds: '시간(초)',
+  currency: '변환할 화폐단위',
+  iso4217: 'ISO 4217 코드',
+  fromMoney: '변환할 금액',
+  moneyresolvable: '숫자+화폐단위',
 }

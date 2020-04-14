@@ -23,8 +23,7 @@ module.exports.execute = async (client, message, locale, embed) => {
     )
     embed.addField(
       locale.commands.help.description,
-      '```fix\n' + cmd.props.desc + '```'
-    )
+      '```fix\n' + cmd.props.desc + '```')
     embed.addField(
       locale.commands.help.usage,
       locale.error.usage(cmd.props.name)
