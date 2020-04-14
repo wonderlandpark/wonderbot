@@ -477,6 +477,11 @@ module.exports = {
     channels: '채널들',
     more: '외 {count}개 더...'
   },
+  slowmode: {
+    error: '메시지 제한 초수는 **0(꺼짐)~21600(6시간)**을 입력하셔야 해요!',
+    set: '해당 채널의 슬로우모드를 `{sec}초`로 설정했습니다.',
+    catch: '슬로우모드 설정을 실패했습니다. 권한을 확인해보세요.'
+  }
   },
   error: {
     nodesc: '설명이 없습니다.',
@@ -611,5 +616,6 @@ const usageNames = {
   address: '주소',
   season: '시즌',
   periodic: '원소기호',
-  bet: '배팅금'
+  bet: '배팅금',
+  seconds: '시간(초)'
 }
