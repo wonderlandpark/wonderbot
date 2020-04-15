@@ -1,3 +1,4 @@
+const config = require('../../config')
 module.exports.execute = async (
     client,
     message,
