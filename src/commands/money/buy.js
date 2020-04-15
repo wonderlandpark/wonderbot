@@ -71,7 +71,7 @@ module.exports.execute = async (
     })
   )
   var msg = message.channel.send(embed)
-  data.action.push(message.author.id)
+  await knex('users').update({ action: 1 }).where({ id: message.author.id })
   const filter = (reaction, u) =>
     reaction.emoji.name == '💳' && u.id == message.author.id
   msg.then(async m => {
@@ -79,7 +79,7 @@ module.exports.execute = async (
     m.awaitReactions(filter, { max: 1, time: 10000, error: ['time'] }).then(
       async collected => {
         if (collected.size == 0) {
-          data.action.splice(data.action.indexOf(message.data.id), 1)
+          await knex('users').update({ action: 0}).where({ id: message.author.id })
           return message.reply(locale.commands.buy.not)
         }
         await knex('users')
@@ -95,8 +95,9 @@ module.exports.execute = async (
             money: dived
           })
         )
+        await knex('users').update({ action: 0 }).where({ id: message.author.id })
         message.channel.send(embed)
-        data.action.splice(data.action.indexOf(message.data.id), 1)
+        
       }
     )
   })

@@ -27,6 +27,8 @@ module.exports = class WB {
             : 'UNUSED'
         } Shard Ready`
       )
+
+      await knex('users').update({ action: 0 })
       if (
         (
           await knex('shards').where({

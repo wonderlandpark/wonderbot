@@ -6,7 +6,6 @@ const data = {
   cooldown: {},
   action: [],
   slot: {},
-  onlineMode: true,
   trick: {},
   news: { time: 0, data: [] }
 }
@@ -15,6 +14,7 @@ const fs = require('fs')
 const uuid = require('uuid/v1')
 const Discord = require('discord.js')
 module.exports = async (client, message, config) => {
+  client.onlineMode = true
   client.shard.fetchClient = async props => {
     let arr = []
     await client.shard.fetchClientValues(props).then(r => {
@@ -28,31 +28,34 @@ module.exports = async (client, message, config) => {
     config.client.webhook.error.id,
     config.client.webhook.error.token
   )
+
+  const prefix = JSON.parse((await knex('guilds').where({ id: message.guild.id }))[0].config).prefix || config.client.prefix
   message.data = {
     raw: message.content,
-    arg: message.content.split(' ').slice(1),
-    args: message.content.slice(message.content.split(' ')[0].length + 1),
+    arg: message.content.replace(prefix, '').split(' ').slice(1),
+    args: message.content.replace(prefix, '').split(' ').slice(1).join(' '),
     arg2: message.content
       .split(' ')
       .splice(2)
       .join(' '),
-    prefix: config.client.prefix,
+    prefix: prefix,
     cmd: message.content
-      .split(' ')[0]
-      .replace(config.client.prefix, '')
-      .toLowerCase(),
+    .replace(prefix, '')
+    .split(' ')[0]
+    .toLowerCase(),
     locale: 'ko'
   }
   const locale = require('../../locale')[message.data.locale]
-
+  if(message.content.match( new RegExp(`<@[!|]${client.user.id}>`) )) message.channel.send(locale.global.me.bind({ prefix }))
   if (
     message.author.bot ||
-    !message.content.startsWith(config.client.prefix) ||
+    !message.content.startsWith(prefix) ||
     !message.data.cmd ||
     !message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS') ||
     !message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')
   )
     return
+    
   if (!commands[message.data.cmd]) return
   var log = `${new Date().textFormat('YYYY/MM/DD hh:mm:ss')} [#${
     message.channel.name
@@ -61,7 +64,7 @@ module.exports = async (client, message, config) => {
     if (err) throw err
     console.log('\x1b[0m' + log)
   })
-  if (!config.client.owners.includes(message.author.id) && !data.onlineMode)
+  if (!config.client.owners.includes(message.author.id) && !client.onlineMode)
     return message.reply(locale.error.offline)
   const user = await knex
     .select('*')
@@ -91,7 +94,7 @@ module.exports = async (client, message, config) => {
         reason: blacked[0].why
       })
     )
-  if (data.action.includes(message.author.id))
+  if (user[0].action)
     return message.reply(locale.error.already)
   if (
     data.cooldown[message.author.id] &&

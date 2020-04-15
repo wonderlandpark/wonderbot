@@ -8,7 +8,8 @@ module.exports = {
   global: {
     won: '원',
     wonderbot: '원더봇',
-    github: 'https://github.com/wonderbot/wonderbot'
+    github: 'https://github.com/wonderbot/wonderbot',
+    me: '안녕하세요! **원더봇**이에요!\n저를 사용해주셔서 항상 감사해요!\n현재 서버의 접두사는 `{prefix}` 입니다.\n`{prefix}도움`으로 도움말을 확인할 수 있습니다.'
   },
 
   // 여기부터 수정
@@ -488,6 +489,13 @@ module.exports = {
     notsupport: '지원하지 않는 화폐 단위입니다.',
     notnum: '올바른 숫자를 입력해주세요.',
     desc: '> 해당 정보는 정확하지 않을 수 있습니다. 참고용으로만 사용해주세요.'
+  },
+  prefix: {
+    current: '해당 서버의 접두사는 `{prefix}`입니다.',
+    changed: '접두사를 `{prefix}`로 변경했습니다.',
+    filter: '접두사는 16자 이하로 설정해주세요!!',
+    space: '새로운 접두사는 띄어쓰기로 시작할 수 없습니다.\nTIP: `[띄어쓰기]`로 띄어쓰기를 대신할 수 있습니다.',
+    mention: '접두사에 맨션을 포함할 수 없습니다!!'
   }
   },
   error: {
@@ -629,4 +637,5 @@ const usageNames = {
   iso4217: 'ISO 4217 코드',
   fromMoney: '변환할 금액',
   moneyresolvable: '숫자+화폐단위',
+  prefix: '변경할 접두사'
 }

@@ -10,22 +10,22 @@ module.exports.execute = async (
 ) => {
   if (!message.data.args || isNaN(message.data.arg[0]))
     return message.reply(locale.error.usage(props.name))
-  const m = (
-    await knex
-      .select('*')
-      .from('users')
-      .where({ id: message.author.id })
-  )[0].money
-
+    const user = (
+      await knex
+        .select('*')
+        .from('users')
+        .where({ id: message.author.id })
+    )[0]
+    const m = user.money
+    const cooldown = JSON.parse(user.cooldown) || {trick: 0}  
   if (
-    data.trick[message.author.id] &&
-    data.trick[message.author.id] + 120000 > Number(new Date())
+    cooldown.trick * 1000 + 120000 > Number(new Date())
   )
     return message.reply(
       locale.commands.trick.cooldown.bind({
-        time: Number(
-          new Date(
-            Number(new Date(data.trick[message.author.id])) +
+        time: (
+          (
+            cooldown.trick * 1000 +
               120000 -
               Number(new Date())
           ) / 1000
@@ -42,32 +42,34 @@ module.exports.execute = async (
   setTimeout(async function() {
     msg.edit(msg.content + locale.commands.trick.mix)
   }, 1000)
-  data.action.push(message.author.id)
+  await knex('users').update({ action: 1}).where({ id: message.author.id })
   const filter = m => m.author.id === message.author.id
   await message.channel
     .awaitMessages(filter, { max: 1, time: 10000, errors: ['time'] })
     .then(async collected => {
       if (![1, 2, 3].includes(Number(collected.first().content))) {
-        data.action.splice(data.action.indexOf(message.data.id), 1)
+        await knex('users').update({ action: 0}).where({ id: message.author.id })
+
         return message.reply(locale.commands.trick.wrongres)
       }
-      data.trick[message.author.id] = Number(new Date())
+      cooldown.trick = Math.round(Number(new Date())/1000)
+      await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
       if (random == collected.first().content) {
         await knex('users')
           .update({ money: m + Number(message.data.arg[0]) * 2 })
           .where({ id: message.author.id })
         message.reply(locale.commands.trick.right)
-        data.action.splice(data.action.indexOf(message.data.id), 1)
+            await knex('users').update({ action: 0}).where({ id: message.author.id })
       } else {
         await knex('users')
           .update({ money: m - Number(message.data.arg[0]) })
           .where({ id: message.author.id })
         message.reply(locale.commands.trick.wrong)
-        data.action.splice(data.action.indexOf(message.data.id), 1)
+             await knex('users').update({ action: 0}).where({ id: message.author.id })
       }
     })
-    .catch(() => {
-      data.action.splice(data.action.indexOf(message.data.id), 1)
+    .catch(async (e) => {
+          await knex('users').update({ action: 0}).where({ id: message.author.id })
       message.reply(locale.commands.trick.timeout)
     })
 }

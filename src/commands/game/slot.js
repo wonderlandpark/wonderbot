@@ -16,21 +16,22 @@ module.exports.execute = async (
       locale.error.botperm.bind({ perms: locale.perm['ADD_REACTIONS'] })
     )
   }
-  const m = (
+  const user = (
     await knex
       .select('*')
       .from('users')
       .where({ id: message.author.id })
-  )[0].money
+  )[0]
+  const m = user.money
+  const cooldown = JSON.parse(user.cooldown) || {slot: 0}
   if (
-    data.slot[message.author.id] &&
-    data.slot[message.author.id] + 120000 > Number(new Date())
+    cooldown.slot * 1000 + 120000 > Number(new Date())
   )
     return message.reply(
       locale.commands.slot.cooldown.bind({
-        time: Number(
-          new Date(
-            Number(new Date(data.slot[message.author.id])) +
+        time:  (
+          (
+            cooldown.slot * 1000 +
               120000 -
               Number(new Date())
           ) / 1000
@@ -47,16 +48,18 @@ module.exports.execute = async (
   )
   const filter = (reaction, user) =>
     reaction.emoji.name == '🎰' && user.id == message.author.id
-  data.action.push(message.author.id)
+    await knex('users').update({ action: 1}).where({ id: message.author.id })
   msg.then(async ms => {
     ms.react('🎰')
     ms.awaitReactions(filter, { max: 1, time: 10000, error: ['time'] }).then(
       async collected => {
         if (collected.size == 0) {
-          data.action.splice(data.action.indexOf(message.data.id), 1)
+          await knex('users').update({ action: 0}).where({ id: message.author.id })
           return message.reply(locale.commands.allin.not)
         }
-        data.slot[message.author.id] = Number(new Date())
+        cooldown.slot = Math.round(Number(new Date())/1000)
+        console.log(cooldown)
+      await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
 
         await message.reply(
           locale.commands.slot.payed.bind({ money: message.data.arg[0] })
@@ -69,7 +72,7 @@ module.exports.execute = async (
             s.multi * Number(message.data.arg[0]) -
             Number(message.data.arg[0])
           ).toFixed(0)
-          await setTimeout(function() {
+          await setTimeout(async function() {
             embed.addField(
               '손익',
               locale.commands.slot.res.bind({
@@ -82,10 +85,9 @@ module.exports.execute = async (
               })
             )
             embed.addField('잔고', m + Number(reward) + tools.lib.emojis.coin)
-
+            await knex('users').update({ action: 0}).where({ id: message.author.id })
             message
               .reply(embed)
-              .then(data.action.splice(data.action.indexOf(message.data.id), 1))
 
             gg.edit(
               gg.content
@@ -102,6 +104,11 @@ module.exports.execute = async (
         })
       }
     )
+    .catch(async(e)=>{
+      console.log(e)
+      await knex('users').update({ action: 0}).where({ id: message.author.id })
+      return message.reply(locale.commands.allin.not)
+    })
   })
 
   function slot() {
