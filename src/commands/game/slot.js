@@ -85,7 +85,7 @@ module.exports.execute = async (
                     : reward + ' ' + tools.lib.emojis.coin + ' 이득'
               })
             )
-            embed.addField('잔고', (m + Number(reward).num2han()) + tools.lib.emojis.coin)
+            embed.addField('잔고', (m + Number(reward)).num2han() + tools.lib.emojis.coin)
             await knex('users').update({ action: 0}).where({ id: message.author.id })
             message
               .reply(embed)
