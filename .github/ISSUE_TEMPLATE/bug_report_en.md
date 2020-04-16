@@ -1,11 +1,11 @@
 ---
-
 name: Bug report (English)
 about: Create a report to help us improve
 title: "[BUG] "
 labels: 버그
 assignees: ""
----**Describe the bug**
+---
+**Describe the bug**
 A clear and concise description of what the bug is.
 
 **To Reproduce**
