@@ -41,13 +41,13 @@ module.exports.execute = async (
   var dived = 0
   var total = 0
   if (['전부', '올인', '모두', 'all'].includes(message.data.arg[1])) {
-    num = parseInt(user.money / Number(stock.now), 10)
+    num = parseInt(Number(user.money) / Number(stock.now), 10)
     total = num * stock.now
-    dived = user.money - total
+    dived = Number(user.money) - total
   } else if (['반인', '반', 'half'].includes(message.data.arg[1])) {
-    num = parseInt(user.money / 2 / Number(stock.now), 10)
+    num = parseInt(Number(user.money) / 2 / Number(stock.now), 10)
     total = num * stock.now
-    dived = user.money - total
+    dived = Number(user.money) - total
   } else if (
     isNaN(Number(message.data.arg[1])) ||
     !Number.isInteger(Number(message.data.arg[1])) ||
@@ -57,7 +57,7 @@ module.exports.execute = async (
   } else {
     num = Number(message.data.arg[1])
     total = num * stock.now
-    dived = user.money - total
+    dived = Number(user.money) - total
   }
   if (dived < 0) return message.reply(locale.commands.buy.nomoney)
   if (!items[res[0].id]) items[res[0].id] = num
@@ -70,7 +70,7 @@ module.exports.execute = async (
       total: total.num2han()
     })
   )
-  if(total/10000000000000000000 > user.money) return message.reply(locale.error.more)
+  if(total/10000000000000000000 > Number(user.money)) return message.reply(locale.error.more)
   var msg = message.channel.send(embed)
   await knex('users').update({ action: 1 }).where({ id: message.author.id })
   const filter = (reaction, u) =>

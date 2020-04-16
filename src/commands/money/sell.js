@@ -43,11 +43,11 @@ module.exports.execute = async (
   if (['전부', '올인', '모두', 'all'].includes(message.data.arg[1])) {
     num = all
     total = num * stock.now
-    mon = user.money + total
+    mon = Number(user.money) + total
   } else if (['반인', '반', '절반', 'half'].includes(message.data.arg[1])) {
     num = Math.floor(all / 2)
     total = num * stock.now
-    mon = user.money + total
+    mon = Number(user.money) + total
   } else if (
     isNaN(Number(message.data.arg[1])) ||
     !Number.isInteger(Number(message.data.arg[1])) ||
@@ -57,7 +57,7 @@ module.exports.execute = async (
   } else {
     num = Number(message.data.arg[1])
     total = num * stock.now
-    mon = user.money + total
+    mon = Number(user.money) + total
   }
   if (num > all) return message.reply(locale.commands.sell.noitem)
   if (!items[res[0].id]) items[res[0].id] = num
@@ -71,7 +71,7 @@ module.exports.execute = async (
       total: total.num2han()
     })
   )
-  if(user.money != 0 && total/10000000000000000000 > user.money) return message.reply(locale.error.more)
+  if(Number(user.money) != 0 && total/10000000000000000000 > Number(user.money)) return message.reply(locale.error.more)
 
   var msg = message.channel.send(embed)
   await knex('users').update({ action: 1}).where({ id: message.author.id })
