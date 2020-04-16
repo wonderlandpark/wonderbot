@@ -31,7 +31,7 @@ module.exports.execute = async (
       })
       if (Number.isNaN(am)) am = 0
       if (Number.isNaN(bm)) bm = 0
-      return bm + b.money - (am + a.money)
+      return bm + Number(b.money) - (am + Number(a.money))
     })
 
     for (var i = 1; i < 11; i++) {
@@ -51,7 +51,7 @@ module.exports.execute = async (
                 userData.discriminator.replace(/..$/, '**')
               : 'None'
           }](${locale.commands.leaderboard.all} ` +
-          (m + leaderboard[i - 1].money).num2han() +
+          (m + Number(leaderboard[i - 1].money)).num2han() +
           locale.commands.money.won +
           ')'
       }

@@ -23,7 +23,7 @@ module.exports.execute = async (
     })
     if (Number.isNaN(am)) am = 0
     if (Number.isNaN(bm)) bm = 0
-    return bm + b.money - (am + a.money)
+    return bm + Number(b.money) - (am + Number(a.money))
   })
   var user = users.find(r => r.id == us.id)
   var server = (await knex.select('*').from('users')).filter(r =>
@@ -41,7 +41,7 @@ module.exports.execute = async (
     if (Number.isNaN(am)) am = 0
     if (Number.isNaN(bm)) bm = 0
 
-    return bm + b.money - (am + a.money)
+    return bm + Number(b.money) - (am + Number(a.money))
   })
   u = users.find(el => el.id == us.id)
 

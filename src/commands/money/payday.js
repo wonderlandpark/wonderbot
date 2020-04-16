@@ -6,6 +6,7 @@ module.exports.execute = async (
   tools,
   knex
 ) => {
+  if(m/10000000000000 > message.data.arg[0]) return message.reply(locale.error.more)
   var u = (
     await knex
       .select('*')

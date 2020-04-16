@@ -6,43 +6,9 @@ module.exports.execute = async (
   tools,
   knex
 ) => {
-  var users = await knex('users').select('*')
   const stocks = await knex('stocks').select('*')
-  users.sort(function(a, b) {
-    var bm = 0
-    var am = 0
-    Object.keys(JSON.parse(b.items)).forEach(el => {
-      bm += stocks.find(i => i.name == el).now * JSON.parse(b.items)[el]
-    })
-    Object.keys(JSON.parse(a.items)).forEach(el => {
-      am += stocks.find(i => i.name == el).now * JSON.parse(a.items)[el]
-    })
-    if (Number.isNaN(am)) am = 0
-    if (Number.isNaN(bm)) bm = 0
-    return bm + b.money - (am + a.money)
-  })
-  var user = users.find(r => r.id == message.author.id)
-  var server = await knex
-    .select('*')
-    .from('users')
-    .whereIn(
-      'id',
-      message.guild.members.cache.map(r => r.id)
-    )
-  server = server.sort(function(a, b) {
-    var bm = 0
-    var am = 0
-    Object.keys(JSON.parse(b.items)).forEach(el => {
-      bm += stocks.find(i => i.name == el).now * JSON.parse(b.items)[el]
-    })
-    Object.keys(JSON.parse(a.items)).forEach(el => {
-      am += stocks.find(i => i.name == el).now * JSON.parse(a.items)[el]
-    })
-    if (Number.isNaN(am)) am = 0
-    if (Number.isNaN(bm)) bm = 0
 
-    return bm + b.money - (am + a.money)
-  })
+  var user = (await knex('users').where({ id: message.author.id }))[0]
   embed.addField(
     locale.commands.wallet.wallet.bind({ user: message.author.tag }),
     locale.commands.wallet.what
@@ -64,7 +30,7 @@ module.exports.execute = async (
 
   embed.addField(
     locale.commands.wallet.will,
-    locale.commands.wallet.money.bind({ money: (money + user.money).num2han() })
+    locale.commands.wallet.money.bind({ money: (money + Number(user.money)).num2han() })
   )
 
   embed.addField(
