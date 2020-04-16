@@ -10,95 +10,35 @@ String.prototype.emojiID = function() {
 
 module.exports.weighted = require('./weighted')
 
-Number.prototype.num2han = function() {
-  if (this <= 0) return 0
-  var inputNumber = this < 0 ? false : this
-  var unitWords = [
-    '',
-    '만',
-    '억',
-    '조',
-    '경',
-    '해',
-    '자',
-    '양',
-    '구',
-    '간',
-    '정',
-    '재',
-    '극',
-    '향하사',
-    '아승기',
-    '나유타',
-    '불가사의',
-    '무량대수'
-  ]
-  var splitUnit = 10000
-  var splitCount = unitWords.length
-  var resultArray = []
-  var resultString = ''
-
-  for (var i = 0; i < splitCount; i++) {
-    var unitResult =
-      (inputNumber % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i)
-    unitResult = Math.floor(unitResult)
-    if (unitResult > 0) {
-      resultArray[i] = unitResult
-    }
+Number.prototype.num2han =  function() {
+  var numberic = ["","일","이","삼","사","오","육","칠","팔","구"];
+  var numunit = ["","","십","백","천","만","십만","백만","천만","억","십억","백억","천억", "조",  "십조", "백조", "천조", "경", "십경", "백경", "천경","해", "십해", "백해", "천해", "자", "십자"];
+  var str = "", tmp = "";
+  
+  var splited = [];
+  for(var i = 0; i < String(this).length; i ++) {
+      splited.push(String(this).substring(i, i+1));
   }
 
-  for (var a = 0; a < resultArray.length; a++) {
-    if (!resultArray[a]) continue
-    resultString = ' ' + String(resultArray[a]) + unitWords[a] + resultString
+  for(var i = 0, x = String(this).length; x > 0; -- x, ++ i) {
+      tmp = numberic[splited[i]];
+      if(tmp) {
+          if(x > 4 && numberic[splited[i + 1]]) {
+              tmp += numunit[x].substring(0, 1);
+          } else {
+              tmp += numunit[x];
+          }
+      } else {
+          tmp += "";
+      }
+      str += ' ' + tmp;
   }
+  
+  return str;
+};
 
-  return resultString.replace(' ', '')
-}
+String.prototype.num2han = function(){ return Number(this).num2han() }
 
-String.prototype.num2han = function() {
-  if (this <= 0) return 0
-  var inputNumber = this < 0 ? false : this
-  var unitWords = [
-    '',
-    '만',
-    '억',
-    '조',
-    '경',
-    '해',
-    '자',
-    '양',
-    '구',
-    '간',
-    '정',
-    '재',
-    '극',
-    '향하사',
-    '아승기',
-    '나유타',
-    '불가사의',
-    '무량대수'
-  ]
-  var splitUnit = 10000
-  var splitCount = unitWords.length
-  var resultArray = []
-  var resultString = ''
-
-  for (var i = 0; i < splitCount; i++) {
-    var unitResult =
-      (inputNumber % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i)
-    unitResult = Math.floor(unitResult)
-    if (unitResult > 0) {
-      resultArray[i] = unitResult
-    }
-  }
-
-  for (var a = 0; a < resultArray.length; a++) {
-    if (!resultArray[a]) continue
-    resultString = ' ' + String(resultArray[a]) + unitWords[a] + resultString
-  }
-
-  return resultString.replace(' ', '')
-}
 
 Array.prototype.search = function(text) {
   var matches = stringSimilarity.findBestMatch(text, this)
