@@ -16,6 +16,7 @@ module.exports = class WB {
     )
 
     client.once('ready', async () => {
+      client.onlineMode = true
       if (!client.shard) {
         logger.WBerror('Only Shard Alowed')
         process.exit(0)

@@ -14,7 +14,7 @@ const fs = require('fs')
 const uuid = require('uuid/v1')
 const Discord = require('discord.js')
 module.exports = async (client, message, config) => {
-  client.onlineMode = true
+
   client.shard.fetchClient = async props => {
     let arr = []
     await client.shard.fetchClientValues(props).then(r => {
