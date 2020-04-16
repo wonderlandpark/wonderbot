@@ -66,10 +66,11 @@ module.exports.execute = async (
     locale.commands.buy.bill,
     locale.commands.buy.ask.bind({
       item: res[0].name,
-      count: num,
-      total: total
+      count: num.num2han(),
+      total: total.num2han()
     })
   )
+  if(total/10000000000000000000 > user.money) return message.reply(locale.error.more)
   var msg = message.channel.send(embed)
   await knex('users').update({ action: 1 }).where({ id: message.author.id })
   const filter = (reaction, u) =>
@@ -90,9 +91,9 @@ module.exports.execute = async (
           locale.commands.buy.finish,
           locale.commands.buy.result.bind({
             item: res[0].name,
-            count: num,
-            total: total,
-            money: dived
+            count: num.num2han(),
+            total: total.num2han(),
+            money: dived.num2han()
           })
         )
         await knex('users').update({ action: 0 }).where({ id: message.author.id })

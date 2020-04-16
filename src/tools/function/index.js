@@ -10,31 +10,15 @@ String.prototype.emojiID = function() {
 
 module.exports.weighted = require('./weighted')
 
-Number.prototype.num2han =  function() {
-  var numberic = ["","일","이","삼","사","오","육","칠","팔","구"];
-  var numunit = ["","","십","백","천","만","십만","백만","천만","억","십억","백억","천억", "조",  "십조", "백조", "천조", "경", "십경", "백경", "천경","해", "십해", "백해", "천해", "자", "십자"];
-  var str = "", tmp = "";
-  
-  var splited = [];
-  for(var i = 0; i < String(this).length; i ++) {
-      splited.push(String(this).substring(i, i+1));
-  }
+Number.prototype.num2han =  function(){
+  if(this==0) return 0;
 
-  for(var i = 0, x = String(this).length; x > 0; -- x, ++ i) {
-      tmp = numberic[splited[i]];
-      if(tmp) {
-          if(x > 4 && numberic[splited[i + 1]]) {
-              tmp += numunit[x].substring(0, 1);
-          } else {
-              tmp += numunit[x];
-          }
-      } else {
-          tmp += "";
-      }
-      str += ' ' + tmp;
-  }
-  
-  return str;
+  var reg = /(^[+-]?\d+)(\d{3})/;
+  var n = (this.toString());
+
+  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+  return n;
 };
 
 String.prototype.num2han = function(){ return Number(this).num2han() }
