@@ -40,6 +40,7 @@ module.exports.execute = async (
     )
   if (Number(message.data.arg[0]) < 100)
     return message.reply(locale.commands.slot.morethan)
+  if(m/10000000000000000000 > message.data.arg[0]) return message.reply(locale.error.more)
   if (m < Number(message.data.arg[0]))
     return message.reply(locale.commands.slot.nomoney)
   const s = slot()
@@ -84,7 +85,7 @@ module.exports.execute = async (
                     : reward + ' ' + tools.lib.emojis.coin + ' 이득'
               })
             )
-            embed.addField('잔고', m + Number(reward) + tools.lib.emojis.coin)
+            embed.addField('잔고', (m + Number(reward)) + tools.lib.emojis.coin)
             await knex('users').update({ action: 0}).where({ id: message.author.id })
             message
               .reply(embed)
@@ -98,7 +99,7 @@ module.exports.execute = async (
           }, 6000)
 
           await knex
-            .update({ money: (m + Number(reward)).toFixed(0) })
+            .update({ money: (m + Number(reward)) })
             .from('users')
             .where({ id: message.author.id })
         })

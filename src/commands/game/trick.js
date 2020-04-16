@@ -17,6 +17,7 @@ module.exports.execute = async (
         .where({ id: message.author.id })
     )[0]
     const m = Number(user.money)
+
     const cooldown = JSON.parse(user.cooldown) || {trick: 0}  
   if (
     cooldown.trick * 1000 + 120000 > Number(new Date())
@@ -32,9 +33,10 @@ module.exports.execute = async (
         ).toFixed(1)
       })
     )
-
+  
   if (Number(message.data.arg[0]) < 100)
     return message.reply(locale.commands.trick.morethan)
+  if(m/10000000000000000 > message.data.arg[0]) return message.reply(locale.error.more)
   if (m < Number(message.data.arg[0]))
     return message.reply(locale.commands.trick.nomoney)
   const msg = await message.reply(locale.commands.trick.start)
