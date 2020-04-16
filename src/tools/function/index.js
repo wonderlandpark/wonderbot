@@ -52,12 +52,12 @@ Number.prototype.num2han = function() {
     resultString = ' ' + String(resultArray[a]) + unitWords[a] + resultString
   }
 
-
+  return resultString.replace(' ', '')
 }
 
 String.prototype.num2han = function() {
   if (this <= 0) return 0
-  var inputNumber = Number(this) < 0 ? false : Number(this)
+  var inputNumber = this < 0 ? false : this
   var unitWords = [
     '',
     '만',
@@ -97,7 +97,7 @@ String.prototype.num2han = function() {
     resultString = ' ' + String(resultArray[a]) + unitWords[a] + resultString
   }
 
-return resultString.replace(' ', '')
+  return resultString.replace(' ', '')
 }
 
 Array.prototype.search = function(text) {
