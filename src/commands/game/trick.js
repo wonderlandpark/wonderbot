@@ -16,7 +16,7 @@ module.exports.execute = async (
         .from('users')
         .where({ id: message.author.id })
     )[0]
-    const m = Numberv(user.money)
+    const m = Number(user.money)
     const cooldown = JSON.parse(user.cooldown) || {trick: 0}  
   if (
     cooldown.trick * 1000 + 120000 > Number(new Date())
