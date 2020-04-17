@@ -6,7 +6,7 @@ module.exports.execute = async (
     embed,
     _tools,
     knex
-  ) => {
+) => {
     const guild = JSON.parse((await knex('guilds').where({ id: message.guild.id }))[0].config)
     if(!message.data.args) return message.reply(locale.commands.prefix.current.bind({ prefix: guild.prefix || config.client.prefix}))
     else{
@@ -20,7 +20,7 @@ module.exports.execute = async (
     }
     
 }
-  module.exports.props = {
+module.exports.props = {
     name: 'prefix',
     perms: 'general',
     alias: ['접두사', '접속사'],
@@ -29,7 +29,7 @@ module.exports.execute = async (
             name: 'prefix',
             type: 'text',
             required: false
-          }
+        }
     ]
-  }
+}
   
