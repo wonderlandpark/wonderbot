@@ -11,18 +11,23 @@ const logger = {
     global: text => console.log(chalk.hex('#ffebcc')(text))
 }
 
+let username = '',
+    remotePath = '',
+    host = '',
+    password = ''
+
 sftp.connect({
-    host: process.env.HOST,
+    host,
     port: 22,
     username,
-    password: process.env.PASSWORD
+    password
 }).then(async() => {
     logger.info('[SFTP] [Connection] SFTP Connection successfully stabilized.')
 
     if(!existsSync(__dirname + '/cache/')) mkdirSync(__dirname + '/cache/')
     if (!existsSync(__dirname + '/cache/package.json')) execSync('touch cache/package.json')
 
-    sftp.getFile(__dirname + '/cache/package.json', remotePath + packageJsonDir)
+    sftp.getFile(__dirname + '/cache/package.json', remotePath + '/package.json')
         .then(() => {
             let depend = JSON.parse(readFileSync(__dirname + '/cache/package.json', { encoding: 'utf-8' })).dependencies
             let newDepend = JSON.parse(readFileSync(__dirname + '/package.json', { encoding: 'utf-8' })).dependencies
