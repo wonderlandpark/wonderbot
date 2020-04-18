@@ -3,14 +3,22 @@
 ![license](https://img.shields.io/github/license/wonderlandpark/wonderbot)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/def63318bbb54e33b453e9b45d75eb29)](https://app.codacy.com/manual/wonderlandpark/wonderbot?utm_source=github.com&utm_medium=referral&utm_content=wonderlandpark/wonderbot&utm_campaign=Badge_Grade_Dashboard)
 [![Discord](https://discordapp.com/api/guilds/512553485766492171/embed.png)](https://invite.gg/wonderbot)
-![Language](https://img.shields.io/badge/language-Javascript,%20Node.js-brightgreen) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[![Build Status](https://travis-ci.org/wonderlandpark/wonderbot.svg?branch=master)](https://travis-ci.org/wonderlandpark/wonderbot)
+![Language](https://img.shields.io/badge/language-Javascript,%20Node.js-brightgreen)
 
 ## Introducing
 
-Team Wonder. Project Wonder_Bot's Rewrite.
+Team Callito. Project Wonder_Bot's Rewrite.
 
 [Website](https://wonderbot.xyz)
+
+## Collaboration
+
+Issues and PR is allways welcomed.
+Feel free to help me.
+
+### Expected Language
+
+At this repository, only Korean and English is expected.
 
 ## Clone
 
@@ -51,10 +59,18 @@ This code works finally on these Requirements
 
 ## Contact
 
+### Main Developer
+
+#### wonderlandpark
+
 > Discord : `wonderlandpark#9999`
 > Mail : [wonderlandpark@callisto.team](mailto:wonderlandpark@callisto.team)
 
-![wonderlandpark](https://cdn.discordapp.com/avatars/285185716240252929/f50a084aaa45c57699c3dba1b7846122.png?size=256)
+![wonderlandpark](https://cdn.discordapp.com/avatars/285185716240252929/8d802379229ac355aecced85aaccce8c.png?size=256)
+
+### Team
+
+#### [Team. Callisto](https://callisto.team)
 
 ### Discord Servers
 
