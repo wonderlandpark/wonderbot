@@ -28,14 +28,14 @@ npm start
 
 This code works finally on these Requirements
 
-| NAME       | VERSION        | TESTED |
-| ---------- | -------------- | ------ |
-| Windows    | Windows 10 1909| ✔️ (Development)|
-| Ubuntu     | Ubuntu 19.10   | ✔️ (Production)|
-| Node.js    | v.13.6.0       | ✔️     |
-| MariaDB    | 10.4.8-MariaDB | ✔️     |
-| NPM        | 6.14.4         | ✔️     |
-| Discord.js | 12.0.2         | ✔️     |
+| NAME       | VERSION         | TESTED           |
+| ---------- | --------------- | ---------------- |
+| Windows    | Windows 10 1909 | ✔️ (Development) |
+| Ubuntu     | Ubuntu 19.10    | ✔️ (Production)  |
+| Node.js    | v.13.6.0        | ✔️               |
+| MariaDB    | 10.4.8-MariaDB  | ✔️               |
+| NPM        | 6.14.4          | ✔️               |
+| Discord.js | 12.0.2          | ✔️               |
 
 ## Open Source used in project
 
