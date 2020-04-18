@@ -4,8 +4,9 @@ node_modules/
 .vscode/
 backup.sql
 logs/cmd.log
-backup/*.json
+backup/
 src/config/client.js
 src/config/database.js
 package-lock.json
-
+.vscode
+.idea
