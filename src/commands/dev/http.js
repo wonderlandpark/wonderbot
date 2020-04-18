@@ -25,6 +25,8 @@ module.exports.execute = async (
 module.exports.props = {
   name: 'http',
   perms: 'general',
-  alias: ['statuscode'],
-  args: []
+  alias: ['상태코드', 'statuscode'],
+  args: [
+    
+  ]
 }

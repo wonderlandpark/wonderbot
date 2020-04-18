@@ -34,10 +34,7 @@ module.exports = async (client, message, config) => {
     raw: message.content,
     arg: message.content.replace(prefix, '').split(' ').slice(1),
     args: message.content.replace(prefix, '').split(' ').slice(1).join(' '),
-    arg2: message.content
-      .split(' ')
-      .splice(2)
-      .join(' '),
+    arg2: message.content.replace(prefix, '').split(' ').splice(2).join(' '),
     prefix: prefix,
     cmd: message.content
     .replace(prefix, '')
@@ -57,6 +54,7 @@ module.exports = async (client, message, config) => {
     return
     
   if (!commands[message.data.cmd]) return
+  
   var log = `${new Date().textFormat('YYYY/MM/DD hh:mm:ss')} [#${
     message.channel.name
   }] ${message.author.tag} : ${message.content}`
@@ -66,11 +64,11 @@ module.exports = async (client, message, config) => {
   })
   if (!config.client.owners.includes(message.author.id) && !client.onlineMode)
     return message.reply(locale.error.offline)
-  const user = await knex
+  const user = (await knex
     .select('*')
     .from('users')
-    .where({ id: message.author.id })
-  if (user.length == 0)
+    .where({ id: message.author.id }))[0]
+  if (!user)
     return commands['register'].execute(
       client,
       message,
@@ -94,12 +92,12 @@ module.exports = async (client, message, config) => {
         reason: blacked[0].why
       })
     )
-  if (user[0].action)
+  if (user.action)
     return message.reply(locale.error.already)
   if (
     data.cooldown[message.author.id] &&
     Number(data.cooldown[message.author.id]) > Number(new Date()) &&
-    !JSON.parse(user[0].badges).includes('premium')
+    !JSON.parse(user.badges).includes('premium')
   ) {
     return message.reply(
       locale.error.cooldown.bind({
@@ -141,6 +139,14 @@ module.exports = async (client, message, config) => {
     client.users.fetch(message.author.id)
     message.guild.members.fetch(message.author.id)
   }
+
+  if(JSON.parse(user.mails).filter(r=> !r.read).length !== 0 && (new Date() / 1000) > ((JSON.parse(user.cooldown).mail)||0) + 86400){
+    message.reply(locale.global.mail.bind({ mail: JSON.parse(user.mails).filter(r=> !r.read).length, prefix: message.data.prefix }))
+    let cooldown = JSON.parse(user.cooldown)
+    cooldown.mail  = Math.round(new Date() / 1000)
+    await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
+  }
+
   commands[message.data.cmd]
     .execute(
       client,

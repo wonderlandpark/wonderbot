@@ -43,7 +43,7 @@ module.exports.execute = async (client, message, locale, embed) => {
 module.exports.props = {
   name: 'help',
   perms: 'general',
-  alias: ['commands'],
+  alias: ['도움', 'commands', '도움말', '명령어'],
   args: [
     {
       name: 'cmd',
@@ -55,6 +55,6 @@ module.exports.props = {
 
 function cmdFormat(cmds) {
   var array = []
-  Object.values(cmds).forEach(c => array.push(c.props.name))
+  Object.values(cmds).forEach(c => array.push(c.props.alias[0]))
   return '`' + array.join('`, `') + '`'
 }

@@ -19,6 +19,6 @@ module.exports.execute = async (
 module.exports.props = {
   name: 'getstat',
   perms: 'dev',
-  alias: ['checkstat'],
+  alias: ['봇스텟확인', 'checkstat'],
   args: []
 }
