@@ -54,7 +54,7 @@ module.exports.props = {
 }
 
 function cmdFormat(cmds) {
-  var array = []
-  Object.values(cmds).forEach(c => array.push(c.props.alias[0]))
-  return '`' + array.join('`, `') + '`'
+    var array = []
+    Object.values(cmds).forEach(c => array.push(c.props.alias[0]))
+    return '`' + array.join('`, `') + '`'
 }

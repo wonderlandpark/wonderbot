@@ -66,5 +66,7 @@ module.exports = {
     team: '<:team:690129518928986145>',
     first: '<:first:690130592112836717>',
     second: '<:second:690130592104185885>',
-    third: '<:third:690130592150323257>'
+    third: '<:third:690130592150323257>',
+    bughunter: '<:bughunter:700892059871215727>',
+    github: '<:github:700892945385127946>'
 }

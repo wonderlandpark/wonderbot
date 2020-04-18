@@ -139,7 +139,9 @@ module.exports = {
             badgeName: {
                 premium: '원더봇 프리미엄',
                 early: '얼리 서포터',
-                team: '팀 칼리스토'
+                team: '팀 칼리스토',
+                bughunter: '버그 헌터',
+                github: '기여자'
             }
         },
         wallet: {

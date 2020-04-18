@@ -9,7 +9,8 @@ const data = {
     trick: {},
     news: { time: 0, data: [] }
 }
-
+const Inko = require('inko')
+const inko = new Inko()
 const fs = require('fs')
 const uuid = require('uuid/v1')
 const Discord = require('discord.js')
@@ -52,8 +53,8 @@ module.exports = async (client, message, config) => {
     !message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')
     )
         return
-    
-    if (!commands[message.data.cmd]) return
+    let CMD = commands[message.data.cmd] || commands[inko.en2ko(message.data.cmd)] || commands[inko.ko2en(message.data.cmd)]
+    if (!CMD) return
   
     var log = `${new Date().textFormat('YYYY/MM/DD hh:mm:ss')} [#${
         message.channel.name
@@ -76,7 +77,7 @@ module.exports = async (client, message, config) => {
             embed,
             tools,
             knex,
-            commands[message.data.cmd].props,
+            CMD.props,
             data
         )
     var blacked = await knex
@@ -110,24 +111,24 @@ module.exports = async (client, message, config) => {
 
     if (
         !message.member.hasPermission(
-            commands[message.data.cmd].props.perms.required.perms
+            CMD.props.perms.required.perms
         )
     )
         return message.reply(
             locale.error.noperm.bind({
-                perms: commands[message.data.cmd].props.perms.name.toUpperCase()
+                perms: CMD.props.perms.name.toUpperCase()
             })
         )
     if (
-        commands[message.data.cmd].props.perms.required.id
-            ? !commands[message.data.cmd].props.perms.required.id.includes(
+        CMD.props.perms.required.id
+            ? !CMD.props.perms.required.id.includes(
                 message.author.id
             )
             : false
     )
         return message.reply(
             locale.error.noperm.bind({
-                perms: commands[message.data.cmd].props.perms.name
+                perms: CMD.props.perms.name
             })
         )
     // eslint-disable-next-line require-atomic-updates
@@ -147,7 +148,7 @@ module.exports = async (client, message, config) => {
         await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
     }
 
-    commands[message.data.cmd]
+    CMD
         .execute(
             client,
             message,
@@ -155,7 +156,7 @@ module.exports = async (client, message, config) => {
             embed,
             tools,
             knex,
-            commands[message.data.cmd].props,
+            CMD.props,
             data
         )
         .catch(error => {
