@@ -30,9 +30,11 @@ This code works finally on these Requirements
 
 | NAME       | VERSION        | TESTED |
 | ---------- | -------------- | ------ |
+| Windows    | Windows 10 1909| ✔️ (Development)|
+| Ubuntu     | Ubuntu 19.10   | ✔️ (Production)|
 | Node.js    | v.13.6.0       | ✔️     |
 | MariaDB    | 10.4.8-MariaDB | ✔️     |
-| NPM        | 6.13.6         | ✔️     |
+| NPM        | 6.14.4         | ✔️     |
 | Discord.js | 12.0.2         | ✔️     |
 
 ## Open Source used in project
@@ -50,12 +52,13 @@ This code works finally on these Requirements
 ## Contact
 
 > Discord : `wonderlandpark#9999`
+> Mail : [wonderlandpark@callisto.team](mailto:wonderlandpark@callisto.team)
 
 ![wonderlandpark](https://cdn.discordapp.com/avatars/285185716240252929/f50a084aaa45c57699c3dba1b7846122.png?size=256)
 
 ### Discord Servers
 
-#### Team. Wonder Discord
+#### Team. Callisto Discord (Korean)
 
 [![wonderbotsupport](https://discordapp.com/api/guilds/470028725287780352/embed.png?style=banner2)](https://discord.wonderbot.xyz)
 

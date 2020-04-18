@@ -25,5 +25,6 @@
             "warn",
             "never"
         ]
-    }
+    },
+    "ignorePatterns": ["backup/", "node_modules/", "logs/", "*.sql"]
 }

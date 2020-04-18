@@ -1,3 +1,5 @@
+#!/bin/bash
+
 touch ./config/client.js
 touch ./config/database.js
 mkdir ./logs

@@ -42,9 +42,6 @@ function createServerImg(text) {
 
     canvas = Canvas.createCanvas(200, 200)
     var context = canvas.getContext('2d')
-
-    Canvas.registerFont('src/tools/fonts/NotoSans.ttf', { family: 'NotoSans' })
-
     context.beginPath()
 
 
@@ -53,7 +50,6 @@ function createServerImg(text) {
 
     context.fill()
     context.fillStyle = 'white'
-    context.font = 'bold 80px NotoSans'
     context.textAlign = 'center'
     context.textBaseline = 'middle'
     context.fillText(text, 100, 100, 200)
