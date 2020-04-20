@@ -23,6 +23,7 @@ module.exports.execute = async (
             if(lotto.filter(r=> r.time === res.length).length >= 10) {
                 return message.reply(locale.commands.lotto.limit)
             }
+            if(!message.data.arg[1]) return message.reply(locale.commands.lotto.invaild.bind({ prefix: message.data.prefix }))
             let nums
             if(['자동', 'auto'].includes(message.data.arg[1])){
                 nums = getNumber()
