@@ -26,7 +26,7 @@ module.exports.execute = async (
             if(!message.data.arg[1]) return message.reply(locale.commands.lotto.invaild.bind({ prefix: message.data.prefix }))
             let nums
             if(['자동', 'auto'].includes(message.data.arg[1])){
-                nums = getNumber()
+                nums = getNumber()  
             } else {
                 nums = [ Number(message.data.arg[1]), Number(message.data.arg[2]), Number(message.data.arg[3]), Number(message.data.arg[4]) ]
                 if(nums.includes(NaN) || invaildNum(nums[0]) || invaildNum(nums[1]) || invaildNum(nums[2]) || invaildNum(nums[3]) ) return message.reply(locale.commands.lotto.invaild.bind({ prefix: message.data.prefix }))
@@ -130,7 +130,7 @@ function invaildNum( num ) {
 }
 
 function hasDupe(array) {
-    return (new Set(array)).size !== array.lengt
+    return (new Set(array)).size !== array.length
 }
 
 function calculate( my, answ ) {
