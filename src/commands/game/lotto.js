@@ -29,9 +29,10 @@ module.exports.execute = async (
                 nums = getNumber()
             } else {
                 nums = [ Number(message.data.arg[1]), Number(message.data.arg[2]), Number(message.data.arg[3]), Number(message.data.arg[4]) ]
+                if(nums.includes(NaN) || invaildNum(nums[0]) || invaildNum(nums[1]) || invaildNum(nums[2]) || invaildNum(nums[3]) ) return message.reply(locale.commands.lotto.invaild.bind({ prefix: message.data.prefix }))
+                if(hasDupe(nums)) return message.reply(locale.commands.lotto.dupe)
             }
-            if(nums.includes(NaN) || invaildNum(nums[0]) || invaildNum(nums[1]) || invaildNum(nums[2]) || invaildNum(nums[3]) ) return message.reply(locale.commands.lotto.invaild.bind({ prefix: message.data.prefix }))
-            if(hasDupe(nums)) return message.reply(locale.commands.lotto.dupe)
+            
             if((Number(user.money) - 300) < 0) return message.reply(locale.commands.lotto.noMoney)
             const filter = (reaction, user) => reaction.emoji.name == '🎫' && user.id == message.author.id
             message.reply(locale.commands.lotto.isReady.bind({ num: nums.map(r=> numbers[r]).join(' ')})).then(async msg => {
@@ -120,7 +121,7 @@ function Shuffle(o) {
 
 function getNumber(){
 
-    return Shuffle([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]).slice(0,5)
+    return Shuffle([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]).slice(0,4)
 
 }
 
