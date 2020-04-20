@@ -24,13 +24,14 @@ module.exports.execute = async (
                 return message.reply(locale.commands.lotto.limit)
             }
             let nums
+            if(!message.data.arg[1]) return message.reply(locale.commands.lotto)
             if(['자동', 'auto'].includes(message.data.arg[1])){
                 nums = getNumber()
             } else {
                 nums = [ Number(message.data.arg[1]), Number(message.data.arg[2]), Number(message.data.arg[3]), Number(message.data.arg[4]) ]
-                if(hasDupe(nums)) return message.reply(locale.commands.lotto.dupe)
             }
             if(nums.includes(NaN) || invaildNum(nums[0]) || invaildNum(nums[1]) || invaildNum(nums[2]) || invaildNum(nums[3]) ) return message.reply(locale.commands.lotto.invaild.bind({ prefix: message.data.prefix }))
+            if(hasDupe(nums)) return message.reply(locale.commands.lotto.dupe)
             if((Number(user.money) - 300) < 0) return message.reply(locale.commands.lotto.noMoney)
             const filter = (reaction, user) => reaction.emoji.name == '🎫' && user.id == message.author.id
             message.reply(locale.commands.lotto.isReady.bind({ num: nums.map(r=> numbers[r]).join(' ')})).then(async msg => {
