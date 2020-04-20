@@ -24,7 +24,6 @@ module.exports.execute = async (
                 return message.reply(locale.commands.lotto.limit)
             }
             let nums
-            if(!message.data.arg[1]) return message.reply(locale.commands.lotto)
             if(['자동', 'auto'].includes(message.data.arg[1])){
                 nums = getNumber()
             } else {
