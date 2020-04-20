@@ -48,6 +48,6 @@ module.exports.execute = async (
 module.exports.props = {
     name: 'reboot',
     perms: 'dev',
-    alias: ['재시작', 'restart', 'closeshards', 'disconnect'],
+    alias: ['재시작', 'restart', 'closeshards', 'disconnect', '리붓'],
     args: []
 }

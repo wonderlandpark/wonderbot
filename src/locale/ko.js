@@ -508,68 +508,26 @@ module.exports = {
             notAdmin: '관리자 권한이 없어 접두사를 변경할 수 없습니다.',
             space: '새로운 접두사는 띄어쓰기로 시작할 수 없습니다.\nTIP: `[띄어쓰기]`로 띄어쓰기를 대신할 수 있습니다.',
             mention: '접두사에 맨션을 포함할 수 없습니다!!'
+        },
+        lotto: {
+            lotto: '복권',
+            desc: '이전 회차 **{n}**회 당첨번호: {answer} + {bonus}\n당첨금을 수령하려면 `수령` 옵션을 사용해주세요.\n당첨금은 다음 복권의 당첨 발표전까지 수령하실 수 있습니다.',
+            limit: '복권은 1인당 10개까지만 구매할 수 있습니다.',
+            invaild: '복권 번호가 올바르지 않습니다. 복권 번호는 0번 부터 10번 사이로 입력해주세요. 아래는 사용법입니다.\n**번호 자동 선택**\n`{prefix}복권 구매 자동`\n**번호 수동 선택**\n`{prefix}복권 구매 (번호) (번호) (번호) (번호)`',
+            dupe: '중복된 숫자는 사용하실 수 없습니다.',
+            noMoney: '복권을 구매할 수 있는 금액을 소지하고 있지않습니다.\n(복권 x 1개 = `300원`)',
+            isReady: '계속하시겠습니까? 구매 후에는 환불하실 수 없습니다. 계속하시려면 반응하세요\n구매할 복권 번호: {num}',
+            success: '복권을 구매했습니다. `확인` 옵션으로 소지하고 있는 복권을 확인할 수 있습니다.',
+            not: '복권 구매가 취소되었습니다.',
+            listDesc: '구매하신 이번 회차 복권입니다:\n\n{list}\n\n이전 회차의 복권의 당첨금을 수령하려면 `수령` 옵션을 사용해주세요.',
+            noItem: '이전 회차에서 수령하실 복권이 없습니다.\n구매하신 복권이 없거나 이미 수령했습니다!',
+            getMoney: '이전 회차 당첨확인입니다.\n\n{list}',
+            moneyRes: '{num} => {n}위 = {money}원\n',
+            noOpt: '올바르지 않은 옵션입니다.\n올바른 옵션: {opt}',
+            count: '이번 회차는 **{n}**회차입니다\n`수령` 옵션을 이용하면 이전 회차인 **{m}**회의 보상을 받을 수 있습니다.'
         }
     },
-    serverinfo: {
-        serverinfo: '🏘️ {guild} 서버 정보',
-        memberCount: '멤버',
-        memberDesc: '{user}명',
-        verification: '보안 수준',
-        verificationLevel: {'NONE': '**없음**\n제한 없음','LOW': '**낮음**\n자신의 Discord 계정이 이메일 인증을 받은 적이 있어야 합니다.', 'MEDIUM': '**중간**\n추가로 Discord에 가입한지 5분이 지나야 합니다.','HIGH': '**(╯°□°）╯︵ ┻━┻**\n추가로 이 서버의 멤버가 된 지 10분이 지나야 합니다.','VERY_HIGH': '**┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻**\n전화 인증이 완료된 Discord 계정이어야 합니다.'},
-        region: '지역',
-        channel: '채널',
-        channelDesc: '텍스트채널: {text}개 / 카테고리: {category}개 / 음성채널: {voice}개',
-        owner: '소유자',
-        boost: '부스팅',
-        boostDesc: '{count}개 부스트 / {level} 레벨',
-        regionList : {
-            brazil:':flag_br: 브라질', 
-            'us-west':':flag_us: 미국 서부', 
-            japan:':flag_jp: 일본', 
-            singapore : ':flag_sg: 싱가포르', 
-            'eu-central':':flag_eu: 유럽 중부', 
-            hongkong:':flag_hk:  홍콩', 
-            'us-south':':flag_us: 미국 중부', 
-            southafrica:':flag_za: 남아프리카 공화국', 
-            'us-central':':flag_us: 미국 중부', 
-            'london':':flag_gb: 런던', 
-            'us-east':':flag_us: 미국동부', 
-            sydney:':flag_au: 시드니', 
-            'eu-west':':flag_eu: 유럽 서부', 
-            amsterdam:':flag_nl: 암스테레담', 
-            india:':flag_in: 인도', 
-            frankfurt:':flag_de: 프랑크푸르트', 
-            russia: ':flag_ru: 러시아',
-            'south-korea': ':flag_kr: 한국',
-            'vip-us-east': ':flag_us: VIP 미국 동부'
-        },
-        filterName: '유해 미디어 콘텐츠 필터',
-        filter: {'DISABLED': '**미디어 콘텐츠를 스캔하지 않아요.**\n메시지 스캔 따윈 필요 없어! 나는 터프가이니깐.', 'MEMBERS_WITHOUT_ROLES': '**역할 없는 멤버의 미디어 콘텐츠를 스캔해요.**\n신뢰하는 멤버에게 역할을 부여하는 서버에 권장하는 옵션이에요', 'ALL_MEMBERS': '**모든 멤버의 미디어 콘텐츠를 스캔해요.**\n아주 깨끗한 채팅 환경을 원할시 권장하는 옵션이에요.'},
-        roles: '역할들',
-        emojis: '이모지들',
-        none: '없음',
-        channels: '채널들',
-        more: '외 {count}개 더...'
-    },
-    slowmode: {
-        error: '메시지 제한 초수는 **0(꺼짐)~21600(6시간)**을 입력하셔야 해요!',
-        set: '해당 채널의 슬로우모드를 `{sec}초`로 설정했습니다.',
-        catch: '슬로우모드 설정을 실패했습니다. 권한을 확인해보세요.'
-    },
-    currency: {
-        usage: '\n**환율**\n> 환율 정보를 가져올 수 있습니다.\n예시\n`{prefix}환율 KRW 1000`\n`{prefix}환율 달러 1`\n`{prefix}환율 CNY 5`',
-        notsupport: '지원하지 않는 화폐 단위입니다.',
-        notnum: '올바른 숫자를 입력해주세요.',
-        desc: '> 해당 정보는 정확하지 않을 수 있습니다. 참고용으로만 사용해주세요.'
-    },
-    prefix: {
-        current: '해당 서버의 접두사는 `{prefix}`입니다.',
-        changed: '접두사를 `{prefix}`로 변경했습니다.',
-        filter: '접두사는 16자 이하로 설정해주세요!!',
-        notAdmin: '관리자 권한이 없어 접두사를 변경할 수 없습니다.',
-        space: '새로운 접두사는 띄어쓰기로 시작할 수 없습니다.\nTIP: `[띄어쓰기]`로 띄어쓰기를 대신할 수 있습니다.',
-        mention: '접두사에 맨션을 포함할 수 없습니다!!'
-    },
+
     error: {
         nodesc: '설명이 없습니다.',
         toLong: '출력 결과가 너무 길어 출력할 수 없습니다.',
