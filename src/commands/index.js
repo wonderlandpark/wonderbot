@@ -11,6 +11,7 @@ commands.fun = require('./fun')
 commands.stats = require('./stats')
 commands.season = require('./season')
 commands.account = require('./account')
+commands.coding = require('./coding')
 commands.dev = require('./dev')
 
 module.exports.categorys = commands

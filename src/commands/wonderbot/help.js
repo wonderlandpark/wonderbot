@@ -1,3 +1,6 @@
+const Inko = require('inko')
+const inko = new Inko()
+
 const commands = require('../index')
 module.exports.execute = async (client, message, locale, embed) => {
     if (!message.data.args) {
@@ -13,7 +16,7 @@ module.exports.execute = async (client, message, locale, embed) => {
         embed.addField(locale.commands.help.support, locale.commands.help.links)
         return message.channel.send(embed)
     } else {
-        const cmd = commands[message.data.arg[0]]
+        const cmd = (commands[message.data.arg[0]] || commands[inko.en2ko(message.data.arg[0])] || commands[inko.ko2en(message.data.arg[0])])
         if (!cmd) return message.reply(locale.commands.help.noCommand)
         embed.setTitle(
             '> ' +

@@ -30,6 +30,7 @@
     "qrcode": "^1.4.4",
     "request": "^2.88.0",
     "string-similarity": "^4.0.1",
+    "turndown": "^6.0.0",
     "uuid": "^3.4.0"
   },
   "devDependencies": {

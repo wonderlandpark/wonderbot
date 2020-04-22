@@ -1,3 +1,10 @@
+const Discord = require('discord.js')
+const Inko = require('inko')
+const inko = new Inko()
+const fs = require('fs')
+const uuid = require('uuid/v1')
+
+
 const commands = require('../../commands')
 const tools = require('../')
 const knex = tools.database
@@ -9,11 +16,7 @@ const data = {
     trick: {},
     news: { time: 0, data: [] }
 }
-const Inko = require('inko')
-const inko = new Inko()
-const fs = require('fs')
-const uuid = require('uuid/v1')
-const Discord = require('discord.js')
+
 module.exports = async (client, message, config) => {
 
     client.shard.fetchClient = async props => {
@@ -159,12 +162,13 @@ module.exports = async (client, message, config) => {
             CMD.props,
             data
         )
-        .catch(error => {
+        .catch(async error => {
             console.error(error)
+            console.log(`${error.message}:${error.lineNumber}`)
             let code = uuid()
             let time = Math.round(new Date() / 1000)
             embed.addField(
-                'ERROR - WB/Rewrite',
+                `ERROR - ${client.user.username}`,
                 locale.error.debug.bind({
                     code,
                     user: message.author.tag,
@@ -172,7 +176,7 @@ module.exports = async (client, message, config) => {
                     channel: message.channel.name,
                     channelid: message.channel.id,
                     url: message.url,
-                    error,
+                    error: error.stack,
                     cmd: message.data.cmd,
                     msg:
             message.content.length > 1000
@@ -184,23 +188,8 @@ module.exports = async (client, message, config) => {
                     guildid: message.guild.id
                 })
             )
-            webhook.send(embed).then(async m => {
-                await knex('error').insert({
-                    id: code,
-                    date: time,
-                    user: message.member.id,
-                    cmd: message.data.cmd,
-                    content: message.content,
-                    msg: message.url,
-                    error: error.toString(),
-                    guild: message.guild.id,
-                    info: `https://discordapp.com/channels/${
-                        (await client.shard.fetchClientValues('channel.cache')).get(
-                            m.channel_id
-                        ).guild.id
-                    }/${m.channel_id}/${m.id}`
-                })
-                message.reply(locale.error.onerror.bind({ code }))
-            })
+            message.reply(locale.error.onerror.bind({ code }))
+            webhook.send(embed)
         })
+        
 }

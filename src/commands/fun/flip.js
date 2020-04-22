@@ -27,8 +27,8 @@ module.exports.props = {
     alias: ['뒤집기'],
     args: [
         {
-            name: 'user / text',
-            type: 'usertext',
+            name: 'user/text',
+            type: 'user/text',
             required: true
         }
     ]

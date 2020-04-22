@@ -1,4 +1,8 @@
+const Inko = require('inko')
+const inko = new Inko()
+
 const config = require('../config')
+const commands = require('../commands/index.js')
 module.exports = {
     language: {
         english: 'Korean',
@@ -558,7 +562,7 @@ module.exports = {
         usage: function(cmd, prefix) {
             var text = ''
             var desc = ''
-            var args = require('../commands/index.js')[cmd].props.args
+            var args = (commands[cmd] || commands[inko.en2ko(cmd)] || commands[inko.ko2en(cmd)]).props.args
             args.forEach(a => {
                 if (!a.type) return
                 if (a.required) {
