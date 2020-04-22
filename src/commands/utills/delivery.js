@@ -5,12 +5,9 @@ module.exports.execute = async (
     client,
     message,
     locale,
-    embed,
-    tools,
-    knex,
-    props
+    embed
 ) => {
-    if (!message.data.arg[1]) return message.reply(locale.error.usage(props.name))
+    if (!message.data.arg[1]) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const carrier = carriers.filter(
         i =>
             i.name.includes(message.data.arg[0].replace(/ /gi, '')) ||

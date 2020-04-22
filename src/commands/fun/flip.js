@@ -1,11 +1,13 @@
-module.exports.execute = (message, locale) => {
+module.exports.execute = async(client,
+    message,
+    locale) => {
     // const config = require("./settings/config.json");
     // const prefix = (config.prefix)
 
     var flip = require('flip-text')
 
     if (!message.data.args) {
-        return message.reply(locale.error.usage(this.props.name))
+        return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     }
     var txt = ''
     if (message.mentions.members.first()) {

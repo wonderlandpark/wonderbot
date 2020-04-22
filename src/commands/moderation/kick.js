@@ -3,20 +3,18 @@ module.exports.execute = async (
     message,
     locale,
     __embed,
-    tools,
-    knex,
-    props
+    tools
 ) => {
     let user
     const embed = tools.bot.customEmbed()
 
-    if (!message.data.args) return message.reply(locale.error.usage(props.name))
+    if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     else {
         user =
       message.mentions.members.first() ||
       message.guild.members.cache.get(message.data.arg[0])
     }
-    if (!user) return message.reply(locale.error.usage(props.name))
+    if (!user) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     if (user.hasPermission(['KICK_MEMBERS']))
         return message.reply(locale.commands.kick.alsoPerm)
     await message.reply(locale.commands.kick.wait)

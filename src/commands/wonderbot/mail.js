@@ -42,7 +42,7 @@ module.exports.execute = async (
         return pagination.send(message.channel)
     }
     
-}
+} 
 module.exports.props = {
     name: 'mail',
     perms: 'general',

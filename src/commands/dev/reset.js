@@ -4,10 +4,9 @@ module.exports.execute = async (
     locale,
     embed,
     tools,
-    knex,
-    props
+    knex
 ) => {
-    if (!message.data.args) return message.reply(locale.error.usage(props.name))
+    if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const stocks = await knex('stocks').select('*')
     const season = message.data.arg[0]
 

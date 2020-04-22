@@ -4,19 +4,18 @@ module.exports.execute = async (
     locale,
     __embed,
     tools,
-    knex,
-    props
+    knex
 ) => {
     var warns = tools.bot.customEmbed()
     var embed = tools.bot.customEmbed()
 
-    if (!message.data.args) return message.reply(locale.error.usage(props.name))
+    if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const user =
     message.mentions.members.first() ||
     message.guild.members.cache.get(message.data.arg[0])
     const guild = (await knex('guilds').where({ id: message.guild.id }))[0]
     const warndata = JSON.parse(guild.warn)
-    if (!user) return message.reply(locale.error.usage(props.name))
+    if (!user) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     if (user.user.bot) return message.reply(locale.commands.unwarn.bot)
     if (user.hasPermission(['ADMINISTRATOR']))
         return message.reply(locale.commands.unwarn.alsoPerm)

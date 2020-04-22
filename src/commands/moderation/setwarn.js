@@ -7,15 +7,14 @@ module.exports.execute = async (
     locale,
     embed,
     tools,
-    knex,
-    props
+    knex
 ) => {
     const webhook = new Discord.WebhookClient(
         config.client.webhook.error.id,
         config.client.webhook.error.token
     )
 
-    if (!message.data.args) return message.reply(locale.error.usage(props.name))
+    if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const g = (await knex('guilds').where({ id: message.guild.id }))[0]
     if (['초기화', 'reset'].includes(message.data.arg[0])) {
         let code = makeid(5)
@@ -48,7 +47,7 @@ module.exports.execute = async (
             locale.commands.setwarn.limited.bind({ limit: message.data.arg[1] })
         )
     } else {
-        message.reply(locale.error.usage(props.name))
+        message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     }
 }
 

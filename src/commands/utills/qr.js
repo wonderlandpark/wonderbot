@@ -3,12 +3,9 @@ module.exports.execute = async (
     client,
     message,
     locale,
-    embed,
-    tools,
-    knex,
-    props
+    embed
 ) => {
-    if (!message.data.args) return message.reply(locale.error.usage(props.name))
+    if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     QRCode.toString(message.data.args, async function(err, url) {
         console.log(url.length)
         if (url.length > 1000) return await message.reply(locale.error.toLong)

@@ -555,7 +555,7 @@ module.exports = {
         timeout: '시간이 초과되어 취소되었습니다.',
         nouser: '해당 유저는 원더봇에 가입되지 않았습니다.',
         already: '다른 작업이 진행중입니다. 작업을 완료한 후 명령어를 시도하세요.',
-        usage: function(cmd) {
+        usage: function(cmd, prefix) {
             var text = ''
             var desc = ''
             var args = require('../commands/index.js')[cmd].props.args
@@ -575,7 +575,7 @@ module.exports = {
                 text += '(없음)'
                 desc += '요구된 변수가 없습니다.'
             }
-            return `사용법 : \n\`\`\`fix\n${config.client.prefix}${cmd} ${text}\`\`\` \`\`\`ini\n${desc}\`\`\`
+            return `사용법 : \n\`\`\`fix\n${prefix}${cmd} ${text}\`\`\` \`\`\`ini\n${desc}\`\`\`
             `
         }
     },

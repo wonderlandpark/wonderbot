@@ -4,11 +4,10 @@ module.exports.execute = async (
     locale,
     embed,
     tools,
-    knex,
-    props
+    knex
 ) => {
     if (!message.mentions.members.first() || !message.data.arg[2])
-        return message.reply(locale.error.usage(props.name))
+        return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const user = message.mentions.members.first()
         ? message.mentions.members.first().id
         : message.data.arg[1]
@@ -30,7 +29,7 @@ module.exports.execute = async (
             .where({ id: user })
         message.reply('SETTED')
     } else {
-        return message.reply(locale.error.usage(props.name))
+        return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     }
 }
 

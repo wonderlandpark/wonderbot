@@ -10,7 +10,7 @@ module.exports.execute = async (
     const stocks = await knex('stocks').select('*')
 
     if (!props.args[0].options.includes(message.data.arg[0])) {
-        message.reply(locale.error.usage(props.name))
+        message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     } else {
         message.guild.members.fetch()
         var leaderboard =

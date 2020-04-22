@@ -9,15 +9,13 @@ module.exports.execute = async (
     locale,
     embed,
     tools,
-    knex,
-    props
 ) => {
     const params = new URLSearchParams()
     params.append('scope', 'address')
     params.append('keyword', message.data.args)
     embed.setTitle('🏥 선별진료소')
 
-    if (!message.data.args) return message.reply(locale.error.usage(props.name))
+    if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const m = await message.channel.send('> 🔎 검색중입니다...')
     const status = await fetch('https://api-v0.maskd.seia.io/clinics/selection', {
         method: 'POST',

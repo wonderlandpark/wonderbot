@@ -4,11 +4,10 @@ module.exports.execute = async (
     locale,
     embed,
     tools,
-    knex,
-    props
+    knex
 ) => {
     if (!message.data.args || isNaN(message.data.arg[0]))
-        return message.reply(locale.error.usage(props.name))
+        return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const user = (
         await knex
             .select('*')

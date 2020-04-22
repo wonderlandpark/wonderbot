@@ -1,14 +1,10 @@
 module.exports.execute = async (
     client,
     message,
-    locale,
-    embed,
-    tools,
-    knex,
-    props
+    locale
 ) => {
     if (!message.data.arg[0]) {
-        message.reply(locale.error.usage(props.name))
+        message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     }
     var Inko = require('inko')
     var inko = new Inko()

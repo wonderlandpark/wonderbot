@@ -4,11 +4,10 @@ module.exports.execute = async (
     locale,
     embed,
     tools,
-    knex,
-    props
+    knex
 ) => {
     if (!message.data.arg[1]) {
-        return message.reply(locale.error.usage(props.name))
+        return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     }
     const res = find(message.data.arg[0])
     if (!res || res.length == 0) return message.reply(locale.error.search.nores)

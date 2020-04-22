@@ -4,10 +4,9 @@ module.exports.execute = async (
     locale,
     embed,
     tools,
-    knex,
-    props
+    knex
 ) => {
-    if(!message.data.arg[1]) return message.reply(locale.error.usage(props.name))
+    if(!message.data.arg[1]) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const users = await knex('users')
     users.forEach(async el=> {
         let mail = JSON.parse(el.mails)

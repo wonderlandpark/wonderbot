@@ -212,7 +212,7 @@ module.exports.execute = async (
     }
 
     moment.locale(message.data.locale)
-    if (!message.data.arg[1]) return message.reply(locale.error.usage(props.name))
+    if (!message.data.arg[1]) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     if (
         ['경쟁전', '경쟁', '경', 'compete', 'ㄱㅈ', 'ㄱ'].includes(
             message.data.arg[0]
@@ -226,7 +226,7 @@ module.exports.execute = async (
     )
         gamemode = 'quickPlayStats'
     else if (['시간', 'time'].includes(message.data.arg[0])) gamemode = 'allStats'
-    else return message.reply(locale.error.usage(props.name))
+    else return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
 
     await os
         .getInfo(message.data.arg[1])

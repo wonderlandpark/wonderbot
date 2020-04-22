@@ -9,7 +9,7 @@ module.exports.execute = async (
     props,
     data
 ) => {
-    if (!message.data.args) return message.reply(locale.error.usage(props.name))
+    if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
 
     if (
         message.data.args.includes('client.token') &&

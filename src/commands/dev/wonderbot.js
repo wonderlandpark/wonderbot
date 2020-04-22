@@ -8,7 +8,7 @@ module.exports.execute = async (
     props,
     data
 ) => {
-    if (!message.data.args) return message.reply(locale.error.usage(props.name))
+    if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     this.bash = {
         rdir: '/wonderbot/guilds/' + message.guild.id,
         dir: ['guilds', message.guild.id],

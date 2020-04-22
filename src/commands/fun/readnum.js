@@ -1,7 +1,7 @@
 module.exports.execute = async (client, message, locale) => {
     var HanTools = require('hangul-tools')
     if (!message.data.arg[0] || isNaN(message.data.arg[0]))
-        return message.reply(locale.error.usage(message.data.cmd))
+        return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     else {
         var content = message.data.arg[0]
         if (content >= 9999999999999999)

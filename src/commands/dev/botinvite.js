@@ -9,7 +9,7 @@ module.exports.execute = async (
     props,
     data
 ) => {
-    if (!message.data.arg[0]) return message.reply(locale.error.usage(props.name))
+    if (!message.data.arg[0]) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const user = message.mentions.members.first()
         ? message.mentions.members.first().id
         : message.data.arg[0]
