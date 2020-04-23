@@ -19,7 +19,7 @@ module.exports.execute = async (
             const res = await knex('lotto')
             const user = (await knex('users').where({ id: message.author.id }))[0]
             let lotto = JSON.parse(user.lotto)
-            lotto = lotto.filter(r=> r.time >= res.length - 2)
+            lotto = lotto.filter(r=> r.time > res.length - 2)
             if(lotto.filter(r=> r.time === res.length).length >= 10) {
                 return message.reply(locale.commands.lotto.limit)
             }
@@ -45,7 +45,6 @@ module.exports.execute = async (
                             return message.reply(locale.commands.lotto.not)
                         }
                         lotto.push({ time: res.length, numbers: nums })
-                        console.log(lotto)
                         await knex('info').update({ lotto: (await knex('info'))[0].lotto + 1 })
                         await knex('users').update({ action: 0, money: Number(user.money) - 300, lotto: JSON.stringify(lotto) }).where({ id: message.author.id })
                         embed.setTitle(locale.commands.lotto.lotto).setDescription(locale.commands.lotto.success)
@@ -68,9 +67,17 @@ module.exports.execute = async (
         }
         else if (message.data.arg[0] === '수령'){
             const res = await knex('lotto')
-            const user = JSON.parse((await knex('users').where({ id: message.author.id }))[0].lotto)
+            const u = (await knex('users').where({ id: message.author.id }))[0]
+            let user = JSON.parse(u.lotto)
             if(user.filter(r=> r.time === res.length - 1).length === 0) return message.reply(locale.commands.lotto.noItem)
-            embed.setTitle(locale.commands.lotto.lotto).setDescription(locale.commands.lotto.getMoney.bind({ list: user.map(r=> locale.commands.lotto.moneyRes.bind({ num: r.numbers.map(el=> numbers[el]).join(' '), n: calculate(r.numbers, (res[res.length - 1].numbers).split(',')), money: 0})).join('') }))
+            let total = 0
+            embed.setTitle(locale.commands.lotto.lotto).setDescription(locale.commands.lotto.getMoney.bind({ list: user.map(r=> {
+                const level = calculate(r.numbers, (res[res.length - 1].numbers).split(','))
+                total += [3000000, 50000, 1000, 300, 100, 0][level]
+                return locale.commands.lotto.moneyRes.bind({ num: r.numbers.map(el=> numbers[el]).join(' '), n: level+1, money: [3000000, 50000, 1000, 300, 100, 0][level] })}).join('') }))
+            user = user.filter(r=> r.time !== res.length - 1)
+            console.log(total)
+            await knex('users').update({ money: (Number(u.money) + total), lotto: JSON.stringify(user)}).where({ id: message.author.id})
             message.reply(embed)
         }
         else if (message.data.arg[0] === '회차') {
