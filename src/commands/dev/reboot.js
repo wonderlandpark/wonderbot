@@ -4,7 +4,7 @@ module.exports.execute = async (
     message
 ) => {
     if (message.data.args) {
-        if (message.data.arg[0] == client.guilds.cache.first().shardID)
+        if (message.data.arg[0] === client.guilds.cache.first().shardID)
             message.channel.send(
                 `\`❗ 해당 샤드 ${message.data.arg[0]}번 샤드를 종료합니다\``
             )

@@ -36,7 +36,7 @@ module.exports.execute = async (
                         )
                         if (gamemode !== 'allStats') {
                             if (profile[gamemode].games) {
-                                if (gamemode == 'competitiveStats')
+                                if (gamemode === 'competitiveStats')
                                     embed.addField(
                                         locale.commands.overwatch.rate,
                                         tools.lib.emojis.tank +
@@ -233,13 +233,13 @@ module.exports.execute = async (
         .then(async result => {
             var txt = ''
             let count = 0
-            result = result.filter(r => r.platform == 'pc')
-            if (result.length == 0)
+            result = result.filter(r => r.platform === 'pc')
+            if (result.length === 0)
                 return message.reply(locale.commands.overwatch.nores)
             result.sort(function(a, b) {
                 return Number(b.level) - Number(a.level)
             })
-            if (result.length == 1) user = result[0]
+            if (result.length === 1) user = result[0]
             else {
                 for (let i = 0; i < 10; i++) {
                     if (result[i]) {
@@ -302,8 +302,8 @@ module.exports.props = {
 function sec(hms) {
     const a = hms.split(':')
     a.reverse()
-    if (a.length == 2) a.push(0)
-    else if (a.length == 1) {
+    if (a.length === 2) a.push(0)
+    else if (a.length === 1) {
         a.push(0)
         a.push(0)
     }

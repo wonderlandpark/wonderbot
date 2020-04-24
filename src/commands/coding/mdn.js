@@ -2,7 +2,7 @@ const fetch = require('node-fetch')
 const Turndown = require('turndown')
 
 module.exports.execute =  async (client, message, locale, embed) => {
-    if(!message.data.args) return message.reply(locale.error.usage(message.data.cmd))
+    if(!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const queryString = message.data.args
     const body = await fetch(`https://mdn.pleb.xyz/search?q=${encodeURI(queryString)}`).then(res=>res.json())
     let main = body.Translations.find(r=> r.Locale === 'ko')

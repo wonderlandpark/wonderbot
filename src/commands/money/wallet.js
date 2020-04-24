@@ -15,7 +15,7 @@ module.exports.execute = async (
     )
     var money = 0
     Object.keys(JSON.parse(user.items)).forEach(el => {
-        money += stocks.find(i => i.name == el).now * JSON.parse(user.items)[el]
+        money += stocks.find(i => i.name === el).now * JSON.parse(user.items)[el]
     })
     var items = ''
     Object.keys(JSON.parse(user.items)).forEach(el => {
@@ -35,7 +35,7 @@ module.exports.execute = async (
 
     embed.addField(
         locale.commands.wallet.item,
-        items.length == 0 ? locale.commands.wallet.noitem : items.replace('\n', '')
+        items.length === 0 ? locale.commands.wallet.noitem : items.replace('\n', '')
     )
     message.channel.send(embed)
 }

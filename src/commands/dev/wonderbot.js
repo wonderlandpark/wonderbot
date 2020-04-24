@@ -66,7 +66,7 @@ module.exports.execute = async (
             }
             break
         case 'maintain':
-            if (obj.args.find(r => r.name == '--s' || r.name == '--sudo')) {
+            if (obj.args.find(r => r.name === '--s' || r.name === '--sudo')) {
                 if (client.onlineMode) {
                     client.shard.broadcastEval('this.onlineMode = false')
                     obj.return = {

@@ -87,7 +87,7 @@ module.exports = async (client, message, config) => {
         .select('*')
         .from('blacklist')
         .where({ id: message.author.id })
-    if (blacked.length == 1 && blacked[0].time > new Date() / 1000)
+    if (blacked.length === 1 && blacked[0].time > new Date() / 1000)
         return message.reply(
             locale.error.blacklist.bind({
                 time: new Date(Math.round(blacked[0].time * 1000)).format(

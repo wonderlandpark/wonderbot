@@ -13,7 +13,7 @@ module.exports.execute = async (
             i.name.includes(message.data.arg[0].replace(/ /gi, '')) ||
       i.id.includes(message.data.arg[0])
     )
-    if (carrier.length == 0) return message.reply(locale.error.search.nores)
+    if (carrier.length === 0) return message.reply(locale.error.search.nores)
     if (carrier.length > 1)
         return message.reply(
             locale.error.search.many.bind({

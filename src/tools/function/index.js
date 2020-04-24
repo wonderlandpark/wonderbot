@@ -11,7 +11,7 @@ String.prototype.emojiID = function() {
 module.exports.weighted = require('./weighted')
 
 Number.prototype.num2han =  function(){
-    if(this==0) return 0
+    if(this === 0) return 0
 
     var reg = /(^[+-]?\d+)(\d{3})/
     var n = (this.toString())

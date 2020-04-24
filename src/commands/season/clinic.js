@@ -23,7 +23,7 @@ module.exports.execute = async (
     }).then(res => res.json())
     let r = list.search(message.data.args)[0]
 
-    if (status.length == 0)
+    if (status.length === 0)
         return m.edit(
             `> ❌ 검색결과가 없습니다 \n${
                 r ? '`' + r.element + '`을/를 찾으셨나요?' : ''
@@ -40,7 +40,7 @@ module.exports.execute = async (
                 g.clinicName,
                 `주소: ${g.address}\n전화번호: ${
                     g.representativeContact
-                }\n검체 검사 가능 여부: ${g.samplingAvailable == 1 ? '가능' : '불가능'}`
+                }\n검체 검사 가능 여부: ${g.samplingAvailable === 1 ? '가능' : '불가능'}`
             )
         })
         pagination.addEmbed(embed)

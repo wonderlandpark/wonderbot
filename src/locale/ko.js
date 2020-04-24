@@ -578,7 +578,7 @@ module.exports = {
                     desc += `[${usageNames[a.name]} - ${usageNames[a.type.toString()]}]\n`
                 }
             })
-            if (text.length == 0) {
+            if (text.length === 0) {
                 text += '(없음)'
                 desc += '요구된 변수가 없습니다.'
             }

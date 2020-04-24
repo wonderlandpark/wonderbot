@@ -10,7 +10,7 @@ module.exports.execute = async (
         return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     }
     const res = find(message.data.arg[0])
-    if (!res || res.length == 0) return message.reply(locale.error.search.nores)
+    if (!res || res.length === 0) return message.reply(locale.error.search.nores)
     else if (res.length > 1)
         return message.reply(
             locale.error.search.many.bind({
@@ -72,12 +72,12 @@ module.exports.execute = async (
     var msg = message.channel.send(embed)
     await knex('users').update({ action: 1 }).where({ id: message.author.id })
     const filter = (reaction, u) =>
-        reaction.emoji.name == '💳' && u.id == message.author.id
+        reaction.emoji.name === '💳' && u.id === message.author.id
     msg.then(async m => {
         m.react('💳')
         m.awaitReactions(filter, { max: 1, time: 10000, error: ['time'] }).then(
             async collected => {
-                if (collected.size == 0) {
+                if (collected.size === 0) {
                     await knex('users').update({ action: 0}).where({ id: message.author.id })
                     return message.reply(locale.commands.buy.not)
                 }

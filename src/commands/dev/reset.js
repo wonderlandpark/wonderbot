@@ -16,10 +16,10 @@ module.exports.execute = async (
         var bm = 0
         var am = 0
         Object.keys(JSON.parse(b.items)).forEach(el => {
-            bm += stocks.find(i => i.name == el).now * JSON.parse(b.items)[el]
+            bm += stocks.find(i => i.name === el).now * JSON.parse(b.items)[el]
         })
         Object.keys(JSON.parse(a.items)).forEach(el => {
-            am += stocks.find(i => i.name == el).now * JSON.parse(a.items)[el]
+            am += stocks.find(i => i.name === el).now * JSON.parse(a.items)[el]
         })
         if (Number.isNaN(am)) am = 0
         if (Number.isNaN(bm)) bm = 0

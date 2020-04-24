@@ -15,7 +15,8 @@
   "rules": {
     "indent": ["warn", 4],
     "quotes": ["warn", "single"],
-    "semi": ["warn", "never"]
+    "semi": ["warn", "never"],
+    "eqeqeq": "error"
   },
   "ignorePatterns": ["backup/", "node_modules/", "logs/", "*.sql"]
 }

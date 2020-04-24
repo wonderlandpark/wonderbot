@@ -2,7 +2,7 @@ const fetch = require('node-fetch')
 
 
 module.exports.execute =  async (client, message, locale, embed) => {
-    if(!message.data.args) return message.reply(locale.error.usage(message.data.cmd))
+    if(!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const pkg = encodeURI(message.data.args)
     const res = await fetch(`https://registry.npmjs.com/${pkg}`)
     if (res.status === 404) {

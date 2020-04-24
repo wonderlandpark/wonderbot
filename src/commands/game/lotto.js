@@ -34,13 +34,13 @@ module.exports.execute = async (
             }
             
             if((Number(user.money) - 300) < 0) return message.reply(locale.commands.lotto.noMoney)
-            const filter = (reaction, user) => reaction.emoji.name == '🎫' && user.id == message.author.id
+            const filter = (reaction, user) => reaction.emoji.name === '🎫' && user.id === message.author.id
             message.reply(locale.commands.lotto.isReady.bind({ num: nums.map(r=> numbers[r]).join(' ')})).then(async msg => {
                 msg.react('🎫')
                 await knex('users').update({ action: 1 }).where({ id: message.author.id })
                 msg.awaitReactions(filter, { max: 1, time: 10000, error: ['time'] }).then(
                     async collected => {
-                        if (collected.size == 0) {
+                        if (collected.size === 0) {
                             await knex('users').update({ action: 0 }).where({ id: message.author.id })
                             return message.reply(locale.commands.lotto.not)
                         }
@@ -74,7 +74,7 @@ module.exports.execute = async (
             embed.setTitle(locale.commands.lotto.lotto).setDescription(locale.commands.lotto.getMoney.bind({ list: user.map(r=> {
                 const level = calculate(r.numbers, (res[res.length - 1].numbers).split(','))
                 total += [3000000, 50000, 1000, 300, 100, 0][level]
-                return locale.commands.lotto.moneyRes.bind({ num: r.numbers.map(el=> numbers[el]).join(' '), n: level+1, money: [3000000, 50000, 1000, 300, 100, 0][level] })}).join('') }))
+                return locale.commands.lotto.moneyRes.bind({ num: r.numbers.map(el=> numbers[el]).join(' '), n: level+1, money:     [level] })}).join('') }))
             user = user.filter(r=> r.time !== res.length - 1)
             console.log(total)
             await knex('users').update({ money: (Number(u.money) + total), lotto: JSON.stringify(user)}).where({ id: message.author.id})
@@ -148,7 +148,7 @@ function calculate( my, answ ) {
     const l = !res.match(/true/gi) ? 0 : res.match(/true/gi).length
 
     if(l === 4) return 0
-    else if(l === 3 && my[arr.indexOf(false)] == answ[4] ) return 1
+    else if(l === 3 && my[arr.indexOf(false)] === answ[4] ) return 1
     else if(l === 3) return 2
     else if(l === 2) return 3
     else if(l === 1) return 4

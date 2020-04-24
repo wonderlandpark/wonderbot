@@ -11,7 +11,7 @@ module.exports.execute = async (
         .select('*')
         .from('users')
         .where({ id: user.id })
-    if (money.length == 0) return message.reply(locale.commands.money.not)
+    if (money.length === 0) return message.reply(locale.commands.money.not)
     embed.addField(
         locale.commands.money.money,
         locale.commands.money.text.bind({

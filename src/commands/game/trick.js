@@ -54,7 +54,7 @@ module.exports.execute = async (
             }
             cooldown.trick = Math.round(Number(new Date())/1000)
             await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
-            if (random == collected.first().content) {
+            if (random === collected.first().content) {
                 await knex('users')
                     .update({ money: m + Number(message.data.arg[0]) * 2 })
                     .where({ id: message.author.id })

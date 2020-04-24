@@ -14,7 +14,7 @@ module.exports.execute = async (
     } else {
         message.guild.members.fetch()
         var leaderboard =
-            message.data.arg[0] == '전체' || message.data.arg[0] == 'global'
+            message.data.arg[0] === '전체' || message.data.arg[0] === 'global'
                 ? await knex.select('*').from('users')
                 : (await knex.select('*').from('users')).filter(r =>
                     message.guild.members.cache.get(r.id)
@@ -24,10 +24,10 @@ module.exports.execute = async (
             var bm = 0
             var am = 0
             Object.keys(JSON.parse(b.items)).forEach(el => {
-                bm += stocks.find(i => i.name == el).now * JSON.parse(b.items)[el]
+                bm += stocks.find(i => i.name === el).now * JSON.parse(b.items)[el]
             })
             Object.keys(JSON.parse(a.items)).forEach(el => {
-                am += stocks.find(i => i.name == el).now * JSON.parse(a.items)[el]
+                am += stocks.find(i => i.name === el).now * JSON.parse(a.items)[el]
             })
             if (Number.isNaN(am)) am = 0
             if (Number.isNaN(bm)) bm = 0
@@ -39,7 +39,7 @@ module.exports.execute = async (
             if (leaderboard[i - 1]) {
                 Object.keys(JSON.parse(leaderboard[i - 1].items)).forEach(el => {
                     m +=
-                        stocks.find(i => i.name == el).now *
+                        stocks.find(i => i.name === el).now *
                         JSON.parse(leaderboard[i - 1].items)[el]
                 })
                 let userData = await client.users.fetch(leaderboard[i - 1].id, false)
@@ -62,7 +62,7 @@ module.exports.execute = async (
                 season: require('../../config').client.bot.season
             }) +
             `\n${
-                message.data.arg[0] == '전체' || message.data.arg[0] == 'global'
+                message.data.arg[0] === '전체' || message.data.arg[0] === 'global'
                     ? locale.commands.leaderboard.global
                     : locale.commands.leaderboard.guild.bind({
                         server: message.guild.name

@@ -46,13 +46,13 @@ module.exports.execute = async (
         locale.commands.slot.ready.bind({ money: message.data.arg[0] })
     )
     const filter = (reaction, user) =>
-        reaction.emoji.name == '🎰' && user.id == message.author.id
+        reaction.emoji.name === '🎰' && user.id === message.author.id
     await knex('users').update({ action: 1}).where({ id: message.author.id })
     msg.then(async ms => {
         ms.react('🎰')
         ms.awaitReactions(filter, { max: 1, time: 10000, error: ['time'] }).then(
             async collected => {
-                if (collected.size == 0) {
+                if (collected.size === 0) {
                     await knex('users').update({ action: 0}).where({ id: message.author.id })
                     return message.reply(locale.commands.allin.not)
                 }
@@ -114,10 +114,10 @@ module.exports.execute = async (
         var a = tools.weighted(percent)
         var b = tools.weighted(percent)
         var c = tools.weighted(percent)
-        if (a == b && b == c) multi = 1 / (num * percent[a] ** 3)
-        else if (a == b) multi = 1 / (num * percent[a] ** 2)
-        else if (b == c) multi = 1 / (num * percent[b] ** 2)
-        else if (c == a) multi = 1 / (num * percent[c] ** 2)
+        if (a === b && b === c) multi = 1 / (num * percent[a] ** 3)
+        else if (a === b) multi = 1 / (num * percent[a] ** 2)
+        else if (b === c) multi = 1 / (num * percent[b] ** 2)
+        else if (c === a) multi = 1 / (num * percent[c] ** 2)
         else {
             var multi = 0
         }

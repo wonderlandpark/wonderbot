@@ -33,15 +33,15 @@ function log(msg, color) {
 
 Date.prototype.format = function() {
     return `${
-        this.getHours().toString().length == 1
+        this.getHours().toString().length === 1
             ? 0 + this.getHours().toString()
             : this.getHours()
     }:${
-        this.getMinutes().toString().length == 1
+        this.getMinutes().toString().length === 1
             ? 0 + this.getMinutes().toString()
             : this.getMinutes()
     }:${
-        this.getSeconds().toString().length == 1
+        this.getSeconds().toString().length === 1
             ? 0 + this.getSeconds().toString()
             : this.getSeconds()
     }`

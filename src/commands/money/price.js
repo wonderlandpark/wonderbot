@@ -27,19 +27,19 @@ module.exports.execute = async (
           .map(r =>
               locale.commands.price.price.bind({
                   status:
-              stock.find(a => a.name == r.name).lastchange < 0
+              stock.find(a => a.name === r.name).lastchange < 0
                   ? '-'
-                  : stock.find(a => a.name == r.name).lastchange > 0
+                  : stock.find(a => a.name === r.name).lastchange > 0
                       ? '+'
                       : '~',
                   update:
-              stock.find(a => a.name == r.name).lastchange > 0
-                  ? '▲ ' + stock.find(a => a.name == r.name).lastchange
-                  : stock.find(a => a.name == r.name).lastchange < 0
-                      ? '▼ ' + stock.find(a => a.name == r.name).lastchange * -1
-                      : '~ ' + stock.find(a => a.name == r.name).lastchange,
-                  name: s.find(a => a.id == r.name).name,
-                  price: stock.find(a => a.name == r.name).now
+              stock.find(a => a.name === r.name).lastchange > 0
+                  ? '▲ ' + stock.find(a => a.name === r.name).lastchange
+                  : stock.find(a => a.name === r.name).lastchange < 0
+                      ? '▼ ' + stock.find(a => a.name === r.name).lastchange * -1
+                      : '~ ' + stock.find(a => a.name === r.name).lastchange,
+                  name: s.find(a => a.id === r.name).name,
+                  price: stock.find(a => a.name === r.name).now
               })
           )
           .join('\n') +

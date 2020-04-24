@@ -13,10 +13,10 @@ module.exports.execute = async (
         var bm = 0
         var am = 0
         Object.keys(JSON.parse(b.items)).forEach(el => {
-            bm += stocks.find(i => i.name == el).now * JSON.parse(b.items)[el]
+            bm += stocks.find(i => i.name === el).now * JSON.parse(b.items)[el]
         })
         Object.keys(JSON.parse(a.items)).forEach(el => {
-            am += stocks.find(i => i.name == el).now * JSON.parse(a.items)[el]
+            am += stocks.find(i => i.name === el).now * JSON.parse(a.items)[el]
         })
         if (Number.isNaN(am)) am = 0
         if (Number.isNaN(bm)) bm = 0
@@ -29,17 +29,17 @@ module.exports.execute = async (
         var bm = 0
         var am = 0
         Object.keys(JSON.parse(b.items)).forEach(el => {
-            bm += stocks.find(i => i.name == el).now * JSON.parse(b.items)[el]
+            bm += stocks.find(i => i.name === el).now * JSON.parse(b.items)[el]
         })
         Object.keys(JSON.parse(a.items)).forEach(el => {
-            am += stocks.find(i => i.name == el).now * JSON.parse(a.items)[el]
+            am += stocks.find(i => i.name === el).now * JSON.parse(a.items)[el]
         })
         if (Number.isNaN(am)) am = 0
         if (Number.isNaN(bm)) bm = 0
 
         return bm + Number(b.money) - (am + Number(a.money))
     })
-    let u = users.find(el => el.id == us.id)
+    let u = users.find(el => el.id === us.id)
 
     if (!u) return message.reply(locale.error.nouser)
     else {
@@ -50,14 +50,14 @@ module.exports.execute = async (
         embed.addField(
             locale.commands.profile.top,
             locale.commands.profile.topdesc.bind({
-                all: users.findIndex(el => el.id == us.id) + 1,
-                guild: server.findIndex(el => el.id == us.id) + 1
+                all: users.findIndex(el => el.id === us.id) + 1,
+                guild: server.findIndex(el => el.id === us.id) + 1
             }),
             true
         )
         embed.addField(
             locale.commands.profile.badge,
-            JSON.parse(u.badges).length == 0
+            JSON.parse(u.badges).length === 0
                 ? '소유한 뱃지가 없습니다.'
                 : JSON.parse(u.badges).map(e => {
                     if (e.startsWith('season'))

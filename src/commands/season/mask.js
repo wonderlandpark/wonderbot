@@ -3,36 +3,7 @@ const list = require('./gu-list')
 const Pagenation = require('pagination-is-noob')
 
 module.exports.execute = async (client, message, locale, embed, tools) => {
-    async function epage(status, m, p) { // eslint-disable-line no-unused-vars
-        embed = tools.bot.embed(client, message)
-        embed.setTitle('😷 마스크')
-        embed.addField('오늘 마스크는?', maskDay[new Date().getDay()])
-        console.log(p)
-        for (let i = (p - 1) * 5; i < p * 5; i++) {
-            if (status.stores[i])
-                embed.addField(
-                    status.stores[i].name,
-                    `${
-                        statusCode[status.stores[i]['remain_stat']]
-                            ? tools.lib.emojis[status.stores[i]['remain_stat']] +
-                ' ' +
-                statusCode[status.stores[i]['remain_stat']]
-                            : '❔ 알 수 없음'
-                    }\n  주소: \`${status.stores[i].addr}\`\n좌표: \`${
-                        status.stores[i].lat
-                    }, ${
-                        status.stores[i].lng
-                    }\` - [구글 맵](https://www.google.co.kr/maps/search/${
-                        status.stores[i].lat
-                    }+${status.stores[i].lng})`
-                )
-        }
-        m.edit({
-            content:
-        '> ✅ 마스크 정보를 불러왔습니다. 잘못된 정보는 팀이 책임지지 않습니다.',
-            embed
-        })
-    }
+   
     embed.setTitle('😷 마스크')
     embed.addField('오늘 마스크는?', maskDay[new Date().getDay()])
     if (!message.data.args) return message.reply(embed)
@@ -43,7 +14,7 @@ module.exports.execute = async (client, message, locale, embed, tools) => {
         )}`
     ).then(r => r.json())
     let r = list.search(message.data.args)[0]
-    if (status.count == 0)
+    if (status.count === 0)
         return m.edit(
             `> ❌ 검색결과가 없습니다 \n\`${
                 r ? r.element : '검색결과 없음'

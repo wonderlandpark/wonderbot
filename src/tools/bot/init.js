@@ -41,7 +41,7 @@ module.exports = class WB {
             // Fetch for all Guild
             const g = await tools.database('guilds')
             client.guilds.cache.forEach(async guild => {
-                if (!g.find(r => r.id == guild.id)) {
+                if (!g.find(r => r.id === guild.id)) {
                     console.log(`[INSERT] NEW GUILD: ${guild.name}`)
                     await tools.database('guilds').insert({ id: guild.id })
                 }
@@ -87,7 +87,7 @@ module.exports = class WB {
             if (guild.shardID !== client.guilds.cache.first().shardID) return
             const hello = await client.shard.fetchClientValues('guilds.cache.size')
             const g = await tools.database('guilds')
-            if (!g.find(r => r.id == guild.id)) {
+            if (!g.find(r => r.id === guild.id)) {
                 console.log(`[INSERT] NEW GUILD: ${guild.name}`)
                 await tools.database('guilds').insert({ id: guild.id })
             }
