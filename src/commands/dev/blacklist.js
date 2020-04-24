@@ -29,7 +29,7 @@ module.exports.execute = async (
         return message.reply(`BLACKLIST REMOVED | ID: ${user}`)
     }
     else if (['list', '리스트', 'ls'].includes(message.data.arg[0])){
-        return message.reply(`\`\`\`bash\\n${blacks.map(r => `$${r.id} | "${r.why}" | # ${new Date(r.time * 1000).fromNow()}` + '\n')}\`\`\``)
+        return message.reply(`\`\`\`bash\n${blacks.map(r => `$${r.id} | "${r.why}" | # ${new Date(r.time * 1000).fromNow()}`).join('\n')}\`\`\``)
     }
     else return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
 }
