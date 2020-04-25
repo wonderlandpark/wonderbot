@@ -33,7 +33,7 @@ module.exports = async (client, message, config) => {
         config.client.webhook.error.token
     )
 
-    const prefix = JSON.parse((await knex('guilds').where({ id: message.guild.id }))[0].config).prefix || config.client.prefix
+    const prefix = message.content.startsWith(config.client.prefix) ? config.client.prefix : JSON.parse((await knex('guilds').where({ id: message.guild.id }))[0].config).prefix || config.client.prefix
     message.data = {
         raw: message.content,
         arg: message.content.replace(prefix, '').split(' ').slice(1),
