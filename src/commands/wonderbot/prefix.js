@@ -13,6 +13,7 @@ module.exports.execute = async (
         if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(locale.commands.prefix.notAdmin)
         if(message.data.args.length > 16) return message.reply(locale.commands.prefix.filter)
         if(message.data.args.match(/<@![0-9]{18}>/)) return message.reply(locale.commands.prefix.mention)
+        if(message.data.args.match(/(@(everyone|here))/gi)) return message.reply(locale.commands.prefix.mention)
         guild.prefix = message.data.args.replace(/\[SPACE\]|\[띄어쓰기\]/gi, ' ')
         if(guild.prefix.startsWith(' ')) return message.reply(locale.commands.prefix.space)
         await knex('guilds').update({ config: JSON.stringify(guild) }).where({ id: message.guild.id })
