@@ -1,4 +1,3 @@
-const Discord = require('discord.js')
 const Inko = require('inko')
 const inko = new Inko()
 const fs = require('fs')
@@ -28,10 +27,6 @@ module.exports = async (client, message, config) => {
         return arr
     }
     const embed = new require('./embed')(client, message)
-    const webhook = new Discord.WebhookClient(
-        config.client.webhook.error.id,
-        config.client.webhook.error.token
-    )
 
     const prefix = message.content.startsWith(config.client.prefix) && config.client.owners.includes(message.author.id) ? config.client.prefix : JSON.parse((await knex('guilds').where({ id: message.guild.id }))[0].config).prefix || config.client.prefix
     message.data = {
@@ -189,7 +184,7 @@ module.exports = async (client, message, config) => {
                 })
             )
             message.reply(locale.error.onerror.bind({ code }))
-            webhook.send(embed)
+            client.webhook.send(embed)
         })
         
 }

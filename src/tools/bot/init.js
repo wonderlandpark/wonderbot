@@ -10,7 +10,7 @@ module.exports = class WB {
         const client = new Discord.Client(config.client.app)
         const tools = require('../')
         const logger = tools.logger
-        const webhook = new Discord.WebhookClient(
+        client.webhook = new Discord.WebhookClient(
             config.client.webhook.error.id,
             config.client.webhook.error.token
         )
@@ -91,7 +91,7 @@ module.exports = class WB {
                 console.log(`[INSERT] NEW GUILD: ${guild.name}`)
                 await tools.database('guilds').insert({ id: guild.id })
             }
-            webhook.send(
+            client.webhook.send(
                 `**NEW GUILD**: TOTAL: ${hello.reduce(
                     (prev, val) => prev + val,
                     0
@@ -105,7 +105,7 @@ module.exports = class WB {
             if (guild.shardID !== client.guilds.cache.first().shardID) return
             const hello = await client.shard.fetchClientValues('guilds.cache.size')
 
-            webhook.send(
+            client.webhook.send(
                 `**LEFTED GUILD**: TOTAL: ${hello.reduce(
                     (prev, val) => prev + val,
                     0

@@ -8,10 +8,13 @@ module.exports.execute = async (
     props,
     data
 ) => {
-    const info = (await knex('info'))[0].stock
+
+
+    const allInfo = (await knex('info'))[0]
+    const info = allInfo.stock
     if (data.news.time / 1000 < info) {
         const stocks = await knex('stocks')
-        data.news.data = newNews(stocks)
+        data.news.data = await newNews(stocks)
         data.news.time = new Date()
     }
     embed.setTitle(locale.commands.news.news)
@@ -21,6 +24,22 @@ module.exports.execute = async (
       locale.commands.news.desc
     )
     return message.reply(embed)
+
+    async function newNews(arr) {
+        const lotto = (await knex('lotto'))
+        const data = require('./newsData')
+        const all = Shuffle(arr).slice(0, 4)
+        const res = []
+        let past = lotto[lotto.length-1].numbers.split(',')
+        const bindData = { past: lotto.length - 1, pastNum: past.slice(0, 4).join(' ') + ' + ' + past[4], pastCount: lotto[lotto.length-1].prize, now: lotto.length, nowCount: allInfo.lotto }
+        all.forEach(el => {
+            if (el.lastchange >= 0) res.push(data.good[el.name].random().bind(bindData))
+            else res.push(data.bad[el.name].random().bind(bindData))
+        })
+        return res
+    }
+
+
 }
 
 module.exports.props = {
@@ -30,16 +49,7 @@ module.exports.props = {
     args: []
 }
 
-function newNews(arr) {
-    const data = require('./newsData')
-    const all = Shuffle(arr).slice(0, 3)
-    const res = []
-    all.forEach(el => {
-        if (el.lastchange >= 0) res.push(data.good[el.name].random())
-        else res.push(data.bad[el.name].random())
-    })
-    return res
-}
+
 
 function Shuffle(o) {
     for (
@@ -49,3 +59,4 @@ function Shuffle(o) {
     );
     return o
 }
+

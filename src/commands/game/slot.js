@@ -57,7 +57,6 @@ module.exports.execute = async (
                     return message.reply(locale.commands.allin.not)
                 }
                 cooldown.slot = Math.round(Number(new Date())/1000)
-                console.log(cooldown)
                 await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
 
                 await message.reply(

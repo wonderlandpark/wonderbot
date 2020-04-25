@@ -71,14 +71,15 @@ module.exports.execute = async (
             let user = JSON.parse(u.lotto)
             if(user.filter(r=> r.time === res.length - 1).length === 0) return message.reply(locale.commands.lotto.noItem)
             let total = 0
-            embed.setTitle(locale.commands.lotto.lotto).setDescription(locale.commands.lotto.getMoney.bind({ list: user.map(r=> {
+            const list = user.map(r=> {
                 const level = calculate(r.numbers, (res[res.length - 1].numbers).split(','))
                 total += [3000000, 50000, 5000, 300, 100, 0][level]
-                return locale.commands.lotto.moneyRes.bind({ num: r.numbers.map(el=> numbers[el]).join(' '), n: level+1, money: [3000000, 50000, 5000, 300, 100, 0][level] })}).join('') }))
+                return locale.commands.lotto.moneyRes.bind({ num: r.numbers.map(el=> numbers[el]).join(' '), n: level+1, money: [3000000, 50000, 5000, 300, 100, 0][level] })}).join('')
+            embed.setTitle(locale.commands.lotto.lotto).setDescription(locale.commands.lotto.getMoney.bind({ list, total}))
             user = user.filter(r=> r.time !== res.length - 1)
-            console.log(total)
             await knex('users').update({ money: (Number(u.money) + total), lotto: JSON.stringify(user)}).where({ id: message.author.id})
             message.reply(embed)
+            return client.webhook.send(embed)
         }
         else if (message.data.arg[0] === '회차') {
             const res = await knex('lotto')

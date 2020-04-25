@@ -1,6 +1,5 @@
 const fs = require('fs')
-const Discord = require('discord.js')
-const config = require('../../config')
+
 module.exports.execute = async (
     client,
     message,
@@ -9,11 +8,6 @@ module.exports.execute = async (
     tools,
     knex
 ) => {
-    const webhook = new Discord.WebhookClient(
-        config.client.webhook.error.id,
-        config.client.webhook.error.token
-    )
-
     if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const g = (await knex('guilds').where({ id: message.guild.id }))[0]
     if (['초기화', 'reset'].includes(message.data.arg[0])) {
@@ -25,7 +19,7 @@ module.exports.execute = async (
         await knex('guilds')
             .update({ warn: '{}' })
             .where({ id: message.guild.id })
-        webhook.send(
+        client.webhook.send(
             `BACKUPED WARN DATA : ${message.guild.name} (${message.guild.id}) - ${code}`
         )
         message.reply(locale.commands.setwarn.backup.bind({ code }))

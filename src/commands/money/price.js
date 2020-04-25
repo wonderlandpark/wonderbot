@@ -14,7 +14,6 @@ module.exports.execute = async (
         { id: 'figure', name: '피규어' }
     ]
     const stock = await knex('stocks').select('*')
-    console.log(stock.map(r => r.now))
     message.channel.send(
         '```css\n [ ' +
       locale.commands.price.item +
