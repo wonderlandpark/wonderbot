@@ -24,13 +24,13 @@ module.exports.execute = async (
         '\n' +
         locale.commands.wallet.items[el] +
         ': ' +
-        JSON.parse(user.items)[el].num2han() +
+        JSON.parse(user.items)[el].formatIt() +
         ' 개'
     })
 
     embed.addField(
         locale.commands.wallet.will,
-        locale.commands.wallet.money.bind({ money: (money + Number(user.money)).num2han() })
+        locale.commands.wallet.money.bind({ money: (money + Number(user.money)).formatIt() })
     )
 
     embed.addField(

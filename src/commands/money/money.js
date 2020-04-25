@@ -16,7 +16,7 @@ module.exports.execute = async (
         locale.commands.money.money,
         locale.commands.money.text.bind({
             user: user.user.tag,
-            money: money[0].money.num2han()
+            money: money[0].money.formatIt()
         })
     )
     message.channel.send(embed)

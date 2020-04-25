@@ -51,7 +51,7 @@ module.exports.execute = async (
                         userData.discriminator.replace(/..$/, '**')
                             : 'None'
                     }](${locale.commands.leaderboard.all} ` +
-                    (m + Number(leaderboard[i - 1].money)).num2han() +
+                    (m + Number(leaderboard[i - 1].money)).formatIt() +
                     locale.commands.money.won +
                     ')'
             }

@@ -1,5 +1,5 @@
 // Tool
-module.exports.logger = require('./logger')
+module.exports.logger = require('@wonderbot/logger')
 module.exports.database = require('./database/knex')
 
 // Bot
@@ -13,8 +13,8 @@ module.exports.bot = {
 
 module.exports.lib = require('./lib')
 
-require('./date')
+require('@wonderbot/format-date')
 
-Object.keys(require('./function')).forEach(t => {
-    module.exports[t] = require('./function')[t]
+Object.keys(require('@wonderbot/utils')).forEach(t => {
+    module.exports[t] = require('@wonderbot/utils')[t]
 })

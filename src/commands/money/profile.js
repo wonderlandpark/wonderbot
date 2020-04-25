@@ -45,7 +45,7 @@ module.exports.execute = async (
     else {
         embed.addField(
             locale.commands.profile.profile.bind({ user: us.user.tag }),
-            locale.commands.profile.wallet.bind({ money: Number(u['money']).num2han() })
+            locale.commands.profile.wallet.bind({ money: Number(u['money']).formatIt() })
         )
         embed.addField(
             locale.commands.profile.top,

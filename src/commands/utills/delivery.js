@@ -1,5 +1,5 @@
 const carriers = require('./carriers')
-const request = require('request')
+const fetch = require('node-fetch')
 const moment = require('moment')
 module.exports.execute = async (
     client,
@@ -21,13 +21,11 @@ module.exports.execute = async (
                 items: carrier.map(a => a.name)
             })
         )
-    request(
+    fetch(
         encodeURI(
             `https://apis.tracker.delivery/carriers/${carrier[0].id}/tracks/${message.data.arg[1]}`
-        ),
-        function(err, res, Result) {
-            if (err) throw err
-            Result = JSON.parse(Result)
+        )).then(r=> r.json())
+        .then(Result=> {
             if (Result.message) return message.channel.send(`> ❗ ${Result.message}`)
             const MappedResult = Result.progresses.map(l => ({
                 desc: l.description,
@@ -64,8 +62,8 @@ module.exports.execute = async (
                 )
             }
             message.channel.send(embed)
-        }
-    )
+        })
+    
 }
 module.exports.props = {
     name: 'delivery',

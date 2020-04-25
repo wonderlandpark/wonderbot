@@ -652,7 +652,6 @@ const usageNames = {
     count: '수량',
     script: '스크립트',
     'user/text': '유저 또는 텍스트',
-    'morse/text': '변환할 모스부호 또는 텍스트',
     delivery: '택배사',
     bill: '운송장',
     item: '아이템',

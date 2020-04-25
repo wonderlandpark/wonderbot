@@ -6,8 +6,6 @@ Author(s) : wonderlandpark
 (C) Team. Wonder. All rights reserved.
 */
 
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 
 const tools = require('./tools')
 const logger = tools.logger
@@ -36,9 +34,9 @@ process.on('exit', () => {
 })
 
 // Init
-const WB = new Bot(config, (devMode = false))
+new Bot(config, (false))
 
-// Protype
+// Prototype
 
 String.prototype.bind = function(parameters, lang) {
     if (!lang) lang = 'ko'

@@ -16,7 +16,7 @@ Team Callito. Project Wonder_Bot's Rewrite.
 Issues and PR is allways welcomed.
 Feel free to help me.
 
-### Expected Language
+### Language
 
 At this repository, only Korean and English is expected.
 
@@ -36,20 +36,30 @@ npm start
 
 This code works finally on these Requirements
 
-| NAME       | VERSION         | TESTED           |
-| ---------- | --------------- | ---------------- |
-| Windows    | Windows 10 1909 | ✔️ (Development) |
-| Ubuntu     | Ubuntu 19.10    | ✔️ (Production)  |
-| Node.js    | v.13.6.0        | ✔️               |
-| MariaDB    | 10.4.8-MariaDB  | ✔️               |
-| NPM        | 6.14.4          | ✔️               |
-| Discord.js | 12.0.2          | ✔️               |
+| NAME       | VERSION                      | TESTED           |
+| ---------- | ---------------------------- | ---------------- |
+| Windows    | Windows 10 1909              | ✔️ (Development) |
+| Ubuntu     | Ubuntu 19.10                 | ✔️ (Production)  |
+| Node.js    | v.13.6.0 (v14 Not Supported) | ✔️               |
+| MariaDB    | 10.4.8-MariaDB               | ✔️               |
+| NPM        | 6.14.4                       | ✔️               |
+| Discord.js | 12.0.2                       | ✔️               |
+
+## Child NPM Pacakge
+
+| PACKAGE                                                                        | LICENSE |
+| ------------------------------------------------------------------------------ | ------- |
+| [@wonderbot/utils](https://www.npmjs.com/package/@wonderbot/utils)             | MIT     |
+| [@wonderbot/format-date](https://www.npmjs.com/package/@wonderbot/format-date) | MIT     |
+| [@wonderbot/logger](https://www.npmjs.com/package/@wonderbot/logger)           | MIT     |
+| [@wonderbot/ms](https://www.npmjs.com/package/@wonderbot/ms)                   | MIT     |
 
 ## Open Source used in project
 
-| NAME                                                    | USED IN                                                                                                                                                                                                                                                          | LICENSE      |
-| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| [Seia-Soto/Serium](https://github.com/Seia-Soto/Serium) | [bind Method](https://github.com/wonderlandpark/wonderbot/blob/3f734bcac06ee6a8b2e92ea5baf8a4a13d7833e3/index.js#L44-L55), [Command Handler](https://github.com/wonderlandpark/wonderbot/blob/3f734bcac06ee6a8b2e92ea5baf8a4a13d7833e3/commands/index.js#L1-L25) | Artistic 2.0 |
+| NAME                                                          | USED IN                                                                                                                                                                                                                                                          | LICENSE                                    |
+| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [Seia-Soto/Serium](https://github.com/Seia-Soto/Serium)       | [bind Method](https://github.com/wonderlandpark/wonderbot/blob/3f734bcac06ee6a8b2e92ea5baf8a4a13d7833e3/index.js#L44-L55), [Command Handler](https://github.com/wonderlandpark/wonderbot/blob/3f734bcac06ee6a8b2e92ea5baf8a4a13d7833e3/commands/index.js#L1-L25) | Artistic 2.0                               |
+| [Naval-Base/yukikaze](https://github.com/Naval-Base/yukikaze) | [NPM Command](https://github.com/wonderlandpark/wonderbot/blob/master/src/commands/coding/npm.js), [MDN Command](https://github.com/wonderlandpark/wonderbot/blob/master/src/commands/coding/mdn.js)                                                             | Non-licensed ( Received permission to use) |
 
 ## Thanks To
 
@@ -82,6 +92,6 @@ This code works finally on these Requirements
 
 [원더랜드](https://discord.gg/y6Yqeav)
 
-#### Developer's
+#### Developer's Website
 
 [바로가기](https://dev.wonderbot.xyz)

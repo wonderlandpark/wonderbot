@@ -64,8 +64,8 @@ module.exports.execute = async (
         locale.commands.buy.bill,
         locale.commands.buy.ask.bind({
             item: res[0].name,
-            count: num.num2han(),
-            total: total.num2han()
+            count: num.formatIt(),
+            total: total.formatIt()
         })
     )
     if(total/10000000000000000000 > Number(user.money)) return message.reply(locale.error.more)
@@ -89,9 +89,9 @@ module.exports.execute = async (
                     locale.commands.buy.finish,
                     locale.commands.buy.result.bind({
                         item: res[0].name,
-                        count: num.num2han(),
-                        total: total.num2han(),
-                        money: dived.num2han()
+                        count: num.formatIt(),
+                        total: total.formatIt(),
+                        money: dived.formatIt()
                     })
                 )
                 await knex('users').update({ action: 0 }).where({ id: message.author.id })

@@ -32,7 +32,7 @@ module.exports.execute = async (
                 .from('users')
             message.reply(
                 locale.commands.payday.premium.bind({
-                    money: (Number(u['money']) + 200).num2han()
+                    money: (Number(u['money']) + 200).formatIt()
                 })
             )
         } else {
@@ -45,7 +45,7 @@ module.exports.execute = async (
                 .from('users')
             message.reply(
                 locale.commands.payday.success.bind({
-                    money: (Number(u['money']) + 100).num2han()
+                    money: (Number(u['money']) + 100).formatIt()
                 })
             )
         }

@@ -1,4 +1,4 @@
-const ms = require('@naval-base/ms').ms
+const ms = require('@wonderbot/ms').ms
 module.exports.execute = async (
     client,
     message,

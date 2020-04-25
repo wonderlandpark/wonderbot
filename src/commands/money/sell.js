@@ -65,8 +65,8 @@ module.exports.execute = async (
         locale.commands.sell.bill,
         locale.commands.sell.ask.bind({
             item: res[0].name,
-            count: num.num2han(),
-            total: total.num2han()
+            count: num.formatIt(),
+            total: total.formatIt()
         })
     )
     if(Number(user.money) !== 0 && total/10000000000000000000 > Number(user.money)) return message.reply(locale.error.more)
@@ -91,9 +91,9 @@ module.exports.execute = async (
                     locale.commands.sell.finish,
                     locale.commands.sell.result.bind({
                         item: res[0].name,
-                        count: num.num2han(),
-                        total: total.num2han(),
-                        money: mon.num2han()
+                        count: num.formatIt(),
+                        total: total.formatIt(),
+                        money: mon.formatIt()
                     })
                 )
 
