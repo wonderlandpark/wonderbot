@@ -532,6 +532,9 @@ module.exports = {
         },
         npm: {
             unpublish: '공개되지 않았습니다.'
+        },
+        subway: {
+            error: '정보를 불러오는데 실패하였습니다.\n> {msg}'
         }
     },
 
@@ -675,5 +678,6 @@ const usageNames = {
     fromMoney: '변환할 금액',
     moneyresolvable: '숫자+화폐단위',
     prefix: '변경할 접두사',
-    sender: '전송자'
+    sender: '전송자',
+    station: '역명'
 }

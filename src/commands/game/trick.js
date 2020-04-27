@@ -39,6 +39,7 @@ module.exports.execute = async (
         return message.reply(locale.commands.trick.nomoney)
     const msg = await message.reply(locale.commands.trick.start)
     const random = [1, 2, 3].random()
+    console.log(random) 
     setTimeout(async function() {
         msg.edit(msg.content + locale.commands.trick.mix)
     }, 1000)
@@ -54,7 +55,7 @@ module.exports.execute = async (
             }
             cooldown.trick = Math.round(Number(new Date())/1000)
             await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
-            if (random === collected.first().content) {
+            if (random === Number(collected.first().content)) {
                 await knex('users')
                     .update({ money: m + Number(message.data.arg[0]) * 2 })
                     .where({ id: message.author.id })

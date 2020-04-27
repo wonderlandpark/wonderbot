@@ -22,5 +22,9 @@ module.exports = {
     },
     token: '',
     prefix: '.',
-    owners: ['285185716240252929']
+    owners: ['285185716240252929'],
+    secrets: {
+        seoul: 'sample', // data.seoul.go.kr
+        mainapi: ''
+    }
 }
