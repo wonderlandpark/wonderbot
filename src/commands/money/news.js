@@ -17,7 +17,7 @@ module.exports.execute = async (
         data.news.data = await newNews(stocks)
         data.news.time = new Date()
     }
-    embed.setTitle(locale.commands.news.news)
+    embed.setTitle(locale.commands.news.news.bind({ name: Names[message.guild.shardID] }))
     embed.setDescription(
         '\n' +
       data.news.data.map(a => `> 📢 **${a}**\n`).join('\n') +
@@ -60,3 +60,5 @@ function Shuffle(o) {
     return o
 }
 
+
+const Names = [ '원더경제', '앞으로일보', '칼리스토 뉴스']
