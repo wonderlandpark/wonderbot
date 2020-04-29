@@ -20,7 +20,7 @@ module.exports.execute = async (
             const user = (await knex('users').where({ id: message.author.id }))[0]
             let lotto = JSON.parse(user.lotto)
             lotto = lotto.filter(r=> r.time > res.length - 2)
-            if(lotto.filter(r=> r.time === res.length).length >= 10) {
+            if(lotto.filter(r=> r.time === res.length).length >= 15) {
                 return message.reply(locale.commands.lotto.limit)
             }
             if(!message.data.arg[1]) return message.reply(locale.commands.lotto.invaild.bind({ prefix: message.data.prefix }))
