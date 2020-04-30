@@ -61,4 +61,4 @@ function Shuffle(o) {
 }
 
 
-const Names = [ '원더경제', '앞으로일보', '칼리스토 뉴스']
+const Names = [ '원더경제', '앞으로일보', '칼리스토 뉴스', '헬로, 뉴스']
