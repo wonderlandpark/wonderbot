@@ -51,10 +51,14 @@ String.prototype.bind = function(parameters, lang) {
     const keys = text.match(/\{(.*?)\}/g)
     if (!keys) return this
 
-    keys.forEach(key => {
-        const keyname = key.replace(/\{/, '').replace(/\}/, '')
-        text = text.replace(key, String(parameters[keyname]) || '')
-    })
+    for (let i = 0, l = keys.length; i < l; i++) {
+      text = text.replace(
+        keys[i]
+          .replace(/\{/, '')
+          .replace(/\}/, ''),
+        String(parameters[keyname]) || ''
+      )
+    }
 
     return text
 }
