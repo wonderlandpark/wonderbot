@@ -6,24 +6,26 @@ module.exports.execute = async (
     _tools,
     knex
 ) => {
-    message.channel.send(locale.commands.ping.ping).then(m => {
-        const time = new Date()
-        knex
-            .select('*')
-            .from('users')
-            .then(() => {
-                embed.addField(
-                    locale.commands.ping.this,
-                    locale.commands.ping.return.bind({
-                        bot: m.createdTimestamp - message.createdTimestamp,
-                        api: Math.round(client.ws.ping),
-                        db: new Date() - time
-                    })
-                )
+  const status = await message.channel.send(locale.commands.ping.ping)
+  const time = new Date()
 
-                m.edit({ content: locale.commands.ping.pong, embed })
-            })
+  const users = await knex('users')
+    .select('*')
+    .limit(1)
+
+  embed.addField(
+    locale.commands.ping.this,
+    locale.commands.ping.return.bind({
+      bot: status.createdTimestamp - message.createdTimestamp,
+      api: Match.round(client.ws.ping),
+      db: new Date() - time
     })
+  )
+
+  status.edit({
+    content: locale.commands.ping.pong,
+    embed
+  })
 }
 module.exports.props = {
     name: 'ping',
