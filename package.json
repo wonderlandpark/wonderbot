@@ -9,9 +9,9 @@
   "author": "",
   "license": "GPL-3.0",
   "dependencies": {
-    "@wonderbot/ms": "latest",
     "@wonderbot/format-date": "latest",
     "@wonderbot/logger": "latest",
+    "@wonderbot/ms": "latest",
     "@wonderbot/utils": "latest",
     "canvas": "^2.6.1",
     "cheerio": "^1.0.0-rc.3",
@@ -19,6 +19,7 @@
     "flip-text": "^1.1.0",
     "inko": "^1.1.1",
     "knex": "^0.20.2",
+    "koreanbots": "^1.0.7",
     "moment": "^2.24.0",
     "moment-duration-format": "^2.3.2",
     "moment-with-locales-es6": "^1.0.1",
