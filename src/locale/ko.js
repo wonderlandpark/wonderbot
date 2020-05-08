@@ -500,6 +500,34 @@ module.exports = {
             channels: '채널들',
             more: '외 {count}개 더...'
         },
+        userinfo: {
+            gametypes: { PLAYING: '하는 중', LISTENING: '듣는 중', WATCHING: '보는 중', STREAMING: '방송 중' },
+            online: '온라인',
+            idle: '자리 비움',
+            dnd: '다른 용무 중',
+            offline: '오프라인 표시',
+            streaming: '방송 중',
+            more: '외 {count}개 더...',
+            many: '여러개의 항목이 있습니다! 채팅창에 번호를 입력해주세요!   ',
+            notvaild: '올바르지 않은 수에요..',
+            numberto: '숫자는 1부터 {max}까지 입력 가능해요.',
+            timeout: '시간이 지나 취소되었습니다.',
+            nores: '검색결과가 없습니다',
+            username: '유저이름',
+            game: '게임',
+            nogame: '플레이중인 게임이 없습니다.',
+            status: '상태',
+            unknown: '알 수 없음',
+            client: '클라이언트',
+            created: '계정 생성일',
+            joined: '서버 참여일',
+            roles: '역할들',
+            platform:  {
+                'desktop': '🖥️ 데스크톱',
+                'mobile': '📱 모바일',
+                'web': '🌐 웹'
+            }
+        },
         slowmode: {
             error: '메시지 제한 초수는 **0(꺼짐)~21600(6시간)**을 입력하셔야 해요!',
             set: '해당 채널의 슬로우모드를 `{sec}초`로 설정했습니다.',
