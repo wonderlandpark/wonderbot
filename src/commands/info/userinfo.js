@@ -1,14 +1,17 @@
 module.exports.execute = async( client, message, locale, embed, tools) => {
     const emoji = tools.lib.emojis
-    function game(name,type,spotify){
+    function game(game){
+        const name = game.name
+        const type = game.type
+
         const gamearray = locale.commands.userinfo.gametypes
         let b
         let a=name.toString().toLowerCase()
         const res = emoji.game.find(el=> a.includes(el.query))
         if(res) b = res.emoji 
         else b='❔'
-
-        return b+' **'+name+'**'+` ${gamearray[type]} ${['Spotify'].includes(name) ? `\n${res.desc.bind({ details: spotify.details, state: spotify.state})}` : ''}`
+        console.log( b+' **'+name+'**'+` ${gamearray[type]} ${res.desc ? `\n${res.desc.bind({ details: game.details, state: game.state})}` : ''}`)
+        return b+' **'+name+'**'+` ${gamearray[type]} ${res.desc ? `\n${res.desc.bind({ details: game.details, state: game.state})}` : ''}`
         
         
     }
@@ -77,10 +80,10 @@ module.exports.execute = async( client, message, locale, embed, tools) => {
         if (!user) return message.channel.send(locale.commands.userinfo.nores)
         embed.setThumbnail(user.user.displayAvatarURL)
         embed.addField(locale.commands.userinfo.username, `${user.user.tag} ${user.user.bot ? emoji.bot : ''}`, true)
-        embed.addField('ID', user.id, true)
-        let gg = user.user.presence.activities.filter(r=> r.type !== 'CUSTOM_STATUS')
-        if(gg.length === 0) embed.addField(locale.commands.userinfo.game, locale.commands.userinfo.nogame)
-        else embed.addField(locale.commands.userinfo.game,user.user.presence.game !== null ? `**${game(gg[0].name, gg[0].type, gg[0].name === 'Spotify' ? gg[0] : undefined)}**`:'없음',true)
+        embed.addField('ID', user.id)
+        let gg = user.user.presence.activities.filter(r=> r.type !== 'CUSTOM_STATUS').reverse()
+        if(gg.length === 0) embed.addField(locale.commands.userinfo.game, locale.commands.userinfo.nogame, true)
+        else embed.addField(locale.commands.userinfo.game,user.user.presence.game !== null ? `${game(gg[0])}`:'없음')
         embed.addField(locale.commands.userinfo.status ,status(user.user.presence.status),true)
         function getClient(presence,callback){
             if(presence ===null) return callback(null)

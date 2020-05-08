@@ -8,7 +8,8 @@ module.exports = {
         {
             name: 'Visual Studio Code',
             query: 'visual studio code',
-            emoji: '<:vscode:708144076888735744>'
+            emoji: '<:vscode:708144076888735744>',
+            desc: '**{details}**\n{state}'
         },
         {
             name: 'Spotify',
