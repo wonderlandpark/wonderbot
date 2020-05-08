@@ -2,18 +2,27 @@ module.exports = {
     check: '<a:check:663594505651486742>',
     loading: '<a:wonderisloading:677818976797065254>',
     gookbap: '<:gookbap:677905040706371598>',
-
+    bot: '<:bot:525974722178056212>',
+    //Games
+    game: [
+        {
+            name: 'Visual Studio Code',
+            query: 'visual studio',
+            emoji: '<:vscode:708144076888735744>'
+        }
+    ],
     // Status
-    online: '<:online:687194002415812654>',
-    idle: '<:idle:687194002642042900>',
-    dnd: '<:dnd:687194002297978915>',
-    offline: '<:offline:687194002763546691>',
+    online: '<:online:708147992955191346>',
+    idle: '<:idle:708147992896471092>',
+    dnd: '<:dnd:708147993110642759>',
+    offline: '<:offline2:464520569929334784>',
+    steaming: '<:streaming2:464520569778601985>',
 
     // Mask
-    plenty: '<:online:687194002415812654>',
-    some: '<:idle:687194002642042900>',
-    few: '<:dnd:687194002297978915>',
-    empty: '<:offline:687194002763546691>',
+    plenty: '<:online:708147992955191346>',
+    some: '<:idle:708147992896471092>',
+    few: '<:dnd:708147993110642759>',
+    empty: '<:offline2:464520569929334784>',
     break: '❌',
     // Overwatch Emojis
 
