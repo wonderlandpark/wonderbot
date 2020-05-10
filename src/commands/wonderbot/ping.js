@@ -8,9 +8,9 @@ module.exports.execute = async (
 ) => {
     message.channel.send(locale.commands.ping.ping).then(m => {
         const time = new Date()
-        knex
+        knex('users')
             .select('*')
-            .from('users')
+            .limit(1)
             .then(() => {
                 embed.addField(
                     locale.commands.ping.this,
