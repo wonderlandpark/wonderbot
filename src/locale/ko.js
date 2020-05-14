@@ -95,7 +95,7 @@ module.exports = {
             CMDDESC: '투표보상을 지급받습니다.',
             COOLDOWN: 3600,
             success: '**__원더봇을 투표해주셔서 감사합니다__**\n당신의 잔고에 `100` <:coin:636879213239992330>을 추가했습니다!\n잔고 : `{money}` <:coin:636879213239992330>',
-            not: '원더봇을 투표하시지 않으셨습니다!\n아래 링크에서 하트를 눌러주세요!\n링크: https://koreanbots.cf/bots/387548561816027138'
+            not: '원더봇을 투표하시지 않으셨습니다!\n아래 링크에서 하트를 눌러주세요!\n링크: https://koreanbots.dev/bots/wonderbot'
         },
         allin: {
             CMDDESC: '삭제된 명령어입니다.',
