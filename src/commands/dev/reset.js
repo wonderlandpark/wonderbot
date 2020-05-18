@@ -12,7 +12,7 @@ module.exports.execute = async (
 
     var leaderboard = await knex.select('*').from('users')
 
-    leaderboard.sort(function(a, b) {
+    leaderboard.sort(function (a, b) {
         var bm = 0
         var am = 0
         Object.keys(JSON.parse(b.items)).forEach(el => {
@@ -23,7 +23,7 @@ module.exports.execute = async (
         })
         if (Number.isNaN(am)) am = 0
         if (Number.isNaN(bm)) bm = 0
-        return bm + b.money - (am + a.money)
+        return bm + Number(b.money) - (am + Number(a.money))
     })
     const first = JSON.parse(leaderboard[0].badges)
     first.push(`season-${season}-first`)

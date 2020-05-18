@@ -39,6 +39,7 @@ module.exports = async (client, message, config) => {
             .replace(prefix, '')
             .split(' ')[0]
             .toLowerCase(),
+        premium: undefined,
         locale: 'ko'
     }
     const locale = require('../../locale')[message.data.locale]
@@ -93,16 +94,18 @@ module.exports = async (client, message, config) => {
         )
     if (user.action)
         return message.reply(locale.error.already)
+    message.data.premium = new Date()/1000 < user.premium
     if (
         data.cooldown[message.author.id] &&
     Number(data.cooldown[message.author.id]) > Number(new Date()) &&
-    !JSON.parse(user.badges).includes('premium')
+    !message.data.premium
     ) {
         return message.reply(
             locale.error.cooldown.bind({
                 time: Number(
                     (Number(data.cooldown[message.author.id]) - Number(new Date())) / 1000
-                ).toFixed(2)
+                ).toFixed(2),
+                prefix: message.data.prefix
             })
         )
     }

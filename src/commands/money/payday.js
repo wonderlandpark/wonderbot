@@ -13,7 +13,6 @@ module.exports.execute = async (
             .from('users')
             .where({ id: message.author.id })
     )[0]
-    var premium = JSON.parse(u.badges).includes('premium')
     var m = Number(u['money_cooldown'])
     if (m + 3600 > new Date() / 1000)
         return message.reply(
@@ -22,7 +21,7 @@ module.exports.execute = async (
             })
         )
     else {
-        if (premium) {
+        if (message.data.premium) {
             await knex
                 .update({
                     money: Number(u['money']) + 200,

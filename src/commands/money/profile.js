@@ -7,7 +7,7 @@ module.exports.execute = async (
     knex
 ) => {
     const us = message.mentions.members.first() || message.member
-    var users = await knex('users').select('*')
+    var users = await knex('users').select(['id', 'badges', 'money', 'items', 'join'])
     const stocks = await knex('stocks').select('*')
     users.sort(function(a, b) {
         var bm = 0
@@ -55,11 +55,14 @@ module.exports.execute = async (
             }),
             true
         )
+
+        const badge = JSON.parse(u.badges)
+        if(message.data.premium) badge.push('premium')
         embed.addField(
             locale.commands.profile.badge,
-            JSON.parse(u.badges).length === 0
+            badge.length === 0
                 ? '소유한 뱃지가 없습니다.'
-                : JSON.parse(u.badges).map(e => {
+                : badge.map(e => {
                     if (e.startsWith('season'))
                         return (
                             tools.lib.emojis[e.split('-')[2]] +
