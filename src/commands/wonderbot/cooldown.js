@@ -6,7 +6,7 @@ module.exports.execute = async (
 ) => {
     embed.setTitle(locale.commands.cooldown.title)
     embed.setDescription(locale.commands.cooldown.desc)
-    embed.addField(locale.commands.cooldown.benefit, locale.commands.cooldown.benefitDesc)
+    embed.addField(locale.commands.cooldown.benefit, locale.commands.cooldown.benefitDesc.bind({ plan: message.data.premium ? locale.commands.cooldown.ends.bind({ date: message.data.premiumTime.format(message.data.locale), at: message.data.premiumTime.fromNow(message.data.locale)}) : locale.commands.cooldown.not}))
     message.reply(embed)
     
 }

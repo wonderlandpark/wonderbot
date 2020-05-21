@@ -95,6 +95,7 @@ module.exports = async (client, message, config) => {
     if (user.action)
         return message.reply(locale.error.already)
     message.data.premium = new Date()/1000 < user.premium
+    message.data.premiumTime = new Date(user.premium * 1000)
     if (
         data.cooldown[message.author.id] &&
     Number(data.cooldown[message.author.id]) > Number(new Date()) &&
