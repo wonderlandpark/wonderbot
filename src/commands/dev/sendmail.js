@@ -7,6 +7,7 @@ module.exports.execute = async (
     knex
 ) => {
     if(!message.data.arg[1]) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
+    message.reply(message.data.arg2)
     const users = await knex('users')
     users.forEach(async el=> {
         let mail = JSON.parse(el.mails)
@@ -15,8 +16,8 @@ module.exports.execute = async (
         cooldown.mail = 0
         await knex('users').update({ cooldown: JSON.stringify(cooldown), mails: JSON.stringify(mail)}).where({ id: el.id })
     })
-    message.reply(message.data.arg2)
-    message.reply('모든 유저에게 메일이 전송되었습니다.')
+    
+    await message.reply('모든 유저에게 메일이 전송되었습니다.')
 }
 
 module.exports.props = {
