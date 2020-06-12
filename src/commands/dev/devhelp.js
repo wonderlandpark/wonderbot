@@ -4,10 +4,9 @@ const inko = new Inko()
 const commands = require('../index')
 module.exports.execute = async (client, message, locale, embed) => {
     if (!message.data.args) {
-        embed.setTitle(locale.commands.help.help)
-        embed.setDescription(locale.commands.help.desc)
+        embed.setTitle('일해라 이자식아')
         Object.keys(commands.categorys).forEach(cat => {
-            if(cat.toLowerCase() === 'dev') return
+            if(cat.toLowerCase() !== 'dev') return
             embed.addField(cat.toUpperCase(), cmdFormat(commands.categorys[cat]))
         })
         embed.addField(
@@ -45,9 +44,9 @@ module.exports.execute = async (client, message, locale, embed) => {
 }
 
 module.exports.props = {
-    name: 'help',
+    name: 'devhelp',
     perms: 'general',
-    alias: ['도움', 'commands', '도움말', '명령어'],
+    alias: ['개발자도움'],
     args: [
         {
             name: 'cmd',

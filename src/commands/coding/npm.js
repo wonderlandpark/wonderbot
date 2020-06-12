@@ -37,7 +37,7 @@ module.exports.execute =  async (client, message, locale, embed) => {
 module.exports.props = {
     name: 'npm',
     perms: 'general',
-    alias: ['nodepackagemanager'],
+    alias: ['npm', 'nodepackagemanager'],
     args: []
 }
     
