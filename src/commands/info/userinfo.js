@@ -9,8 +9,7 @@ module.exports.execute = async( client, message, locale, embed, tools) => {
         let a=name.toString().toLowerCase()
         const res = emoji.game.find(el=> a.includes(el.query))
         if(res) b = res.emoji 
-        else b='❔'
-        console.log( b+' **'+name+'**'+` ${gamearray[type]} ${res.desc ? `\n${res.desc.bind({ details: game.details, state: game.state})}` : ''}`)
+        else return locale.commands.userinfo.nogame
         return b+' **'+name+'**'+` ${gamearray[type]} ${res.desc ? `\n${res.desc.bind({ details: game.details, state: game.state})}` : ''}`
         
         
@@ -31,48 +30,51 @@ module.exports.execute = async( client, message, locale, embed, tools) => {
     function getuser(callback) {
         if (message.data.args.length===0) return callback(message.member)
         if (message.mentions.members.first()) return callback(message.mentions.members.first())
- 
-        const getmem = message.guild.members.cache.filter(a => a === lower || a.id === lower || a.displayName.toLowerCase().includes(lower) || a.user.username.toLowerCase() === lower || a.user.tag.toLowerCase() === lower || a.user.discriminator.toLowerCase() === lower).map(a => a)
+        message.guild.members.fetch().then(mems=> {
+            const getmem = mems.filter(a => a === lower || a.id === lower || a.displayName.toLowerCase().includes(lower) || a.user.username.toLowerCase() === lower || a.user.tag.toLowerCase() === lower || a.user.discriminator.toLowerCase() === lower).map(a => a)
 
        
-        if (getmem.length === 1) {
-            return callback(getmem[0])
-        } else if (getmem.length > 1) {
-            let order = ''
-            let loop
-            let moreuser = false
-            if (getmem.length >= 5) loop = 5
-            if (getmem.length > 5) moreuser = true
-            else loop = getmem.length
-            for (let i = 0; i < loop; i++) {
-                let user = `\n[${i + 1}] ${getmem[i].displayName}${getmem[i].user.bot === true ? ' **[BOT]**' : ''} (${getmem[i].user.tag}) [${getmem[i].id}]`
-                order += user
-                if (i === loop - 1) {
-                    const filter = m => m.author.id === message.author.id
-                    if (moreuser === true) order = order+locale.commands.userinfo.more.bind({ count: getmem.length-5 })
-                    message.channel.send(locale.commands.userinfo.many + order).then(m => {
-                        message.channel.awaitMessages(filter, { max: 1, time: 5000 }).then(collected => {
-                            if (Number.isInteger(Number(collected.first().content)) === false) {
+            if (getmem.length === 1) {
+                return callback(getmem[0])
+            } else if (getmem.length > 1) {
+                let order = ''
+                let loop
+                let moreuser = false
+                if (getmem.length >= 5) loop = 5
+                if (getmem.length > 5) moreuser = true
+                else loop = getmem.length
+                for (let i = 0; i < loop; i++) {
+                    let user = `\n[${i + 1}] ${getmem[i].displayName}${getmem[i].user.bot === true ? ' **[BOT]**' : ''} (${getmem[i].user.tag}) [${getmem[i].id}]`
+                    order += user
+                    if (i === loop - 1) {
+                        const filter = m => m.author.id === message.author.id
+                        if (moreuser === true) order = order+locale.commands.userinfo.more.bind({ count: getmem.length-5 })
+                        message.channel.send(locale.commands.userinfo.many + order).then(m => {
+                            message.channel.awaitMessages(filter, { max: 1, time: 5000 }).then(collected => {
+                                if (Number.isInteger(Number(collected.first().content)) === false) {
+                                    m.delete().catch(() => {})
+                                    return message.channel.send(locale.commands.userinfo.notvaild)
+                                }
+                                if (1 > Number(collected.first().content) || getmem.length < Number(collected.first().content)) {
+                                    m.delete().catch(() => {})
+                                    return message.channel.send(locale.commands.userinfo.notvaild + ' ' + locale.commands.userinfo.numberto.bind({ max: getmem.length }))
+                                }
+                                const collect = Number(collected.first().content) - 1
                                 m.delete().catch(() => {})
-                                return message.channel.send(locale.commands.userinfo.notvaild)
-                            }
-                            if (1 > Number(collected.first().content) || getmem.length < Number(collected.first().content)) {
+                                return callback(getmem[collect])
+                            }).catch(() => {
                                 m.delete().catch(() => {})
-                                return message.channel.send(locale.commands.userinfo.notvaild + ' ' + locale.commands.userinfo.numberto.bind({ max: getmem.length }))
-                            }
-                            const collect = Number(collected.first().content) - 1
-                            m.delete().catch(() => {})
-                            return callback(getmem[collect])
-                        }).catch(() => {
-                            m.delete().catch(() => {})
-                            return callback('timeout')
+                                return callback('timeout')
+                            })
                         })
-                    })
+                    }
                 }
+            } else {
+                return callback(undefined)
             }
-        } else {
-            return callback(undefined)
-        }
+        })
+
+
     }
     //Func End
     getuser(async (user) => {
