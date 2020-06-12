@@ -36,7 +36,7 @@ module.exports.execute = async (
         .update({ badges: JSON.stringify(second) })
         .where({ id: leaderboard[1].id })
     const third = JSON.parse(leaderboard[2].badges)
-    third.push(`season-${season}-first`)
+    third.push(`season-${season}-third`)
     await knex('users')
         .update({ badges: JSON.stringify(third) })
         .where({ id: leaderboard[2].id })
