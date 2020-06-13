@@ -52,6 +52,10 @@ module.exports = async (client, message, config) => {
     !message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')
     )
         return
+    if(message.channel.topic.includes('명령어금지') && !message.member.permissions.has('ADMINISTRATOR')){
+        message.delete()
+        return message.reply('해당 채널에서는 명령어 사용이 금지되있어요! 다른 채널에서 사용해주세요.').then(m=> m.delete({ timeout: 5000 }))
+    }
     let CMD = commands[message.data.cmd] || commands[inko.en2ko(message.data.cmd)] || commands[inko.ko2en(message.data.cmd)]
     if (!CMD) return
   
