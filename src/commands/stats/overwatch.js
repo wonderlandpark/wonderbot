@@ -100,7 +100,7 @@ module.exports.execute = async (
                                             kd: heros[0].data.average.eliminationsPerLife || 0,
                                             objectTime:
                         heros[0].data.average.objectiveTimeAvgPer10Min || 0,
-                                            fire: heros[0].data.average.objectiveTimeAvgPer10Min || 0,
+                                            fire: heros[0].data.average.timeSpentOnFireAvgPer10Min || 0,
                                             eliminations: heros[0].data.combat.eliminations || 0,
                                             deaths:
                         heros[0].data.combat.deaths ||
