@@ -189,6 +189,7 @@ module.exports.execute = async (
                       money: Math.round((secs / 60 / 60) * 8350),
                       mercy: Math.floor(secs / 30),
                       gookbapEmoji: tools.lib.emojis.gookbap,
+                      curry: Math.floor(secs/ 300),
                       gookbap: Math.floor(
                           Math.round((secs / 60 / 60) * 8350) / 7000
                       )

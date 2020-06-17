@@ -288,7 +288,7 @@ module.exports = {
             time: '플레이 시간 (빠대+경쟁)',
             day: '일',
             timestat:
-        '**옵치를 하지 않았다면??**\n2020년 최저임금으로 __{money}__원 벌기 \n=> 국밥 {gookbapEmoji} {gookbap} 그릇 (7,000원 기준)\n메르시 부활 **{mercy}**회\n3분 카레 : **{curry}**개 제조\n연애할 수 있는 횟수 : **0**회'
+        '**옵치를 하지 않았다면??**\n2020년 최저임금으로 __**{money}**__원 벌기 \n=> 국밥 {gookbapEmoji} {gookbap} 그릇 (7,000원 기준)\n메르시 부활 **{mercy}**회\n3분 카레 : **{curry}**개 제조\n연애할 수 있는 횟수 : **0**회'
         },
         corona: {
             CMDDESC: '점검중인 기능입니다.',
