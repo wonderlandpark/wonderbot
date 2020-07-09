@@ -138,13 +138,13 @@ module.exports.props = {
 }
 
 const percent = {
-    wonderbot: 0.013,
-    seven: 0.03,
-    gem: 0.097,
-    star: 0.135,
-    money: 0.175,
-    melon: 0.261,
-    pear: 0.289
+    wonderbot: 0.03,
+    seven: 0.05,
+    gem: 0.10,
+    star: 0.13,
+    money: 0.15,
+    melon: 0.20,
+    pear: 0.34
 }
 const emoji = {
     wonderbot: '<a:slot:666617809849155608>',

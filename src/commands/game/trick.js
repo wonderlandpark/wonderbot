@@ -39,7 +39,6 @@ module.exports.execute = async (
         return message.reply(locale.commands.trick.nomoney)
     const msg = await message.reply(locale.commands.trick.start)
     const random = [1, 2, 3].random()
-    console.log(random) 
     setTimeout(async function() {
         msg.edit(msg.content + locale.commands.trick.mix)
     }, 1000)
@@ -65,12 +64,12 @@ module.exports.execute = async (
                 await knex('users')
                     .update({ money: m - Number(message.data.arg[0]) })
                     .where({ id: message.author.id })
-                message.reply(locale.commands.trick.wrong)
+                message.reply(locale.commands.trick.wrong.bind({ random }))
                 await knex('users').update({ action: 0}).where({ id: message.author.id })
             }
         })
         .catch(async () => {
-            await knex('users').update({ action: 0}).where({ id: message.author.id })
+            await knex('users').update({ action: 0 }).where({ id: message.author.id })
             message.reply(locale.commands.trick.timeout)
         })
 }
