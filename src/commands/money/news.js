@@ -20,8 +20,7 @@ module.exports.execute = async (
     embed.setTitle(locale.commands.news.news.bind({ name: Names[message.guild.shardID] }))
     embed.setDescription(
         '\n' +
-      data.news.data.map(a => `> 📢 **${a}**\n`).join('\n') +
-      locale.commands.news.desc
+      data.news.data.map(a => `> 📢 **${a}**\n`).join('\n')
     )
     return message.reply(embed)
 

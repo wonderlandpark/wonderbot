@@ -4,21 +4,20 @@ module.exports.execute = async (
     locale,
     embed,
     tools,
-    knex,
-    props
+    knex
 ) => {
     const stocks = await knex('stocks').select('*')
 
-    if (!props.args[0].options.includes(message.data.arg[0])) {
+    if (!['전체','전', 'ㅈ', '서버', 'ㅅ', '서','길드', 'global', 'guild', 'server'].includes(message.data.arg[0])) {
         message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     } else {
         message.guild.members.fetch()
         var leaderboard =
-            message.data.arg[0] === '전체' || message.data.arg[0] === 'global'
-                ? await knex.select('*').from('users')
-                : (await knex.select('*').from('users')).filter(r =>
-                    message.guild.members.cache.get(r.id)
-                )
+           ['전체', '전', 'ㅈ', 'global'].includes( message.data.arg[0])
+               ? await knex.select('*').from('users')
+               : (await knex.select('*').from('users')).filter(r =>
+                   message.guild.members.cache.get(r.id)
+               )
         var txt = ''
         leaderboard.sort(function (a, b) {
             var bm = 0
@@ -77,13 +76,13 @@ module.exports.execute = async (
 module.exports.props = {
     name: 'leaderboard',
     perms: 'general',
-    alias: ['리더보드', '랭킹', '순위'],
+    alias: ['리더보드', '랭킹', '순위', '리', 'ㄹ'],
     args: [
         {
             name: 'option',
             type: 'text',
             required: false,
-            options: ['전체', '서버', '길드', 'global', 'guild', 'server']
+            options: ['전체', '서버']
         }
     ]
 }
