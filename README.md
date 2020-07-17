@@ -7,7 +7,7 @@
 
 ## Introducing
 
-Team Callito. Project Wonder_Bot's Rewrite.
+Team Callisto. Project Wonder_Bot's Rewrite.
 
 [Website](https://wonderbot.xyz)
 
