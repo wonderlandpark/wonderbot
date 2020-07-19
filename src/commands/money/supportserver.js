@@ -17,8 +17,7 @@ module.exports.execute = async (
     if (m + 43200 > new Date() / 1000)
         return message.reply(
             locale.commands.payday.cooldownCustom.bind({
-                
-                time: (new Date(Number(new Date)+43200000)).fromNow('ko')
+                time: (new Date(m*1000 + 43200000)).fromNow('ko')
             })
         )
     else {
