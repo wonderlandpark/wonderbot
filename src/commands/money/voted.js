@@ -19,10 +19,10 @@ module.exports.execute = async (
             .where({ id: message.author.id })
     )[0]
     var m = Number(JSON.parse(u.cooldown).voted) || 0
-    if (m + 3600 > new Date() / 1000)
+    if (m + 10800 > new Date() / 1000)
         return message.reply(
-            locale.commands.payday.cooldown.bind({
-                time: (Number(m + 3600 - new Date() / 1000) / 60).toFixed(1)
+            locale.commands.payday.cooldownCustom.bind({
+                time: (new Date(Number(new Date)+10800000)).fromNow('ko')
             })
         )
     else {

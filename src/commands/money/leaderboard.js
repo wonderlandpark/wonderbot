@@ -61,7 +61,7 @@ module.exports.execute = async (
                 season: require('../../config').client.bot.season
             }) +
             `\n${
-                message.data.arg[0] === '전체' || message.data.arg[0] === 'global'
+                ['전체', '전', 'ㅈ', 'global'].includes( message.data.arg[0])
                     ? locale.commands.leaderboard.global
                     : locale.commands.leaderboard.guild.bind({
                         server: message.guild.name

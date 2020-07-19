@@ -93,7 +93,7 @@ module.exports.execute = async (
                                 .replace(emoji[s.slot[1]], static[s.slot[1]])
                                 .replace(emoji[s.slot[2]], static[s.slot[2]])
                         )
-                    }, 6000)
+                    }, 5000)
 
                     await knex
                         .update({ money: (m + Number(reward)) })
@@ -143,8 +143,8 @@ const percent = {
     gem: 0.10,
     star: 0.13,
     money: 0.15,
-    melon: 0.20,
-    pear: 0.34
+    melon: 0.26,
+    pear: 0.4
 }
 const emoji = {
     wonderbot: '<a:slot:666617809849155608>',
