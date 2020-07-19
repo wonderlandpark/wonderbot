@@ -13,10 +13,10 @@ module.exports.execute = async (
             .from('users')
             .where({ id: message.author.id })
     )[0]
-    var m = Number(JSON.parse(u.cooldownCustom).server) || 0
+    var m = Number(JSON.parse(u.cooldown).server) || 0
     if (m + 43200 > new Date() / 1000)
         return message.reply(
-            locale.commands.payday.cooldown.bind({
+            locale.commands.payday.cooldownCustom.bind({
                 
                 time: (new Date(Number(new Date)+43200000)).fromNow('ko')
             })
@@ -38,6 +38,6 @@ module.exports.execute = async (
 module.exports.props = {
     name: 'supportserver',
     perms: 'general',
-    alias: ['지원서버보상', '지원서버보상', '서버참여보상', '출첵', 'ㅊㅊ', '출석체크'],
+    alias: ['지원서버보상', '지원서버보상', '서버참여보상', '출첵', 'ㅊㅊ', '출석체크', '서포트서버', '지원서버'],
     args: [{}]
 }
