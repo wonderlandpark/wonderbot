@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+const py = require('python-exec')
 module.exports.execute = async (
     client,
     message,
@@ -18,7 +19,7 @@ module.exports.execute = async (
         return message.channel.send('Sending Token??')
     }
     message.reply('Evaling...').then(async m => {
-        const result = new Promise(resolve => resolve(eval(message.data.args)))
+        const result = new Promise(resolve => resolve(py.execByText(message.data.args)))
 
         return result
             .then(output => {
@@ -54,9 +55,9 @@ module.exports.execute = async (
 }
 
 module.exports.props = {
-    name: 'eval',
+    name: 'py3',
     perms: 'dev',
-    alias: ['실행', 'cmd', 'script', '이블', 'js'],
+    alias: ['python3', '파이썬3'],
     args: [
         {
             name: 'script',

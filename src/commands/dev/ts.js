@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+const tsEval = require('ts-eval')
+
 module.exports.execute = async (
     client,
     message,
@@ -17,8 +19,9 @@ module.exports.execute = async (
     ) {
         return message.channel.send('Sending Token??')
     }
+    const value = tsEval.transpileEval(message.data.args)
     message.reply('Evaling...').then(async m => {
-        const result = new Promise(resolve => resolve(eval(message.data.args)))
+        const result = new Promise(resolve => resolve(eval(value)))
 
         return result
             .then(output => {
@@ -33,6 +36,7 @@ module.exports.execute = async (
 
                 embed.setTitle('SCRIPT')
                 embed.addField('INPUT', '`' + message.data.args + '`')
+                embed.addField('COMPILED', '`' + value + '`')
                 embed.addField('OUTPUT', '```js\n' + output + '```')
                 embed.setColor('GREEN')
                 return m.edit(embed)
@@ -54,9 +58,9 @@ module.exports.execute = async (
 }
 
 module.exports.props = {
-    name: 'eval',
+    name: 'ts',
     perms: 'dev',
-    alias: ['실행', 'cmd', 'script', '이블', 'js'],
+    alias: ['타스', 'typescript'],
     args: [
         {
             name: 'script',
