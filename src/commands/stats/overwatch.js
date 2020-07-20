@@ -67,13 +67,15 @@ module.exports.execute = async (
                                     true
                                 )
                                 const heros = []
+
                                 Object.keys(profile[gamemode].topHeroes).forEach(l => {
-                                    heros.push({
+                                    if(profile[gamemode].careerStats[l]) heros.push({
                                         name: l,
                                         data: profile[gamemode].careerStats[l]
                                     })
                                 })
                                 heros.sort(function(a, b) {
+                                    
                                     return (
                                         sec(b.data.game.timePlayed) - sec(a.data.game.timePlayed)
                                     )
