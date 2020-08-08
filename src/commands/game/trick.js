@@ -47,7 +47,7 @@ module.exports.execute = async (
     await message.channel
         .awaitMessages(filter, { max: 1, time: 10000, errors: ['time'] })
         .then(async collected => {
-            if (![1, 2, 3].includes(Number(collected.first().content))) {
+            if (![1, 2, 3, 4].includes(Number(collected.first().content))) {
                 await knex('users').update({ action: 0}).where({ id: message.author.id })
 
                 return message.reply(locale.commands.trick.wrongres)
