@@ -38,7 +38,7 @@ module.exports.execute = async (
     if (m < Number(message.data.arg[0]))
         return message.reply(locale.commands.trick.nomoney)
     const msg = await message.reply(locale.commands.trick.start)
-    const random = [1, 2, 3].random()
+    const random = [1, 2, 3, 4].random()
     setTimeout(async function() {
         msg.edit(msg.content + locale.commands.trick.mix)
     }, 1000)
