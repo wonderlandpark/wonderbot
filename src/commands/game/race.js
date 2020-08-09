@@ -49,6 +49,9 @@ module.exports.execute = async (
                 message.reply('진행중인 게임이 없습니다.')
             }
         break
+        
+        default:
+            message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     }
     
     }
@@ -56,11 +59,10 @@ module.exports.props = {
     name: 'race',
     perms: 'general',
     alias: ['경주', '경마'],
-    args: [
-        {
-            name: 'bet',
-            type: 'number',
-            required: true
-        }
-    ]
+    args:[{
+        name: 'option',
+        type: 'option',
+        options: ['참가', '나가기', '시작', '폭파'],
+        required: true
+    }]
 }
