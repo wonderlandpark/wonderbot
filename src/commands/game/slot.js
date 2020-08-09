@@ -7,7 +7,7 @@ module.exports.execute = async (
     tools,
     knex
 ) => {
-    if (!message.data.args || isNaN(message.data.arg[0]))
+    if (!message.data.args || isNaN(message.data.arg[0]) || !Number.isInteger(Number(message.data.arg[0])))
         return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     if (!message.guild.me.hasPermission('ADD_REACTIONS')) {
         message.reply(
