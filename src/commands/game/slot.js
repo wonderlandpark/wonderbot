@@ -141,10 +141,10 @@ const percent = {
     wonderbot: 0.03,
     seven: 0.05,
     gem: 0.10,
-    star: 0.13,
+    star: 0.08,
     money: 0.15,
     melon: 0.26,
-    pear: 0.4
+    pear: 0.45
 }
 const emoji = {
     wonderbot: '<a:slot:666617809849155608>',
