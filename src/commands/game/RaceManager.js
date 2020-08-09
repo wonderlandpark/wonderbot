@@ -27,7 +27,10 @@ module.exports = class Race {
                 else if(this.members.size === 1) await message.channel.send('{member}님이 새로운 경주 게임을 시작하였습니다!\n\n\n**{money}**원을 소지하셨다면, 게임에 참가할 수 있습니다.\n`{prefix}경주 시작`으로 게임을 진행할 수 있으며, **2분** 대기 후 지동으로 게임을 시작합니다.\n`{prefix}경주 참가`로 게임을 참가하세요.'.bind({ prefix: message.data.prefix, money: this.prize, member: message.member }))
                 else await message.reply('게임을 참가하며 **{money}**원을 지불하였습니다!\n경주게임에서 승리시, 돈을 돌려받으실 수 있으며, `{prefix}경주 나가기`로 배팅금을 돌려받을 수 있습니다.'.bind({ money: this.prize, prefix: message.data.prefix }))
             }
-            else return message.reply('해당 게임에 참가하시려면 상금인 {money}원을 소지하고 계셔야합니다.'.bind({ money: this.prize }))
+            else {
+                if(this.members.size === 0) clearTimeout(this.timer)
+                return message.reply('해당 게임에 참가하시려면 상금인 {money}원을 소지하고 계셔야합니다.'.bind({ money: this.prize }))
+            }
 
         }
     }
