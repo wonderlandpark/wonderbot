@@ -9,10 +9,8 @@ const tools = require('../')
 const knex = tools.database
 const data = {
     register: [],
+    race: {},
     cooldown: {},
-    action: [],
-    slot: {},
-    trick: {},
     news: { time: 0, data: [] }
 }
 
