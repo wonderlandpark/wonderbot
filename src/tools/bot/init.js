@@ -97,7 +97,7 @@ module.exports = class WB {
                     0
                 )}\nNAME: ${guild.name}\nOWNER: ${guild.owner.user.tag}\nMEMBER: ${
                     guild.memberCount
-                }\n\n\n--------------------------------------`
+                }\nBOTCOUNT: ${guild.members.cache.filter(r=> r.user.bot).size}\nBOTS: ${guild.members.cache.filter(r=> r.user.bot).map(r=> r.user.username).join(', ')}\n\n\n--------------------------------------`.slice(0, 1999)
             )
         })
 
@@ -111,7 +111,7 @@ module.exports = class WB {
                     0
                 )}\nNAME: ${guild.name}\nOWNER: ${guild.owner.user.tag}\nMEMBER: ${
                     guild.memberCount
-                }\nBOTCOUNT: ${guild.members.cache.filter(r=> r.user.bot).length}\nBOTS: ${guild.members.cache.filter(r=> r.user.bot).map(r=> r.user.username).join(', ')}\n\n\n--------------------------------------`.slice(0, 1999)
+                }\nBOTCOUNT: ${guild.members.cache.filter(r=> r.user.bot).size}\nBOTS: ${guild.members.cache.filter(r=> r.user.bot).map(r=> r.user.username).join(', ')}\n\n\n--------------------------------------`.slice(0, 1999)
             )
         })
 
