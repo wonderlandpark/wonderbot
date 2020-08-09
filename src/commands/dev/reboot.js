@@ -3,6 +3,7 @@ module.exports.execute = async (
     client,
     message
 ) => {
+    knex('users').where({ action: 1 }).update({ action: 0 }).then(r=> message.channel.send(`${r}명의 작업을 중단하였습니다.`))
     if (message.data.args) {
         if (message.data.arg[0] === client.guilds.cache.first().shardID)
             message.channel.send(

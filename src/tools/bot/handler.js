@@ -68,10 +68,7 @@ module.exports = async (client, message, config) => {
     })
     if (!config.client.owners.includes(message.author.id) && !client.onlineMode)
         return message.reply(locale.error.offline)
-    const user = (await knex
-        .select('*')
-        .from('users')
-        .where({ id: message.author.id }))[0]
+    const user = (await knex('users').where({ id: message.author.id }))[0]
     if (!user)
         return commands['register'].execute(
             client,
@@ -154,6 +151,12 @@ module.exports = async (client, message, config) => {
         await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
     }
 
+    if(user.money >= 1e+19) {
+        let lost = Math.round(user.money * (getRandomInt(20, 50)/100))
+        await knex('users').update({ money: user.money - lost }).where({ id: message.author.id })
+        message.reply(locale.global.event.sad.random().bind({ lost }))
+    }
+
     CMD
         .execute(
             client,
@@ -166,6 +169,7 @@ module.exports = async (client, message, config) => {
             data
         )
         .catch(async error => {
+            knex('users').where({ action: 1, id: message.author.id }).update({ action: 0 })
             console.error(error)
             console.log(`${error.message}:${error.lineNumber}`)
             let code = uuid()
@@ -195,4 +199,8 @@ module.exports = async (client, message, config) => {
             client.webhook.send(embed)
         })
         
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
 }
