@@ -43,13 +43,15 @@ module.exports = class Race {
         }
     }
     async play(message){
+        if(message && message.author.id !== this.author.id) return message.reply('경주방장만 시작할 수 있습니다.')
+
         clearTimeout(this.timer)
+        
         if(this.members.size <= 1) {
             this.channel.send(`${this.author}, 경주 참가자가 없어 게임이 취소되었습니다.`)
             return this.destroy()
         }
         else {
-            if(message && message.author.id !== this.author.id) return message.reply('경주방장만 시작할 수 있습니다.')
             this.started = true
             let players = shuffle(icon)
             let mems = this.members.array()
