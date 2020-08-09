@@ -56,7 +56,7 @@ module.exports.execute = async (
             await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
             if (random === Number(collected.first().content)) {
                 await knex('users')
-                    .update({ money: m + Number(message.data.arg[0]) * 2 })
+                    .update({ money: m + Number(message.data.arg[0]) })
                     .where({ id: message.author.id })
                 message.reply(locale.commands.trick.right)
                 await knex('users').update({ action: 0}).where({ id: message.author.id })
