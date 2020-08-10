@@ -13,7 +13,7 @@ module.exports.execute = async (
             .from('users')
             .where({ id: message.author.id })
     )[0]
-    var m = Number(u['money_cooldown'])
+    var m = Number(JSON.parse(u.cooldown).money) || 0
     if (m + 3600 > new Date() / 1000)
         return message.reply(
             locale.commands.payday.cooldown.bind({
@@ -21,11 +21,13 @@ module.exports.execute = async (
             })
         )
     else {
+        let cool = JSON.parse(u.cooldown)
+        cool.money = Math.round(new Date() / 1000)
         if (message.data.premium) {
             await knex
                 .update({
                     money: Number(u['money']) + 200,
-                    money_cooldown: Number(Math.round(new Date() / 1000))
+                    cooldown: JSON.stringify(cool)
                 })
                 .where({ id: message.author.id })
                 .from('users')
@@ -38,8 +40,8 @@ module.exports.execute = async (
             await knex
                 .update({
                     money: Number(u['money']) + 100,
-                    money_cooldown: Number(Math.round(new Date() / 1000))
-                })
+                    cooldown: JSON.stringify(cool)
+                    })
                 .where({ id: message.author.id })
                 .from('users')
             message.reply(
