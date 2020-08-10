@@ -7,8 +7,9 @@ module.exports.execute = async (client, message, locale, embed) => {
         embed.setTitle(locale.commands.help.help)
         embed.setDescription(locale.commands.help.desc)
         Object.keys(commands.categorys).forEach(cat => {
-            if(cat.toLowerCase() === 'dev') return
-            embed.addField(cat.toUpperCase(), cmdFormat(commands.categorys[cat]))
+            if(['dev', 'coding'].includes(cat.toLowerCase())) return
+            let cmds = cmdFormat(commands.categorys[cat])
+            if(cmds) embed.addField(cat.toUpperCase(), cmds)
         })
         embed.addField(
             locale.commands.help.more,
@@ -59,6 +60,8 @@ module.exports.props = {
 
 function cmdFormat(cmds) {
     var array = []
-    Object.values(cmds).forEach(c => array.push(c.props.alias[0]))
-    return '`' + array.join('`, `') + '`'
+    Object.values(cmds).forEach(c => array.push(c.props))
+    array = array.filter(r=> !r.hide).map(r=> r.alias[0])
+    if(array.length === 0) return undefined
+    else return '`' + array.join('`, `') + '`'
 }
