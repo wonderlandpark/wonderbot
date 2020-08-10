@@ -32,21 +32,21 @@ module.exports.execute = async (
         case '나가기':
             if(data.race[message.guild.id]) return data.race[message.guild.id].leave(message)
             else {
-                message.reply('진행중인 게임이 없습니다.')
+                message.reply('진행중인 게임이 없습니다.\n`{prefix}경마 참가 [배팅금]`으로 새로운 게임을 시작하세요!'.bind({ prefix: message.data.prefix }))
             }
         break
         
         case '시작':
             if(data.race[message.guild.id]) return data.race[message.guild.id].play(message)
             else {
-                message.reply('진행중인 게임이 없습니다.')
+                message.reply('진행중인 게임이 없습니다.\n`{prefix}경마 참가 [배팅금]`으로 새로운 게임을 시작하세요!'.bind({ prefix: message.data.prefix }))
             }
         break
 
         case '폭파':
             if(data.race[message.guild.id]) return data.race[message.guild.id].destroy(message)
             else {
-                message.reply('진행중인 게임이 없습니다.')
+                message.reply('진행중인 게임이 없습니다.\n`{prefix}경마 참가 [배팅금]`으로 새로운 게임을 시작하세요!'.bind({ prefix: message.data.prefix }))
             }
         break
         
