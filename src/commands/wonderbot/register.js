@@ -82,5 +82,6 @@ module.exports.props = {
     name: 'register',
     perms: 'general',
     alias: ['가입', '등록'],
-    args: []
+    args: [],
+    hide: true
 }
