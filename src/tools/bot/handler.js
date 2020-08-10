@@ -11,6 +11,7 @@ const data = {
     register: [],
     race: {},
     cooldown: {},
+    action: [],
     news: { time: 0, data: [] }
 }
 
