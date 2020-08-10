@@ -41,7 +41,7 @@ module.exports = {
         '`{prefix}도움 [명령어]`로 명령어의 사용법을 자세하게 알아볼 수 있습니다.',
             support: '유용한 링크',
             links:
-        '[원더봇 홈페이지](https://wonderbot.xyz)\n[팀 원더 디스코드 (지원서버)](https://invite.gg/wonderbot)\n[초대하기](https://wonderbot.xyz/invite)\n[이용약관](https://callisto.team/tos)\n[개인정보취급방침](https://callisto.team/privacy)\n지원메일 : hi@wonderbot.xyz'
+        '[원더봇 홈페이지](https://wonderbot.xyz)\n[팀 칼리스토 디스코드 (지원서버)](https://invite.gg/wonderbot)\n[초대하기](https://wonderbot.xyz/invite)\n[이용약관](https://callisto.team/tos)\n[개인정보취급방침](https://callisto.team/privacy)\n지원메일 : hi@wonderbot.xyz'
         },
         mail: {
             noMail: '\n> 📭 메일이 없습니다.',
