@@ -21,3 +21,5 @@ jobs:
       uses: icrawl/action-eslint@v1
       with:
         custom-glob: src
+      env:
+        CI: false
