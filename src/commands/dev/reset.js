@@ -8,7 +8,7 @@ module.exports.execute = async (
 ) => {
     if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const stocks = await knex('stocks').select('*')
-    const season = message.data.arg[0]
+    const season = message.data.arg[0].toUpperCase()
 
     var leaderboard = await knex.select('*').from('users')
 
@@ -23,13 +23,15 @@ module.exports.execute = async (
         })
         if (Number.isNaN(am)) am = 0
         if (Number.isNaN(bm)) bm = 0
-        return bm + Number(b.money) - (am + Number(a.money))
+        return (bm + Number(b.money)) - (am + Number(a.money))
     })
+    let m = await message.reply('RESETING SEASON')
+    if(season !== 'FREE') {
     const first = JSON.parse(leaderboard[0].badges)
     first.push(`season-${season}-first`)
     await knex('users')
-        .update({ badges: JSON.stringify(first) })
-        .where({ id: leaderboard[0].id })
+    .update({ badges: JSON.stringify(first) })
+    .where({ id: leaderboard[0].id })
     const second = JSON.parse(leaderboard[1].badges)
     second.push(`season-${season}-second`)
     await knex('users')
@@ -40,7 +42,8 @@ module.exports.execute = async (
     await knex('users')
         .update({ badges: JSON.stringify(third) })
         .where({ id: leaderboard[2].id })
-    let m = await message.reply('BADGES ADDED')
+    await m.edit(m.content + '\nBADGES ADDED')
+    }
     await knex('users').update({
         money: 0,
         items: '{"wondercoin":1}',
