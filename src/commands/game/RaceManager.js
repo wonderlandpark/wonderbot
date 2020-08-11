@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const icon = ["🦄", "🐴", "🐌", "🐢", "🦥", "🦓", "🦏", "🐛", "🐳", "🦀"]
+const icon = ['🦄', '🐴', '🐌', '🐢', '🦥', '🦓', '🦏', '🐛', '🐳', '🦀']
 
 module.exports = class Race {
     constructor(message, knex) {
@@ -13,7 +13,7 @@ module.exports = class Race {
             this.play()
         }, 120000)
         this.knex = knex
-        }
+    }
     async join(message) {
         if(this.started) return message.reply('이미 게임이 진행중입니다.')
         if(this.members.has(message.member.id)) return message.reply('이미 게임에 참가했습니다.')
@@ -67,7 +67,7 @@ module.exports = class Race {
             this._run(m, mems, players)
         }
     }
-   async _run(msg, users, players) {
+    async _run(msg, users, players) {
         setTimeout(async ()=> {
             await msg.edit(users.map((el, n)=> {
                 let rand = (users[n].process + (Math.floor(Math.random() * 20) -7))
@@ -108,12 +108,12 @@ module.exports = class Race {
 }
 
 function shuffle(a) {
-    var j, x, i;
+    var j, x, i
     for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
+        j = Math.floor(Math.random() * (i + 1))
+        x = a[i]
+        a[i] = a[j]
+        a[j] = x
     }
-    return a;
+    return a
 }
