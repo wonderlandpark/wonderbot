@@ -47,7 +47,6 @@ module.exports.execute = async (
     await knex('users').update({
         money: 0,
         items: '{"wondercoin":1}',
-        money_cooldown: 0,
         cooldown: '{}',
         action: 0,
         lotto: '[]'
