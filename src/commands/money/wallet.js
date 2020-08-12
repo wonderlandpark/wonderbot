@@ -37,7 +37,7 @@ module.exports.execute = async (
         locale.commands.wallet.item,
         items.length === 0 ? locale.commands.wallet.noitem : items.replace('\n', '')
     )
-    embed.addField('빛', locale.commands.wallet.money.bind({ money: (money + Number(user.loan_money)).formatIt() }))
+    embed.addField('빚', locale.commands.wallet.money.bind({ money: (money + Number(user.loan_money)).formatIt() }))
     message.channel.send(embed)
 }
 
