@@ -2,7 +2,7 @@ module.exports.execute = async (
     client,
     message
 ) => {
-    if(!message.data.args) return message.reply('\n**원더봇 채팅 청소기능**\n\n다음 예시와 같이 사용하실 수 있습니다!\n```yml\n{prefix}청소 3\n{prefix}청소 @유저1 @유저2 @역할1\n{prefix}청소 @유저1 @역할1 3\n{prefix}청소 포함하는키워드\n{prefix}청소 /(정규*)?표현식\\W+/```'.bind({ prefix: message.data.prefix }))
+    if(!message.data.args) return message.reply('\n**원더봇 채팅 청소기능**\n\n다음 예시와 같이 사용하실 수 있습니다!\n```yml\n{prefix}청소 3\n{prefix}청소 @유저1 @유저2 @역할1\n{prefix}청소 @유저1 @역할1 7\n{prefix}청소 포함하는키워드\n{prefix}청소 /(정규*)?표현식\\W+/```'.bind({ prefix: message.data.prefix }))
     let last = Number(message.data.args.split(' ').pop())
     let filtered = await message.channel.messages.fetch({ limit: 100, before: message.id, filterOld: true })
     if(message.data.args.match(/\/(.*?)\/(\w+)?/)) {
@@ -24,7 +24,7 @@ module.exports.execute = async (
         filtered = filtered.filter(m=> m.content.includes(content))
     }
     await message.channel.bulkDelete(isNum(last) ? filtered.array().slice(0, last) : filtered)
-        .then(r=> message.reply(`> 🚮 **${r.size}**개의 메세지를 정리했습니다.`))
+        .then(r=> message.reply(`\n> 🚮 **${r.size}**개의 메세지를 정리했습니다.`).then(m=> m.delete({ timeout: 5000 })))
         .catch(e=> console.error(e))
     await message.delete()
 }
