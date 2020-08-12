@@ -9,7 +9,7 @@ module.exports.execute = async (
     if(!message.data.arg[1]) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     message.reply(message.data.arg2)
     const users = await knex('users')
-    users.forEach(async el=> {
+    await users.forEach(async el=> {
         let mail = JSON.parse(el.mails)
         let cooldown = JSON.parse(el.cooldown)
         mail.push({ read: false, date: Number(new Date()), content: message.data.arg2, send: message.data.arg[0]})
