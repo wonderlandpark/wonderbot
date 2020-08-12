@@ -10,11 +10,11 @@ module.exports.execute = async (
     message.reply(message.data.arg2)
     const users = await knex('users')
     for (const user of users) {
-        let mail = JSON.parse(el.mails)
-        let cooldown = JSON.parse(el.cooldown)
+        let mail = JSON.parse(user.mails)
+        let cooldown = JSON.parse(user.cooldown)
         mail.push({ read: false, date: Number(new Date()), content: message.data.arg2, send: message.data.arg[0]})
         cooldown.mail = 0
-        await knex('users').update({ cooldown: JSON.stringify(cooldown), mails: JSON.stringify(mail)}).where({ id: el.id })
+        await knex('users').update({ cooldown: JSON.stringify(cooldown), mails: JSON.stringify(mail)}).where({ id: user.id })
     }    
     await message.reply('모든 유저에게 메일이 전송되었습니다.')
 }
