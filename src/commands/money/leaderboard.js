@@ -33,7 +33,7 @@ module.exports.execute = async (
             return bm + Number(b.money) - (am + Number(a.money))
         })
 
-        for (var i = 1; i < 11; i++) {
+        for (var i = 1; i < 16; i++) {
             var m = 0
             if (leaderboard[i - 1]) {
                 Object.keys(JSON.parse(leaderboard[i - 1].items)).forEach(el => {
@@ -50,9 +50,8 @@ module.exports.execute = async (
                         userData.discriminator.replace(/..$/, '**')
                             : 'None'
                     }](${locale.commands.leaderboard.all} ` +
-                    numberToKorean(m + Number(leaderboard[i - 1].money)) +
-                    locale.commands.money.won +
-                    ')'
+                    numberToKorean(m + Number(leaderboard[i - 1].money)) + locale.commands.money.won + (leaderboard[i - 1].loan_money !== 0 ? ' - 빛 ' + numberToKorean(leaderboard[i - 1].loan_money) + locale.commands.money.won : '')
+                    + ')'
             }
         }
         message.channel.send(
