@@ -50,7 +50,7 @@ module.exports.execute = async (
                         userData.discriminator.replace(/..$/, '**')
                             : 'None'
                     }](${locale.commands.leaderboard.all} ` +
-                    numberToKorean(m + Number(leaderboard[i - 1].money)) + locale.commands.money.won + (leaderboard[i - 1].loan_money !== 0 ? ' - 빛 ' + numberToKorean(leaderboard[i - 1].loan_money) + locale.commands.money.won : '')
+                    numberToKorean(m + Number(leaderboard[i - 1].money)) + locale.commands.money.won + (leaderboard[i - 1].loan_money !== 0 ? ' - 빚 ' + numberToKorean(leaderboard[i - 1].loan_money) + locale.commands.money.won : '')
                     + ')'
             }
         }
