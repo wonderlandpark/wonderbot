@@ -7,7 +7,7 @@ module.exports.execute = async (
     knex
 ) => {
     const us = message.mentions.members.first() || message.member
-    var users = await knex('users').select(['id', 'badges', 'money', 'items', 'join'])
+    var users = await knex('users').select(['id', 'badges', 'money', 'items', 'join', 'premium'])
     const stocks = await knex('stocks').select('*')
     users.sort(function(a, b) {
         var bm = 0
@@ -55,7 +55,7 @@ module.exports.execute = async (
             }),
             true
         )
-
+        if(us.id !== message.author.id) message.data.premium = new Date()/1000 < users.find(r=> r.id === us.id).premium
         const badge = JSON.parse(u.badges)
         if(message.data.premium) badge.push('premium')
         embed.addField(
