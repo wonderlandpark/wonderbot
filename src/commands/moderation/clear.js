@@ -26,7 +26,7 @@ module.exports.execute = async (
     message.channel.bulkDelete(isNum(last) ? filtered.array().slice(0, last) : filtered)
         .then(r=> message.reply(`\n> 🚮 **${r.size}**개의 메세지를 정리했습니다.`).then(m=> m.delete({ timeout: 5000 })))
         .catch(()=> message.reply('메세지를 청소하는데 에러가 발생하였습니다. 봇의 권한을 확인해주세요.'))
-    await message.delete()
+    await message.delete().catch()
 }
 
 module.exports.props = {
