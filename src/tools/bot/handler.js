@@ -26,7 +26,7 @@ module.exports = async (client, message, config) => {
     }
     const embed = new require('./embed')(client, message)
 
-    const prefix = message.content.startsWith(config.client.prefix) && config.client.owners.includes(message.author.id) ? config.client.prefix : message.guild ? JSON.parse((await knex('guilds').where({ id: message.guild.id }))[0].config).prefix : config.prefix || config.client.prefix
+    const prefix = message.content.startsWith(config.client.prefix) && config.client.owners.includes(message.author.id) ? config.client.prefix : message.guild ? JSON.parse((await knex('guilds').where({ id: message.guild.id }))[0].config).prefix||config.client.prefix : config.client.prefix || config.client.prefix
     message.data = {
         raw: message.content,
         arg: message.content.replace(prefix, '').split(' ').slice(1),
