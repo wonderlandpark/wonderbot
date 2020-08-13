@@ -31,7 +31,7 @@ module.exports.execute = async (
 
 module.exports.props = {
     name: 'clear',
-    perms: 'general',
+    perms: 'admin',
     alias: ['clean', '청소', '채팅청소', '정리'],
     args: [
         {
