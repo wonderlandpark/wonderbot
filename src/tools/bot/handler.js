@@ -133,7 +133,7 @@ module.exports = async (client, message, config) => {
             })
         )
     // eslint-disable-next-line require-atomic-updates
-    data.cooldown[message.author.id] = new Date(Number(new Date()) + 3000)
+    data.cooldown[message.author.id] = new Date(Number(new Date()) + 2000)
     if (
         !client.users.cache.get(message.author.id) || (message.guild && !message.guild.members.cache.get(message.author.id))
     ) {
