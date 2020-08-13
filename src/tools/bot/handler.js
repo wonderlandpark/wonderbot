@@ -148,7 +148,7 @@ module.exports = async (client, message, config) => {
         await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
     }
 
-    if(!CMD.props.dm) return message.reply('해당 명령어는 DM에서 사용하실 수 없습니다. 제가 있는 서버에서 이용해주세요.\n\n공식 서버에서도 이용할 수 있어요!\nhttps://discord.gg/jE33mfD')
+    if(message.channel.type === 'dm' && !CMD.props.dm) return message.reply('해당 명령어는 DM에서 사용하실 수 없습니다. 제가 있는 서버에서 이용해주세요.\n\n공식 서버에서도 이용할 수 있어요!\nhttps://discord.gg/jE33mfD')
     if(user.money >= 1e+19) {
         let lost = Math.round(user.money * (getRandomInt(20, 50)/100))
         await knex('users').update({ money: user.money - lost }).where({ id: message.author.id })
