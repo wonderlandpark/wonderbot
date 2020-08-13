@@ -16,7 +16,6 @@ const data = {
 }
 
 module.exports = async (client, message, config) => {
-
     client.shard.fetchClient = async props => {
         let arr = []
         await client.shard.fetchClientValues(props).then(r => {
@@ -27,7 +26,7 @@ module.exports = async (client, message, config) => {
     }
     const embed = new require('./embed')(client, message)
 
-    const prefix = message.content.startsWith(config.client.prefix) && config.client.owners.includes(message.author.id) ? config.client.prefix : JSON.parse((await knex('guilds').where({ id: message.guild.id }))[0].config).prefix || config.client.prefix
+    const prefix = message.content.startsWith(config.client.prefix) && config.client.owners.includes(message.author.id) ? config.client.prefix : message.guild ? JSON.parse((await knex('guilds').where({ id: message.guild.id }))[0].config).prefix : config.prefix || config.client.prefix
     message.data = {
         raw: message.content,
         arg: message.content.replace(prefix, '').split(' ').slice(1),
@@ -47,8 +46,8 @@ module.exports = async (client, message, config) => {
         message.author.bot ||
     !message.content.startsWith(prefix) ||
     !message.data.cmd ||
-    !message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS') ||
-    !message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')
+    ( message.guid && ( !message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS') ||
+    !message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')))
     )
         return
     if(message.channel.topic && message.channel.topic.includes('명령어금지') && !message.member.permissions.has('ADMINISTRATOR')){
@@ -111,8 +110,8 @@ module.exports = async (client, message, config) => {
         )
     }
 
-    if (
-        !message.member.hasPermission(
+    if (message.guild 
+        && !message.member.hasPermission(
             CMD.props.perms.required.perms
         )
     )
@@ -136,11 +135,10 @@ module.exports = async (client, message, config) => {
     // eslint-disable-next-line require-atomic-updates
     data.cooldown[message.author.id] = new Date(Number(new Date()) + 3000)
     if (
-        !client.users.cache.get(message.author.id) ||
-    !message.guild.members.cache.get(message.author.id)
+        !client.users.cache.get(message.author.id) || (message.guild && !message.guild.members.cache.get(message.author.id))
     ) {
         client.users.fetch(message.author.id)
-        message.guild.members.fetch(message.author.id)
+        if(message.guild) message.guild.members.fetch(message.author.id)
     }
 
     if(JSON.parse(user.mails).filter(r=> !r.read).length !== 0 && (new Date() / 1000) > ((JSON.parse(user.cooldown).mail)||0) + 86400){
@@ -150,6 +148,7 @@ module.exports = async (client, message, config) => {
         await knex('users').update({ cooldown: JSON.stringify(cooldown) }).where({ id: message.author.id })
     }
 
+    if(!CMD.props.dm) return message.reply('해당 명령어는 DM에서 사용하실 수 없습니다. 제가 있는 서버에서 이용해주세요.\n\n공식 서버에서도 이용할 수 있어요!\nhttps://discord.gg/jE33mfD')
     if(user.money >= 1e+19) {
         let lost = Math.round(user.money * (getRandomInt(20, 50)/100))
         await knex('users').update({ money: user.money - lost }).where({ id: message.author.id })

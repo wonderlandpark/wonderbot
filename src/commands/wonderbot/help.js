@@ -49,6 +49,7 @@ module.exports.props = {
     name: 'help',
     perms: 'general',
     alias: ['도움', 'commands', '도움말', '명령어'],
+    dm: true,
     args: [
         {
             name: 'cmd',
