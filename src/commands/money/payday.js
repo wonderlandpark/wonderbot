@@ -41,7 +41,7 @@ module.exports.execute = async (
                 .update({
                     money: Number(u['money']) + 100,
                     cooldown: JSON.stringify(cool)
-                    })
+                })
                 .where({ id: message.author.id })
                 .from('users')
             message.reply(
