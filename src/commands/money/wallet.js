@@ -1,3 +1,5 @@
+const tier = [ 'VIP', '플레티넘', '골드', '실버', '브론즈' ]
+
 module.exports.execute = async (
     client,
     message,
@@ -32,12 +34,12 @@ module.exports.execute = async (
         locale.commands.wallet.will,
         locale.commands.wallet.money.bind({ money: (money + Number(user.money)).formatIt() })
     )
-
+    embed.addField('빚', locale.commands.wallet.money.bind({ money: Number(user.loan_money).formatIt() }), true)
+    embed.addField('신용등급', `**${tier[user.loan_lvl-1]}**(${user.loan_lvl}등급)입니다.`)
     embed.addField(
         locale.commands.wallet.item,
         items.length === 0 ? locale.commands.wallet.noitem : items.replace('\n', '')
     )
-    embed.addField('빚', locale.commands.wallet.money.bind({ money: Number(user.loan_money).formatIt() }))
     message.channel.send(embed)
 }
 
