@@ -20,7 +20,7 @@ module.exports.execute = async (
     const avail = u.loan_money === 0 ? userMoney * (0.3 + u.loan_lvl*0.1) < available[(u.loan_lvl-1)] ? Math.round(userMoney * (0.3 + u.loan_lvl*0.1)) : available[(u.loan_lvl-1)] : userMoney * (0.3 + u.loan_lvl*0.1) - u.loan_money/(1 + u.loan_lvl * 0.1) < available[(u.loan_lvl-1)] ? Math.round(userMoney * (0.3 + u.loan_lvl*0.1)) : Math.round(available[(u.loan_lvl-1)] - u.loan_money/(1 + u.loan_lvl * 0.1))
     if(!message.data.args) {
         embed.setTitle('🏦 은행 정보')
-        if((u.loan_date+259200) > new Date()/1000) embed.setDescription(`${message.author}님의 상환 예정 금액은 **${u.loan_money}**원이며, **${new Date((u.loan_date+259200)*1000).format('ko')}**(${new Date((u.loan_date+259200)*1000).fromNow('ko')})까지 상환하셔야합니다.\n\n⚠️ 대출금과 이자를 상환하지 않으시면, 신용등급이 1등급 하락하게 됩니다.`)
+        if((u.loan_date+259200) > new Date()/1000) embed.setDescription(`${message.author}님의 상환 예정 금액은 **${u.loan_money}**원이며, **${new Date((u.loan_date+259200)*1000).format('ko')}**(${new Date((u.loan_date+259200)*1000).fromNow('ko')})까지 상환하셔야합니다.\n현재 신용등급은 **${tier[u.loan_lvl-1]}**(${u.loan_lvl}등급)입니다.\n\n⚠️ 대출금과 이자를 상환하지 않으시면, 신용등급이 1등급 하락하게 됩니다.\n\`${message.data.prefix}은행 대출 [금액]\`으로 은행에서 대출신청을 하실 수 있습니다.\n\`${message.data.prefix}은행 대출 최대\`로 대출 최대 한도로 대출하실 수 있습니다.`)
         else {
             embed.setDescription(u.loan_money === 0 ? `${message.author}님의 자산기준 대출 가능 금액은 **${avail}**원이며, 현재 신용등급은 **${tier[u.loan_lvl-1]}**(${u.loan_lvl}등급)입니다.\n\`\`\`md\n- 3일이내에 모든 대출금과 이자를 상환하셔야합니다. (3일마다 신용등급이 1등급 하락됩니다.)\n- 이자율은 ${u.loan_lvl*10}%입니다.\n- 대출금을 상환하지 않으신다면 시즌초기화와 함께 강제로 보유 아이템을 압류하게됩니다.\n- 이전 시즌의 금융활동은 다음 시즌의 신용등급 평가에 영향을 줍니다.\`\`\`\n\`${message.data.prefix}은행 대출 [금액]\`으로 은행에서 대출신청을 하실 수 있습니다.\n\`${message.data.prefix}은행 대출 최대\`로 대출 최대 한도로 대출하실 수 있습니다.`
                 : `${message.author}님의 자산과 상환하지 않은 대출금 기준 대출 가능 금액은 **${avail}**원이고 빚은 **${u.loan_money}**원이며, 현재 신용등급은 **${tier[u.loan_lvl-1]}**(${u.loan_lvl}등급)입니다.\n\`\`\`md\n- 3일이내에 모든 추가 대출금과 이자를 상환하셔야합니다.\n- 이자율은 ${u.loan_lvl*10}%입니다.\n- 대출금을 상환하지 않으신다면 시즌초기화와 함께 강제로 보유 아이템을 압류하게됩니다.\n- 이전 시즌의 금융활동은 다음 시즌의 신용등급 평가에 영향을 줍니다.\`\`\`\n\`${message.data.prefix}은행 대출 [금액]\`으로 은행에서 대출신청을 하실 수 있습니다.\n\`${message.data.prefix}은행 대출 최대\`로 대출 최대 한도로 대출하실 수 있습니다.`)
@@ -85,6 +85,8 @@ module.exports.execute = async (
 
         
 
+    } else {
+        message.reply(locale.error.usage(this.props.name, message.data.prefix))
     }
     
 }
