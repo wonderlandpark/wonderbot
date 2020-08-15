@@ -55,7 +55,7 @@ module.exports.execute = async (
     } else if(message.data.arg[0] === '상환') {
         if(u.loan_money === 0) return message.reply('상환할 대출금이 없습니다.')
         if((u.loan_date+43200) > new Date()/1000) return message.reply(`상환은 대출 후 12시간부터 가능합니다.\n**${new Date((u.loan_date+43200)*1000).fromNow('ko')}**(${new Date((u.loan_date+43200)*1000).format('ko')})에 다시 시도해주세요.`)
-        if(!message.data.arg[1]) return message.reply(`**${u.loan_money}**의 빚이 있습니다.\n**${new Date((u.loan_date+43200)*1000).format('ko')}**(${new Date((u.loan_date+43200)*1000).fromNow('ko')})까지 상환 하셔야합니다.\n\`${message.data.prefix}은행 상환 [금액]\`으로 금액만큼 상환을 하실 수 있습니다.\n\`${message.data.prefix}은행 상환 전부\`로 빚의 전부를 상환하실 수 있습니다.`)
+        if(!message.data.arg[1]) return message.reply(`**${u.loan_money}**의 빚이 있습니다.\n**${new Date((u.loan_date+259200)*1000).format('ko')}**(${new Date((u.loan_date+259200)*1000).fromNow('ko')})까지 상환 하셔야합니다.\n\`${message.data.prefix}은행 상환 [금액]\`으로 금액만큼 상환을 하실 수 있습니다.\n\`${message.data.prefix}은행 상환 전부\`로 빚의 전부를 상환하실 수 있습니다.`)
         const reqMoney = Math.round(['전부', '최대'].includes(message.data.arg[1]) ? u.loan_money : Number(message.data.arg[1]))
         if(isNaN(reqMoney) || !Number.isInteger(reqMoney)) return message.reply('올바르지 않은 금액입니다. 올바른 정수를 입력해주세요.')
         if(reqMoney > u.loan_money) return message.reply('빚을 초과하는 금액을 상환하실 수 없습니다.')
