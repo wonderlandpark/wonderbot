@@ -8,7 +8,6 @@ module.exports.execute = async (
     tools,
     knex
 ) => {
-    if(message.guild.id !== '542599372836438016' && message.channel.id !== '743718965934686271') return message.reply('해당 기능은 베타 테스트중인 기능입니다. 사용하실 수 없습니다.') // CBT
     const u = (await knex('users').where({ id: message.author.id }))[0]
     const stocks = await knex('stocks')
     let userMoney = 0
@@ -45,7 +44,7 @@ module.exports.execute = async (
             }
             const time = Math.round(Number(new Date()/1000))
             await knex('users').where({ id: message.author.id }).update({ money: Math.round(+u.money + Number(reqMoney)), loan_money: Math.round(u.loan_money + reqMoney*(1+u.loan_lvl*0.1)), loan_date: time, action: 0 })
-            return message.reply(`원더은행을 이용해주셔서 감사합니다.\n고객님의 잔고에 **${reqMoney}**원이 추가되었으며, 12시간 후부터 대출금을 상환하실 수 있으며, **${new Date((time+259200)*1000).format('ko')}**까지 원금과 이자를 포함한 **${reqMoney*(1+u.loan_lvl*0.1)}**원을 상환하셔야합니다.\n현재 남은 빚은 **${u.loan_money + reqMoney*(1+u.loan_lvl*0.1)}**원 입니다.`)
+            return message.reply(`원더은행을 이용해주셔서 감사합니다.\n고객님의 잔고에 **${reqMoney}**원이 추가되었으며, 12시간 후부터 대출금을 상환하실 수 있으며, **${new Date((time+259200)*1000).format('ko')}**까지 원금과 이자를 포함한 **${Math.round(reqMoney*(1+u.loan_lvl*0.1))}**원을 상환하셔야합니다.\n현재 남은 빚은 **${Math.round(u.loan_money + reqMoney*(1+u.loan_lvl*0.1))}**원 입니다.`)
             
         })
             .catch(async()=>{
@@ -64,15 +63,15 @@ module.exports.execute = async (
         embed.setDescription(`**${u.loan_money}**원의 빚중 **${reqMoney}**원을 상환합니다. 계속하시겠습니까?\n\n상환하시게되면 **${u.loan_money - reqMoney}**원의 빚이 남게됩니다.\n계속하시려면 ✅ 로 반응하세요.`)
         const m = await message.reply(embed)
         m.react('✅')
-        await knex('users').update({ action: 1}).where({ id: message.author.id })
+        await knex('users').update({ action: 1 }).where({ id: message.author.id })
         m.awaitReactions((reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id, { max: 1, time: 10000, error: ['time']}).then(async collected => {
             if(collected.size === 0) {
                 await knex('users').update({ action: 0 }).where({ id: message.author.id })
                 return message.reply('상환이 취소되었습니다.')
             }
             const point = u.loan_point + reqMoney
-            const loan_lvl = point >= available.map((r, n)=> r*(1+0.1*(n+1)))[u.loan_lvl-1] ? u.loan_lvl-1 : u.loan_lvl
-            await knex('users').where({ id: message.author.id }).update({ money: +u.money - Number(reqMoney), loan_money: u.loan_money - reqMoney, action: 0, loan_lvl, loan_point: loan_lvl !== u.loan_lvl ? 0 : point, loan_date: 0 })
+            const loan_lvl = point >= available.map((r, n)=> r*(1+0.1*(n+1)))[u.loan_lvl-1] ? u.loan_lvl <= 1 ? 1 : u.loan_lvl-1 : u.loan_lvl
+            await knex('users').where({ id: message.author.id }).update({ money: Math.round(+u.money - Number(reqMoney)), loan_money: u.loan_money - reqMoney, action: 0, loan_lvl, loan_point: loan_lvl !== u.loan_lvl ? 0 : point, loan_date: 0 })
             message.reply(`원더은행을 이용해주셔서 감사합니다.\n**${u.loan_money}**원의 빚중에 **${reqMoney}**원을 상환하셨습니다.\n\n${u.loan_money - reqMoney > 0 ? `**${u.loan_money - reqMoney}**원의 빚을 **${new Date((u.loan_date+43200)*1000).format('ko')}**(${new Date((u.loan_date+43200)*1000).fromNow('ko')})까지 상환 하셔야합니다.` : '모든 빚을 상환하셨습니다!'}`)
             if(loan_lvl !== u.loan_lvl) return message.reply(`축하드립니다. 신용등급이 상향되었습니다.\n**${tier[u.loan_lvl-1]}**(${u.loan_lvl}등급) -> **${tier[loan_lvl-1]}**(${loan_lvl}등급)\n\n더 많은 금액을 대출하실 수 있으며, 다양한 혜택을 누려보세요.`)
 
