@@ -8,7 +8,6 @@ module.exports.execute = async (
     tools,
     knex
 ) => {
-    if(message.guild.id !== '542599372836438016' && message.channel.id !== '743718965934686271') return message.reply('해당 기능은 베타 테스트중인 기능입니다. 사용하실 수 없습니다.') // CBT
     const u = (await knex('users').where({ id: message.author.id }))[0]
     const stocks = await knex('stocks')
     let userMoney = 0
