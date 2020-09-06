@@ -12,6 +12,10 @@ const data = {
     race: {},
     cooldown: {},
     action: [],
+    leaderboard: {
+        updated: 0,
+        txt: ''
+    },
     news: { time: 0, data: [] }
 }
 
