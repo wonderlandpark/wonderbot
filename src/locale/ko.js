@@ -605,8 +605,7 @@ module.exports = {
         },
         debug:
       '[{time}]\n**WB/Rewrite ERROR** - `{code}`\nCMD : `{cmd}`\nUSER : `{user}` (`{userid}`)\nGUILD : `{guild}` (`{guildid}`)\nCHANNEL : `{channel}`(`{channelid}`)\nURL : {url} \n```js\n{error}\n```\n DESC : \n```fix\nMSG CONTENT : {msg}\nBOT PERM : {perm}\n```',
-        onerror:
-      '펑.. 이런! 봇이 이상하네요. 명령어를 처리하던 도중 예상치 못한 에러가 발생하였습니다.\n아래 에러 코드를 복사해서 개발자에게 전송해주세요!!!\n에러코드 : `{code}`',
+        onerror: ['어제부터 파크봇의 시끄러운 음악에 명령어를 처리하던 도중 예상치 못한 에러가 발생하였어요.\n에러코드는 이거랍니다\n`{code}`','아.. 머리가 아파요... 명령어를 처리하던 도중 예상치 못한 에러가 발생하였어요.\n에러코드는 `{code}`에요', 'ㅁ..미안해요! 스쿨봇 개발자 험담을 들어주다가 명령어를 처리하는데 오류가 발생했어요.\n에러코드는 `{code}`에요'],
         noperm: '당신은 이 명령어를 실행할 권한이 없습니다.\n요구 권한 : {perms}',
         process: '이미 해당 작업을 진행중입니다. 작업을 마치고 실행해 주세요.',
         more: '이거 돈도 많으시면서 통이 너무 작은거 아니에요...?',
