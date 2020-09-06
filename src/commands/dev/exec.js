@@ -20,12 +20,10 @@ module.exports.execute = async (
             return
         }
         if (stdout.includes(client.token)) stdout = stdout.replace(client.token, '(accesstoken was hidden)')
-        if (stdout.length > 1990) console.log('Attempted shell prompts: ' + stdout), stdout = 'Too long to be printed (content got console logged)'
-        message.channel.send(stdout, {code: 'bash'}) 
+        message.channel.send(stdout.slice(0, 1990) + '\n...', {code: 'bash'}) 
         if (stderr) {
             if (stderr.includes(client.token)) stdout = stderr.replace(client.token, '(accesstoken was hidden)')
-            if (stderr.length > 1990) console.log('An error was printed: ' + stderr), stderr = 'Too long to be printed (content got console logged)'
-            message.channel.send(stderr, {code: 'bash'})
+            message.channel.send(stderr.slice(0, 1990) + '\n...', {code: 'bash'})
         }
     })
 }
