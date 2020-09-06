@@ -28,14 +28,9 @@ module.exports.execute = async (
                     })
                 if (output.includes(client.token))
                     output = output.replace(client.token, '(accesstoken was hidden)')
-                if (output.length > 1010)
+                if (output.length > 1500)
                     console.log(output), (output = output.slice(0, 1010) + '\n...')
-
-                embed.setTitle('SCRIPT')
-                embed.addField('INPUT', '```js\n' + message.data.args + '```')
-                embed.addField('OUTPUT', '```js\n' + output + '```')
-                embed.setColor('GREEN')
-                return m.edit(embed)
+                return m.edit('**INPUT**\n```js\n' + message.data.args + '```\n**OUTPUT**\n```js\n' + output + '```')
             })
             .catch(error => {
                 console.error(error)
@@ -43,12 +38,8 @@ module.exports.execute = async (
 
                 if (error.includes(client.token))
                     error = error.replace(client.token, '(accesstoken was hidden)')
-                embed.setTitle('SCRIPT')
-                embed.addField('INPUT', '```js\n' + message.data.args + '```')
-                embed.addField('OUTPUT', 'err')
-                embed.addField('ERROR', '```js\n' + error + '```')
-                embed.setColor('RED')
-                return m.edit(embed)
+                return m.edit('**INPUT**\n```js\n' + message.data.args + '```\n**OUTPUT**\n```js\n' + error + '```')
+
             })
     })
 }
