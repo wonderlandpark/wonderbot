@@ -14,7 +14,39 @@ module.exports.execute = async (
             message.mentions.members.first() ||
             message.guild.members.cache.get(message.data.arg[0])
     }
-    if (!user) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
+    if (!user) {
+        const u = await client.users.fetch(message.data.arg[0])
+        if(!u) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
+        return await message.guild.members.ban(message.data.arg[0], { reason: message.data.arg[1] || locale.commands.ban.none })
+            .then(async () => {
+                embed.setTitle(locale.commands.ban.Success)
+                embed.setColor('#FF5675')
+                embed.addField(
+                    locale.commands.ban.mod,
+                    locale.commands.ban.modDesc.bind({
+                        mod: message.author,
+                        tag: message.author.tag
+                    })
+                )
+                embed.addField(
+                    locale.commands.ban.user,
+                    locale.commands.ban.userDesc.bind({
+                        user: u,
+                        tag: u.tag
+                    })
+                )
+                embed.addField(
+                    locale.commands.ban.reason,
+                    locale.commands.ban.reasonDesc.bind({
+                        reason: message.data.arg2
+                            ? message.data.arg2
+                            : locale.commands.ban.none
+                    })
+                )
+                message.reply(embed)
+                tools.bot.modlog(client, message.guild.id, embed)
+            })
+    }
     if (user.hasPermission(['BAN_MEMBERS']))
         return message.reply(locale.commands.ban.alsoPerm)
     await message.reply(locale.commands.ban.wait)
@@ -29,15 +61,15 @@ module.exports.execute = async (
             })
         )
     } catch { return }
-    await user
-        .ban(
-            locale.commands.ban.why.bind({
-                reason: message.data.arg2
-                    ? message.data.arg2
-                    : locale.commands.ban.none,
-                by: message.author.tag
-            })
-        )
+    await message.guild.members.ban(
+        user.id,
+        { reason: locale.commands.ban.why.bind({
+            reason: message.data.arg2
+                ? message.data.arg2
+                : locale.commands.ban.none,
+            by: message.author.tag
+        }) }
+    )
         .then(async () => {
             embed.setTitle(locale.commands.ban.Success)
             embed.setColor('#FF5675')

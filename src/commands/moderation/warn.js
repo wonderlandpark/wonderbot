@@ -66,8 +66,7 @@ module.exports.execute = async (
                 })
             )
         } catch { return }
-        await user
-            .ban(locale.commands.warn.auto)
+        await message.guild.members.ban(user.id, { reason: locale.commands.warn.auto })
             .then(async () => {
                 var embed = tools.bot.customEmbed()
                 warndata[user.id] = { count: 0, reason: [] }
