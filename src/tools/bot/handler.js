@@ -197,7 +197,7 @@ module.exports = async (client, message, config) => {
                     guildid: message.guild.id
                 })
             )
-            message.reply(locale.error.onerror.bind({ code }))
+            message.reply(locale.error.onerror.random().bind({ code }))
             client.webhook.send(embed)
         })
         
