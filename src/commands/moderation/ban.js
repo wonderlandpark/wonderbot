@@ -15,9 +15,17 @@ module.exports.execute = async (
             message.guild.members.cache.get(message.data.arg[0])
     }
     if (!user) {
-        const u = await client.users.fetch(message.data.arg[0])
+        const id = message.data.arg[0].match(/<@[!|](\d+)>/)
+        let u
+        console.log(id ? id[1] : message.data.arg[0])
+        try {
+            u = await client.users.fetch(id ? id[1] : message.data.arg[0])
+        } catch(e) {
+            console.error(e)
+            return message.reply('올바르지 않은 유저 ID입니다.')
+        }
         if(!u) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
-        return await message.guild.members.ban(message.data.arg[0], { reason: message.data.arg[1] || locale.commands.ban.none })
+        return await message.guild.members.ban(u.id, { reason: message.data.arg[1] || locale.commands.ban.none })
             .then(async () => {
                 embed.setTitle(locale.commands.ban.Success)
                 embed.setColor('#FF5675')
@@ -60,7 +68,7 @@ module.exports.execute = async (
                 mod: message.author.tag
             })
         )
-    } catch { return }
+    } catch(e) { console.error(e) }
     await message.guild.members.ban(
         user.id,
         { reason: locale.commands.ban.why.bind({
