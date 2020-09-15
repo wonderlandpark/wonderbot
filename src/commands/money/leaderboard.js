@@ -74,7 +74,7 @@ module.exports.execute = async (
                 return bm + Number(b.money) - (am + Number(a.money))
             })
 
-            for (i = 1; i < 16; i++) {
+            for (let i = 1; i < 16; i++) {
                 let m = 0
                 if (leaderboard[i - 1]) {
                     Object.keys(JSON.parse(leaderboard[i - 1].items)).forEach(el => {
