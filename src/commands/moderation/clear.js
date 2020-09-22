@@ -17,7 +17,7 @@ module.exports.execute = async (
     } else if (!message.data.arg[1] && isNum(message.data.arg[0])) {
         last = message.data.arg[0]
     } else if (message.mentions.members.size !== 0 || message.mentions.roles.size !== 0) {
-        filtered = filtered.filter(m=> message.mentions.members.map(m=>m.id).includes(m.author.id) || message.mentions.roles.map(m=>m.id).map(e=> m.member.roles.cache.map(r=>r.id).includes(e)).includes(true))
+        filtered = filtered.filter(m=> message.mentions.members.map(m=>m.id).includes(m.author.id) || message.mentions.roles.map(m=>m.id).map(e=> m.member ? m.member.roles.cache.map(r=>r.id).includes(e) : false).includes(true))
     } 
     else {
         const content = isNum(last) ? message.data.args.split(' ').slice(0,  message.data.args.split(' ').length-1).join(' ') : message.data.args
