@@ -32,7 +32,8 @@
     "string-similarity": "^4.0.1",
     "ts-eval": "^1.0.5",
     "turndown": "^6.0.0",
-    "uuid": "^3.4.0"
+    "uuid": "^3.4.0",
+    "whois": "^2.13.1"
   },
   "devDependencies": {
     "eslint": "^6.7.2",

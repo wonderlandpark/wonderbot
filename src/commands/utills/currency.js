@@ -5,7 +5,7 @@ module.exports.execute = async (
     locale,
     embed
 ) => {
-    if (!message.data.arg[1]) return message.reply(locale.commands.currency.usage.bind({ prefix: message.data.prefix}))
+    if (!message.data.arg[1]) return message.reply(locale.commands.currency.usage.bind({ prefix: message.data.prefix }))
     message.data.arg[0] = message.data.arg[0].replace(/원/, 'KRW').replace(/달러/, 'USD').replace(/엔/, 'JPY').replace(/헤알/, 'BRL')
     if(message.data.arg[0].length !== 3||!['USD','AED','ARS','AUD','BGN','BRL','BSD','CAD','CHF','CLP','CNY','COP','CZK','DKK','DOP','EGP','EUR','FJD','GBP','GTQ','HKD','HRK','HUF','IDR','ILS','INR','ISK','JPY','KRW','KZT','MXN','MYR','NOK','NZD','PAB','PEN','PHP','PKR','PLN','PYG','RON','RUB','SAR','SEK','SGD','THB','TRY','TWD','UAH','UYU','ZAR'].includes(message.data.arg[0].toUpperCase())) return message.reply(locale.commands.currency.notsupport)
     if(isNaN(Number(message.data.arg[1]))) return message.reply(locale.commands.currency.notnum)

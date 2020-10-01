@@ -553,7 +553,7 @@ module.exports = {
             catch: '슬로우모드 설정을 실패했습니다. 권한을 확인해보세요.'
         },
         currency: {
-            usage: '\n**환율**\n> 환율 정보를 가져올 수 있습니다.\n예시\n`.환율 KRW 1000`\n`.환율 달러 1`\n`.환율 CNY 5`',
+            usage: '**환율**\n> 환율 정보를 가져올 수 있습니다.\n예시\n`{prefix}환율 KRW 1000`\n`{prefix}환율 달러 1`\n`{prefix}환율 CNY 5`',
             notsupport: '지원하지 않는 화폐 단위입니다.',
             notnum: '올바른 숫자를 입력해주세요.',
             desc: '> 해당 정보는 정확하지 않을 수 있습니다. 참고용으로만 사용해주세요.'
@@ -731,5 +731,6 @@ const usageNames = {
     moneyresolvable: '숫자+화폐단위',
     prefix: '변경할 접두사',
     sender: '전송자',
-    station: '역명'
+    station: '역명',
+    domain: '도메인'
 }

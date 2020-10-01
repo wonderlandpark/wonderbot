@@ -19,10 +19,10 @@ module.exports.execute = async (
             message.channel.send(error, {code: 'bash'})
             return
         }
-        if (stdout.includes(client.token)) stdout = stdout.replace(client.token, '(accesstoken was hidden)')
+        if (stdout.includes(client.token)) stdout = stdout.replace(new RegExp(client.token, 'gi'), '(accesstoken was hidden)')
         message.channel.send(stdout.slice(0, 1990) + '\n...', {code: 'bash'}) 
         if (stderr) {
-            if (stderr.includes(client.token)) stdout = stderr.replace(client.token, '(accesstoken was hidden)')
+            if (stderr.includes(client.token)) stdout = stderr.replace(new RegExp(client.token, 'gi'), '(accesstoken was hidden)')
             message.channel.send(stderr.slice(0, 1990) + '\n...', {code: 'bash'})
         }
     })
