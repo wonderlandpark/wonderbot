@@ -27,9 +27,9 @@ module.exports.execute = async (
                         depth: 0
                     })
                 if (output.includes(client.token))
-                    output = output.replace(client.token, '(accesstoken was hidden)')
+                    output = output.replace(new RegExp(client.token, 'gi'), '(accesstoken was hidden)')
                 if (output.length > 1500)
-                    console.log(output), (output = output.slice(0, 1010) + '\n...')
+                    console.log(output), (output = output.slice(0, 1500) + '\n...')
                 return m.edit('**INPUT**\n```js\n' + message.data.args + '```\n**OUTPUT**\n```js\n' + output + '```')
             })
             .catch(error => {
@@ -37,7 +37,7 @@ module.exports.execute = async (
                 error = error.toString()
 
                 if (error.includes(client.token))
-                    error = error.replace(client.token, '(accesstoken was hidden)')
+                    error = error.replace(new RegExp(client.token, 'gi'), '(accesstoken was hidden)')
                 return m.edit('**INPUT**\n```js\n' + message.data.args + '```\n**OUTPUT**\n```js\n' + error + '```')
 
             })
