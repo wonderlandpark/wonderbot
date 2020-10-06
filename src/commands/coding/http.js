@@ -1,4 +1,5 @@
-const codes = require('./http-status-code.json').list
+const http = require('http')
+const codes = Object.keys(http.STATUS_CODES).map(r=> { return { code: r, desc: http.STATUS_CODES[r] } })
 module.exports.execute = async (
     client,
     message,
