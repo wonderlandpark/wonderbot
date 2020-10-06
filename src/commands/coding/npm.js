@@ -38,6 +38,10 @@ module.exports.props = {
     name: 'npm',
     perms: 'general',
     alias: ['npm', 'nodepackagemanager'],
-    args: []
+    args: [{
+        name: 'text',
+        type: 'text',
+        required: true
+    }]
 }
     

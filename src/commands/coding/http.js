@@ -23,5 +23,9 @@ module.exports.props = {
     name: 'http',
     perms: 'general',
     alias: ['상태코드', 'statuscode'],
-    args: []
+    args: [{
+        name: 'text',
+        type: 'text',
+        required: true
+    }]
 }

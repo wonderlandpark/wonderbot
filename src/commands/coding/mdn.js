@@ -30,6 +30,10 @@ module.exports.props = {
     name: 'mdn',
     perms: 'general',
     alias: ['모질라', 'mozila'],
-    args: []
+    args: [{
+        name: 'text',
+        type: 'text',
+        required: true
+    }]
 }
     
