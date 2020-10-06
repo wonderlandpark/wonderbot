@@ -46,6 +46,7 @@ module.exports = class WB {
                     await tools.database('guilds').insert({ id: guild.id })
                 }
             })
+            client.mem = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
             await knex('shards')
                 .update({
                     lastupdate: Math.round(new Date() / 1000),
@@ -61,7 +62,7 @@ module.exports = class WB {
                 .where({ id: client.guilds.cache.first().shardID })
 
             setInterval(async () => {
-                console.log('UPDATED')
+                client.mem = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
                 await knex('shards')
                     .update({
                         lastupdate: Math.round(new Date() / 1000),

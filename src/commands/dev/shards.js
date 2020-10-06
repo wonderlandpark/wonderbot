@@ -13,7 +13,9 @@ module.exports.execute = async (
   [
     this.guilds.cache.first() ? this.guilds.cache.first().shardID : 'UNUSED',
       this.guilds.cache.size,
-      this.guilds.cache.map(r=>r.memberCount).reduce((accumulator, currentValue) => Number(accumulator) + currentValue)
+      this.guilds.cache.map(r=>r.memberCount).reduce((accumulator, currentValue) => Number(accumulator) + currentValue),
+      this.ws.ping,
+      this.mem
   ]
 `)
     // Make a final string which will be sent in the channel
@@ -28,7 +30,11 @@ module.exports.execute = async (
       value[1] +
       ' | UserCount: ' +
       value[2] +
-      '\n'
+      ' | Ping: ' + 
+      value[3] + 
+      'ms | Memory: ' + 
+      value[4] + 
+      'mb\n'
     })
 
     message.channel.send(finalString)
