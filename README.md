@@ -1,6 +1,7 @@
 # Wonder_Bot, Rewrite
 
-![license](https://img.shields.io/github/license/wonderlandpark/wonderbot)[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fwonderlandpark%2Fwonderbot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fwonderlandpark%2Fwonderbot?ref=badge_shield)
+![license](https://img.shields.io/github/license/wonderlandpark/wonderbot)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fwonderlandpark%2Fwonderbot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fwonderlandpark%2Fwonderbot?ref=badge_shield)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/def63318bbb54e33b453e9b45d75eb29)](https://app.codacy.com/manual/wonderlandpark/wonderbot?utm_source=github.com&utm_medium=referral&utm_content=wonderlandpark/wonderbot&utm_campaign=Badge_Grade_Dashboard)
 [![Discord](https://discordapp.com/api/guilds/512553485766492171/embed.png)](https://invite.gg/wonderbot)
@@ -14,12 +15,12 @@ Team Callisto. Project Wonder_Bot's Rewrite.
 
 ## Collaboration
 
-Issues and PR is allways welcomed.
+Issues and PR are always welcomed.
 Feel free to help me.
 
 ### Language
 
-At this repository, only Korean and English is expected.
+At this repository, only Korean and English are expected.
 
 ## Clone
 
