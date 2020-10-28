@@ -11,7 +11,7 @@ module.exports.execute = async (
     embed.addField('ID', message.guild.id, true)
     embed.addField(locale.commands.serverinfo.region, locale.commands.serverinfo.regionList[message.guild.region], true)
     embed.addField(locale.commands.serverinfo.memberCount, locale.commands.serverinfo.memberDesc.bind({ user: message.guild.memberCount }), true)
-    embed.addField(locale.commands.serverinfo.owner, message.guild.owner.user.tag, true)
+    embed.addField(locale.commands.serverinfo.owner, (await client.users.fetch(message.guild.ownerID)).tag, true)
 
     embed.addField(locale.commands.serverinfo.boost, locale.commands.serverinfo.boostDesc.bind({ count: message.guild.premiumSubscriptionCount, level: message.guild.premiumTier }))
     embed.addField(locale.commands.serverinfo.channel, locale.commands.serverinfo.channelDesc.bind({ text: message.guild.channels.cache.filter(r => r.type === 'text').size, category: message.guild.channels.cache.filter(r => r.type === 'category').size, voice: message.guild.channels.cache.filter(r => r.type === 'voice').size }), true)
