@@ -35,9 +35,11 @@ module.exports.execute = async (
             .catch(error => {
                 console.error(error)
                 error = error.toString()
-
+                
                 if (error.includes(client.token))
                     error = error.replace(new RegExp(client.token, 'gi'), '(accesstoken was hidden)')
+                if (error.length > 1500)
+                    console.log(error), (error = error.slice(0, 1500) + '\n...')
                 return m.edit('**INPUT**\n```js\n' + message.data.args + '```\n**OUTPUT**\n```js\n' + error + '```')
 
             })

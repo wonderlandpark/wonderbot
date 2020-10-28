@@ -11,7 +11,7 @@ module.exports.execute = async (
     if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const user =
         message.mentions.members.first() ||
-        message.guild.members.cache.get(message.data.arg[0])
+        message.guild.members.fetch(message.data.arg[0]).then(r=> r).catch(() => null)
     const reason = message.data.arg2
         ? message.data.arg2
         : locale.commands.warn.none

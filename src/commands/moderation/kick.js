@@ -12,7 +12,7 @@ module.exports.execute = async (
     else {
         user =
       message.mentions.members.first() ||
-      message.guild.members.cache.get(message.data.arg[0])
+      message.guild.members.fetch(message.data.arg[0]).then(r=> r).catch(() => null)
     }
     if (!user) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     if (user.hasPermission(['KICK_MEMBERS']))
