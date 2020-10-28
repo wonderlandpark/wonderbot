@@ -37,6 +37,10 @@ module.exports.execute = async (
       'mb\n'
     })
 
+    finalString += `\nTotal Guild: ${(await client.shard.fetchClientValues('guilds.cache.size')).reduce(
+        (prev, val) => prev + val,
+        0
+    )}`
     message.channel.send(finalString)
 }
 

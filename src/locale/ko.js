@@ -476,7 +476,7 @@ module.exports = {
         shardinfo: {
             current: '해당 길드 샤드 정보',
             desc:
-        '#{id}번 샤드(분리 프로세스) \n```prolog\n#{id} : Guilds {guild}, Cached Users {user}, Ram {ram}MiB, Ping {ping}ms \n마지막 정보 패치: {last}```\n\n다른 샤드 정보도 디스코드에 표시하기는 너무 길군요 [이곳](https://wonderbot.xyz/shards) 에서 확인할 수 있습니다.'
+        '#{id}번 샤드(분리 프로세스) \n```prolog\n#{id} : Guilds {guild}, Users about {user}, Ram {ram}MiB, Ping {ping}ms \n마지막 정보 패치: {last}```\n\n다른 샤드 정보도 디스코드에 표시하기는 너무 길군요 [이곳](https://wonderbot.xyz/shards) 에서 확인할 수 있습니다.'
         },
         serverinfo: {
             serverinfo: '🏘️ {guild} 서버 정보',
