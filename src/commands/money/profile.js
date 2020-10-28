@@ -23,7 +23,7 @@ module.exports.execute = async (
         return bm + Number(b.money) - (am + Number(a.money))
     })
     var server = (await knex.select('*').from('users')).filter(r =>
-        message.guild.members.cache.get(r.id)
+        message.guild.members.fetch(r.id).then(() => true).catch(() => false)
     )
     server = server.sort(function(a, b) {
         var bm = 0

@@ -12,7 +12,7 @@ module.exports.execute = async (
     else {
         user =
             message.mentions.members.first() ||
-            message.guild.members.cache.get(message.data.arg[0])
+            message.guild.members.fetch(message.data.arg[0]).then(r=> r).catch(() => null)
     }
     if (!user) {
         const id = message.data.arg[0].match(/<@[!|](\d+)>/)

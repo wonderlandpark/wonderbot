@@ -12,7 +12,7 @@ module.exports.execute = async (
     if (!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const user =
     message.mentions.members.first() ||
-    message.guild.members.cache.get(message.data.arg[0])
+    message.guild.members.fetch(message.data.arg[0]).then(r=> r).catch(() => null)
     const guild = (await knex('guilds').where({ id: message.guild.id }))[0]
     const warndata = JSON.parse(guild.warn)
     if (!user) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))

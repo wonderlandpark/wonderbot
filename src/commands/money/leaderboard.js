@@ -18,7 +18,7 @@ module.exports.execute = async (
            ['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])
                ? await knex.select('*').from('users')
                : (await knex.select('*').from('users')).filter(r =>
-                   message.guild.members.cache.get(r.id)
+                   message.guild.members.fetch(r.id).then(() => true).catch(() => false)
                )
         let server = ''
         let txt = ''
