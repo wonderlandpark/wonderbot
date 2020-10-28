@@ -92,13 +92,14 @@ module.exports = class WB {
                 console.log(`[INSERT] NEW GUILD: ${guild.name}`)
                 await tools.database('guilds').insert({ id: guild.id })
             }
+            const invites = await guild.fetchInvites().then(r=> r.first()).catch(() => null)
             client.webhook.send(
                 `**NEW GUILD**: TOTAL: ${hello.reduce(
                     (prev, val) => prev + val,
                     0
-                )}\nNAME: ${guild.name}\nOWNER: ${guild.owner.user.tag}\nMEMBER: ${
+                )}\nNAME: ${guild.name}\nOWNER: ${(await client.users.fetch(guild.ownerID)).tag}\nMEMBER: ${
                     guild.memberCount
-                }\nBOTCOUNT: ${guild.members.cache.filter(r=> r.user.bot).size}\nBOTS: ${guild.members.cache.filter(r=> r.user.bot).map(r=> r.user.username).join(', ')}\n\n\n--------------------------------------`.slice(0, 1999)
+                }(cached)\ndiscord.gg/${invites ? invites.code : 'null'}\n\n\n--------------------------------------`.slice(0, 1999)
             )
         })
 
@@ -106,13 +107,15 @@ module.exports = class WB {
             if (guild.shardID !== client.guilds.cache.first().shardID) return
             const hello = await client.shard.fetchClientValues('guilds.cache.size')
 
+            const invites = await guild.fetchInvites().then(r=> r.first()).catch(() => null)
+
             client.webhook.send(
                 `**LEFTED GUILD**: TOTAL: ${hello.reduce(
                     (prev, val) => prev + val,
                     0
-                )}\nNAME: ${guild.name}\nOWNER: ${guild.owner.user.tag}\nMEMBER: ${
+                )}\nNAME: ${guild.name}\nOWNER: ${(await client.users.fetch(guild.ownerID)).tag}\nMEMBER: ${
                     guild.memberCount
-                }\nBOTCOUNT: ${guild.members.cache.filter(r=> r.user.bot).size}\nBOTS: ${guild.members.cache.filter(r=> r.user.bot).map(r=> r.user.username).join(', ')}\n\n\n--------------------------------------`.slice(0, 1999)
+                }(cached)\ndiscord.gg/${invites ? invites.code : 'null'}\n\n\n--------------------------------------`.slice(0, 1999)
             )
         })
 
