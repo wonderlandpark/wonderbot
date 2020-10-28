@@ -17,9 +17,7 @@ module.exports.execute = async (
         var leaderboard =
            ['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])
                ? await knex.select('*').from('users')
-               : (await knex.select('*').from('users')).filter(r =>
-                   message.guild.members.fetch(r.id).then(() => true).catch(() => false)
-               )
+               : (await knex.select('*').from('users')).filter(async r => await message.guild.members.fetch(r.id).then(() => true).catch(() => false))
         let server = ''
         let txt = ''
         if(new Date() - data.leaderboard.updated > 60000 && ['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])) {
