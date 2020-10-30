@@ -13,7 +13,7 @@ module.exports.execute = async (
     if (!['전체','전', 'ㅈ', '서버', 'ㅅ', '서','길드', 'global', 'guild', 'server'].includes(message.data.arg[0])) {
         message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     } else {
-        message.guild.members.fetch()
+        // message.guild.members.fetch()
         var leaderboard =
            ['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])
                ? await knex.select('*').from('users')
