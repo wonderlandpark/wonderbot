@@ -13,6 +13,7 @@ module.exports.execute = async (
     if (!['전체','전', 'ㅈ', '서버', 'ㅅ', '서','길드', 'global', 'guild', 'server'].includes(message.data.arg[0])) {
         message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     } else {
+        if(!['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])) return message.reply('죄송합니다. 현재 서버 리더보드 기능은 이용하실 수 없습니다.\n질문이 있으시다면 팀 칼리스토를 이용해주세요.\nhttps://discord.gg/jE33mfD')
         // message.guild.members.fetch()
         var leaderboard =
            ['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])
