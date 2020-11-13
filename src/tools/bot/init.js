@@ -83,14 +83,34 @@ module.exports = class WB {
         client.on('message', async message => {
             tools.bot.handler(client, message, config, devMode)
         })
+        
+        client.on('guildMemberAdd', async member => {
+            const guild = JSON.parse((await knex('guilds').where({ id: member.guild.id }))[0].config)
 
+            if(!guild.welcome) return
+            const channel = member.guild.channels.cache.get(guild.welcomeChannel)
+            if(!channel) {
+                delete guild.welcome
+                delete guild.welcomeChannel
+                delete guild.welcomeText
+
+                return await knex('guilds').update({ config: JSON.stringify(guild) }).where({ id: member.guild.id })
+            }
+
+            channel.send(guild.welcomeText.bind({ user: member, userID: member.id, 유저: member, 유저아이디: member.id,
+                유저수: member.guild.memberCount, memberCount: member.guild.memberCount,
+                서버: member.guild.name, 길드: member.guild.name, 서버아이디: member.guild.id, 길드아이디: member.guild.id, guildID: member.guild.id,
+                채널: `<#${guild.welcomeChannel}>`, channel: `<#${guild.welcomeChannel}>`, 접두사: config.prefix || config.client.prefix, prefix: config.prefix || config.client.prefix
+            }))
+
+        })
         client.on('guildCreate', async guild => {
             if (guild.shardID !== client.guilds.cache.first().shardID) return
             const hello = await client.shard.fetchClientValues('guilds.cache.size')
-            const g = await tools.database('guilds')
+            const g = await knex('guilds')
             if (!g.find(r => r.id === guild.id)) {
                 console.log(`[INSERT] NEW GUILD: ${guild.name}`)
-                await tools.database('guilds').insert({ id: guild.id })
+                await knex('guilds').insert({ id: guild.id })
             }
             const invites = await guild.fetchInvites().then(r=> r.first()).catch(() => null)
             client.webhook.send(
