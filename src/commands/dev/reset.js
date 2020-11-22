@@ -54,7 +54,7 @@ module.exports.execute = async (
         await message.reply('BADGES ADDED')
     }
     await knex('users').update({
-        money: 0,
+        money: 2000,
         items: '{"wondercoin":1}',
         cooldown: '{}',
         action: 0,

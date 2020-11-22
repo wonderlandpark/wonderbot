@@ -46,7 +46,7 @@ module.exports.execute = async (
                         }
                         lotto.push({ time: res.length, numbers: nums })
                         await knex('info').update({ lotto: (await knex('info'))[0].lotto + 1 })
-                        await knex('users').update({ action: 0, money: Number(user.money) - 300, lotto: JSON.stringify(lotto) }).where({ id: message.author.id })
+                        await knex('users').update({ action: 0, money: Number(user.money) - 1000, lotto: JSON.stringify(lotto) }).where({ id: message.author.id })
                         embed.setTitle(locale.commands.lotto.lotto).setDescription(locale.commands.lotto.success)
                         message.reply(embed)
                     })
@@ -74,7 +74,7 @@ module.exports.execute = async (
             const list = user.map(r=> {
                 const level = calculate(r.numbers, (res[res.length - 1].numbers).split(','))
                 total += [3000000, 50000, 5000, 300, 100, 0][level]
-                return locale.commands.lotto.moneyRes.bind({ num: r.numbers.map(el=> numbers[el]).join(' '), n: level+1, money: [3000000, 50000, 5000, 300, 100, 0][level] })}).join('')
+                return locale.commands.lotto.moneyRes.bind({ num: r.numbers.map(el=> numbers[el]).join(' '), n: level+1, money: [10000000, 1000000, 50000, 1000, 500, 0][level] })}).join('')
             embed.setTitle(locale.commands.lotto.lotto).setDescription(locale.commands.lotto.getMoney.bind({ list, total}))
             user = user.filter(r=> r.time !== res.length - 1)
             await knex('users').update({ money: (Number(u.money) + total), lotto: JSON.stringify(user)}).where({ id: message.author.id})
