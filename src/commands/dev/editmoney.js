@@ -15,7 +15,7 @@ module.exports.execute = async (
     const money = Number(message.data.arg[2])
     if (['더하기', 'add', '더', 'ㄷ'].includes(message.data.arg[0])) {
         await knex('users')
-            .update({ money: m + money })
+            .update({ money: Number(m) + money })
             .where({ id: user })
         await message.reply('ADDED')
     } else if (['빼기', 'sub', '빼', 'ㅂ'].includes(message.data.arg[0])) {
