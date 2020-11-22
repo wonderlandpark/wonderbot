@@ -54,7 +54,7 @@ module.exports.execute = async (
         await message.reply('BADGES ADDED')
     }
     await knex('users').update({
-        money: 0,
+        money: 2000,
         items: '{"wondercoin":1}',
         cooldown: '{}',
         action: 0,
@@ -72,7 +72,8 @@ module.exports.execute = async (
         await knex('users').update({ cooldown: JSON.stringify(cooldown), mails: JSON.stringify(mail), loan_lvl: d.loan_lvl-1 < 5 ? 5 : d.loan_lvl-1, loan_money: 0 }).where({ id: d.id })
     }
     await message.reply(`SENT MAIL FOR DEBTS (COUNT: ${debt.length})`)
-    await knex('stocks').update({ prices: '100', now: 100, lastchange: 0 })
+    await knex('stocks').update({ prices: '1000', now: 1000, lastchange: 0 })
+    await knex('info').update({ stock: Math.round(new Date()/1000) })
     message.reply('STOCK DATA RESET')
 }
 

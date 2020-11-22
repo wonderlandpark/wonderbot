@@ -1,4 +1,4 @@
-const available = [ 70000, 30000, 10000, 1500, 500]
+const available = [ 10000000, 3000000, 500000, 10000, 7000 ]
 const tier = [ 'VIP', '플레티넘', '골드', '실버', '브론즈' ]
 module.exports.execute = async (
     client,

@@ -65,7 +65,8 @@ module.exports.execute = async (
                 await knex
                     .insert({
                         id: message.author.id,
-                        join: Math.round(new Date() / 1000)
+                        join: Math.round(new Date() / 1000),
+                        money: 2000
                     })
                     .from('users')
                 return message.reply(locale.commands.register.thanks)
