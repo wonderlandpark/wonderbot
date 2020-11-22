@@ -22,11 +22,22 @@ module.exports.execute = async (
 
         message.reply('환영 기능이 <#{channel}>에서 활성화되었습니다.\n언제든지 `{prefix}환영 비활성화`로 비활성화시킬 수 있습니다!'.bind({ channel: res.welcomeChannel, prefix: message.data.prefix }))
     } else if(message.mentions.channels && message.data.arg2) {
+        if(message.data.arg2.length > 1500) return message.reply('1500자 이하로 설정해주세요!')
         res.welcome = true
         res.welcomeText = message.data.arg2
         res.welcomeChannel = message.mentions.channels.first().id
 
         message.reply('환영 기능이 <#{channel}>에서 활성화되었습니다.\n언제든지 `{prefix}환영 비활성화`로 비활성화시킬 수 있습니다!'.bind({ channel: res.welcomeChannel, prefix: message.data.prefix }))
+
+    } else if(['테스트', 'test'].includes(message.data.arg[0])) {
+        if(!res.welcome) return message.reply('비활성화 되어있습니다.')
+        const channel = message.guild.channels.cache.get(res.welcomeChannel)
+        if(!channel) return message.reply('채널이 존재하지 않습니다. 다시 설정해주세요.')
+        return message.channel.send(`<#${res.welcomeChannel}>에 다음과 같이 전송됩니다.\n\n${res.welcomeText.bind({ user: message.member, userID: message.member.id, 유저: message.member, 유저아이디: message.member.id,
+            유저수: message.member.guild.memberCount, memberCount: message.member.guild.memberCount,
+            서버: message.member.guild.name, 길드: message.member.guild.name, 서버아이디: message.member.guild.id, 길드아이디: message.member.guild.id, guildID: message.member.guild.id,
+            채널: `<#${res.welcomeChannel}>`, channel: `<#${res.welcomeChannel}>`, 접두사: message.data.prefix, prefix: message.data.prefix
+        })}`, { allowedMentions: { parse: ['roles', 'users'] }})
 
     } else if(['초기화', 'init'].includes(message.data.arg[0])) {
         res.welcome = false
@@ -45,13 +56,13 @@ module.exports.execute = async (
 module.exports.props = {
     name: 'welcome',
     perms: 'admin',
-    alias: ['환영', '환영기능'],
+    alias: ['환영', '입장', '환영기능'],
     args: [
         {
             name: 'option',
             type: 'option',
             required: true,
-            options: ['활성화', '비활성화', '#채널']
+            options: ['활성화', '비활성화', '테스트', '#채널']
         },
         {
             name: 'text',

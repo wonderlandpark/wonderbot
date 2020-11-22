@@ -101,9 +101,31 @@ module.exports = class WB {
                 유저수: member.guild.memberCount, memberCount: member.guild.memberCount,
                 서버: member.guild.name, 길드: member.guild.name, 서버아이디: member.guild.id, 길드아이디: member.guild.id, guildID: member.guild.id,
                 채널: `<#${guild.welcomeChannel}>`, channel: `<#${guild.welcomeChannel}>`, 접두사: config.prefix || config.client.prefix, prefix: config.prefix || config.client.prefix
-            }))
+            }), { allowedMentions: { parse: ['roles', 'users'] }})
 
         })
+
+        client.on('guildMemberRemove', async member => {
+            const guild = JSON.parse((await knex('guilds').where({ id: member.guild.id }))[0].config)
+
+            if(!guild.bye) return
+            const channel = member.guild.channels.cache.get(guild.byeChannel)
+            if(!channel) {
+                delete guild.bye
+                delete guild.byeChannel
+                delete guild.byeText
+
+                return await knex('guilds').update({ config: JSON.stringify(guild) }).where({ id: member.guild.id })
+            }
+
+            channel.send(guild.byeText.bind({ user: member, userID: member.id, 유저: member, 유저아이디: member.id,
+                유저수: member.guild.memberCount, memberCount: member.guild.memberCount,
+                서버: member.guild.name, 길드: member.guild.name, 서버아이디: member.guild.id, 길드아이디: member.guild.id, guildID: member.guild.id,
+                채널: `<#${guild.byeChannel}>`, channel: `<#${guild.byeChannel}>`, 접두사: config.prefix || config.client.prefix, prefix: config.prefix || config.client.prefix
+            }), { allowedMentions: { parse: ['roles', 'users'] }})
+
+        })
+
         client.on('guildCreate', async guild => {
             if (guild.shardID !== client.guilds.cache.first().shardID) return
             const hello = await client.shard.fetchClientValues('guilds.cache.size')
