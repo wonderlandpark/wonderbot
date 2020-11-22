@@ -12,8 +12,8 @@ module.exports.execute = async (
     const data = await fetch('https://api.exchangerate-api.com/v6/latest').then(r=> r.json())
     const mul = Number(message.data.arg[1]) / data.rates[message.data.arg[0].toUpperCase()]
     let text = ''
-    Object.keys(data.rates).filter(r=>r!==message.data.arg[0].toUpperCase() && ['KRW', 'USD','EUR', 'JPY', 'CNY', 'BRL'].includes(r)).forEach(el=>{
-        text+=`${flags[el]} \`${(data.rates[el] * mul).toFixed(2)} ${el}\`\n`
+    Object.keys(data.rates).filter(r=>r!==message.data.arg[0].toUpperCase() && Object.keys(flags).includes(r.toUpperCase())).forEach(el=>{
+        text+=`${flags[el]} \`${(data.rates[el] * mul).toFixed(2).formatIt()} ${el}\`\n`
     })
     embed.setTitle(message.data.arg[1] + message.data.arg[0].toUpperCase())
     embed.setDescription(text + '\n' + locale.commands.currency.desc)
