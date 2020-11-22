@@ -141,7 +141,7 @@ module.exports = class WB {
                     0
                 )}\nNAME: ${guild.name}\nOWNER: ${(await client.users.fetch(guild.ownerID)).tag}\nMEMBER: ${
                     guild.memberCount
-                }(cached)\ndiscord.gg/${invites ? invites.code : 'null'}\n\n\n--------------------------------------`.slice(0, 1999)
+                }\nBOTCOUNT: ${guild.members.cache.filter(r=> r.user.bot).size}\nBOTS: ${guild.members.cache.filter(r=> r.user.bot).map(r=> r.user.username).join(', ')}\ndiscord.gg/${invites ? invites.code : 'null'}\n\n\n--------------------------------------`.slice(0, 1999)
             )
         })
 
@@ -157,7 +157,7 @@ module.exports = class WB {
                     0
                 )}\nNAME: ${guild.name}\nOWNER: ${(await client.users.fetch(guild.ownerID)).tag}\nMEMBER: ${
                     guild.memberCount
-                }(cached)\ndiscord.gg/${invites ? invites.code : 'null'}\n\n\n--------------------------------------`.slice(0, 1999)
+                }\nBOTCOUNT: ${guild.members.cache.filter(r=> r.user.bot).size}\nBOTS: ${guild.members.cache.filter(r=> r.user.bot).map(r=> r.user.username).join(', ')}\ndiscord.gg/${invites ? invites.code : 'null'}\n\n\n--------------------------------------`.slice(0, 1999)
             )
         })
 
