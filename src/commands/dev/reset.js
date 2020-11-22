@@ -73,6 +73,7 @@ module.exports.execute = async (
     }
     await message.reply(`SENT MAIL FOR DEBTS (COUNT: ${debt.length})`)
     await knex('stocks').update({ prices: '1000', now: 1000, lastchange: 0 })
+    await knex('info').update({ stock: Math.round(new Date()/1000) })
     message.reply('STOCK DATA RESET')
 }
 
