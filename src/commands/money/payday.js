@@ -26,27 +26,27 @@ module.exports.execute = async (
         if (message.data.premium) {
             await knex
                 .update({
-                    money: Number(u['money']) + 200,
+                    money: Number(u['money']) + 700,
                     cooldown: JSON.stringify(cool)
                 })
                 .where({ id: message.author.id })
                 .from('users')
             message.reply(
                 locale.commands.payday.premium.bind({
-                    money: (Number(u['money']) + 200).formatIt()
+                    money: (Number(u['money']) + 700).formatIt()
                 })
             )
         } else {
             await knex
                 .update({
-                    money: Number(u['money']) + 100,
+                    money: Number(u['money']) + 500,
                     cooldown: JSON.stringify(cool)
                 })
                 .where({ id: message.author.id })
                 .from('users')
             message.reply(
                 locale.commands.payday.success.bind({
-                    money: (Number(u['money']) + 100).formatIt()
+                    money: (Number(u['money']) + 500).formatIt()
                 })
             )
         }

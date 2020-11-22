@@ -22,7 +22,7 @@ module.exports.execute = async (
         )
     else {
         if(message.guild.id === '470028725287780352'){
-            const money = Number(u.money) + 100
+            const money = Number(u.money) + 300
             let cool = JSON.parse(u.cooldown)
             cool.server = Math.round(new Date() / 1000)
             await knex('users').update({ money, cooldown: JSON.stringify(cool) }).where({ id: message.author.id })

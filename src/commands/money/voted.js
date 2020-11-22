@@ -28,7 +28,7 @@ module.exports.execute = async (
     else {
         const res = await MyBot.checkVote(message.author.id).then(r=> r.voted).catch(()=> false)
         if(res){
-            const money = Number(u.money) + 100
+            const money = Number(u.money) + 300
             let cool = JSON.parse(u.cooldown)
             cool.voted = Math.round(new Date() / 1000)
             await knex('users').update({ money, cooldown: JSON.stringify(cool) }).where({ id: message.author.id })
