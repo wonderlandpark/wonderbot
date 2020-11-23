@@ -33,7 +33,7 @@ module.exports.execute = async (
                 if(hasDupe(nums)) return message.reply(locale.commands.lotto.dupe)
             }
             
-            if((Number(user.money) - 300) < 0) return message.reply(locale.commands.lotto.noMoney)
+            if((Number(user.money) - 1000) < 0) return message.reply(locale.commands.lotto.noMoney)
             const filter = (reaction, user) => reaction.emoji.name === '🎫' && user.id === message.author.id
             message.reply(locale.commands.lotto.isReady.bind({ num: nums.map(r=> numbers[r]).join(' ')})).then(async msg => {
                 msg.react('🎫')
@@ -73,7 +73,7 @@ module.exports.execute = async (
             let total = 0
             const list = user.map(r=> {
                 const level = calculate(r.numbers, (res[res.length - 1].numbers).split(','))
-                total += [3000000, 50000, 5000, 300, 100, 0][level]
+                total += [10000000, 1000000, 50000, 1000, 500, 0][level]
                 return locale.commands.lotto.moneyRes.bind({ num: r.numbers.map(el=> numbers[el]).join(' '), n: level+1, money: [10000000, 1000000, 50000, 1000, 500, 0][level] })}).join('')
             embed.setTitle(locale.commands.lotto.lotto).setDescription(locale.commands.lotto.getMoney.bind({ list, total}))
             user = user.filter(r=> r.time !== res.length - 1)
