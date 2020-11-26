@@ -45,8 +45,9 @@ String.prototype.bind = function(parameters, lang) {
     if (glob) {
         glob.forEach(key => {
             const keyname = key.replace(/%/, '').replace(/%/, '')
-            if(!locale[lang].global[keyname]) return
-            text = text.replace(key, String(locale[lang].global[keyname]) || '')
+            const string = String(locale[lang].global[keyname])
+            if(!string) return
+            text = text.replace(key, String(string) || '')
         })
     }
     const keys = text.match(/\{(.*?)\}/g)
@@ -54,8 +55,9 @@ String.prototype.bind = function(parameters, lang) {
 
     keys.forEach(key => {
         const keyname = key.replace(/\{/, '').replace(/\}/, '')
-        if(!parameters[keyname]) return
-        text = text.replace(key, String(parameters[keyname]) || '')
+        const string = String(parameters[keyname]) 
+        if(!string) return
+        text = text.replace(key, string|| '')
     })
 
     return text
