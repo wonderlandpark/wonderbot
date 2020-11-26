@@ -22,9 +22,7 @@ module.exports.execute = async (
         if (Number.isNaN(bm)) bm = 0
         return bm + Number(b.money) - (am + Number(a.money))
     })
-    var server = (await knex.select('*').from('users')).filter(r =>
-        message.guild.members.fetch(r.id).then(() => true).catch(() => false)
-    )
+    let server = (await knex.select('*').from('users')).filter(r => message.guild.members.cache.get(r.id))
     server = server.sort(function(a, b) {
         var bm = 0
         var am = 0
