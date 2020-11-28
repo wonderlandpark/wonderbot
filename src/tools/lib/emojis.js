@@ -84,5 +84,6 @@ module.exports = {
     second: '<:second:690130592104185885>',
     third: '<:third:690130592150323257>',
     bughunter: '<:bughunter:700892059871215727>',
-    github: '<:github:700892945385127946>'
+    github: '<:github:700892945385127946>',
+    'third-birthday': '🎉'
 }

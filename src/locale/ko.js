@@ -170,7 +170,8 @@ module.exports = {
                 early: '얼리 서포터',
                 team: '팀 칼리스토',
                 bughunter: '버그 헌터',
-                github: '기여자'
+                github: '기여자',
+                'third-birthday': '3주년 기념 뱃지'
             }
         },
         wallet: {
