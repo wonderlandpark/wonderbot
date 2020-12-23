@@ -13,6 +13,21 @@ module.exports.execute = async (
     if (!['전체','전', 'ㅈ', '서버', 'ㅅ', '서','길드', 'global', 'guild', 'server'].includes(message.data.arg[0])) {
         message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     } else {
+        if(new Date() - data.leaderboard.updated < 60000 && ['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])) return message.channel.send(
+            '```md\n' +
+            locale.commands.leaderboard.leaderboard.bind({
+                season: require('../../config').client.bot.season
+            }) +
+            `\n${
+                ['전체', '전', 'ㅈ', 'global'].includes( message.data.arg[0])
+                    ? locale.commands.leaderboard.global
+                    : locale.commands.leaderboard.guild.bind({
+                        server: message.guild.name
+                    })
+            }\n ` +
+            (data.leaderboard.txt) +
+            '```'
+        )
         message.guild.members.fetch()
         var leaderboard =
            ['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])
@@ -20,7 +35,7 @@ module.exports.execute = async (
                : (await knex.select('*').from('users')).filter(r => message.guild.members.cache.get(r.id))
         let server = ''
         let txt = ''
-        if(new Date() - data.leaderboard.updated > 60000 && ['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])) {
+        if(['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])) {
             leaderboard.sort(function (a, b) {
                 var bm = 0
                 var am = 0
