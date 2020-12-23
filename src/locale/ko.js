@@ -194,34 +194,34 @@ module.exports = {
             }
         },
         price: {
-            CMDDESC: '아이템의 시세를 확인합니다.',
-            item: '아이템 시세',
+            CMDDESC: '주가를 확인합니다.',
+            item: '주가',
             changed: '--- {change}초 전 업데이트됨.',
             price: '{status} {name} : {price}원 [{update}]',
             lastchange: '다음 변동: `{lastchange}`초 남음'
         },
         buy: {
-            CMDDESC: '아이템을 구매합니다.',
+            CMDDESC: '주식을 구매합니다.',
             notvaild: '유효하지 않은 값입니다. 올바른 정수를 입력해주세요.',
             nomoney: '지불하실 금액을 소지하고 있지 않습니다.',
-            bill: '🧾 계산서',
+            bill: '🧾 주문서',
             ask:
-        '구매하려는 아이템 : {item}\n수량 : {count}\n지불할 금액 : {total} <:coin:636879213239992330>\n계속하시려면 💳 이모지로 반응하세요.',
+        '매수하려는 주식 : {item}\n수량 : {count}\n지불할 금액 : {total} <:coin:636879213239992330>\n계속하시려면 💳 이모지로 반응하세요.',
             finish: '✅ 결제 완료',
             result:
-        '아이템 : {item}\n수량  : {count}\n지불한 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>',
+        '주식 : {item}\n수량  : {count}주\n지불한 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>',
             not: '구매가 취소되었습니다.'
         },
         sell: {
-            CMDDESC: '아이템을 판매합니다.',
+            CMDDESC: '주식을 판매합니다.',
             notvaild: '유효하지 않은 값입니다. 올바른 정수를 입력해주세요.',
-            noitem: '판매하실 아이템을 소지하고 있지 않습니다.',
-            bill: '🧾 계산서',
+            noitem: '판매하실 주식을 소지하고 있지 않습니다.',
+            bill: '🧾 주문서',
             ask:
-        '판매하려는 아이템 : {item}\n수량 : {count}\n지급될 금액 : {total} <:coin:636879213239992330>\n계속하시려면 💳 이모지로 반응하세요.',
+        '매도하려는 주식 : {item}\n수량 : {count}주\n지급될 금액 : {total} <:coin:636879213239992330>\n계속하시려면 💳 이모지로 반응하세요.',
             finish: '✅ 결제 완료',
             result:
-        '아이템 : {item}\n수량  : {count}\n지급 받은 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>',
+        '주식 : {item}\n수량  : {count}주\n지급 받은 금액 : {total} <:coin:636879213239992330>\n잔고 : {money} <:coin:636879213239992330>',
             not: '판매가 취소되었습니다.'
         },
         delivery: {

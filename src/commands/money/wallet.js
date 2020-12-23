@@ -27,7 +27,7 @@ module.exports.execute = async (
         locale.commands.wallet.items[el] +
         ': ' +
         JSON.parse(user.items)[el].formatIt() +
-        ' 개'
+        ' 주'
     })
 
     embed.addField(
