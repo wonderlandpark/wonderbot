@@ -7,11 +7,12 @@ module.exports.execute = async (
     knex
 ) => {
     const s = [
-        { id: 'wondercoin', name: '원더코인' },
-        { id: 'gukbap', name: '국밥' },
-        { id: 'diamond', name: '다이아몬드' },
-        { id: 'coffee', name: '커피콩' },
-        { id: 'figure', name: '피규어' }
+        { id: 'wondercoin', name: '원더전자' },
+        { id: 'gukbap', name: '솔로식품' },
+        { id: 'diamond', name: '코인은행' },
+        { id: 'coffee', name: '요루커피' },
+        { id: 'figure', name: '예린완구' },
+        { id: 'mary', name: '매리웨딩' }
     ]
     const stock = await knex('stocks').select('*')
     message.channel.send(
