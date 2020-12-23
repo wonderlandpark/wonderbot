@@ -1,3 +1,5 @@
+const config = require('../../config')
+
 module.exports.execute = async (
     client,
     message,
@@ -69,6 +71,7 @@ module.exports.execute = async (
             if (obj.args.find(r => r.name === '--s' || r.name === '--sudo')) {
                 if (client.onlineMode) {
                     client.shard.broadcastEval('this.onlineMode = false')
+                    client.shard.broadcastEval('this.user.setStatus(\'dnd\'); this.user.setActivity(\'🛠️ 원더봇이 점검중입니다...\')')
                     obj.return = {
                         level: 'success',
                         type: 'MAINTAIN_ON',
@@ -76,11 +79,13 @@ module.exports.execute = async (
                     }
                 } else {
                     client.shard.broadcastEval('this.onlineMode = true')
+                    client.shard.broadcastEval(`this.user.setStatus('online'); this.user.setActivity(${config.client.app.presence.name || null})`)
                     obj.return = {
                         level: 'success',
                         type: 'MAINTAIN_OFF',
                         str: '서비스 허용 모드로 전환되었습니다.'
                     }
+
                 }
             } else {
                 obj.return = {
