@@ -127,7 +127,7 @@ module.exports.execute = async (
 module.exports.props = {
     name: 'slot',
     perms: 'general',
-    alias: ['슬롯머신'],
+    alias: ['슬롯머신', '슬롯'],
     args: [
         {
             name: 'money',
