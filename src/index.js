@@ -46,7 +46,7 @@ String.prototype.bind = function(parameters, lang) {
         glob.forEach(key => {
             const keyname = key.replace(/%/, '').replace(/%/, '')
             const string = String(locale[lang].global[keyname])
-            if(!string) return
+            // if(!string) return
             text = text.replace(key, String(string) || '')
         })
     }
@@ -56,8 +56,8 @@ String.prototype.bind = function(parameters, lang) {
     keys.forEach(key => {
         const keyname = key.replace(/\{/, '').replace(/\}/, '')
         const string = String(parameters[keyname]) 
-        if(!string) return
-        text = text.replace(key, string|| '')
+        // if(!string) return
+        text = text.replace(key, String(string) || '')
     })
 
     return text

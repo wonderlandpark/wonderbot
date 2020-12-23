@@ -105,7 +105,7 @@ module.exports.execute = async (
 module.exports.props = {
     name: 'buy',
     perms: 'general',
-    alias: ['구매', '구'],
+    alias: ['매수', '구매', '구'],
     args: [
         {
             name: 'item',
@@ -122,11 +122,12 @@ module.exports.props = {
 
 function find(str) {
     var s = [
-        { id: 'wondercoin', name: '원더코인' },
-        { id: 'gukbap', name: '국밥' },
-        { id: 'diamond', name: '다이아몬드' },
-        { id: 'coffee', name: '커피콩' },
-        { id: 'figure', name: '피규어' }
+        { id: 'wondercoin', name: '원더전자', alias: '원더코인' },
+        { id: 'gukbap', name: '솔로식품', alias: '국밥' },
+        { id: 'diamond', name: '코인은행', alias: '다이아몬드' },
+        { id: 'coffee', name: '요루커피', alias: '커피콩' },
+        { id: 'figure', name: '예린완구', alias: '피규어' },
+        { id: 'mary', name: '매리웨딩', alias: '매리결혼' }
     ]
-    return s.filter(r => r.id.includes(str) || r.name.includes(str))
+    return s.filter(r => r.id.includes(str) || r.name.includes(str) || r.alias.includes(str))
 }
