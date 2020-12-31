@@ -54,6 +54,6 @@ module.exports.execute = async (
 module.exports.props = {
     name: 'price',
     perms: 'general',
-    alias: ['가격', '시세'],
+    alias: ['가격', '시세', '주가'],
     args: [{}]
 }
