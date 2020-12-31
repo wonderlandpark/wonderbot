@@ -1,5 +1,5 @@
 module.exports.execute = async ( client, message, locale, embed, tools, knex ) => {
-    if(!message.data.args) return message.reply(locale.error.usage(message.data.cmd))
+    if(!message.data.args) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     const id = message.data.arg[0].split('-').join('')
     const coupon = await knex('coupon').where({ id }).andWhere('expire', '>', Math.round(new Date()/1000))
     if (coupon.length === 0) return message.reply('**올바른 쿠폰 번호가 맞나요..?**\n\n올바르지 않은 쿠폰 번호이거나, 만료되었습니다!')
