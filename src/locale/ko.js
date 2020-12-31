@@ -734,5 +734,6 @@ const usageNames = {
     prefix: '변경할 접두사',
     sender: '전송자',
     station: '역명',
-    domain: '도메인'
+    domain: '도메인',
+    coupon: '쿠폰번호'
 }
