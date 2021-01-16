@@ -129,5 +129,5 @@ function find(str) {
         { id: 'figure', name: '예린완구', alias: '피규어' },
         { id: 'mary', name: '매리웨딩', alias: '매리결혼' }
     ]
-    return s.filter(r => r.id.includes(str) || r.name.includes(str) || r.alias.includes(str))
+    return s.filter(r => r.id.includes(str) || r.name.includes(str))
 }

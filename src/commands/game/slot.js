@@ -7,6 +7,13 @@ module.exports.execute = async (
     tools,
     knex
 ) => {
+    const user = (
+        await knex
+            .select('*')
+            .from('users')
+            .where({ id: message.author.id })
+    )[0]
+    if(['전부', '올인'].includes(message.data.args)) message.data.arg[0] = user.money
     if (!message.data.args || isNaN(message.data.arg[0]) || !Number.isInteger(Number(message.data.arg[0])))
         return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     if (!message.guild.me.hasPermission('ADD_REACTIONS')) {
@@ -14,12 +21,7 @@ module.exports.execute = async (
             locale.error.botperm.bind({ perms: locale.perm['ADD_REACTIONS'] })
         )
     }
-    const user = (
-        await knex
-            .select('*')
-            .from('users')
-            .where({ id: message.author.id })
-    )[0]
+    
     const m = Number(user.money)
     const cooldown = JSON.parse(user.cooldown) || {slot: 0}
     if (
