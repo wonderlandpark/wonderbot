@@ -70,7 +70,7 @@ module.exports.execute = async (
                 return message.reply('상환이 취소되었습니다.')
             }
             const point = u.loan_point + reqMoney
-            const loan_lvl = point >= available.map((r, n)=> r*(1+0.1*n)[u.loan_lvl-1] ? u.loan_lvl <= 1 ? 1 : u.loan_lvl-1 : u.loan_lvl)
+            const loan_lvl = point >= available.map((r, n)=> r*(1+0.1*(n+1)))[u.loan_lvl-1] ? u.loan_lvl <= 1 ? 1 : u.loan_lvl-1 : u.loan_lvl 
             await knex('users').where({ id: message.author.id }).update({ money: Math.round(+u.money - Number(reqMoney)), loan_money: u.loan_money - reqMoney, action: 0, loan_lvl, loan_point: loan_lvl !== u.loan_lvl ? 0 : point, loan_date: 0 })
             message.reply(`원더은행을 이용해주셔서 감사합니다.\n**${u.loan_money}**원의 빚중에 **${reqMoney}**원을 상환하셨습니다.\n\n${u.loan_money - reqMoney > 0 ? `**${u.loan_money - reqMoney}**원의 빚을 ${u.loan_date===0 ? `**${new Date((u.loan_date+43200)*1000).format('ko')}**(${new Date((u.loan_date+43200)*1000).fromNow('ko')})까지 상환 하셔야합니다.` : ''}` : '모든 빚을 상환하셨습니다!'}`)
             if(loan_lvl !== u.loan_lvl) return message.reply(`축하드립니다. 신용등급이 상향되었습니다.\n**${tier[u.loan_lvl-1]}**(${u.loan_lvl}등급) -> **${tier[loan_lvl-1]}**(${loan_lvl}등급)\n\n더 많은 금액을 대출하실 수 있으며, 다양한 혜택을 누려보세요.`)
