@@ -13,7 +13,7 @@ module.exports.execute = async (
     if (!['전체','전', 'ㅈ', '서버', 'ㅅ', '서','길드', 'global', 'guild', 'server'].includes(message.data.arg[0])) {
         message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     } else {
-        if(new Date() - data.leaderboard.updated < 60000 && ['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])) return message.channel.send(
+        if(new Date() - data.leaderboard.updated < 180000 && ['전체', '전', 'ㅈ', 'global'].includes(message.data.arg[0])) return message.channel.send(
             '```md\n' +
             locale.commands.leaderboard.leaderboard.bind({
                 season: require('../../config').client.bot.season
