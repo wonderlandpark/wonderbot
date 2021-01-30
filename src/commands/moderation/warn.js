@@ -21,7 +21,7 @@ module.exports.execute = async (
     if (reason.length > 100) return message.reply(locale.commands.warn.tooLong)
     if (!user) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     if (user.user.bot) return message.reply(locale.commands.warn.bot)
-    if (user.hasPermission(['ADMINISTRATOR']))
+    if (user.permissions.has('ADMINISTRATOR'))
         return message.reply(locale.commands.warn.alsoPerm)
     if (!warndata[user.id]) warndata[user.id] = { count: 1, reason: [reason] }
     else {

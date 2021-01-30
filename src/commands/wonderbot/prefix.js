@@ -10,7 +10,7 @@ module.exports.execute = async (
     const guild = JSON.parse((await knex('guilds').where({ id: message.guild.id }))[0].config)
     if(!message.data.args) return message.reply(locale.commands.prefix.current.bind({ prefix: guild.prefix || config.client.prefix}))
     else{
-        if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(locale.commands.prefix.notAdmin)
+        if(!message.member.permissions.has('ADMINISTRATOR')) return message.reply(locale.commands.prefix.notAdmin)
         if(message.data.args.length > 16) return message.reply(locale.commands.prefix.filter)
         if(message.data.args.match(/<@![0-9]{18}>/)) return message.reply(locale.commands.prefix.mention)
         if(message.data.args.match(/(@(everyone|here))/gi)) return message.reply(locale.commands.prefix.mention)

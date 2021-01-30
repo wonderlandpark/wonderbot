@@ -18,7 +18,7 @@ module.exports.execute = async (
                 items: res.map(r => r.name + '\n').join('')
             })
         )
-    if (!message.guild.me.hasPermission('ADD_REACTIONS')) {
+    if (!message.guild.me.permissions.has('ADD_REACTIONS')) {
         message.reply(
             locale.error.botperm.bind({ perms: locale.perm['ADD_REACTIONS'] })
         )

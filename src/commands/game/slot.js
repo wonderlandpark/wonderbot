@@ -16,7 +16,7 @@ module.exports.execute = async (
     if(['전부', '올인'].includes(message.data.args)) message.data.arg[0] = user.money
     if (!message.data.args || isNaN(message.data.arg[0]) || !Number.isInteger(Number(message.data.arg[0])))
         return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
-    if (!message.guild.me.hasPermission('ADD_REACTIONS')) {
+    if (!message.guild.me.permissions.has('ADD_REACTIONS')) {
         message.reply(
             locale.error.botperm.bind({ perms: locale.perm['ADD_REACTIONS'] })
         )
