@@ -15,7 +15,7 @@ module.exports.execute = async (
     }
     else {
         if(message.data.arg[0] === '구매'){
-            if (!message.guild.me.hasPermission('ADD_REACTIONS'))  message.reply(locale.error.botperm.bind({ perms: locale.perm['ADD_REACTIONS'] }))
+            if (!message.guild.me.permissions.has('ADD_REACTIONS'))  message.reply(locale.error.botperm.bind({ perms: locale.perm['ADD_REACTIONS'] }))
             const res = await knex('lotto')
             const user = (await knex('users').where({ id: message.author.id }))[0]
             let lotto = JSON.parse(user.lotto)

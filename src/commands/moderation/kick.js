@@ -15,7 +15,7 @@ module.exports.execute = async (
       await message.guild.members.fetch(message.data.arg[0]).then(r=> r).catch(() => null)
     }
     if (!user) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
-    if (user.hasPermission(['KICK_MEMBERS']))
+    if (user.permissions.has('KICK_MEMBERS'))
         return message.reply(locale.commands.kick.alsoPerm)
     await message.reply(locale.commands.kick.wait)
     try {

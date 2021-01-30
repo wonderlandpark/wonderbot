@@ -55,7 +55,7 @@ module.exports.execute = async (
                 tools.bot.modlog(client, message.guild.id, embed)
             })
     }
-    if (user.hasPermission(['BAN_MEMBERS']))
+    if (user.permissions.has('BAN_MEMBERS'))
         return message.reply(locale.commands.ban.alsoPerm)
     await message.reply(locale.commands.ban.wait)
     try {

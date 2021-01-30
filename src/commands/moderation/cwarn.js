@@ -16,7 +16,7 @@ module.exports.execute = async (
     const warndata = JSON.parse(guild.warn)
     if (!user) return message.reply(locale.error.usage(message.data.cmd, message.data.prefix))
     if (user.user.bot) return message.reply(locale.commands.cwarn.bot)
-    if (user.hasPermission(['ADMINISTRATOR']))
+    if (user.permissions.has('ADMINISTRATOR'))
         return message.reply(locale.commands.cwarn.alsoPerm)
     if (!warndata[user.id] || warndata[user.id].count === 0)
         return message.reply(locale.commands.cwarn.noWarn)

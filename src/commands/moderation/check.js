@@ -8,7 +8,7 @@ module.exports.execute = async (
 ) => {
     if (
         message.mentions.members.first() &&
-        !message.member.hasPermission(['ADMINISTRATOR'])
+        !message.member.permissions.has('ADMINISTRATOR')
     )
         return message.reply(locale.commands.check.noperm)
     const user = message.mentions.members.first() || message.member

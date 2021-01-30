@@ -115,7 +115,7 @@ module.exports = async (client, message, config) => {
     }
 
     if (message.guild 
-        && !message.member.hasPermission(
+        && !message.member.permissions.has(
             CMD.props.perms.required.perms
         )
     )
