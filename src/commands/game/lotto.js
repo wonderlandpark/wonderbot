@@ -149,7 +149,7 @@ function calculate( my, answ ) {
     const l = !res.match(/true/gi) ? 0 : res.match(/true/gi).length
 
     if(l === 4) return 0
-    else if(l === 3 && my[arr.indexOf(false)] === answ[4] ) return 1
+    else if(l === 3 && my.includes(Number(answ[4])) ) return 1
     else if(l === 3) return 2
     else if(l === 2) return 3
     else if(l === 1) return 4
