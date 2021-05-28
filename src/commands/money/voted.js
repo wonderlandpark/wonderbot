@@ -1,8 +1,3 @@
-const config = require('../../config')
-const koreanbots = require('koreanbots')
-
-const MyBot = new koreanbots.MyBot(config.client.secrets.koreanbots)
-
 module.exports.execute = async (
     client,
     message,
@@ -26,7 +21,7 @@ module.exports.execute = async (
             })
         )
     else {
-        const res = await MyBot.checkVote(message.author.id).then(r=> r.voted).catch(()=> false)
+        const res = await client.koreanbots.checkVote(message.author.id).then(r=> r.voted).catch(()=> false)
         if(res){
             const money = Number(u.money) + 300
             let cool = JSON.parse(u.cooldown)
