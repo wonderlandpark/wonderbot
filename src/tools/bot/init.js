@@ -19,6 +19,7 @@ module.exports = class WB {
         )
 
         client.once('ready', async () => {
+            client.koreanbots = MyBot
             client.onlineMode = true
             if (!client.shard) {
                 logger.WBerror('Only Shard Alowed')
@@ -80,7 +81,7 @@ module.exports = class WB {
                         memory: (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
                     })
                     .where({ id: client.guilds.cache.first().shardID })
-                MyBot.cache.clear()
+                client.koreanbots.cache.clear()
             }, 60000)
         })
 
