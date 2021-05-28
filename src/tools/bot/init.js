@@ -1,4 +1,6 @@
 const fs = require('fs')
+const koreanbots = require('koreanbots')
+
 const knex = require('../database/knex')
 module.exports = class WB {
     constructor(config, devMode) {
@@ -8,6 +10,7 @@ module.exports = class WB {
         })
         const Discord = require('discord.js')
         const client = new Discord.Client(config.client.app)
+        const MyBot = new koreanbots.MyBot(config.client.secrets.koreanbots)
         const tools = require('../')
         const logger = tools.logger
         client.webhook = new Discord.WebhookClient(
@@ -77,6 +80,7 @@ module.exports = class WB {
                         memory: (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
                     })
                     .where({ id: client.guilds.cache.first().shardID })
+                MyBot.cache.clear()
             }, 60000)
         })
 
