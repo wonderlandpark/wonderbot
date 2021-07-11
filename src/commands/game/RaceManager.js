@@ -47,7 +47,7 @@ module.exports = class Race {
     }
     async play(message){
         if(message && message.author.id !== this.author.id) return message.reply('경주방장만 시작할 수 있습니다.')
-
+        if(this.started) return message.reply('이미 게임이 진행중입니다.')
         clearTimeout(this.timer)
         
         if(this.members.size <= 1) {
