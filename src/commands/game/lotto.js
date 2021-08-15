@@ -71,7 +71,7 @@ module.exports.execute = async (
             let user = JSON.parse(u.lotto)
             if(user.filter(r=> r.time === res.length - 1).length === 0) return message.reply(locale.commands.lotto.noItem)
             let total = 0
-            const list = user.map(r=> {
+            const list = user.filter(r=> r.time === res.length - 1).map(r=> {
                 const level = calculate(r.numbers, (res[res.length - 1].numbers).split(','))
                 total += [10000000, 1000000, 50000, 1000, 500, 0][level]
                 return locale.commands.lotto.moneyRes.bind({ num: r.numbers.map(el=> numbers[el]).join(' '), n: level+1, money: [10000000, 1000000, 50000, 1000, 500, 0][level] })}).join('')
