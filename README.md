@@ -1,3 +1,11 @@
+# Archive Notice
+
+WonderBot, the discord bot 's service had been ended.
+
+There would be no more updates.
+
+---
+
 # Wonder_Bot, Rewrite
 
 ![license](https://img.shields.io/github/license/wonderlandpark/wonderbot)
